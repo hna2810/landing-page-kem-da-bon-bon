@@ -1,0 +1,3154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Kem Bôi Chàm Sữa Bon Bon - Chỉ 49K | Chuyên Gia Mẹ Bé Tin Dùng</title>
+    <meta name="description" content="Kem Bôi Chàm Sữa, Mụn Cà Kê Cho Bé Bon Bon - An toàn từ 0 tháng, không Corticoid. Ưu đãi sốc chỉ 49K. Đăng ký ngay!">
+    <meta property="og:title" content="Kem Bôi Chàm Sữa Bon Bon - Chỉ 49K">
+    <meta property="og:description" content="Giải pháp dịu nhẹ cho làn da bé. 10,000+ mẹ tin dùng. Ưu đãi 49K có hạn!">
+    <meta property="og:image" content="https://cdn.hstatic.net/products/200001066686/mua1tang1-kem-boi-cham-sua-mun-ca-ke-cho-be-bonbon-homecare__1__866121945139436d875f0a957d88a58f_master.jpg">
+    <meta property="og:type" content="product">
+    <link rel="icon" href="https://cdn.hstatic.net/themes/200001066686/1001439050/14/favicon.png" type="image/png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
+    <!-- Facebook Pixel (Replace YOUR_PIXEL_ID) -->
+    <!-- <script>!function(f,b,e,v,n,t,s){...}('YOUR_PIXEL_ID');</script> -->
+    <!-- Google Analytics (Replace YOUR_GA_ID) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script> -->
+    <!-- TikTok Pixel (Replace YOUR_TIKTOK_PIXEL_ID) -->
+    <!-- <script>!function(w,d,t){...}('YOUR_TIKTOK_PIXEL_ID');</script> -->
+
+<style>
+/* ============================================
+   CSS RESET & VARIABLES
+   ============================================ */
+:root {
+    --primary: #4cc0d3;
+    --primary-dark: #3aa8ba;
+    --primary-light: #a8e4ed;
+    --primary-ultra-light: #e8f7fa;
+    --pink: #FFB6C1;
+    --pink-dark: #FF69B4;
+    --pink-light: #FFF0F5;
+    --yellow: #FFE4A0;
+    --yellow-light: #FFF8E7;
+    --green: #A8E6CF;
+    --green-dark: #5CB85C;
+    --lavender: #E8D5F5;
+    --white: #ffffff;
+    --dark: #2D3436;
+    --gray: #636E72;
+    --gray-light: #B2BEC3;
+    --gray-ultra-light: #F8F9FA;
+    --shadow: 0 4px 20px rgba(76, 192, 211, 0.15);
+    --shadow-hover: 0 8px 40px rgba(76, 192, 211, 0.25);
+    --radius: 20px;
+    --radius-sm: 12px;
+    --radius-lg: 32px;
+    --font-heading: 'Quicksand', sans-serif;
+    --font-body: 'Nunito', sans-serif;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--dark);
+    background: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; border: none; outline: none; font-family: var(--font-body); }
+ul { list-style: none; }
+input, textarea, select { font-family: var(--font-body); }
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ============================================
+   LOADING SCREEN
+   ============================================ */
+.loader {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, var(--primary-ultra-light), var(--pink-light), var(--yellow-light));
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+.loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+.loader-baby {
+    font-size: 60px;
+    animation: babyBounce 1s ease-in-out infinite;
+}
+.loader-text {
+    margin-top: 20px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--primary-dark);
+}
+.loader-dots span {
+    animation: dotBounce 1.4s ease-in-out infinite;
+    display: inline-block;
+    font-size: 24px;
+    color: var(--primary);
+}
+.loader-dots span:nth-child(2) { animation-delay: 0.2s; }
+.loader-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes babyBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+@keyframes dotBounce {
+    0%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+}
+
+/* ============================================
+   SCROLL PROGRESS BAR
+   ============================================ */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--pink-dark));
+    width: 0%;
+    z-index: 10001;
+    transition: width 0.1s linear;
+    border-radius: 0 2px 2px 0;
+}
+
+/* ============================================
+   FLOATING BACKGROUND ELEMENTS
+   ============================================ */
+.floating-elements {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+.float-item {
+    position: absolute;
+    opacity: 0.12;
+    font-size: 20px;
+    animation: floatRandom 15s ease-in-out infinite;
+}
+.float-item:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; font-size: 24px; }
+.float-item:nth-child(2) { top: 20%; right: 8%; animation-delay: 2s; font-size: 18px; }
+.float-item:nth-child(3) { top: 40%; left: 3%; animation-delay: 4s; font-size: 28px; }
+.float-item:nth-child(4) { top: 60%; right: 5%; animation-delay: 6s; font-size: 16px; }
+.float-item:nth-child(5) { top: 80%; left: 10%; animation-delay: 8s; font-size: 22px; }
+.float-item:nth-child(6) { top: 30%; left: 50%; animation-delay: 3s; font-size: 20px; }
+.float-item:nth-child(7) { top: 70%; right: 15%; animation-delay: 5s; font-size: 26px; }
+.float-item:nth-child(8) { top: 50%; left: 25%; animation-delay: 7s; font-size: 14px; }
+
+@keyframes floatRandom {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(20px, -30px) rotate(5deg); }
+    50% { transform: translate(-15px, 20px) rotate(-3deg); }
+    75% { transform: translate(25px, 10px) rotate(7deg); }
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    padding: 12px 0;
+    transition: var(--transition);
+    background: transparent;
+}
+.header.scrolled {
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    padding: 8px 0;
+}
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.header-logo img {
+    height: 40px;
+    width: auto;
+}
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.header-phone {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    font-size: 14px;
+}
+.header-phone svg { width: 18px; height: 18px; }
+.header-cta {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 14px;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(76,192,211,0.4);
+}
+.header-cta:hover {
+    box-shadow: 0 6px 25px rgba(76,192,211,0.5);
+    background: linear-gradient(135deg, var(--primary-dark), #2a95a6);
+}
+
+@media (min-width: 768px) {
+    .header-phone { display: flex; }
+    .header-logo img { height: 48px; }
+}
+
+/* ============================================
+   WAVE DIVIDERS
+   ============================================ */
+.wave-divider {
+    width: 100%;
+    line-height: 0;
+    overflow: hidden;
+}
+.wave-divider svg {
+    width: 100%;
+    height: 60px;
+    display: block;
+}
+.wave-divider.flip { transform: scaleY(-1); }
+
+@media (min-width: 768px) {
+    .wave-divider svg { height: 80px; }
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(160deg, var(--primary-ultra-light) 0%, var(--white) 40%, var(--pink-light) 70%, var(--yellow-light) 100%);
+    padding: 100px 0 60px;
+    overflow: hidden;
+}
+.hero-bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(76,192,211,0.1), rgba(255,182,193,0.1));
+    animation: pulseCircle 6s ease-in-out infinite;
+}
+.hero-bg-circle:nth-child(1) { width: 400px; height: 400px; top: -100px; right: -100px; }
+.hero-bg-circle:nth-child(2) { width: 300px; height: 300px; bottom: -50px; left: -80px; animation-delay: 3s; }
+
+@keyframes pulseCircle {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+.hero-content { text-align: center; }
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #FF6B6B, var(--pink-dark));
+    color: white;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    animation: pulseBadge 2s ease-in-out infinite;
+}
+@keyframes pulseBadge {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,107,107,0.4); }
+    50% { box-shadow: 0 0 0 10px rgba(255,107,107,0); }
+}
+.hero-badge .old-price {
+    text-decoration: line-through;
+    opacity: 0.7;
+    font-size: 12px;
+}
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 16px;
+    color: var(--dark);
+}
+.hero-title span { 
+    color: var(--primary);
+    position: relative;
+}
+.hero-title .highlight-pink { color: var(--pink-dark); }
+.hero-subtitle {
+    font-size: 16px;
+    color: var(--gray);
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+.hero-subtitle strong { color: var(--primary-dark); }
+.hero-cta-wrap { margin-bottom: 24px; }
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    padding: 16px 40px;
+    border-radius: 60px;
+    font-size: 17px;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    transition: var(--transition);
+    box-shadow: 0 6px 30px rgba(76,192,211,0.4);
+    position: relative;
+    overflow: hidden;
+}
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: 0.6s;
+}
+.btn-primary:hover::before { left: 100%; }
+.btn-primary:hover {
+    box-shadow: 0 8px 40px rgba(76,192,211,0.5);
+    transform: translateY(-2px);
+}
+.btn-primary.pulse {
+    animation: btnPulse 2s ease-in-out infinite;
+}
+@keyframes btnPulse {
+    0%, 100% { box-shadow: 0 6px 30px rgba(76,192,211,0.4); }
+    50% { box-shadow: 0 6px 30px rgba(76,192,211,0.6), 0 0 0 10px rgba(76,192,211,0.1); }
+}
+
+.hero-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray);
+    background: rgba(255,255,255,0.8);
+    padding: 6px 14px;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+}
+.trust-item .icon { font-size: 16px; }
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.hero-product-img {
+    max-width: 320px;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 60px rgba(76,192,211,0.2);
+    animation: floatProduct 4s ease-in-out infinite;
+}
+@keyframes floatProduct {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+.hero-product-deco {
+    position: absolute;
+    font-size: 30px;
+    animation: floatRandom 8s ease-in-out infinite;
+}
+.hero-product-deco:nth-child(2) { top: -10px; right: 10px; }
+.hero-product-deco:nth-child(3) { bottom: 20px; left: 0; animation-delay: 2s; }
+.hero-product-deco:nth-child(4) { top: 40%; right: -10px; animation-delay: 4s; }
+
+@media (min-width: 768px) {
+    .hero { padding: 120px 0 80px; }
+    .hero-grid { grid-template-columns: 1fr 1fr; text-align: left; }
+    .hero-content { text-align: left; }
+    .hero-title { font-size: 42px; }
+    .hero-subtitle { font-size: 18px; }
+    .hero-trust { justify-content: flex-start; }
+    .hero-product-img { max-width: 420px; }
+}
+@media (min-width: 1200px) {
+    .hero-title { font-size: 48px; }
+}
+
+/* ============================================
+   SECTION STYLES (SHARED)
+   ============================================ */
+.section {
+    padding: 60px 0;
+    position: relative;
+    z-index: 1;
+}
+.section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+.section-label {
+    display: inline-block;
+    background: var(--primary-ultra-light);
+    color: var(--primary-dark);
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    font-family: var(--font-heading);
+}
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 12px;
+    color: var(--dark);
+}
+.section-title span { color: var(--primary); }
+.section-desc {
+    color: var(--gray);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+    .section { padding: 80px 0; }
+    .section-title { font-size: 36px; }
+    .section-desc { font-size: 16px; }
+}
+
+/* ============================================
+   PAIN POINTS SECTION
+   ============================================ */
+.pain-section {
+    background: linear-gradient(180deg, var(--white), var(--pink-light));
+}
+.pain-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+.pain-card {
+    background: var(--white);
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+.pain-card:hover {
+    border-color: var(--pink);
+    box-shadow: var(--shadow-hover);
+}
+.pain-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 16px;
+    background: var(--pink-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+.pain-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.5;
+}
+.pain-cta {
+    text-align: center;
+    margin-top: 32px;
+}
+
+@media (min-width: 768px) {
+    .pain-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+}
+
+/* ============================================
+   SOLUTION / PRODUCT SECTION
+   ============================================ */
+.solution-section {
+    background: var(--white);
+}
+.solution-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+}
+.solution-img-wrap {
+    position: relative;
+    text-align: center;
+}
+.solution-img {
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 60px rgba(76,192,211,0.15);
+    max-width: 400px;
+    margin: 0 auto;
+}
+.solution-features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px;
+    border-radius: var(--radius-sm);
+    background: var(--primary-ultra-light);
+    transition: var(--transition);
+}
+.feature-item:hover {
+    background: var(--white);
+    box-shadow: var(--shadow);
+}
+.feature-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    color: white;
+}
+.feature-text h4 {
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.feature-text p {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+    .solution-grid { grid-template-columns: 1fr 1fr; }
+    .solution-features { grid-template-columns: 1fr; }
+}
+
+/* ============================================
+   INGREDIENTS SECTION
+   ============================================ */
+.ingredients-section {
+    background: linear-gradient(180deg, var(--primary-ultra-light), var(--white));
+}
+.ingr-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+.ingr-card {
+    background: var(--white);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: var(--transition);
+    border-left: 4px solid var(--primary);
+}
+.ingr-card:hover {
+    box-shadow: var(--shadow-hover);
+}
+.ingr-emoji { font-size: 32px; flex-shrink: 0; }
+.ingr-info h4 {
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 4px;
+}
+.ingr-info p {
+    font-size: 13px;
+    color: var(--gray);
+}
+.ingr-img {
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+}
+
+@media (min-width: 768px) {
+    .ingr-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+}
+@media (min-width: 1024px) {
+    .ingr-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ============================================
+   HOW TO USE SECTION
+   ============================================ */
+.howto-section {
+    background: var(--white);
+}
+.howto-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+}
+.steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+.step-number {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 18px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(76,192,211,0.3);
+}
+.step-content h4 {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.step-content p {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.5;
+}
+.howto-img {
+    border-radius: var(--radius-lg);
+    box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .howto-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ============================================
+   SOCIAL PROOF / TESTIMONIALS
+   ============================================ */
+.social-proof-section {
+    background: linear-gradient(180deg, var(--yellow-light), var(--white));
+}
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+}
+.stat-card {
+    text-align: center;
+    padding: 24px 16px;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+.stat-number {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1;
+    margin-bottom: 4px;
+}
+.stat-label {
+    font-size: 12px;
+    color: var(--gray);
+    font-weight: 600;
+}
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+.testimonial-card {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+.testimonial-card:hover {
+    box-shadow: var(--shadow-hover);
+}
+.testimonial-card img {
+    width: 100%;
+    height: auto;
+}
+.cert-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 20px;
+}
+.cert-card {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+.cert-card img { width: 100%; }
+
+@media (min-width: 768px) {
+    .stat-number { font-size: 42px; }
+    .stat-label { font-size: 14px; }
+    .testimonial-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ============================================
+   COMBO DEAL SECTION
+   ============================================ */
+.combo-section {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+.combo-section::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    top: -100px;
+    right: -100px;
+}
+.combo-section .section-title { color: white; }
+.combo-section .section-title span { color: var(--yellow); }
+.combo-section .section-desc { color: rgba(255,255,255,0.85); }
+.combo-section .section-label { background: rgba(255,255,255,0.2); color: white; }
+
+.combo-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+.combo-card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: var(--radius);
+    padding: 24px;
+    text-align: center;
+    transition: var(--transition);
+}
+.combo-card:hover {
+    background: rgba(255,255,255,0.25);
+}
+.combo-emoji { font-size: 48px; margin-bottom: 12px; }
+.combo-name {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.combo-desc {
+    font-size: 13px;
+    opacity: 0.85;
+    line-height: 1.5;
+}
+.combo-price-box {
+    text-align: center;
+    margin-bottom: 24px;
+}
+.combo-old-price {
+    font-size: 20px;
+    text-decoration: line-through;
+    opacity: 0.6;
+    margin-bottom: 4px;
+}
+.combo-new-price {
+    font-family: var(--font-heading);
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--yellow);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+.combo-save {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--dark);
+    padding: 6px 20px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 14px;
+    margin-top: 8px;
+}
+.btn-combo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--yellow);
+    color: var(--dark);
+    padding: 16px 40px;
+    border-radius: 60px;
+    font-size: 17px;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    transition: var(--transition);
+    box-shadow: 0 6px 30px rgba(0,0,0,0.2);
+}
+.btn-combo:hover {
+    background: #FFD700;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+    transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+    .combo-grid { grid-template-columns: repeat(3, 1fr); }
+    .combo-new-price { font-size: 52px; }
+}
+
+/* ============================================
+   URGENCY / COUNTDOWN
+   ============================================ */
+.urgency-section {
+    background: linear-gradient(135deg, #FF6B6B, var(--pink-dark));
+    color: white;
+    padding: 40px 0;
+}
+.urgency-inner {
+    text-align: center;
+}
+.urgency-title {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+.countdown-item {
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    min-width: 60px;
+    text-align: center;
+}
+.countdown-number {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 800;
+    display: block;
+    line-height: 1;
+}
+.countdown-label {
+    font-size: 11px;
+    opacity: 0.8;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.urgency-stock {
+    font-size: 16px;
+    font-weight: 700;
+    animation: pulseBadge 1.5s ease-in-out infinite;
+}
+.urgency-stock span {
+    font-size: 24px;
+    color: var(--yellow);
+}
+
+@media (min-width: 768px) {
+    .urgency-title { font-size: 28px; }
+    .countdown-number { font-size: 36px; }
+    .countdown-item { padding: 16px 24px; min-width: 80px; }
+}
+
+/* ============================================
+   REGISTRATION FORM
+   ============================================ */
+.form-section {
+    background: linear-gradient(180deg, var(--primary-ultra-light), var(--white), var(--primary-ultra-light));
+    padding: 80px 0;
+}
+.form-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 32px 24px;
+    box-shadow: 0 20px 80px rgba(76,192,211,0.2);
+    border: 2px solid var(--primary-light);
+    position: relative;
+    overflow: hidden;
+}
+.form-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--pink-dark), var(--primary));
+}
+.form-deco-left, .form-deco-right {
+    position: absolute;
+    font-size: 60px;
+    opacity: 0.08;
+}
+.form-deco-left { top: 20px; left: -10px; }
+.form-deco-right { bottom: 20px; right: -10px; }
+
+.form-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+.form-header h2 {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin-bottom: 8px;
+}
+.form-header p {
+    font-size: 14px;
+    color: var(--gray);
+}
+.form-group {
+    margin-bottom: 16px;
+}
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 6px;
+}
+.form-group label .req { color: #FF6B6B; }
+.form-input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid #E8E8E8;
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    transition: var(--transition);
+    background: var(--gray-ultra-light);
+}
+.form-input:focus {
+    border-color: var(--primary);
+    background: var(--white);
+    box-shadow: 0 0 0 4px rgba(76,192,211,0.1);
+    outline: none;
+}
+.form-input::placeholder { color: var(--gray-light); }
+.form-input.error { border-color: #FF6B6B; }
+.error-msg {
+    font-size: 12px;
+    color: #FF6B6B;
+    margin-top: 4px;
+    display: none;
+}
+.error-msg.show { display: block; }
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    border: 2px solid #E8E8E8;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: var(--transition);
+    background: var(--gray-ultra-light);
+}
+.radio-option:hover, .radio-option.active {
+    border-color: var(--primary);
+    background: var(--primary-ultra-light);
+}
+.radio-option input[type="radio"] {
+    accent-color: var(--primary);
+    width: 18px;
+    height: 18px;
+}
+.radio-option .radio-label {
+    font-size: 14px;
+    font-weight: 600;
+}
+.radio-option .radio-price {
+    margin-left: auto;
+    font-weight: 800;
+    color: var(--primary-dark);
+    font-size: 15px;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    border: none;
+    border-radius: 60px;
+    font-size: 18px;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 6px 30px rgba(76,192,211,0.4);
+    margin-top: 8px;
+    position: relative;
+    overflow: hidden;
+}
+.btn-submit::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+.btn-submit:hover {
+    box-shadow: 0 8px 40px rgba(76,192,211,0.5);
+}
+.form-security {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--gray);
+}
+
+/* Form Success State */
+.form-success {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+}
+.form-success.show { display: block; }
+.form-success .success-emoji {
+    font-size: 60px;
+    margin-bottom: 16px;
+    animation: babyBounce 1s ease-in-out infinite;
+}
+.form-success h3 {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--green-dark);
+    margin-bottom: 12px;
+}
+.form-success p {
+    color: var(--gray);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+    .form-wrapper { padding: 48px 40px; }
+    .form-header h2 { font-size: 32px; }
+}
+
+/* ============================================
+   FAQ SECTION
+   ============================================ */
+.faq-section {
+    background: var(--gray-ultra-light);
+}
+.faq-list {
+    max-width: 700px;
+    margin: 0 auto;
+}
+.faq-item {
+    background: var(--white);
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    overflow: hidden;
+    border: 1px solid #F0F0F0;
+}
+.faq-question {
+    width: 100%;
+    padding: 18px 20px;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark);
+    text-align: left;
+    font-family: var(--font-heading);
+    transition: var(--transition);
+}
+.faq-question:hover { color: var(--primary-dark); }
+.faq-arrow {
+    width: 24px;
+    height: 24px;
+    background: var(--primary-ultra-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    flex-shrink: 0;
+    font-size: 12px;
+    color: var(--primary);
+}
+.faq-item.active .faq-arrow {
+    transform: rotate(180deg);
+    background: var(--primary);
+    color: white;
+}
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+.faq-answer-inner {
+    padding: 0 20px 18px;
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.7;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.8);
+    padding: 40px 0 20px;
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+.footer-brand img { height: 40px; margin-bottom: 12px; filter: brightness(10); }
+.footer-brand p { font-size: 14px; line-height: 1.6; }
+.footer-contact h4, .footer-links h4 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+.footer-contact p, .footer-links a {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+    transition: var(--transition);
+}
+.footer-links a:hover { color: var(--primary); }
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    text-align: center;
+    font-size: 13px;
+    opacity: 0.6;
+}
+
+@media (min-width: 768px) {
+    .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+}
+
+/* ============================================
+   STICKY BOTTOM BAR (Mobile)
+   ============================================ */
+.sticky-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(20px);
+    padding: 12px 16px;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+}
+.sticky-bottom.show { transform: translateY(0); }
+.sticky-bottom .sticky-info {
+    font-size: 13px;
+}
+.sticky-bottom .sticky-info .price {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    color: var(--primary-dark);
+    font-size: 20px;
+}
+.sticky-bottom .sticky-info .old { text-decoration: line-through; color: var(--gray-light); font-size: 12px; }
+.sticky-bottom .btn-sticky {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 14px;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(76,192,211,0.4);
+    animation: btnPulse 2s ease-in-out infinite;
+}
+
+@media (min-width: 768px) {
+    .sticky-bottom { display: none; }
+}
+
+/* ============================================
+   FLOATING BUTTONS
+   ============================================ */
+.floating-btns {
+    position: fixed;
+    bottom: 80px;
+    right: 16px;
+    z-index: 9997;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.float-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    transition: var(--transition);
+    text-decoration: none;
+}
+.float-btn:hover { transform: scale(1.1); }
+.float-btn.phone { background: var(--green-dark); color: white; }
+.float-btn.zalo { background: #0068FF; color: white; }
+.float-btn.top {
+    background: var(--primary);
+    color: white;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+}
+.float-btn.top.show { opacity: 1; visibility: visible; }
+
+@media (min-width: 768px) {
+    .floating-btns { bottom: 30px; right: 30px; }
+    .float-btn { width: 56px; height: 56px; }
+}
+
+/* ============================================
+   ANIMATIONS - reveal classes
+   ============================================ */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+}
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-60px);
+}
+.reveal-right {
+    opacity: 0;
+    transform: translateX(60px);
+}
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+/* ============================================
+   CONFETTI (form success)
+   ============================================ */
+.confetti-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 99998;
+    overflow: hidden;
+}
+.confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    top: -10px;
+}
+
+/* ============================================
+   MARQUEE TRUST TICKER
+   ============================================ */
+.marquee-section {
+    background: var(--primary);
+    padding: 12px 0;
+    overflow: hidden;
+    position: relative;
+}
+.marquee-track {
+    display: flex;
+    animation: marqueeScroll 30s linear infinite;
+    width: max-content;
+}
+.marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 32px;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    white-space: nowrap;
+    font-family: var(--font-heading);
+}
+.marquee-item .m-icon { font-size: 18px; }
+@keyframes marqueeScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ============================================
+   LIVE NOTIFICATION POPUP
+   ============================================ */
+.live-notification {
+    position: fixed;
+    bottom: 90px;
+    left: 16px;
+    background: white;
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+    z-index: 9990;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 320px;
+    transform: translateX(-120%);
+    transition: transform 0.5s cubic-bezier(0.68,-0.55,0.265,1.55);
+    border-left: 4px solid var(--green-dark);
+}
+.live-notification.show { transform: translateX(0); }
+.live-notification .notif-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--primary-ultra-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+}
+.live-notification .notif-content { flex: 1; }
+.live-notification .notif-text {
+    font-size: 13px; line-height: 1.4; color: var(--dark);
+}
+.live-notification .notif-text strong { color: var(--primary-dark); }
+.live-notification .notif-time {
+    font-size: 11px; color: var(--gray-light); margin-top: 2px;
+}
+.live-notification .notif-close {
+    position: absolute; top: 6px; right: 8px;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--gray-ultra-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; cursor: pointer; color: var(--gray);
+    line-height: 1; border: none;
+}
+@media (min-width: 768px) {
+    .live-notification { bottom: 30px; left: 30px; }
+}
+
+/* ============================================
+   TRUST BADGES SECTION
+   ============================================ */
+.trust-section {
+    background: var(--white);
+    padding: 50px 0;
+}
+.trust-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+.trust-badge-card {
+    text-align: center; padding: 24px 16px;
+    border-radius: var(--radius);
+    background: var(--gray-ultra-light);
+    border: 1px solid #F0F0F0;
+    transition: var(--transition);
+}
+.trust-badge-card:hover {
+    border-color: var(--primary-light); box-shadow: var(--shadow);
+}
+.trust-badge-icon { font-size: 36px; margin-bottom: 10px; }
+.trust-badge-title {
+    font-family: var(--font-heading); font-weight: 700;
+    font-size: 14px; color: var(--dark); margin-bottom: 4px;
+}
+.trust-badge-desc { font-size: 12px; color: var(--gray); line-height: 1.4; }
+@media (min-width: 768px) {
+    .trust-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .trust-badge-title { font-size: 15px; }
+}
+
+/* ============================================
+   CUSTOM CURSOR FOLLOWER (PC)
+   ============================================ */
+.cursor-follower {
+    position: fixed; width: 20px; height: 20px;
+    border-radius: 50%; border: 2px solid var(--primary);
+    pointer-events: none; z-index: 99999;
+    transition: width 0.3s, height 0.3s, border-color 0.3s, background 0.3s;
+    transform: translate(-50%, -50%); display: none;
+}
+.cursor-follower.hover-btn {
+    width: 50px; height: 50px;
+    background: rgba(76,192,211,0.15);
+    border-color: var(--pink-dark);
+}
+@media (min-width: 1024px) {
+    .cursor-follower { display: block; }
+}
+
+/* ============================================
+   IMAGE LIGHTBOX
+   ============================================ */
+.lightbox-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 100000;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    cursor: zoom-out; padding: 20px;
+}
+.lightbox-overlay.active { opacity: 1; visibility: visible; }
+.lightbox-overlay img {
+    max-width: 90vw; max-height: 90vh;
+    border-radius: var(--radius); object-fit: contain;
+    transform: scale(0.8);
+    transition: transform 0.4s cubic-bezier(0.68,-0.55,0.265,1.55);
+}
+.lightbox-overlay.active img { transform: scale(1); }
+.lightbox-close {
+    position: absolute; top: 20px; right: 20px;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(255,255,255,0.15); border: none;
+    color: white; font-size: 24px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: var(--transition);
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.3); }
+
+/* Zoomable images */
+.zoomable { cursor: zoom-in; transition: var(--transition); }
+.zoomable:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
+
+/* ============================================
+   GUARANTEE SECTION
+   ============================================ */
+.guarantee-section {
+    background: var(--yellow-light);
+    padding: 50px 0;
+}
+.guarantee-inner {
+    text-align: center; max-width: 700px; margin: 0 auto;
+}
+.guarantee-icon { font-size: 64px; margin-bottom: 16px; }
+.guarantee-title {
+    font-family: var(--font-heading); font-size: 24px;
+    font-weight: 800; color: var(--dark); margin-bottom: 12px;
+}
+.guarantee-text {
+    font-size: 15px; color: var(--gray);
+    line-height: 1.7; margin-bottom: 20px;
+}
+.guarantee-badges {
+    display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+}
+.g-badge {
+    display: flex; align-items: center; gap: 6px;
+    background: white; padding: 8px 16px; border-radius: 50px;
+    font-size: 13px; font-weight: 700; color: var(--dark);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+@media (min-width: 768px) {
+    .guarantee-title { font-size: 28px; }
+}
+
+/* ============================================
+   MINI CTA BETWEEN SECTIONS
+   ============================================ */
+.mini-cta {
+    text-align: center; padding: 40px 20px;
+    background: linear-gradient(135deg, var(--primary-ultra-light), var(--pink-light));
+}
+.mini-cta-text {
+    font-family: var(--font-heading); font-size: 20px;
+    font-weight: 800; margin-bottom: 16px; color: var(--dark);
+}
+.mini-cta-text span { color: var(--primary); }
+@media (min-width: 768px) {
+    .mini-cta-text { font-size: 26px; }
+}
+
+/* ============================================
+   ENHANCED CTA MEGA
+   ============================================ */
+.btn-primary.mega {
+    font-size: 19px; padding: 20px 48px; position: relative;
+}
+.btn-primary.mega::after {
+    content: ''; position: absolute; inset: -4px;
+    border-radius: 60px; border: 2px solid var(--primary);
+    animation: ringPulse 2s ease-in-out infinite;
+}
+@keyframes ringPulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.05); opacity: 0; }
+}
+
+/* ============================================
+   HORIZONTAL SCROLL GALLERY
+   ============================================ */
+.gallery-scroll {
+    display: flex; gap: 16px; overflow-x: auto;
+    padding: 0 20px 16px; scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; scrollbar-width: none;
+}
+.gallery-scroll::-webkit-scrollbar { display: none; }
+.gallery-scroll-item {
+    flex: 0 0 280px; border-radius: var(--radius);
+    overflow: hidden; scroll-snap-align: start;
+    box-shadow: var(--shadow); cursor: zoom-in;
+    transition: var(--transition);
+}
+.gallery-scroll-item:hover { box-shadow: var(--shadow-hover); }
+.gallery-scroll-item img {
+    width: 100%; height: 320px; object-fit: cover;
+}
+@media (min-width: 768px) {
+    .gallery-scroll-item { flex: 0 0 340px; }
+    .gallery-scroll-item img { height: 400px; }
+}
+
+/* ============================================
+   PRODUCT SPEC TAGS
+   ============================================ */
+.specs-strip {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    justify-content: center; margin-top: 24px;
+}
+.spec-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--white); border: 1px solid var(--primary-light);
+    padding: 8px 16px; border-radius: 50px;
+    font-size: 13px; font-weight: 600; color: var(--primary-dark);
+}
+
+/* ============================================
+   TYPING INDICATOR ON FORM
+   ============================================ */
+.form-input:focus + .typing-hint,
+.form-input:not(:placeholder-shown) + .typing-hint {
+    opacity: 0;
+}
+</style>
+</head>
+<body>
+
+<!-- LOADING SCREEN -->
+<div class="loader" id="loader">
+    <div class="loader-baby">👶</div>
+    <p class="loader-text">Đang tải trang...</p>
+    <div class="loader-dots">
+        <span>.</span><span>.</span><span>.</span>
+    </div>
+</div>
+
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- FLOATING BG ELEMENTS -->
+<div class="floating-elements">
+    <span class="float-item">⭐</span>
+    <span class="float-item">💖</span>
+    <span class="float-item">🌸</span>
+    <span class="float-item">✨</span>
+    <span class="float-item">🧸</span>
+    <span class="float-item">🎀</span>
+    <span class="float-item">🍼</span>
+    <span class="float-item">☁️</span>
+</div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+    <div class="header-inner">
+        <a href="#" class="header-logo">
+            <img src="https://cdn.hstatic.net/themes/200001066686/1001439050/14/logo.png" alt="Home Care Việt Nam" loading="eager">
+        </a>
+        <div class="header-actions">
+            <a href="tel:0901234567" class="header-phone">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                Hotline: 0901.234.567
+            </a>
+            <a href="#form-section" class="header-cta scroll-to-form">Đăng Ký Ngay 🎁</a>
+        </div>
+    </div>
+</header>
+
+<!-- ============================================
+     HERO SECTION
+     ============================================ -->
+<section class="hero" id="hero">
+    <div class="hero-bg-circle"></div>
+    <div class="hero-bg-circle"></div>
+    
+    <div class="container">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    🔥 ƯU ĐÃI SỐC: CHỈ 49K <span class="old-price">280K</span>
+                </div>
+                <h1 class="hero-title">
+                    Mẹ Ơi, <span>Da Con</span><br>
+                    <span class="highlight-pink">Mềm Màng</span> Trở Lại Rồi! 💖
+                </h1>
+                <p class="hero-subtitle">
+                    <strong>Kem Bôi Chàm Sữa Bon Bon</strong> — Chuyên Gia #1 Được 
+                    <strong>10,000+ Mẹ</strong> Tin Dùng. An toàn cho bé từ 0 tháng tuổi.
+                </p>
+                <div class="hero-cta-wrap">
+                    <a href="#form-section" class="btn-primary pulse scroll-to-form">
+                        🎁 NHẬN ƯU ĐÃI 49K NGAY
+                    </a>
+                </div>
+                <div class="hero-trust">
+                    <div class="trust-item"><span class="icon">✅</span> An toàn cho bé 0+ tháng</div>
+                    <div class="trust-item"><span class="icon">🚫</span> Không Corticoid</div>
+                    <div class="trust-item"><span class="icon">📋</span> Số CBMP: 214/26</div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://cdn.hstatic.net/products/200001066686/mua1tang1-kem-boi-cham-sua-mun-ca-ke-cho-be-bonbon-homecare__1__866121945139436d875f0a957d88a58f_master.jpg" 
+                     alt="Kem Bôi Chàm Sữa Bon Bon" class="hero-product-img" loading="eager">
+                <span class="hero-product-deco">⭐</span>
+                <span class="hero-product-deco">🌸</span>
+                <span class="hero-product-deco">💖</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MARQUEE TRUST TICKER -->
+<div class="marquee-section">
+    <div class="marquee-track">
+        <span class="marquee-item"><span class="m-icon">✅</span> An toàn cho bé 0+ tháng</span>
+        <span class="marquee-item"><span class="m-icon">🏥</span> Có mặt tại Nhà Thuốc, Bệnh Viện toàn quốc</span>
+        <span class="marquee-item"><span class="m-icon">📋</span> Số Công bố: 214/26/CBMP-NB</span>
+        <span class="marquee-item"><span class="m-icon">🚫</span> Không Corticoid - Không Paraben</span>
+        <span class="marquee-item"><span class="m-icon">💖</span> 10,000+ Mẹ tin dùng</span>
+        <span class="marquee-item"><span class="m-icon">🔒</span> Tem chống hàng giả Bộ Công An</span>
+        <span class="marquee-item"><span class="m-icon">🎁</span> Ưu đãi chỉ 49K hôm nay</span>
+        <span class="marquee-item"><span class="m-icon">⭐</span> Đánh giá 4.9/5 sao</span>
+        <!-- Duplicate for seamless loop -->
+        <span class="marquee-item"><span class="m-icon">✅</span> An toàn cho bé 0+ tháng</span>
+        <span class="marquee-item"><span class="m-icon">🏥</span> Có mặt tại Nhà Thuốc, Bệnh Viện toàn quốc</span>
+        <span class="marquee-item"><span class="m-icon">📋</span> Số Công bố: 214/26/CBMP-NB</span>
+        <span class="marquee-item"><span class="m-icon">🚫</span> Không Corticoid - Không Paraben</span>
+        <span class="marquee-item"><span class="m-icon">💖</span> 10,000+ Mẹ tin dùng</span>
+        <span class="marquee-item"><span class="m-icon">🔒</span> Tem chống hàng giả Bộ Công An</span>
+        <span class="marquee-item"><span class="m-icon">🎁</span> Ưu đãi chỉ 49K hôm nay</span>
+        <span class="marquee-item"><span class="m-icon">⭐</span> Đánh giá 4.9/5 sao</span>
+    </div>
+</div>
+
+<!-- WAVE DIVIDER -->
+<div class="wave-divider">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+        <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,20 1440,30 L1440,60 L0,60 Z" fill="#FFF0F5"/>
+    </svg>
+</div>
+
+<!-- ============================================
+     PAIN POINTS SECTION
+     ============================================ -->
+<section class="section pain-section" id="pain-section">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-label">VẤN ĐỀ CỦA MẸ</span>
+            <h2 class="section-title">Mẹ Có Đang <span>Lo Lắng</span> Vì Con... 😟</h2>
+            <p class="section-desc">Hãy để Bon Bon đồng hành cùng mẹ giải quyết những nỗi lo này</p>
+        </div>
+        
+        <div class="pain-grid">
+            <div class="pain-card reveal">
+                <div class="pain-icon">😢</div>
+                <p class="pain-text">Da bé nổi mẩn đỏ, khô ráp, sần sùi vì chàm sữa (lác sữa)?</p>
+            </div>
+            <div class="pain-card reveal">
+                <div class="pain-icon">😫</div>
+                <p class="pain-text">Con quấy khóc, ngủ không ngon vì ngứa ngáy khó chịu?</p>
+            </div>
+            <div class="pain-card reveal">
+                <div class="pain-icon">⚠️</div>
+                <p class="pain-text">Lo sợ khi dùng thuốc có Corticoid ảnh hưởng đến da con?</p>
+            </div>
+            <div class="pain-card reveal">
+                <div class="pain-icon">😔</div>
+                <p class="pain-text">Đã thử nhiều cách, nhiều sản phẩm nhưng không hiệu quả?</p>
+            </div>
+        </div>
+
+        <div class="pain-cta reveal">
+            <a href="#solution-section" class="btn-primary scroll-to">
+                ✨ Bon Bon Có Giải Pháp Cho Mẹ!
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- WAVE DIVIDER -->
+<div class="wave-divider flip">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+        <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,20 1440,30 L1440,60 L0,60 Z" fill="#FFF0F5"/>
+    </svg>
+</div>
+
+<!-- ============================================
+     SOLUTION / PRODUCT SECTION
+     ============================================ -->
+<section class="section solution-section" id="solution-section">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-label">GIẢI PHÁP TỪ THIÊN NHIÊN</span>
+            <h2 class="section-title">Kem Bôi Chàm Sữa <span>Bon Bon</span> 🌿</h2>
+            <p class="section-desc">Giải pháp dịu nhẹ từ thiên nhiên — Chuyên gia tin dùng — An toàn tuyệt đối cho bé</p>
+        </div>
+        
+        <div class="solution-grid">
+            <div class="solution-img-wrap reveal-left">
+                <img src="https://cdn.hstatic.net/products/200001066686/cach-boi-kem-boi-cham-sua-mun-ca-ke-cho-be-bonbon-homecare_1f4d809e39314de19c95725b8ed36a66_master.jpg" 
+                     alt="Kem Bôi Chàm Sữa Bon Bon" class="solution-img" loading="lazy">
+            </div>
+            <div class="solution-features reveal-right">
+                <div class="feature-item">
+                    <div class="feature-icon">🛡️</div>
+                    <div class="feature-text">
+                        <h4>An toàn cho bé từ 0 tháng tuổi</h4>
+                        <p>Thành phần dịu nhẹ, phù hợp với làn da mỏng manh của trẻ sơ sinh</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🚫</div>
+                    <div class="feature-text">
+                        <h4>Không Corticoid - Không Paraben</h4>
+                        <p>Mẹ yên tâm sử dụng lâu dài mà không lo tác dụng phụ</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💧</div>
+                    <div class="feature-text">
+                        <h4>Thẩm thấu nhanh, không bết dính</h4>
+                        <p>Kem mềm mịn, dễ thoa và thấm nhanh vào da bé</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🏥</div>
+                    <div class="feature-text">
+                        <h4>Chuyên gia Mẹ & Bé tin dùng</h4>
+                        <p>Sử dụng trong dịch vụ tắm bé chuẩn Y Hoàng Gia TAROSHI</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✨</div>
+                    <div class="feature-text">
+                        <h4>Đa năng: Chàm sữa, Cà kê, Hăm tã</h4>
+                        <p>Hỗ trợ xoa dịu nhiều vấn đề da thường gặp ở trẻ sơ sinh</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📋</div>
+                    <div class="feature-text">
+                        <h4>Đã Công bố mỹ phẩm: 214/26/CBMP-NB</h4>
+                        <p>Sản phẩm đạt chuẩn an toàn theo quy định của pháp luật Việt Nam</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WAVE DIVIDER -->
+<div class="wave-divider">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+        <path d="M0,0 L0,30 C360,0 720,60 1080,30 C1260,15 1380,40 1440,30 L1440,0 Z" fill="white"/>
+    </svg>
+</div>
+
+<!-- ============================================
+     INGREDIENTS SECTION
+     ============================================ -->
+<section class="section ingredients-section" id="ingredients-section">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-label">THÀNH PHẦN TỰ NHIÊN</span>
+            <h2 class="section-title">Thân Thiện Với <span>Làn Da Bé</span> 🌸</h2>
+            <p class="section-desc">Mỗi thành phần được chọn lọc kỹ lưỡng để bảo vệ làn da mỏng manh của con</p>
+        </div>
+        
+        <div class="ingr-grid">
+            <div class="ingr-card reveal">
+                <div class="ingr-emoji">🧴</div>
+                <div class="ingr-info">
+                    <h4>Petrolatum</h4>
+                    <p>Khóa ẩm tối ưu, tạo lớp màng bảo vệ tự nhiên ngăn da bé mất nước</p>
+                </div>
+            </div>
+            <div class="ingr-card reveal">
+                <div class="ingr-emoji">🌾</div>
+                <div class="ingr-info">
+                    <h4>Tinh Bột Sắn</h4>
+                    <p>Giữ cho bề mặt da luôn khô thoáng, hạn chế hầm bí</p>
+                </div>
+            </div>
+            <div class="ingr-card reveal">
+                <div class="ingr-emoji">🔬</div>
+                <div class="ingr-info">
+                    <h4>Bạc Keo (Colloidal Silver)</h4>
+                    <p>Hỗ trợ làm sạch da nhẹ nhàng, thúc đẩy phục hồi da tổn thương</p>
+                </div>
+            </div>
+            <div class="ingr-card reveal">
+                <div class="ingr-emoji">🌿</div>
+                <div class="ingr-info">
+                    <h4>Tinh Dầu Nghệ</h4>
+                    <p>Hỗ trợ kháng khuẩn, làm dịu các vết tấy đỏ trên da bé</p>
+                </div>
+            </div>
+            <div class="ingr-card reveal">
+                <div class="ingr-emoji">🥑</div>
+                <div class="ingr-info">
+                    <h4>Dầu Bơ</h4>
+                    <p>Nuôi dưỡng, làm mềm mịn các vùng da khô nẻ, sần sùi</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="reveal-scale" style="text-align: center;">
+            <img src="https://cdn.hstatic.net/products/200001066686/thanh-phan-kem-boi-cham-sua-mun-ca-ke-cho-be-bonbon-homecare__2__f8ff1cfd7b714aae8270992c375ac1fa_master.jpg" 
+                 alt="Thành phần Kem Bon Bon" class="ingr-img" loading="lazy">
+        </div>
+    </div>
+</section>
+
+<!-- WAVE DIVIDER -->
+<div class="wave-divider">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+        <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,20 1440,30 L1440,60 L0,60 Z" fill="white"/>
+    </svg>
+</div>
+
+<!-- ============================================
+     HOW TO USE SECTION
+     ============================================ -->
+<section class="section howto-section" id="howto-section">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-label">HƯỚNG DẪN SỬ DỤNG</span>
+            <h2 class="section-title">Mẹ Bôi Kem <span>Đúng Cách</span> Cho Con 📝</h2>
+            <p class="section-desc">Chỉ 4 bước đơn giản để bảo vệ làn da bé mỗi ngày</p>
+        </div>
+        
+        <div class="howto-grid">
+            <div class="steps-list">
+                <div class="step-item reveal-left">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Vệ sinh vùng da tổn thương</h4>
+                        <p>Dùng khăn mềm thấm khô vùng da đang bị chàm, mụn hoặc hăm của bé</p>
+                    </div>
+                </div>
+                <div class="step-item reveal-left">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Lấy lượng kem vừa đủ</h4>
+                        <p>Dùng tăm bông sạch lấy một lượng kem bôi chàm sữa vừa đủ</p>
+                    </div>
+                </div>
+                <div class="step-item reveal-left">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Thoa lớp mỏng, tán đều</h4>
+                        <p>Nhẹ nhàng tán đều trực tiếp lên vùng da bị chàm, mụn hoặc hăm</p>
+                    </div>
+                </div>
+                <div class="step-item reveal-left">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Bôi đều đặn 2-3 lần/ngày</h4>
+                        <p>Tùy theo tình trạng da của con, duy trì để đạt hiệu quả tốt nhất</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal-right" style="text-align: center;">
+                <img src="https://cdn.hstatic.net/products/200001066686/cach-dung-kem-boi-cham-sua-mun-ca-ke-cho-be-bonbon-homecare_72c7e44e79334358bc95a5ffca3a9432_master.jpg" 
+                     alt="Cách dùng Kem Bon Bon" class="howto-img" loading="lazy">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MINI CTA -->
+<div class="mini-cta">
+    <p class="mini-cta-text">Hơn <span>10,000 mẹ</span> đã chọn Bon Bon cho con yêu 💕</p>
+    <a href="#form-section" class="btn-primary mega pulse scroll-to-form">
+        🎁 ĐĂNG KÝ NHẬN ƯU ĐÃI 49K
+    </a>
+</div>
+
+<!-- TRUST BADGES SECTION -->
+<section class="trust-section" id="trust-section">
+    <div class="container">
+        <div class="trust-grid">
+            <div class="trust-badge-card reveal">
+                <div class="trust-badge-icon">🏥</div>
+                <div class="trust-badge-title">Nhà Thuốc & Bệnh Viện</div>
+                <div class="trust-badge-desc">Hiện diện tại các cơ sở y tế trên toàn quốc</div>
+            </div>
+            <div class="trust-badge-card reveal">
+                <div class="trust-badge-icon">🔬</div>
+                <div class="trust-badge-title">Mã Số Mã Vạch QG</div>
+                <div class="trust-badge-desc">Có trên hệ thống Trung Tâm MSMV Quốc Gia</div>
+            </div>
+            <div class="trust-badge-card reveal">
+                <div class="trust-badge-icon">🔒</div>
+                <div class="trust-badge-title">Tem Bộ Công An</div>
+                <div class="trust-badge-desc">Có tem chống hàng giả của Bộ Công An</div>
+            </div>
+            <div class="trust-badge-card reveal">
+                <div class="trust-badge-icon">📋</div>
+                <div class="trust-badge-title">Công Bố Mỹ Phẩm</div>
+                <div class="trust-badge-desc">Số CBMP: 214/26/CBMP-NB — Đạt chuẩn</div>
+            </div>
+        </div>
+        
+        <div class="specs-strip reveal">
+            <span class="spec-tag">🇻🇳 Xuất xứ Việt Nam</span>
+            <span class="spec-tag">📦 Dung tích 30g</span>
+            <span class="spec-tag">⏳ HSD 02 năm</span>
+            <span class="spec-tag">🍃 Không Corticoid</span>
+            <span class="spec-tag">🧪 Không Paraben</span>
+        </div>
+    </div>
+</section>
+
+<!-- GUARANTEE SECTION -->
+<section class="guarantee-section reveal">
+    <div class="container">
+        <div class="guarantee-inner">
+            <div class="guarantee-icon">🛡️</div>
+            <h3 class="guarantee-title">Cam Kết Từ Home Care Việt Nam</h3>
+            <p class="guarantee-text">
+                Chúng tôi cam kết 100% sản phẩm chính hãng, nguồn gốc rõ ràng. 
+                Mẹ hoàn toàn yên tâm khi sử dụng cho con yêu. Sản phẩm không hiệu quả? 
+                Đội ngũ chuyên gia tư vấn sẵn sàng hỗ trợ mẹ 24/7.
+            </p>
+            <div class="guarantee-badges">
+                <span class="g-badge">✅ Hàng chính hãng 100%</span>
+                <span class="g-badge">🚚 Giao hàng toàn quốc</span>
+                <span class="g-badge">📞 Hỗ trợ 24/7</span>
+                <span class="g-badge">💰 Thanh toán khi nhận hàng</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WAVE DIVIDER -->
+<div class="wave-divider">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+        <path d="M0,0 L0,30 C360,0 720,60 1080,30 C1260,15 1380,40 1440,30 L1440,0 Z" fill="#FFF8E7"/>
+    </svg>
+</div>
+
+<!-- ============================================
+     SOCIAL PROOF / TESTIMONIALS
+     ============================================ -->
+<section class="section social-proof-section" id="social-proof">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-label">FEEDBACK TỪ CÁC MẸ</span>
+            <h2 class="section-title">Hàng Ngàn Mẹ <span>Tin Dùng</span> Và Hài Lòng 💕</h2>
+        </div>
+        
+        <div class="stats-grid reveal">
+            <div class="stat-card">
+                <div class="stat-number" data-target="10000">0</div>
+                <div class="stat-label">Mẹ Tin Dùng</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="98" data-suffix="%">0</div>
+                <div class="stat-label">Hài Lòng</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="4.9" data-decimal="true">0</div>
+                <div class="stat-label">Đánh Giá ⭐</div>
+            </div>
+        </div>
+
+        <div class="testimonial-grid">
+            <div class="testimonial-card reveal">
+                <img src="https://cdn.hstatic.net/products/200001066686/cong-bo-kem-boi-cham-sua-mun-ca-ke-cho-be-bonbon-homecare__8__b200c64a13064051b5eb3fdcdf0dae38_master.jpg" 
+                     alt="Feedback mẹ bỉm" loading="lazy">
+            </div>
+            <div class="testimonial-card reveal">
+                <img src="https://cdn.hstatic.net/products/200001066686/cong-bo-kem-boi-cham-sua-mun-ca-ke-cho-be-bonbon-homecare__7__11cf5f3f6e9d4282ab72bd964fdc39c0_master.jpg" 
+                     alt="Feedback mẹ bỉm" loading="lazy">
+            </div>
+            <div class="testimonial-card reveal">
+                <img src="https://cdn.hstatic.net/products/200001066686/cong-bo-kem-boi-cham-sua-mun-ca-ke-cho-be-bonbon-homecare__6__880141bc382b4192899dc2480d47356e_master.jpg" 
+                     alt="Feedback mẹ bỉm" loading="lazy">
+            </div>
+            <div class="testimonial-card reveal">
+                <img src="https://cdn.hstatic.net/files/200001066686/file/feedback-kem-boi-cham-sua-mun-ca-ke-cho-be-bonbon-homecare_grande.jpg" 
+                     alt="Feedback mẹ bỉm" loading="lazy">
+            </div>
+        </div>
+
+        <div class="cert-row reveal">
+            <div class="cert-card">
+                <img src="https://cdn.hstatic.net/products/200001066686/cong-bo-kem-boi-cham-sua-mun-ca-ke-cho-be-bonbon-homecare_0835934bc7444c8ebbe9913810c151be_master.jpg" 
+                     alt="Giấy công bố" loading="lazy">
+            </div>
+            <div class="cert-card">
+                <img src="https://cdn.hstatic.net/products/200001066686/cong-bo-kem-boi-cham-sua-mun-ca-ke-cho-be-bonbon-homecare__2__9a889aa386684541b2a15c6d344166bb_master.jpg" 
+                     alt="Giấy chứng nhận" loading="lazy">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     COMBO DEAL SECTION
+     ============================================ -->
+<section class="section combo-section" id="combo-section">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-label">ƯU ĐÃI ĐẶC BIỆT</span>
+            <h2 class="section-title">Combo Siêu Tiết Kiệm — <span>Giảm 50%</span> 🎁</h2>
+            <p class="section-desc">Bộ 3 sản phẩm chăm sóc bé toàn diện với mức giá không thể tốt hơn</p>
+        </div>
+        
+        <div class="combo-grid">
+            <div class="combo-card reveal">
+                <div class="combo-emoji">🧴</div>
+                <h4 class="combo-name">Kem Da Bon Bon</h4>
+                <p class="combo-desc">Kem bôi chàm sữa, mụn cà kê, hăm tã cho bé. An toàn từ 0 tháng tuổi.</p>
+            </div>
+            <div class="combo-card reveal">
+                <div class="combo-emoji">🛁</div>
+                <h4 class="combo-name">Nước Tắm Gội Thảo Mộc</h4>
+                <p class="combo-desc">Nước tắm gội thiên nhiên, làm sạch dịu nhẹ, bảo vệ da bé mỗi ngày.</p>
+            </div>
+            <div class="combo-card reveal">
+                <div class="combo-emoji">🧂</div>
+                <h4 class="combo-name">Muối Tắm Bon Bon</h4>
+                <p class="combo-desc">Muối tắm thảo dược, hỗ trợ kháng khuẩn, giữ da bé sạch thoáng.</p>
+            </div>
+        </div>
+        
+        <div class="combo-price-box reveal">
+            <div class="combo-old-price">Giá gốc: 840.000đ</div>
+            <div class="combo-new-price">420.000đ</div>
+            <div class="combo-save">TIẾT KIỆM 420K 🔥</div>
+        </div>
+        
+        <div style="text-align: center;" class="reveal">
+            <a href="#form-section" class="btn-combo scroll-to-form">
+                🎉 ĐĂNG KÝ NHẬN COMBO GIẢM 50%
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     URGENCY / COUNTDOWN
+     ============================================ -->
+<section class="urgency-section" id="urgency-section">
+    <div class="container">
+        <div class="urgency-inner">
+            <h3 class="urgency-title">⏰ Ưu Đãi 49K Kết Thúc Sau:</h3>
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">03</span>
+                    <span class="countdown-label">Giờ</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">45</span>
+                    <span class="countdown-label">Phút</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">12</span>
+                    <span class="countdown-label">Giây</span>
+                </div>
+            </div>
+            <p class="urgency-stock">
+                ⚡ Chỉ còn <span id="stockCount">23</span> suất ưu đãi!
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     REGISTRATION FORM
+     ============================================ -->
+<section class="section form-section" id="form-section">
+    <div class="container">
+        <div class="form-wrapper reveal-scale">
+            <span class="form-deco-left">🍼</span>
+            <span class="form-deco-right">🧸</span>
+            
+            <div id="formContent">
+                <div class="form-header">
+                    <h2>ĐĂNG KÝ NHẬN ƯU ĐÃI 49K NGAY! 🎉</h2>
+                    <p>Điền thông tin để nhận ưu đãi độc quyền từ Bon Bon</p>
+                </div>
+                
+                <form id="registrationForm" novalidate>
+                    <div class="form-group">
+                        <label>Họ và tên <span class="req">*</span></label>
+                        <input type="text" class="form-input" id="fullName" placeholder="VD: Nguyễn Thị Lan" required>
+                        <div class="error-msg" id="nameError">Vui lòng nhập họ và tên</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Số điện thoại <span class="req">*</span></label>
+                        <input type="tel" class="form-input" id="phone" placeholder="VD: 0901 234 567" required>
+                        <div class="error-msg" id="phoneError">Vui lòng nhập số điện thoại hợp lệ</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-input" id="email" placeholder="VD: mama@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Chọn sản phẩm <span class="req">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option active">
+                                <input type="radio" name="product" value="kem-49k" checked>
+                                <span class="radio-label">🧴 Kem Bon Bon (Mỗi người 1 lần)</span>
+                                <span class="radio-price">49K</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="product" value="combo-50">
+                                <span class="radio-label">🎁 Combo 3 SP (Giảm 50%)</span>
+                                <span class="radio-price">420K</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Ghi chú (tuỳ chọn)</label>
+                        <textarea class="form-input" id="note" rows="3" placeholder="VD: Bé 3 tháng, bị chàm sữa ở má..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">
+                        🚀 GỬI ĐĂNG KÝ NGAY
+                    </button>
+                </form>
+                
+                <p class="form-security">🔒 Thông tin của mẹ được bảo mật tuyệt đối</p>
+            </div>
+            
+            <div class="form-success" id="formSuccess">
+                <div class="success-emoji">🎉</div>
+                <h3>Chúc Mừng Mẹ! Đăng Ký Thành Công!</h3>
+                <p>Cảm ơn mẹ đã tin tưởng Bon Bon. Chúng tôi sẽ liên hệ với mẹ trong vòng <strong>30 phút</strong> để xác nhận đơn hàng và gửi ưu đãi nhé! 💖</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     FAQ SECTION
+     ============================================ -->
+<section class="section faq-section" id="faq-section">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-label">HỎI ĐÁP</span>
+            <h2 class="section-title">Câu Hỏi <span>Thường Gặp</span> 💬</h2>
+        </div>
+        
+        <div class="faq-list">
+            <div class="faq-item reveal">
+                <button class="faq-question">
+                    Sản phẩm có an toàn cho trẻ sơ sinh không?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Có ạ! Kem Bôi Chàm Sữa Bon Bon được thiết kế đặc biệt cho trẻ sơ sinh từ 0 tháng tuổi. Sản phẩm KHÔNG chứa Corticoid, KHÔNG Paraben, thành phần 100% thân thiện với làn da nhạy cảm của bé. Đã được Công bố mỹ phẩm số 214/26/CBMP-NB.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-question">
+                    Bao lâu thì thấy hiệu quả?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Tùy theo tình trạng da của bé, thông thường sau 3-7 ngày sử dụng đều đặn 2-3 lần/ngày, mẹ sẽ thấy da bé bớt đỏ, bớt ngứa. Nhiều mẹ phản hồi thấy cải thiện rõ rệt sau 5 ngày sử dụng.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-question">
+                    Ưu đãi 49K áp dụng như thế nào?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Mẹ chỉ cần điền form đăng ký trên trang này. Mỗi người được mua 1 hộp Kem Bon Bon với giá ưu đãi 49K (giá gốc 280K). Nhân viên sẽ gọi xác nhận và giao hàng tận nơi cho mẹ.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-question">
+                    Sản phẩm có chứa Corticoid không?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        KHÔNG. Kem Bôi Chàm Sữa Bon Bon cam kết KHÔNG chứa Corticoid và Paraben. Thành phần chính gồm Petrolatum, Tinh bột sắn, Bạc keo, Tinh dầu nghệ và Dầu bơ — tất cả đều thân thiện và an toàn cho bé.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-question">
+                    Combo giảm 50% bao gồm những gì?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Combo gồm 3 sản phẩm: Kem Da Bon Bon + Nước Tắm Gội Thảo Mộc Bon Bon + Muối Tắm Bon Bon. Bộ ba kết hợp giúp chăm sóc da bé toàn diện từ trong ra ngoài. Giá combo chỉ 420K (tiết kiệm 420K so với mua lẻ).
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="https://cdn.hstatic.net/themes/200001066686/1001439050/14/logo.png" alt="Home Care Việt Nam">
+                <p>Home Care Việt Nam — Chuyên gia chăm sóc mẹ và bé. Sản phẩm hiện diện tại các Nhà Thuốc, Bệnh Viện, Phòng Khám trên toàn quốc.</p>
+            </div>
+            <div class="footer-contact">
+                <h4>Liên Hệ</h4>
+                <p>📞 Hotline: 0901.234.567</p>
+                <p>📧 Email: info@homecarevietnam.com</p>
+                <p>🌐 homecarevietnam.com</p>
+            </div>
+            <div class="footer-links">
+                <h4>Thông Tin</h4>
+                <a href="https://homecarevietnam.com" target="_blank">Trang chủ</a>
+                <a href="https://homecarevietnam.com/collections/all" target="_blank">Sản phẩm</a>
+                <a href="#faq-section">Câu hỏi thường gặp</a>
+                <a href="#form-section" class="scroll-to-form">Đăng ký ưu đãi</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Home Care Việt Nam. All rights reserved. | Designed with 💖 for Mẹ & Bé</p>
+        </div>
+    </div>
+</footer>
+
+<!-- STICKY BOTTOM BAR (Mobile) -->
+<div class="sticky-bottom" id="stickyBottom">
+    <div class="sticky-info">
+        <div class="old">280.000đ</div>
+        <div class="price">49.000đ</div>
+    </div>
+    <a href="#form-section" class="btn-sticky scroll-to-form">🎁 ĐĂNG KÝ 49K</a>
+</div>
+
+<!-- FLOATING BUTTONS -->
+<div class="floating-btns">
+    <a href="tel:0901234567" class="float-btn phone" title="Gọi ngay">📞</a>
+    <a href="https://zalo.me/0901234567" target="_blank" class="float-btn zalo" title="Chat Zalo">💬</a>
+    <button class="float-btn top" id="backToTop" title="Lên đầu trang">⬆️</button>
+</div>
+
+<!-- CONFETTI -->
+<div class="confetti-container" id="confettiContainer"></div>
+
+<!-- ============================================
+     JAVASCRIPT
+     ============================================ -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    // ===== GSAP REGISTER =====
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+    // ===== LOADING SCREEN =====
+    const loader = document.getElementById('loader');
+    gsap.to(loader, {
+        opacity: 0,
+        duration: 0.6,
+        delay: 1.8,
+        onComplete: () => {
+            loader.classList.add('hidden');
+            initAnimations();
+        }
+    });
+
+    // ===== SCROLL PROGRESS BAR =====
+    window.addEventListener('scroll', () => {
+        const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        document.getElementById('scrollProgress').style.width = scrolled + '%';
+    });
+
+    // ===== HEADER SCROLL =====
+    const header = document.getElementById('header');
+    const stickyBottom = document.getElementById('stickyBottom');
+    const backToTop = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        
+        // Header
+        if (scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+        
+        // Sticky bottom
+        if (scrollY > 600) {
+            stickyBottom.classList.add('show');
+        } else {
+            stickyBottom.classList.remove('show');
+        }
+
+        // Back to top
+        if (scrollY > 800) {
+            backToTop.classList.add('show');
+        } else {
+            backToTop.classList.remove('show');
+        }
+    });
+
+    // ===== BACK TO TOP =====
+    backToTop.addEventListener('click', () => {
+        gsap.to(window, { scrollTo: 0, duration: 1, ease: 'power2.inOut' });
+    });
+
+    // ===== SMOOTH SCROLL TO FORM =====
+    document.querySelectorAll('.scroll-to-form').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            gsap.to(window, { scrollTo: '#form-section', duration: 1, ease: 'power2.inOut', offsetY: 80 });
+        });
+    });
+
+    // ===== COUNTDOWN TIMER =====
+    function initCountdown() {
+        // Reset daily - set end time to today + a few hours
+        let endTime = localStorage.getItem('bonbon_countdown_end');
+        const now = Date.now();
+        
+        if (!endTime || parseInt(endTime) < now) {
+            endTime = now + (3 * 60 * 60 * 1000) + (45 * 60 * 1000) + (12 * 1000); // 3h 45m 12s
+            localStorage.setItem('bonbon_countdown_end', endTime);
+        }
+        
+        function updateCountdown() {
+            const remaining = parseInt(localStorage.getItem('bonbon_countdown_end')) - Date.now();
+            
+            if (remaining <= 0) {
+                // Reset
+                const newEnd = Date.now() + (3 * 60 * 60 * 1000) + (45 * 60 * 1000);
+                localStorage.setItem('bonbon_countdown_end', newEnd);
+                return;
+            }
+            
+            const hours = Math.floor(remaining / (1000 * 60 * 60));
+            const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+            
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    }
+    initCountdown();
+
+    // ===== FAKE STOCK DECREASE =====
+    let stock = 23;
+    setInterval(() => {
+        if (stock > 5) {
+            if (Math.random() > 0.7) {
+                stock--;
+                const el = document.getElementById('stockCount');
+                el.textContent = stock;
+                gsap.fromTo(el, { scale: 1.3, color: '#FFD700' }, { scale: 1, color: '#FFE4A0', duration: 0.5 });
+            }
+        }
+    }, 15000);
+
+    // ===== FAQ ACCORDION =====
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.parentElement;
+            const answer = item.querySelector('.faq-answer');
+            const isActive = item.classList.contains('active');
+            
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(faq => {
+                faq.classList.remove('active');
+                faq.querySelector('.faq-answer').style.maxHeight = null;
+            });
+            
+            if (!isActive) {
+                item.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        });
+    });
+
+    // ===== RADIO OPTIONS =====
+    document.querySelectorAll('.radio-option').forEach(opt => {
+        opt.addEventListener('click', () => {
+            document.querySelectorAll('.radio-option').forEach(o => o.classList.remove('active'));
+            opt.classList.add('active');
+        });
+    });
+
+    // ===== FORM VALIDATION & SUBMISSION =====
+    const form = document.getElementById('registrationForm');
+    
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let isValid = true;
+        
+        // Name
+        const name = document.getElementById('fullName');
+        const nameError = document.getElementById('nameError');
+        if (!name.value.trim()) {
+            name.classList.add('error');
+            nameError.classList.add('show');
+            isValid = false;
+        } else {
+            name.classList.remove('error');
+            nameError.classList.remove('show');
+        }
+        
+        // Phone
+        const phone = document.getElementById('phone');
+        const phoneError = document.getElementById('phoneError');
+        const phoneRegex = /^(0[1-9])[0-9]{8,9}$/;
+        if (!phoneRegex.test(phone.value.replace(/\s/g, ''))) {
+            phone.classList.add('error');
+            phoneError.classList.add('show');
+            isValid = false;
+        } else {
+            phone.classList.remove('error');
+            phoneError.classList.remove('show');
+        }
+        
+        if (isValid) {
+            // Show success
+            document.getElementById('formContent').style.display = 'none';
+            const success = document.getElementById('formSuccess');
+            success.classList.add('show');
+            
+            // Confetti
+            createConfetti();
+            
+            // Scroll to form
+            gsap.to(window, { scrollTo: '#form-section', duration: 0.5, offsetY: 100 });
+            
+            // Track conversion (placeholder)
+            // fbq('track', 'Lead');
+            // gtag('event', 'generate_lead');
+        }
+    });
+    
+    // Remove error on input
+    document.querySelectorAll('.form-input').forEach(input => {
+        input.addEventListener('input', () => {
+            input.classList.remove('error');
+            const errorMsg = input.nextElementSibling;
+            if (errorMsg && errorMsg.classList.contains('error-msg')) {
+                errorMsg.classList.remove('show');
+            }
+        });
+    });
+
+    // ===== CONFETTI =====
+    function createConfetti() {
+        const container = document.getElementById('confettiContainer');
+        const colors = ['#4cc0d3', '#FFB6C1', '#FF69B4', '#FFE4A0', '#A8E6CF', '#E8D5F5', '#FF6B6B'];
+        
+        for (let i = 0; i < 80; i++) {
+            const piece = document.createElement('div');
+            piece.classList.add('confetti-piece');
+            piece.style.left = Math.random() * 100 + '%';
+            piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            piece.style.width = Math.random() * 10 + 5 + 'px';
+            piece.style.height = Math.random() * 10 + 5 + 'px';
+            container.appendChild(piece);
+            
+            gsap.to(piece, {
+                y: window.innerHeight + 100,
+                x: (Math.random() - 0.5) * 400,
+                rotation: Math.random() * 720,
+                opacity: 0,
+                duration: Math.random() * 2 + 2,
+                delay: Math.random() * 0.5,
+                ease: 'power1.out',
+                onComplete: () => piece.remove()
+            });
+        }
+    }
+
+    // ===== GSAP ANIMATIONS =====
+    function initAnimations() {
+        
+        // Hero animations
+        const heroTl = gsap.timeline();
+        heroTl
+            .from('.hero-badge', { y: 30, opacity: 0, duration: 0.6, ease: 'back.out(1.7)' })
+            .from('.hero-title', { y: 40, opacity: 0, duration: 0.7, ease: 'power3.out' }, '-=0.3')
+            .from('.hero-subtitle', { y: 30, opacity: 0, duration: 0.6 }, '-=0.4')
+            .from('.hero-cta-wrap', { y: 20, opacity: 0, duration: 0.5 }, '-=0.3')
+            .from('.hero-trust .trust-item', { y: 20, opacity: 0, duration: 0.4, stagger: 0.1 }, '-=0.2')
+            .from('.hero-product-img', { x: 60, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6')
+            .from('.hero-product-deco', { scale: 0, opacity: 0, duration: 0.4, stagger: 0.15, ease: 'back.out(2)' }, '-=0.3');
+
+        // Reveal animations (scroll-triggered)
+        gsap.utils.toArray('.reveal').forEach(el => {
+            gsap.to(el, {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+
+        gsap.utils.toArray('.reveal-left').forEach(el => {
+            gsap.to(el, {
+                x: 0,
+                opacity: 1,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+
+        gsap.utils.toArray('.reveal-right').forEach(el => {
+            gsap.to(el, {
+                x: 0,
+                opacity: 1,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+
+        gsap.utils.toArray('.reveal-scale').forEach(el => {
+            gsap.to(el, {
+                scale: 1,
+                opacity: 1,
+                duration: 0.8,
+                ease: 'back.out(1.4)',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+
+        // Staggered pain cards
+        gsap.utils.toArray('.pain-card').forEach((card, i) => {
+            gsap.to(card, {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                delay: i * 0.12,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%'
+                }
+            });
+        });
+
+        // Staggered feature items
+        gsap.utils.toArray('.feature-item').forEach((item, i) => {
+            gsap.to(item, {
+                x: 0,
+                opacity: 1,
+                duration: 0.6,
+                delay: i * 0.1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 85%'
+                }
+            });
+        });
+
+        // Staggered ingredient cards
+        gsap.utils.toArray('.ingr-card').forEach((card, i) => {
+            gsap.to(card, {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                delay: i * 0.1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%'
+                }
+            });
+        });
+
+        // Steps animation
+        gsap.utils.toArray('.step-item').forEach((step, i) => {
+            gsap.to(step, {
+                x: 0,
+                opacity: 1,
+                duration: 0.7,
+                delay: i * 0.15,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: step,
+                    start: 'top 85%'
+                }
+            });
+        });
+
+        // Stats counter animation
+        const statNumbers = document.querySelectorAll('.stat-number');
+        statNumbers.forEach(num => {
+            const target = parseFloat(num.dataset.target);
+            const suffix = num.dataset.suffix || '';
+            const isDecimal = num.dataset.decimal === 'true';
+            
+            ScrollTrigger.create({
+                trigger: num,
+                start: 'top 85%',
+                onEnter: () => {
+                    gsap.to(num, {
+                        innerText: target,
+                        duration: 2,
+                        ease: 'power2.out',
+                        snap: isDecimal ? { innerText: 0.1 } : { innerText: 1 },
+                        onUpdate: function() {
+                            if (isDecimal) {
+                                num.textContent = parseFloat(num.textContent).toFixed(1) + suffix;
+                            } else {
+                                num.textContent = Math.floor(parseFloat(num.textContent)).toLocaleString() + suffix;
+                            }
+                        }
+                    });
+                },
+                once: true
+            });
+        });
+
+        // Combo cards stagger
+        gsap.utils.toArray('.combo-card').forEach((card, i) => {
+            gsap.to(card, {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                delay: i * 0.15,
+                ease: 'back.out(1.4)',
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%'
+                }
+            });
+        });
+
+        // FAQ items stagger
+        gsap.utils.toArray('.faq-item').forEach((item, i) => {
+            gsap.to(item, {
+                y: 0,
+                opacity: 1,
+                duration: 0.5,
+                delay: i * 0.08,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 90%'
+                }
+            });
+        });
+
+        // Parallax on product images
+        gsap.utils.toArray('.solution-img, .howto-img, .ingr-img').forEach(img => {
+            gsap.to(img, {
+                y: -30,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: img,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 1
+                }
+            });
+        });
+
+        // Countdown items animation
+        gsap.from('.countdown-item', {
+            scale: 0,
+            opacity: 0,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: 'back.out(2)',
+            scrollTrigger: {
+                trigger: '.countdown',
+                start: 'top 85%'
+            }
+        });
+
+        // Form wrapper animation
+        gsap.to('.form-wrapper', {
+            scale: 1,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'back.out(1.4)',
+            scrollTrigger: {
+                trigger: '.form-wrapper',
+                start: 'top 80%'
+            }
+        });
+
+
+        // Testimonial cards
+        gsap.utils.toArray('.testimonial-card').forEach((card, i) => {
+            gsap.to(card, {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                delay: i * 0.12,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%'
+                }
+            });
+        });
+
+        // Trust badge cards stagger
+        gsap.utils.toArray('.trust-badge-card').forEach((card, i) => {
+            gsap.to(card, {
+                y: 0,
+                opacity: 1,
+                duration: 0.5,
+                delay: i * 0.1,
+                ease: 'back.out(1.4)',
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%'
+                }
+            });
+        });
+
+        // Specs strip stagger
+        gsap.utils.toArray('.spec-tag').forEach((tag, i) => {
+            gsap.from(tag, {
+                scale: 0,
+                opacity: 0,
+                duration: 0.4,
+                delay: i * 0.08,
+                ease: 'back.out(2)',
+                scrollTrigger: {
+                    trigger: '.specs-strip',
+                    start: 'top 85%'
+                }
+            });
+        });
+
+        // Guarantee section
+        gsap.to('.guarantee-section', {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '.guarantee-section',
+                start: 'top 80%'
+            }
+        });
+
+        // Guarantee badges stagger
+        gsap.utils.toArray('.g-badge').forEach((badge, i) => {
+            gsap.from(badge, {
+                y: 20,
+                opacity: 0,
+                duration: 0.4,
+                delay: i * 0.1,
+                ease: 'back.out(1.5)',
+                scrollTrigger: {
+                    trigger: '.guarantee-badges',
+                    start: 'top 85%'
+                }
+            });
+        });
+
+        // Mini CTA animation
+        gsap.from('.mini-cta-text', {
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            scrollTrigger: {
+                trigger: '.mini-cta',
+                start: 'top 85%'
+            }
+        });
+
+        gsap.from('.mini-cta .btn-primary', {
+            scale: 0.8,
+            opacity: 0,
+            duration: 0.5,
+            delay: 0.2,
+            ease: 'back.out(1.7)',
+            scrollTrigger: {
+                trigger: '.mini-cta',
+                start: 'top 85%'
+            }
+        });
+    }
+});
+</script>
+
+<!-- ============================================
+     ENHANCED FEATURES JS
+     ============================================ -->
+<script>
+(function() {
+
+    // ===== CUSTOM CURSOR FOLLOWER (PC only) =====
+    if (window.innerWidth >= 1024) {
+        const cursor = document.createElement('div');
+        cursor.className = 'cursor-follower';
+        document.body.appendChild(cursor);
+
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Hover effect on buttons
+        const hoverTargets = document.querySelectorAll('.btn-primary, .btn-combo, .btn-submit, .btn-sticky, .header-cta');
+        hoverTargets.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover-btn'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover-btn'));
+        });
+    }
+
+    // ===== IMAGE LIGHTBOX =====
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox-overlay';
+    lightbox.innerHTML = '<button class="lightbox-close">✕</button><img src="" alt="Phóng to ảnh">';
+    document.body.appendChild(lightbox);
+
+    const lbImg = lightbox.querySelector('img');
+    const lbClose = lightbox.querySelector('.lightbox-close');
+
+    // Make testimonial and cert images zoomable
+    document.querySelectorAll('.testimonial-card img, .cert-card img, .ingr-img, .howto-img').forEach(img => {
+        img.classList.add('zoomable');
+        img.addEventListener('click', () => {
+            lbImg.src = img.src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    lbClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+    });
+
+    // ===== LIVE NOTIFICATION POPUP (Social Proof) =====
+    const notifData = [
+        { name: 'Chị Lan', city: 'Hà Nội', time: '2 phút trước', emoji: '👩' },
+        { name: 'Mẹ Hương', city: 'TP.HCM', time: '5 phút trước', emoji: '👩‍🍼' },
+        { name: 'Chị Thảo', city: 'Đà Nẵng', time: '8 phút trước', emoji: '🤱' },
+        { name: 'Mẹ Ngọc', city: 'Cần Thơ', time: '12 phút trước', emoji: '👩' },
+        { name: 'Chị Mai', city: 'Hải Phòng', time: '15 phút trước', emoji: '👩‍🍼' },
+        { name: 'Mẹ Trang', city: 'Bình Dương', time: '18 phút trước', emoji: '🤱' },
+        { name: 'Chị Vy', city: 'Nghệ An', time: '22 phút trước', emoji: '👩' },
+        { name: 'Mẹ Hà', city: 'Thanh Hoá', time: '25 phút trước', emoji: '👩‍🍼' },
+        { name: 'Chị Linh', city: 'Đồng Nai', time: '30 phút trước', emoji: '🤱' },
+        { name: 'Mẹ Phương', city: 'Long An', time: '35 phút trước', emoji: '👩' },
+    ];
+
+    const notifMessages = [
+        'vừa đăng ký nhận ưu đãi <strong>49K</strong>',
+        'vừa mua <strong>Combo Bon Bon giảm 50%</strong>',
+        'vừa đặt hàng <strong>Kem Chàm Sữa Bon Bon</strong>',
+        'vừa đăng ký nhận ưu đãi <strong>49K</strong>',
+        'vừa mua <strong>Kem Bon Bon</strong> cho bé',
+    ];
+
+    const notifEl = document.createElement('div');
+    notifEl.className = 'live-notification';
+    notifEl.innerHTML = `
+        <div class="notif-avatar"></div>
+        <div class="notif-content">
+            <div class="notif-text"></div>
+            <div class="notif-time"></div>
+        </div>
+        <button class="notif-close">✕</button>
+    `;
+    document.body.appendChild(notifEl);
+
+    const notifCloseBtn = notifEl.querySelector('.notif-close');
+    notifCloseBtn.addEventListener('click', () => notifEl.classList.remove('show'));
+
+    let notifIndex = 0;
+    function showNotification() {
+        const data = notifData[notifIndex % notifData.length];
+        const msg = notifMessages[notifIndex % notifMessages.length];
+        
+        notifEl.querySelector('.notif-avatar').textContent = data.emoji;
+        notifEl.querySelector('.notif-text').innerHTML = `<strong>${data.name}</strong> (${data.city}) ${msg}`;
+        notifEl.querySelector('.notif-time').textContent = data.time;
+        
+        notifEl.classList.add('show');
+        
+        setTimeout(() => {
+            notifEl.classList.remove('show');
+        }, 5000);
+        
+        notifIndex++;
+    }
+
+    // Show first notification after 8 seconds, then every 20-35 seconds
+    setTimeout(() => {
+        showNotification();
+        setInterval(() => {
+            showNotification();
+        }, 20000 + Math.random() * 15000);
+    }, 8000);
+
+    // ===== MAGNETIC BUTTON EFFECT =====
+    if (window.innerWidth >= 1024) {
+        document.querySelectorAll('.btn-primary, .btn-combo').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = '';
+            });
+        });
+    }
+
+    // ===== LAZY LOAD IMAGES WITH INTERSECTION OBSERVER =====
+    if ('IntersectionObserver' in window) {
+        const imgObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                    }
+                    imgObserver.unobserve(img);
+                }
+            });
+        }, { rootMargin: '200px' });
+
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imgObserver.observe(img);
+        });
+    }
+
+    // ===== SMOOTH ANCHOR SCROLLS =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                gsap.to(window, { 
+                    scrollTo: { y: target, offsetY: 80 }, 
+                    duration: 1, 
+                    ease: 'power2.inOut' 
+                });
+            }
+        });
+    });
+
+    // ===== PARALLAX FLOATING ELEMENTS =====
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        document.querySelectorAll('.float-item').forEach((item, i) => {
+            const speed = 0.02 + (i * 0.005);
+            item.style.transform = `translateY(${scrollY * speed}px)`;
+        });
+    });
+
+})();
+</script>
+
+</body>
+</html>
