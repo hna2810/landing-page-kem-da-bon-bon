@@ -21,9 +21,16 @@
         hotline: '0901234567',
         hotlineDisplay: '0901.234.567',
         zalo: '0901234567',
+        productName: 'Kem Hăm Cho Bé Bon Bon 5g',
         price: 49000,
         listPrice: 80000,
-        productName: 'Kem Hăm Cho Bé Bon Bon 5g',
+        // Các gói trong form "Ưu đãi tặng riêng cho mẹ"
+        packages: [
+            { qty: 1, price: 49000,  listPrice: 80000 },
+            { qty: 2, price: 98000,  listPrice: 160000 },
+            { qty: 3, price: 147000, listPrice: 240000 }
+        ],
+        offerMinutes: 10.5,   // Đồng hồ "Chỉ còn 10 phút 30 giây" (tự chạy lại khi hết giờ)
         // URL Web App Google Apps Script (xem google-apps-script/Code.gs + README). Trống = chế độ demo.
         sheetEndpoint: '',
         facebookPixelId: '',
@@ -108,7 +115,7 @@
 
 <style>
 /* ============================================
-   NỀN TẢNG — MOBILE FIRST
+   NỀN TẢNG — MOBILE FIRST, CÓ BỐ CỤC RIÊNG CHO PC
    ============================================ */
 :root {
     --primary: #4cc0d3;
@@ -117,6 +124,7 @@
     --primary-light: #bfeaf1;
     --primary-soft: #e8f7fa;
     --pink: #ff7eb3;
+    --pink-deep: #d64d86;
     --pink-soft: #fff0f6;
     --dark: #24343a;
     --text: #44545a;
@@ -132,7 +140,7 @@
     --sticky-h: 68px;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 64px; }
 body {
     font-family: var(--font-body);
     font-size: 16px;
@@ -146,7 +154,7 @@ a { color: inherit; text-decoration: none; }
 button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
 strong { color: var(--dark); }
 
-/* Trang dạng cột điện thoại; trên máy tính hiển thị ở giữa */
+/* Điện thoại / máy tính bảng: cột 480px ở giữa */
 .page {
     max-width: var(--page);
     margin: 0 auto;
@@ -156,9 +164,13 @@ strong { color: var(--dark); }
     padding-bottom: calc(var(--sticky-h) + env(safe-area-inset-bottom));
     position: relative;
 }
-@media (min-width: 520px) {
+@media (min-width: 520px) and (max-width: 959px) {
     .page { box-shadow: 0 0 60px rgba(31,127,144,0.15); }
 }
+.container { position: relative; }
+.split { display: grid; gap: 18px; }
+.split > * { min-width: 0; }
+.hero-visual { display: none; }
 
 .sec { padding: 36px 18px; position: relative; }
 .sec.tint { background: var(--primary-soft); }
@@ -180,13 +192,16 @@ strong { color: var(--dark); }
     margin: 10px auto 0;
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='10' viewBox='0 0 72 10'%3E%3Cpath d='M2 5 Q8 0 14 5 T26 5 T38 5 T50 5 T62 5 T70 5' stroke='%234cc0d3' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center;
 }
+.sec-head.left { padding: 0; }
 .mascot {
     position: absolute;
-    width: 74px; height: auto;
+    width: 60px; height: auto;
     pointer-events: none;
     animation: bob 5s ease-in-out infinite;
     filter: drop-shadow(0 6px 10px rgba(31,127,144,0.12));
 }
+.mascot.l { left: -6px; top: -6px; }
+.mascot.r { right: -6px; top: -6px; }
 @keyframes bob { 0%,100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-7px) rotate(3deg); } }
 
 /* ============================================
@@ -224,6 +239,8 @@ strong { color: var(--dark); }
     0%,100% { box-shadow: 0 8px 20px rgba(76,192,211,.40), 0 0 0 0 rgba(76,192,211,.45); }
     50% { box-shadow: 0 8px 20px rgba(76,192,211,.40), 0 0 0 10px rgba(76,192,211,0); }
 }
+.btn.pink { background: var(--pink); box-shadow: 0 8px 20px rgba(255,126,179,.40); }
+.btn.pink:hover { background: #f0629f; }
 
 /* Giá flash sale */
 .price-box {
@@ -241,7 +258,6 @@ strong { color: var(--dark); }
 }
 .price-now { font-family: var(--font-heading); font-weight: 700; font-size: 32px; color: var(--primary-deep); line-height: 1; }
 .price-old { font-size: 15px; color: var(--muted); }
-.price-old s { color: var(--muted); }
 
 /* ============================================
    KHUNG ẢNH / VIDEO (tự điền từ cấu hình)
@@ -295,7 +311,7 @@ strong { color: var(--dark); }
 }
 
 /* Slider vuốt ngang */
-.slider { position: relative; }
+.slider { position: relative; min-width: 0; }
 .slides {
     display: flex; gap: 12px;
     overflow-x: auto;
@@ -315,20 +331,22 @@ strong { color: var(--dark); }
    ============================================ */
 .topbar {
     position: sticky; top: 0; z-index: 50;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 10px 16px;
     background: rgba(255,255,255,.96);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
 }
+.topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px; }
 .brand { display: flex; align-items: center; gap: 8px; font-family: var(--font-heading); font-weight: 700; color: var(--primary-deep); font-size: 17px; }
 .brand-dot { width: 30px; height: 30px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+.topnav { display: none; }
+.topbar-actions { display: flex; align-items: center; gap: 10px; }
 .topbar-call {
     display: inline-flex; align-items: center; gap: 6px;
     background: var(--primary-soft); color: var(--primary-deep);
     font-weight: 800; font-size: 14px;
     padding: 7px 14px; border-radius: 30px;
 }
+.topbar-buy { display: none; }
 
 /* ============================================
    1. HERO
@@ -365,14 +383,14 @@ strong { color: var(--dark); }
     margin-top: 1px;
 }
 .no-list { display: flex; flex-wrap: wrap; gap: 5px; }
-.no-list span { background: var(--pink-soft); color: #d64d86; font-size: 12.5px; font-weight: 800; padding: 2px 8px; border-radius: 20px; }
+.no-list span { background: var(--pink-soft); color: var(--pink-deep); font-size: 12.5px; font-weight: 800; padding: 2px 8px; border-radius: 20px; }
 .ba { display: grid; gap: 6px; }
 .ba .media .caption { top: 8px; bottom: auto; left: 8px; font-size: 12px; padding: 3px 10px; }
 .ba .media.after .caption { background: var(--primary); color: #fff; }
-.hero .mascot { width: 72px; right: 10px; top: 14px; }
+.hero-mascot { position: absolute; width: 72px; right: 10px; top: 14px; animation: bob 5s ease-in-out infinite; filter: drop-shadow(0 6px 10px rgba(31,127,144,0.12)); }
 
 /* ============================================
-   2. NỖI LO
+   NỘI DUNG CÁC SECTION
    ============================================ */
 .pain-list { list-style: none; display: grid; gap: 10px; margin-bottom: 18px; }
 .pain-list li {
@@ -388,18 +406,11 @@ strong { color: var(--dark); }
 .alert-line {
     text-align: center;
     font-family: var(--font-heading); font-weight: 700;
-    font-size: 19px; color: #d64d86;
-    margin: 4px 0 18px;
+    font-size: 19px; color: var(--pink-deep);
+    margin: 4px 0 4px;
 }
+.lead { font-size: 16.5px; text-align: center; }
 
-/* ============================================
-   3. GIẢI PHÁP
-   ============================================ */
-.lead { font-size: 16.5px; text-align: center; margin-bottom: 18px; }
-
-/* ============================================
-   4. THÀNH PHẦN
-   ============================================ */
 .ingr { display: grid; gap: 10px; margin-bottom: 16px; }
 .ingr-item {
     display: flex; gap: 12px; align-items: flex-start;
@@ -412,13 +423,7 @@ strong { color: var(--dark); }
 .ingr-icon { font-size: 24px; flex-shrink: 0; line-height: 1.2; }
 .ingr-item b { display: block; color: var(--dark); font-size: 16px; }
 .ingr-item p { font-size: 15px; }
-.five-no {
-    background: var(--primary);
-    color: var(--white);
-    border-radius: var(--radius);
-    padding: 16px;
-    margin-bottom: 16px;
-}
+.five-no { background: var(--primary); color: var(--white); border-radius: var(--radius); padding: 16px; }
 .five-no h3 { font-family: var(--font-heading); font-size: 19px; margin-bottom: 10px; text-align: center; }
 .five-no-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .five-no-grid span {
@@ -428,24 +433,13 @@ strong { color: var(--dark); }
     font-size: 14px; font-weight: 700;
 }
 
-/* ============================================
-   5. AN TÂM
-   ============================================ */
 .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .duo figcaption { text-align: center; font-size: 14px; font-weight: 700; color: var(--dark); margin-top: 8px; line-height: 1.4; }
 .duo figcaption small { display: block; color: var(--primary-deep); font-weight: 800; font-size: 14px; }
-
-/* ============================================
-   6. FEEDBACK + VIDEO
-   ============================================ */
 .label-line { text-align: center; font-weight: 800; color: var(--primary-deep); margin: 0 0 10px; font-size: 15.5px; }
-.label-line.mt { margin-top: 22px; }
-.video-wrap { max-width: 300px; margin: 0 auto; }
+.video-wrap { max-width: 300px; margin: 0 auto; width: 100%; }
 
-/* ============================================
-   8. 3 BƯỚC
-   ============================================ */
-.steps { list-style: none; display: grid; gap: 12px; margin-bottom: 18px; counter-reset: s; }
+.steps { list-style: none; display: grid; gap: 12px; counter-reset: s; }
 .steps li {
     display: flex; gap: 12px; align-items: flex-start;
     background: var(--white); border: 1px solid var(--line);
@@ -460,9 +454,6 @@ strong { color: var(--dark); }
     display: flex; align-items: center; justify-content: center;
 }
 
-/* ============================================
-   9. THÔNG TIN SẢN PHẨM + CTA
-   ============================================ */
 .spec { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
 .spec div { display: flex; justify-content: space-between; gap: 12px; padding: 13px 16px; font-size: 15.5px; border-bottom: 1px solid var(--line); }
 .spec div:last-child { border-bottom: none; }
@@ -476,13 +467,98 @@ strong { color: var(--dark); }
     text-align: center;
     box-shadow: var(--shadow);
     position: relative;
-    margin-top: 72px;
+    margin-top: 54px;
 }
-.cta-card .mascot { width: 84px; top: -58px; right: 10px; }
+.cta-card .mascot { width: 84px; top: -58px; right: 10px; left: auto; }
 .cta-card .sec-title { font-size: 22px; padding-right: 40px; }
 
 /* ============================================
-   10. FAQ
+   FORM ƯU ĐÃI TẶNG RIÊNG CHO MẸ
+   ============================================ */
+.order-sec { background: var(--primary); padding: 36px 18px; position: relative; }
+.order-card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 24px 18px 20px;
+    box-shadow: 0 18px 40px rgba(20,90,104,.25);
+    position: relative;
+}
+.offer { text-align: center; }
+.offer-title {
+    font-family: var(--font-heading); font-weight: 700;
+    font-size: 25px; line-height: 1.25;
+    color: var(--pink-deep);
+    text-transform: uppercase;
+}
+.offer-price { margin: 10px 0 4px; font-size: 16px; color: var(--dark); font-weight: 700; }
+.offer-price b { font-family: var(--font-heading); font-size: 30px; color: var(--primary-deep); margin: 0 4px; }
+.offer-price s { color: var(--muted); font-weight: 600; font-size: 15px; }
+.countdown-wrap { margin: 12px 0 18px; }
+.countdown-label { font-size: 14.5px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+.countdown { display: flex; justify-content: center; align-items: center; gap: 8px; }
+.countdown .unit {
+    background: var(--dark); color: #fff;
+    border-radius: 12px;
+    min-width: 66px;
+    padding: 6px 8px 4px;
+    text-align: center;
+}
+.countdown .unit b { display: block; font-family: var(--font-heading); font-size: 28px; line-height: 1.1; }
+.countdown .unit span { font-size: 11.5px; opacity: .8; text-transform: uppercase; letter-spacing: .5px; }
+.countdown .colon { font-size: 26px; font-weight: 800; color: var(--dark); }
+.offer-perks { display: none; }
+.offer-mascot { display: none; }
+
+.field { margin-bottom: 12px; text-align: left; }
+.field > label, .field-label { display: block; font-weight: 700; font-size: 15px; color: var(--dark); margin-bottom: 6px; }
+.field label i { color: #e5484d; font-style: normal; }
+.input {
+    width: 100%;
+    font: inherit; font-size: 16px;
+    padding: 13px 14px;
+    border: 2px solid #e3eef1;
+    border-radius: 12px;
+    background: #f8fcfd;
+    color: var(--dark);
+    transition: border-color .2s ease, background .2s ease;
+}
+.input:focus { outline: none; border-color: var(--primary); background: #fff; }
+.input.error { border-color: #e5484d; }
+.err { display: none; color: #e5484d; font-size: 13px; margin-top: 4px; }
+.err.show { display: block; }
+.packs { display: grid; gap: 8px; }
+.pack {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 14px;
+    border: 2px solid #e3eef1;
+    border-radius: 14px;
+    background: #f8fcfd;
+    cursor: pointer;
+    transition: border-color .2s ease, background .2s ease;
+}
+.pack input { width: 20px; height: 20px; accent-color: var(--primary-dark); flex-shrink: 0; }
+.pack .pack-name { font-weight: 800; color: var(--dark); font-size: 16px; }
+.pack .pack-price { margin-left: auto; text-align: right; line-height: 1.25; }
+.pack .pack-price b { display: block; color: var(--primary-deep); font-size: 17px; }
+.pack .pack-price s { color: var(--muted); font-size: 13px; }
+.pack:has(input:checked) { border-color: var(--primary); background: var(--primary-soft); }
+.pack.on { border-color: var(--primary); background: var(--primary-soft); }
+.hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; overflow: hidden; }
+.form-alert { display: none; margin-top: 10px; padding: 10px 12px; border-radius: 12px; background: #fff0f0; color: #c93a3f; font-size: 14px; }
+.form-alert.show { display: block; }
+.form-alert a { font-weight: 800; text-decoration: underline; }
+.secure { text-align: center; font-size: 13px; color: var(--muted); margin-top: 10px; }
+.spinner { display: inline-block; width: 18px; height: 18px; border: 3px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.success { display: none; text-align: center; padding: 6px 0; }
+.success.show { display: block; }
+.success img { width: 140px; margin: 0 auto 6px; }
+.success h3 { font-family: var(--font-heading); font-size: 22px; color: var(--primary-deep); margin-bottom: 6px; }
+.success p { font-size: 15.5px; margin-bottom: 12px; }
+.success .summary { text-align: left; background: var(--primary-soft); border-radius: 12px; padding: 12px 14px; font-size: 14.5px; line-height: 1.8; margin-bottom: 14px; }
+
+/* ============================================
+   FAQ, CÂU CHUYỆN, ĐÁNH GIÁ
    ============================================ */
 .faq { display: grid; gap: 10px; }
 .faq details {
@@ -511,9 +587,6 @@ strong { color: var(--dark); }
 .faq details[open] summary::after { transform: rotate(45deg); background: var(--primary); color: #fff; }
 .faq details p { padding: 0 16px 16px; font-size: 15.5px; }
 
-/* ============================================
-   11. CÂU CHUYỆN THƯƠNG HIỆU
-   ============================================ */
 .story p { font-size: 16px; margin-bottom: 12px; }
 .story .tagline {
     text-align: center;
@@ -522,9 +595,6 @@ strong { color: var(--dark); }
     margin-top: 6px;
 }
 
-/* ============================================
-   12. ĐÁNH GIÁ
-   ============================================ */
 .rating-box {
     background: var(--pink-soft);
     border: 1px solid #ffd6e6;
@@ -537,11 +607,9 @@ strong { color: var(--dark); }
 .rating-num small { font-size: 15px; }
 .stars { color: #ffb400; letter-spacing: 1px; font-size: 16px; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chips span {
-    background: var(--white); border: 1px solid #f1d6df;
-    font-size: 13px; padding: 4px 10px; border-radius: 4px; color: var(--dark);
-}
+.chips span { background: var(--white); border: 1px solid #f1d6df; font-size: 13px; padding: 4px 10px; border-radius: 4px; color: var(--dark); }
 .chips span.on { border-color: #ee4d2d; color: #ee4d2d; font-weight: 700; }
+.reviews-list { display: grid; }
 .review { padding: 14px 0; border-bottom: 1px solid var(--line); }
 .review-head { display: flex; gap: 10px; align-items: center; margin-bottom: 6px; }
 .avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--white); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--primary-deep); }
@@ -551,15 +619,12 @@ strong { color: var(--dark); }
 .review-imgs .placeholder span { font-size: 18px; }
 .review-imgs .placeholder { font-size: 11px; }
 
-/* ============================================
-   FOOTER
-   ============================================ */
 .footer { background: var(--primary-deep); color: rgba(255,255,255,.85); text-align: center; padding: 26px 18px; font-size: 14px; }
 .footer b { color: #fff; font-family: var(--font-heading); font-size: 17px; display: block; margin-bottom: 4px; }
 .footer a { color: #fff; font-weight: 800; }
 
 /* ============================================
-   THANH MUA HÀNG DÍNH DƯỚI + NÚT GỌI
+   THANH MUA DÍNH DƯỚI + NÚT GỌI (mobile)
    ============================================ */
 .sticky-buy {
     position: fixed; z-index: 60;
@@ -609,85 +674,124 @@ strong { color: var(--dark); }
 .toast-text b { color: var(--primary-deep); }
 .toast-text small { display: block; color: var(--muted); font-size: 12px; }
 
-/* ============================================
-   FORM ĐẶT HÀNG (bottom sheet)
-   ============================================ */
-.sheet-backdrop {
-    position: fixed; inset: 0; z-index: 90;
-    background: rgba(20,40,46,.5);
-    opacity: 0; visibility: hidden;
-    transition: opacity .25s ease, visibility .25s ease;
-}
-.sheet {
-    position: fixed; z-index: 100;
-    left: 50%; bottom: 0;
-    width: 100%; max-width: var(--page);
-    max-height: 92vh;
-    overflow-y: auto;
-    transform: translate(-50%, 105%);
-    visibility: hidden;
-    background: var(--white);
-    border-radius: 24px 24px 0 0;
-    padding: 10px 18px calc(20px + env(safe-area-inset-bottom));
-    transition: transform .35s cubic-bezier(.2,.9,.3,1), visibility .35s;
-}
-body.sheet-open { overflow: hidden; }
-body.sheet-open .sheet-backdrop { opacity: 1; visibility: visible; }
-body.sheet-open .sheet { transform: translate(-50%, 0); visibility: visible; }
-.sheet-grip { width: 44px; height: 5px; border-radius: 5px; background: #d7e6ea; margin: 0 auto 10px; }
-.sheet-close { position: absolute; top: 12px; right: 14px; width: 34px; height: 34px; border-radius: 50%; background: var(--primary-soft); color: var(--primary-deep); font-size: 16px; font-weight: 800; }
-.sheet h2 { font-family: var(--font-heading); font-size: 21px; color: var(--dark); text-align: center; margin-bottom: 4px; padding: 0 30px; }
-.sheet .sheet-sub { text-align: center; font-size: 14px; color: var(--muted); margin-bottom: 14px; }
-.order-product {
-    display: flex; align-items: center; gap: 12px;
-    background: var(--primary-soft); border-radius: var(--radius-sm);
-    padding: 10px 12px; margin-bottom: 14px;
-}
-.order-product img { width: 56px; height: 56px; object-fit: contain; }
-.order-product b { display: block; color: var(--dark); font-size: 15px; line-height: 1.3; }
-.order-product .p { color: var(--primary-deep); font-weight: 800; }
-.order-product .p s { color: var(--muted); font-weight: 400; font-size: 13px; margin-left: 6px; }
-.field { margin-bottom: 12px; }
-.field label, .qty-label { display: block; font-weight: 700; font-size: 14.5px; color: var(--dark); margin-bottom: 5px; }
-.field label i { color: #e5484d; font-style: normal; }
-.input {
-    width: 100%;
-    font: inherit; font-size: 16px;
-    padding: 13px 14px;
-    border: 2px solid #e3eef1;
-    border-radius: 12px;
-    background: #f8fcfd;
-    color: var(--dark);
-    transition: border-color .2s ease, background .2s ease;
-}
-.input:focus { outline: none; border-color: var(--primary); background: #fff; }
-.input.error { border-color: #e5484d; }
-.err { display: none; color: #e5484d; font-size: 13px; margin-top: 4px; }
-.err.show { display: block; }
-.qty-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
-.qty { display: flex; align-items: center; border: 2px solid #e3eef1; border-radius: 12px; overflow: hidden; }
-.qty button { width: 44px; height: 44px; font-size: 22px; font-weight: 800; color: var(--primary-deep); background: var(--primary-soft); }
-.qty input { width: 52px; height: 44px; text-align: center; border: none; font: inherit; font-weight: 800; font-size: 17px; color: var(--dark); -moz-appearance: textfield; }
-.qty input::-webkit-outer-spin-button, .qty input::-webkit-inner-spin-button { -webkit-appearance: none; }
-.total { text-align: right; font-size: 14px; color: var(--muted); }
-.total b { display: block; color: var(--primary-deep); font-size: 22px; font-family: var(--font-heading); }
-.hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; overflow: hidden; }
-.form-alert { display: none; margin-top: 10px; padding: 10px 12px; border-radius: 12px; background: #fff0f0; color: #c93a3f; font-size: 14px; }
-.form-alert.show { display: block; }
-.form-alert a { font-weight: 800; text-decoration: underline; }
-.secure { text-align: center; font-size: 13px; color: var(--muted); margin-top: 10px; }
-.spinner { display: inline-block; width: 18px; height: 18px; border: 3px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%; animation: spin .8s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
-.success { display: none; text-align: center; padding: 10px 0 6px; }
-.success.show { display: block; }
-.success img { width: 140px; margin: 0 auto 6px; }
-.success h3 { font-family: var(--font-heading); font-size: 22px; color: var(--primary-deep); margin-bottom: 6px; }
-.success p { font-size: 15.5px; margin-bottom: 12px; }
-.success .summary { text-align: left; background: var(--primary-soft); border-radius: 12px; padding: 12px 14px; font-size: 14.5px; line-height: 1.8; margin-bottom: 14px; }
-
 /* Hiện dần khi cuộn */
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
 .js .reveal.in { opacity: 1; transform: none; }
+
+/* ============================================
+   MÁY TÍNH (≥ 960px): BỐ CỤC 2 CỘT, TRÀN RỘNG
+   ============================================ */
+@media (min-width: 960px) {
+    body { background: var(--white); font-size: 17px; }
+    .page { max-width: none; padding-bottom: 0; overflow: visible; }
+    .container { max-width: 1120px; margin: 0 auto; }
+    .sec { padding: 80px 32px; }
+    .sec-head { padding: 0; margin-bottom: 36px; }
+    .sec-head.left-pc .sec-title, .sec-head.left-pc .sec-sub { text-align: left; }
+    .sec-head.left-pc::after { margin-left: 0; }
+    .sec-title { font-size: 36px; }
+    .sec-sub { font-size: 17px; max-width: 680px; margin-left: auto; margin-right: auto; }
+    .sec-head.left-pc .sec-sub { margin-left: 0; }
+    .mascot { width: 120px; }
+    .mascot.l { left: -150px; top: -10px; }
+    .mascot.r { right: -150px; top: -10px; }
+    .split { grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .split.flip > :first-child { order: 2; }
+
+    /* Header có menu + nút mua */
+    .topbar-inner { max-width: 1120px; margin: 0 auto; padding: 14px 32px; }
+    .brand { font-size: 20px; }
+    .brand-dot { width: 36px; height: 36px; font-size: 18px; }
+    .topnav { display: flex; gap: 28px; font-weight: 700; color: var(--dark); font-size: 15.5px; }
+    .topnav a:hover { color: var(--primary-dark); }
+    .topbar-buy { display: inline-flex; width: auto; min-height: 44px; padding: 10px 24px; font-size: 15.5px; }
+
+    /* Hero 2 cột: chữ trái, ảnh trước-sau phải */
+    .hero { padding: 72px 32px 88px; }
+    .hero .container { display: grid; grid-template-columns: 1.05fr 1fr; gap: 64px; align-items: center; }
+    .hero-title { font-size: 52px; padding-right: 0; }
+    .hero-q { font-size: 26px; margin: 10px 0 24px; }
+    .hero-grid { display: block; }
+    .hero-product { font-size: 20px; margin-bottom: 12px; }
+    .check-list { gap: 12px; }
+    .check-list li { font-size: 17.5px; }
+    .check-list li::before { width: 24px; height: 24px; font-size: 14px; }
+    .no-list span { font-size: 14px; padding: 4px 12px; }
+    .hero .price-box { justify-content: flex-start; margin: 28px 0 20px; }
+    .hero .btn { max-width: 380px; }
+    .price-now { font-size: 42px; }
+    .ba { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .ba .media .caption { font-size: 14px; padding: 5px 14px; top: 12px; left: 12px; }
+    .hero-visual { position: relative; }
+    .hero-mascot { width: 150px; right: auto; left: -60px; top: auto; bottom: -70px; }
+    .ba-mobile, .hero-mascot-m { display: none !important; }
+    .hero-visual { display: block; }
+
+    .pain-list li { font-size: 17.5px; padding: 16px 18px; }
+    .alert-line { font-size: 22px; text-align: left; }
+    .slides { margin: 0; padding: 0 0 4px; }
+    .slide { flex-basis: 100%; }
+    #seminar .slide { flex-basis: calc((100% - 24px) / 3); }
+    .lead { font-size: 18.5px; text-align: left; }
+
+    .ingr { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .ingr-item:last-child { grid-column: span 2; }
+    .five-no { padding: 20px 24px; }
+
+    .duo { gap: 24px; }
+    .trust-duo { max-width: 700px; margin: 0 auto; }
+    .duo figcaption { font-size: 16px; }
+    .label-line { font-size: 17px; text-align: left; }
+    .video-wrap { max-width: 340px; }
+
+    .steps li { font-size: 17.5px; padding: 18px 20px; }
+
+    .cta-card { margin-top: 0; padding: 36px 32px; }
+    .cta-card .sec-title { font-size: 28px; padding-right: 0; }
+    .cta-card .mascot { width: 120px; top: -80px; right: -20px; }
+
+    /* Form: ưu đãi trái, form phải */
+    .order-sec { padding: 80px 32px; }
+    .order-card { max-width: 1040px; margin: 0 auto; padding: 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .offer { text-align: left; }
+    .offer-title { font-size: 38px; }
+    .offer-price b { font-size: 38px; }
+    .countdown { justify-content: flex-start; }
+    .countdown .unit { min-width: 80px; }
+    .countdown .unit b { font-size: 34px; }
+    .offer-perks { display: grid; gap: 10px; list-style: none; margin-top: 4px; }
+    .offer-perks li { display: flex; gap: 10px; align-items: center; font-weight: 700; color: var(--dark); }
+    .offer-perks li span { width: 34px; height: 34px; border-radius: 50%; background: var(--primary-soft); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .offer-mascot { display: block; width: 170px; margin-top: 18px; animation: bob 5s ease-in-out infinite; }
+
+    .faq-wrap { max-width: 820px; margin: 0 auto; }
+    .story-wrap { max-width: 820px; margin: 0 auto; text-align: center; }
+    .story p { font-size: 17.5px; }
+    .story .tagline { font-size: 24px; }
+
+    .reviews-list { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .review { background: var(--white); border-radius: var(--radius); padding: 20px; border: 1px solid var(--line); }
+    .rating-box { margin-bottom: 24px; display: flex; align-items: center; gap: 24px; }
+    .rating-top { margin-bottom: 0; flex-shrink: 0; }
+    .reviews-cta { max-width: 380px; margin: 28px auto 0; }
+
+    .footer { padding: 36px 32px; font-size: 15px; }
+
+    /* Nút gọi + Zalo nổi góc phải, ẩn thanh mua dưới */
+    .sticky-buy {
+        left: auto; right: 24px; bottom: 24px; transform: none;
+        width: auto; max-width: none;
+        flex-direction: column;
+        background: none; backdrop-filter: none; box-shadow: none; padding: 0;
+    }
+    .sticky-buy .btn { display: none; }
+    .sticky-call, .sticky-zalo { width: 58px; height: 58px; box-shadow: 0 8px 20px rgba(0,0,0,.18); }
+    .toast { left: 24px; right: auto; top: auto; bottom: 24px; transform: translateX(-130%); width: 360px; }
+    .toast.show { transform: translateX(0); }
+}
+@media (min-width: 960px) and (max-width: 1240px) {
+    .mascot.l, .mascot.r { display: none; }
+}
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .js .reveal { opacity: 1; transform: none; }
@@ -700,238 +804,355 @@ body.sheet-open .sheet { transform: translate(-50%, 0); visibility: visible; }
 
     <!-- HEADER -->
     <header class="topbar">
-        <a href="#top" class="brand"><span class="brand-dot">B</span> Bon Bon</a>
-        <a href="tel:0901234567" class="topbar-call">📞 <span class="js-hotline">0901.234.567</span></a>
+        <div class="topbar-inner">
+            <a href="#top" class="brand"><span class="brand-dot">B</span> Bon Bon</a>
+            <nav class="topnav" aria-label="Điều hướng">
+                <a href="#ingredients">Thành phần</a>
+                <a href="#howto">Cách dùng</a>
+                <a href="#reviews">Đánh giá</a>
+                <a href="#faq">Hỏi đáp</a>
+            </nav>
+            <div class="topbar-actions">
+                <a href="tel:0901234567" class="topbar-call">📞 <span class="js-hotline">0901.234.567</span></a>
+                <a href="#order" class="btn topbar-buy js-buy">Mua ngay</a>
+            </div>
+        </div>
     </header>
 
     <main id="top">
 
     <!-- 1. HERO: bên trái text, bên phải ảnh trước - sau -->
     <section class="hero">
-        <img src="assets/mascot-bear.webp" alt="" class="mascot" aria-hidden="true">
-        <span class="hero-badge">⚡ Flash sale hôm nay</span>
-        <h1 class="hero-title">Da bé <span class="hl">ửng đỏ</span> vì hăm</h1>
-        <p class="hero-q">Mẹ đã tìm được cách chăm sóc phù hợp?</p>
-
-        <div class="hero-grid">
-            <div>
-                <p class="hero-product">Kem Hăm Cho Bé Bon Bon</p>
-                <ul class="check-list">
-                    <li>Chuyên gia tin dùng</li>
-                    <li>Giảm hăm tã, hăm da hiệu quả</li>
-                    <li><div class="no-list"><span>Không Corticoid</span><span>Không Paraben</span><span>Không hương liệu</span></div></li>
-                </ul>
+        <div class="container">
+            <div class="hero-text-col">
+                <img src="assets/mascot-bear.webp" alt="" class="hero-mascot hero-mascot-m" aria-hidden="true">
+                <span class="hero-badge">⚡ Flash sale hôm nay</span>
+                <h1 class="hero-title">Da bé <span class="hl">ửng đỏ</span> vì hăm</h1>
+                <p class="hero-q">Mẹ đã tìm được cách chăm sóc phù hợp?</p>
+                <div class="hero-grid">
+                    <div>
+                        <p class="hero-product">Kem Hăm Cho Bé Bon Bon</p>
+                        <ul class="check-list">
+                            <li>Chuyên gia tin dùng</li>
+                            <li>Giảm hăm tã, hăm da hiệu quả</li>
+                            <li><div class="no-list"><span>Không Corticoid</span><span>Không Paraben</span><span>Không hương liệu</span></div></li>
+                        </ul>
+                    </div>
+                    <div class="ba ba-mobile">
+                        <div class="media ratio-1 before" data-media="heroBefore" data-label="Ảnh trước"><span class="caption">Trước</span></div>
+                        <div class="media ratio-1 after" data-media="heroAfter" data-label="Ảnh sau"><span class="caption">Sau</span></div>
+                    </div>
+                </div>
+                <div class="price-box">
+                    <span class="price-tag">⚡ Flash sale</span>
+                    <span class="price-now js-price">49.000đ</span>
+                    <span class="price-old">Niêm yết <s class="js-list-price">80.000đ</s></span>
+                </div>
+                <a href="#order" class="btn pulse js-buy">🛒 MUA NGAY CHO BÉ</a>
             </div>
-            <div class="ba">
-                <div class="media ratio-1 before" data-media="heroBefore" data-label="Ảnh trước"><span class="caption">Trước</span></div>
-                <div class="media ratio-1 after" data-media="heroAfter" data-label="Ảnh sau"><span class="caption">Sau</span></div>
+            <div class="hero-visual">
+                <div class="ba">
+                    <div class="media ratio-34 before" data-media="heroBefore" data-label="Ảnh trước"><span class="caption">Trước</span></div>
+                    <div class="media ratio-34 after" data-media="heroAfter" data-label="Ảnh sau"><span class="caption">Sau</span></div>
+                </div>
+                <img src="assets/mascot-bear.webp" alt="" class="hero-mascot" aria-hidden="true">
             </div>
         </div>
-
-        <div class="price-box">
-            <span class="price-tag">⚡ Flash sale</span>
-            <span class="price-now js-price">49.000đ</span>
-            <span class="price-old">Niêm yết <s class="js-list-price">80.000đ</s></span>
-        </div>
-        <button type="button" class="btn pulse js-buy">🛒 MUA NGAY CHO BÉ</button>
     </section>
 
     <!-- 2. NỖI LO -->
     <section class="sec tint" id="pain">
-        <img src="assets/mascot-kitten.webp" alt="" class="mascot" style="left:4px; top:14px; width:60px" aria-hidden="true">
-        <div class="sec-head reveal">
-            <h2 class="sec-title">Mẹ lo lắng mỗi lần thấy <span class="hl">da con đỏ ửng</span></h2>
+        <div class="container split">
+            <div>
+                <div class="sec-head left-pc reveal">
+                    <img src="assets/mascot-kitten.webp" alt="" class="mascot l" aria-hidden="true">
+                    <h2 class="sec-title">Mẹ lo lắng mỗi lần thấy <span class="hl">da con đỏ ửng</span></h2>
+                </div>
+                <ul class="pain-list">
+                    <li class="reveal"><span>😣</span> Vùng da mông, bẹn ửng đỏ khiến bé khó chịu, quấy khóc</li>
+                    <li class="reveal"><span>🔁</span> Bé bị hăm kéo dài, tái phát</li>
+                    <li class="reveal"><span>🤲</span> Bé bị hăm vùng nếp gấp, kẽ tay, kẽ chân</li>
+                </ul>
+                <p class="alert-line reveal">Đừng để tình trạng hăm kéo dài, Mẹ ạ!</p>
+            </div>
+            <div class="slider reveal" data-slider="rashSlides" data-ratio="ratio-43" data-label="Ảnh vị trí bé bị hăm"></div>
         </div>
-        <ul class="pain-list">
-            <li class="reveal"><span>😣</span> Vùng da mông, bẹn ửng đỏ khiến bé khó chịu, quấy khóc</li>
-            <li class="reveal"><span>🔁</span> Bé bị hăm kéo dài, tái phát</li>
-            <li class="reveal"><span>🤲</span> Bé bị hăm vùng nếp gấp, kẽ tay, kẽ chân</li>
-        </ul>
-        <p class="alert-line reveal">Đừng để tình trạng hăm kéo dài, Mẹ ạ!</p>
-        <div class="slider reveal" data-slider="rashSlides" data-ratio="ratio-43" data-label="Ảnh vị trí bé bị hăm"></div>
     </section>
 
     <!-- 3. GIẢI PHÁP -->
     <section class="sec" id="solution">
-        <div class="sec-head reveal">
-            <h2 class="sec-title"><span class="hl">Bon Bon</span> – Nhẹ nhàng chăm sóc vùng da bé bị hăm</h2>
+        <div class="container split flip">
+            <div>
+                <div class="sec-head left-pc reveal">
+                    <h2 class="sec-title"><span class="hl">Bon Bon</span> – Nhẹ nhàng chăm sóc vùng da bé bị hăm</h2>
+                </div>
+                <p class="lead reveal">Với kết cấu kem mịn cùng công thức an lành, Kem Da Bon Bon giúp mẹ chủ động chăm sóc da bé thoát khỏi hăm.</p>
+            </div>
+            <div class="media ratio-1 reveal" data-media="motherBaby" data-label="Ảnh mẹ ôm bé cầm hũ kem hăm"></div>
         </div>
-        <p class="lead reveal">Với kết cấu kem mịn cùng công thức an lành, Kem Da Bon Bon giúp mẹ chủ động chăm sóc da bé thoát khỏi hăm.</p>
-        <div class="media ratio-1 reveal" data-media="motherBaby" data-label="Ảnh mẹ ôm bé cầm hũ kem hăm"></div>
     </section>
 
     <!-- 4. THÀNH PHẦN -->
     <section class="sec tint" id="ingredients">
-        <img src="assets/mascot-hippo.webp" alt="" class="mascot" style="right:4px; top:10px; width:62px" aria-hidden="true">
-        <div class="sec-head reveal">
-            <h2 class="sec-title">THÀNH PHẦN <span class="hl">DỊU NHẸ</span></h2>
-            <p class="sec-sub">Phù hợp với trẻ sơ sinh &amp; trẻ nhỏ Việt</p>
-        </div>
-        <div class="ingr">
-            <div class="ingr-item reveal"><span class="ingr-icon">🛡️</span><div><b>Petrolatum</b><p>Tạo lớp màng bảo vệ da, hạn chế mất nước</p></div></div>
-            <div class="ingr-item reveal"><span class="ingr-icon">🥑</span><div><b>Dầu bơ, dầu nghệ</b><p>Làm mềm da, hỗ trợ duy trì độ ẩm</p></div></div>
-            <div class="ingr-item reveal"><span class="ingr-icon">🌾</span><div><b>Tinh bột sắn</b><p>Hấp thụ độ ẩm dư thừa trên bề mặt da</p></div></div>
-            <div class="ingr-item reveal"><span class="ingr-icon">💧</span><div><b>PVP</b><p>Tạo lớp màng bảo vệ da</p></div></div>
-            <div class="ingr-item reveal"><span class="ingr-icon">✨</span><div><b>Nano bạc</b><p>Giảm viêm, xoa dịu vết hăm tã, hăm da</p></div></div>
-        </div>
-        <div class="five-no reveal">
-            <h3>5 KHÔNG</h3>
-            <div class="five-no-grid">
-                <span>🚫 Không Corticoid</span>
-                <span>🚫 Không Paraben</span>
-                <span>🚫 Không hương liệu</span>
-                <span>🚫 Không bết rít</span>
-                <span>🚫 Không để lại vệt trên da</span>
+        <div class="container">
+            <div class="sec-head reveal">
+                <img src="assets/mascot-hippo.webp" alt="" class="mascot r" aria-hidden="true">
+                <h2 class="sec-title">THÀNH PHẦN <span class="hl">DỊU NHẸ</span></h2>
+                <p class="sec-sub">Phù hợp với trẻ sơ sinh &amp; trẻ nhỏ Việt</p>
+            </div>
+            <div class="split">
+                <div>
+                    <div class="ingr">
+                        <div class="ingr-item reveal"><span class="ingr-icon">🛡️</span><div><b>Petrolatum</b><p>Tạo lớp màng bảo vệ da, hạn chế mất nước</p></div></div>
+                        <div class="ingr-item reveal"><span class="ingr-icon">🥑</span><div><b>Dầu bơ, dầu nghệ</b><p>Làm mềm da, hỗ trợ duy trì độ ẩm</p></div></div>
+                        <div class="ingr-item reveal"><span class="ingr-icon">🌾</span><div><b>Tinh bột sắn</b><p>Hấp thụ độ ẩm dư thừa trên bề mặt da</p></div></div>
+                        <div class="ingr-item reveal"><span class="ingr-icon">💧</span><div><b>PVP</b><p>Tạo lớp màng bảo vệ da</p></div></div>
+                        <div class="ingr-item reveal"><span class="ingr-icon">✨</span><div><b>Nano bạc</b><p>Giảm viêm, xoa dịu vết hăm tã, hăm da</p></div></div>
+                    </div>
+                    <div class="five-no reveal">
+                        <h3>5 KHÔNG</h3>
+                        <div class="five-no-grid">
+                            <span>🚫 Không Corticoid</span>
+                            <span>🚫 Không Paraben</span>
+                            <span>🚫 Không hương liệu</span>
+                            <span>🚫 Không bết rít</span>
+                            <span>🚫 Không để lại vệt trên da</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="media ratio-1 reveal" data-media="creamTexture" data-label="Ảnh cận cảnh chất kem"></div>
             </div>
         </div>
-        <div class="media ratio-43 reveal" data-media="creamTexture" data-label="Ảnh cận cảnh chất kem"></div>
     </section>
 
     <!-- 5. AN TÂM -->
     <section class="sec" id="trust">
-        <div class="sec-head reveal">
-            <h2 class="sec-title">An tâm <span class="hl">sử dụng</span></h2>
-        </div>
-        <div class="duo reveal">
-            <figure>
-                <div class="media ratio-34" data-media="certificate" data-label="Ảnh giấy công bố"></div>
-                <figcaption>Giấy công bố<small>80/26/CBMP-NB</small></figcaption>
-            </figure>
-            <figure>
-                <div class="media ratio-34" data-media="antiFakeStamp" data-label="Ảnh tem chống hàng giả"></div>
-                <figcaption>Tem chống hàng giả<small>Bộ Công An</small></figcaption>
-            </figure>
+        <div class="container">
+            <div class="sec-head reveal">
+                <h2 class="sec-title">An tâm <span class="hl">sử dụng</span></h2>
+            </div>
+            <div class="duo trust-duo reveal">
+                <figure>
+                    <div class="media ratio-34" data-media="certificate" data-label="Ảnh giấy công bố"></div>
+                    <figcaption>Giấy công bố<small>80/26/CBMP-NB</small></figcaption>
+                </figure>
+                <figure>
+                    <div class="media ratio-34" data-media="antiFakeStamp" data-label="Ảnh tem chống hàng giả"></div>
+                    <figcaption>Tem chống hàng giả<small>Bộ Công An</small></figcaption>
+                </figure>
+            </div>
         </div>
     </section>
 
     <!-- 6. FEEDBACK -->
     <section class="sec tint" id="feedback">
-        <img src="assets/mascot-puppy.webp" alt="" class="mascot" style="left:2px; top:10px; width:62px" aria-hidden="true">
-        <div class="sec-head reveal">
-            <h2 class="sec-title">Hàng ngàn mẹ <span class="hl">tin dùng</span></h2>
-        </div>
-        <p class="label-line">Hình ảnh feedback</p>
-        <div class="duo reveal" data-list="feedback" data-ratio="ratio-34" data-label="Ảnh feedback"></div>
-        <p class="label-line mt">Nghe các mẹ chia sẻ</p>
-        <div class="video-wrap reveal">
-            <div class="media ratio-916" data-video="testimonialVideo" data-label="Video các mẹ chia sẻ"></div>
+        <div class="container">
+            <div class="sec-head reveal">
+                <img src="assets/mascot-puppy.webp" alt="" class="mascot l" aria-hidden="true">
+                <h2 class="sec-title">Hàng ngàn mẹ <span class="hl">tin dùng</span></h2>
+            </div>
+            <div class="split">
+                <div>
+                    <p class="label-line">Hình ảnh feedback</p>
+                    <div class="duo reveal" data-list="feedback" data-ratio="ratio-34" data-label="Ảnh feedback"></div>
+                </div>
+                <div>
+                    <p class="label-line">Nghe các mẹ chia sẻ</p>
+                    <div class="video-wrap reveal">
+                        <div class="media ratio-916" data-video="testimonialVideo" data-label="Video các mẹ chia sẻ"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- 7. 3 MIỀN -->
     <section class="sec" id="seminar">
-        <div class="sec-head reveal">
-            <h2 class="sec-title">BON BON <span class="hl">TRÊN KHẮP 3 MIỀN</span></h2>
-            <p class="sec-sub">Đồng hành cùng hàng ngàn mẹ bầu, mẹ bỉm tại các hội thảo tiền sản và bệnh viện Sản - Nhi uy tín</p>
+        <div class="container">
+            <div class="sec-head reveal">
+                <h2 class="sec-title">BON BON <span class="hl">TRÊN KHẮP 3 MIỀN</span></h2>
+                <p class="sec-sub">Đồng hành cùng hàng ngàn mẹ bầu, mẹ bỉm tại các hội thảo tiền sản và bệnh viện Sản - Nhi uy tín</p>
+            </div>
+            <div class="slider reveal" data-slider="seminarSlides" data-ratio="ratio-43" data-label="Ảnh hội thảo Bon Bon"></div>
+            <div style="max-width:380px; margin:24px auto 0"><a href="#order" class="btn js-buy">🛒 ĐẶT MUA NGAY</a></div>
         </div>
-        <div class="slider reveal" data-slider="seminarSlides" data-ratio="ratio-43" data-label="Ảnh hội thảo Bon Bon"></div>
-        <div style="margin-top:20px"><button type="button" class="btn js-buy">🛒 ĐẶT MUA NGAY</button></div>
     </section>
 
     <!-- 8. 3 BƯỚC -->
     <section class="sec tint" id="howto">
-        <img src="assets/mascot-elephant.webp" alt="" class="mascot" style="right:2px; top:12px; width:56px" aria-hidden="true">
-        <div class="sec-head reveal">
-            <h2 class="sec-title">Chăm sóc da bé nhẹ nhàng <span class="hl">với 3 bước</span></h2>
-        </div>
-        <ol class="steps">
-            <li class="reveal">Vệ sinh và lau khô vùng da cần chăm sóc.</li>
-            <li class="reveal">Dùng tăm bông lấy một lượng kem vừa đủ, bôi trực tiếp lên vùng da bị hăm.</li>
-            <li class="reveal">Sử dụng đều đặn 2-3 lần/ngày.</li>
-        </ol>
-        <div class="video-wrap reveal">
-            <div class="media ratio-916" data-video="guideVideo" data-label="Video hướng dẫn sử dụng"></div>
+        <div class="container split">
+            <div>
+                <div class="sec-head left-pc reveal">
+                    <img src="assets/mascot-elephant.webp" alt="" class="mascot l" aria-hidden="true">
+                    <h2 class="sec-title">Chăm sóc da bé nhẹ nhàng <span class="hl">với 3 bước</span></h2>
+                </div>
+                <ol class="steps">
+                    <li class="reveal">Vệ sinh và lau khô vùng da cần chăm sóc.</li>
+                    <li class="reveal">Dùng tăm bông lấy một lượng kem vừa đủ, bôi trực tiếp lên vùng da bị hăm.</li>
+                    <li class="reveal">Sử dụng đều đặn 2-3 lần/ngày.</li>
+                </ol>
+            </div>
+            <div class="video-wrap reveal">
+                <div class="media ratio-916" data-video="guideVideo" data-label="Video hướng dẫn sử dụng"></div>
+            </div>
         </div>
     </section>
 
     <!-- 9. THÔNG TIN SẢN PHẨM + CTA -->
     <section class="sec" id="info">
-        <div class="sec-head reveal">
-            <h2 class="sec-title">Thông tin <span class="hl">sản phẩm</span></h2>
-        </div>
-        <dl class="spec reveal">
-            <div><dt>Thương hiệu</dt><dd>Home Care</dd></div>
-            <div><dt>Xuất xứ</dt><dd>Việt Nam</dd></div>
-            <div><dt>Khối lượng</dt><dd>5g</dd></div>
-            <div><dt>Số công bố</dt><dd>25618/25/CBMP-HN</dd></div>
-        </dl>
-
-        <div class="cta-card reveal">
-            <img src="assets/mascot-lion.webp" alt="" class="mascot" aria-hidden="true">
-            <h2 class="sec-title">Thêm Bon Bon vào túi đồ chăm sóc bé của mẹ</h2>
-            <div class="price-box">
-                <span class="price-tag">⚡ Flash sale</span>
-                <span class="price-now js-price">49.000đ</span>
-                <span class="price-old">Niêm yết <s class="js-list-price">80.000đ</s></span>
+        <div class="container split">
+            <div>
+                <div class="sec-head left-pc reveal">
+                    <h2 class="sec-title">Thông tin <span class="hl">sản phẩm</span></h2>
+                </div>
+                <dl class="spec reveal">
+                    <div><dt>Thương hiệu</dt><dd>Home Care</dd></div>
+                    <div><dt>Xuất xứ</dt><dd>Việt Nam</dd></div>
+                    <div><dt>Khối lượng</dt><dd>5g</dd></div>
+                    <div><dt>Số công bố</dt><dd>25618/25/CBMP-HN</dd></div>
+                </dl>
             </div>
-            <button type="button" class="btn pulse js-buy">🛒 MUA NGAY CHO BÉ</button>
+            <div class="cta-card reveal">
+                <img src="assets/mascot-lion.webp" alt="" class="mascot" aria-hidden="true">
+                <h2 class="sec-title">Thêm Bon Bon vào túi đồ chăm sóc bé của mẹ</h2>
+                <div class="price-box">
+                    <span class="price-tag">⚡ Flash sale</span>
+                    <span class="price-now js-price">49.000đ</span>
+                    <span class="price-old">Niêm yết <s class="js-list-price">80.000đ</s></span>
+                </div>
+                <a href="#order" class="btn pulse js-buy">🛒 MUA NGAY CHO BÉ</a>
+            </div>
         </div>
     </section>
 
-    <!-- 10. FAQ -->
+    <!-- 10. FORM ƯU ĐÃI TẶNG RIÊNG CHO MẸ -->
+    <section class="order-sec" id="order">
+        <div class="order-card">
+            <div class="offer">
+                <h2 class="offer-title">Ưu đãi tặng riêng cho mẹ</h2>
+                <p class="offer-price">Chỉ còn <b class="js-price">49.000đ</b> <s>Giá gốc <span class="js-list-price">80.000đ</span></s></p>
+                <div class="countdown-wrap">
+                    <p class="countdown-label">⏰ Ưu đãi chỉ còn</p>
+                    <div class="countdown" role="timer" aria-live="off">
+                        <div class="unit"><b id="cdMin">10</b><span>Phút</span></div>
+                        <span class="colon">:</span>
+                        <div class="unit"><b id="cdSec">30</b><span>Giây</span></div>
+                    </div>
+                </div>
+                <ul class="offer-perks">
+                    <li><span>🛡️</span> Không Corticoid - Không Paraben - Không hương liệu</li>
+                    <li><span>👩‍⚕️</span> Chuyên gia tin dùng</li>
+                    <li><span>📞</span> Nhân viên gọi xác nhận đơn cho mẹ</li>
+                </ul>
+                <img src="assets/mascot-kitten.webp" alt="" class="offer-mascot" aria-hidden="true">
+            </div>
+
+            <div>
+                <form id="orderForm" novalidate>
+                    <div class="field">
+                        <label for="name">Họ tên <i>*</i></label>
+                        <input class="input" id="name" name="name" autocomplete="name" maxlength="80" placeholder="VD: Nguyễn Thị Lan">
+                        <div class="err" id="nameErr">Mẹ nhập giúp họ tên nhé</div>
+                    </div>
+                    <div class="field">
+                        <label for="phone">Số điện thoại <i>*</i></label>
+                        <input class="input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="16" placeholder="VD: 0901 234 567">
+                        <div class="err" id="phoneErr">Số điện thoại chưa đúng</div>
+                    </div>
+                    <div class="field">
+                        <span class="field-label">Chọn mua <i style="color:#e5484d; font-style:normal">*</i></span>
+                        <div class="packs" id="packs" role="radiogroup" aria-label="Chọn mua"></div>
+                    </div>
+                    <div class="hp" aria-hidden="true"><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+                    <button type="submit" class="btn pink pulse" id="submitBtn">🎁 ĐẶT HÀNG NGAY!</button>
+                    <div class="form-alert" id="formAlert" role="alert"></div>
+                    <p class="secure">🔒 Thông tin của mẹ được bảo mật</p>
+                </form>
+
+                <div class="success" id="successBox" role="status" aria-live="polite">
+                    <img src="assets/mascot-kitten.webp" alt="">
+                    <h3>Đặt hàng thành công!</h3>
+                    <p>Cảm ơn mẹ đã tin chọn Bon Bon. Nhân viên sẽ gọi xác nhận đơn cho mẹ sớm nhất nhé!</p>
+                    <div class="summary" id="summary"></div>
+                    <a href="https://zalo.me/0901234567" target="_blank" rel="noopener" class="btn" style="background:#0068ff">💬 Nhắn Zalo cho Bon Bon</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. FAQ -->
     <section class="sec tint" id="faq">
-        <div class="sec-head reveal">
-            <h2 class="sec-title">Mẹ còn băn khoăn điều gì về <span class="hl">Kem Hăm Bon Bon?</span></h2>
-        </div>
-        <div class="faq">
-            <details class="reveal">
-                <summary>Kem Da Bon Bon có chứa Corticoid không?</summary>
-                <p>Sản phẩm không chứa Corticoid, Paraben và hương liệu.</p>
-            </details>
-            <details class="reveal">
-                <summary>Mẹ sử dụng kem như thế nào?</summary>
-                <p>Làm sạch, nhẹ nhàng lau khô vùng da cần chăm sóc rồi thoa một lớp kem mỏng, ngày bôi 2 - 3 lần.</p>
-            </details>
-            <details class="reveal">
-                <summary>Khi nào mẹ nên đưa bé đi khám?</summary>
-                <p>Nếu vùng da tổn thương nặng, có mụn mủ, rỉ dịch, bé sốt hoặc tình trạng không cải thiện, mẹ nên đưa bé đi khám.</p>
-            </details>
+        <div class="container faq-wrap">
+            <div class="sec-head reveal">
+                <h2 class="sec-title">Mẹ còn băn khoăn điều gì về <span class="hl">Kem Hăm Bon Bon?</span></h2>
+            </div>
+            <div class="faq">
+                <details class="reveal">
+                    <summary>Kem Da Bon Bon có chứa Corticoid không?</summary>
+                    <p>Sản phẩm không chứa Corticoid, Paraben và hương liệu.</p>
+                </details>
+                <details class="reveal">
+                    <summary>Mẹ sử dụng kem như thế nào?</summary>
+                    <p>Làm sạch, nhẹ nhàng lau khô vùng da cần chăm sóc rồi thoa một lớp kem mỏng, ngày bôi 2 - 3 lần.</p>
+                </details>
+                <details class="reveal">
+                    <summary>Khi nào mẹ nên đưa bé đi khám?</summary>
+                    <p>Nếu vùng da tổn thương nặng, có mụn mủ, rỉ dịch, bé sốt hoặc tình trạng không cải thiện, mẹ nên đưa bé đi khám.</p>
+                </details>
+            </div>
         </div>
     </section>
 
-    <!-- 11. CÂU CHUYỆN THƯƠNG HIỆU -->
+    <!-- 12. CÂU CHUYỆN THƯƠNG HIỆU -->
     <section class="sec story" id="story">
-        <div class="sec-head reveal">
-            <h2 class="sec-title">YÊU CON - <span class="hl">MẸ CHỌN BON BON</span></h2>
+        <div class="container story-wrap">
+            <div class="sec-head reveal">
+                <img src="assets/mascot-lion.webp" alt="" class="mascot r" aria-hidden="true">
+                <h2 class="sec-title">YÊU CON - <span class="hl">MẸ CHỌN BON BON</span></h2>
+            </div>
+            <p class="reveal">Bon Bon đồng hành cùng mẹ từ những ngày đầu đời của bé, từ tắm bé, massage đến chăm sóc da và rốn tại nhà và trung tâm.</p>
+            <p class="reveal">Với sự chăm chút nhẹ nhàng và các thành phần được lựa chọn phù hợp, Bon Bon cùng mẹ nâng niu làn da non nớt, chăm sóc bé yêu mỗi ngày.</p>
+            <p class="reveal">Bon Bon còn đồng hành cùng mẹ tại các hội thảo tiền sản và bệnh viện Sản – Nhi trên khắp ba miền Bắc – Trung – Nam.</p>
+            <p class="tagline reveal">Bon Bon - Dịu dàng chăm bé, trọn vẹn yêu thương.</p>
         </div>
-        <p class="reveal">Bon Bon đồng hành cùng mẹ từ những ngày đầu đời của bé, từ tắm bé, massage đến chăm sóc da và rốn tại nhà và trung tâm.</p>
-        <p class="reveal">Với sự chăm chút nhẹ nhàng và các thành phần được lựa chọn phù hợp, Bon Bon cùng mẹ nâng niu làn da non nớt, chăm sóc bé yêu mỗi ngày.</p>
-        <p class="reveal">Bon Bon còn đồng hành cùng mẹ tại các hội thảo tiền sản và bệnh viện Sản – Nhi trên khắp ba miền Bắc – Trung – Nam.</p>
-        <p class="tagline reveal">Bon Bon - Dịu dàng chăm bé, trọn vẹn yêu thương.</p>
     </section>
 
-    <!-- 12. ĐÁNH GIÁ -->
+    <!-- 13. ĐÁNH GIÁ -->
     <section class="sec tint" id="reviews">
-        <div class="sec-head reveal">
-            <h2 class="sec-title">ĐÁNH GIÁ <span class="hl">SẢN PHẨM</span></h2>
-        </div>
-        <div class="rating-box reveal">
-            <div class="rating-top">
-                <div class="rating-num">4.9 <small>trên 5</small></div>
-                <div class="stars">★★★★★</div>
+        <div class="container">
+            <div class="sec-head reveal">
+                <h2 class="sec-title">ĐÁNH GIÁ <span class="hl">SẢN PHẨM</span></h2>
             </div>
-            <div class="chips">
-                <span class="on">Tất cả</span><span>5 Sao (1.6K)</span><span>4 Sao (55)</span><span>3 Sao (12)</span>
-                <span>Có Bình Luận (684)</span><span>Có Hình Ảnh / Video (572)</span>
+            <div class="rating-box reveal">
+                <div class="rating-top">
+                    <div class="rating-num">4.9 <small>trên 5</small></div>
+                    <div class="stars">★★★★★</div>
+                </div>
+                <div class="chips">
+                    <span class="on">Tất cả</span><span>5 Sao (1.6K)</span><span>4 Sao (55)</span><span>3 Sao (12)</span>
+                    <span>Có Bình Luận (684)</span><span>Có Hình Ảnh / Video (572)</span>
+                </div>
             </div>
-        </div>
-        <div class="review reveal">
-            <div class="review-head">
-                <div class="avatar">N</div>
-                <div><div class="review-name">n*****</div><div class="stars" style="font-size:13px">★★★★★</div></div>
+            <div class="reviews-list">
+                <div class="review reveal">
+                    <div class="review-head">
+                        <div class="avatar">N</div>
+                        <div><div class="review-name">n*****</div><div class="stars" style="font-size:13px">★★★★★</div></div>
+                    </div>
+                    <p>Chất kem mịn, dễ thấm, bé dùng thấy đỡ đỏ, mềm hơn. Sẽ mua lại nè!</p>
+                    <div class="review-imgs" data-list="reviewImages.0" data-ratio="ratio-1" data-label="Ảnh"></div>
+                </div>
+                <div class="review reveal">
+                    <div class="review-head">
+                        <div class="avatar">T</div>
+                        <div><div class="review-name">T*****</div><div class="stars" style="font-size:13px">★★★★★</div></div>
+                    </div>
+                    <p>Kem mịn, không bết, mùi dịu nhẹ. Đóng gói cẩn thận, giao nhanh.</p>
+                    <div class="review-imgs" data-list="reviewImages.1" data-ratio="ratio-1" data-label="Ảnh"></div>
+                </div>
             </div>
-            <p>Chất kem mịn, dễ thấm, bé dùng thấy đỡ đỏ, mềm hơn. Sẽ mua lại nè!</p>
-            <div class="review-imgs" data-list="reviewImages.0" data-ratio="ratio-1" data-label="Ảnh"></div>
+            <div class="reviews-cta" style="margin-top:18px"><a href="#order" class="btn pulse js-buy">🛒 MUA NGAY CHO BÉ</a></div>
         </div>
-        <div class="review reveal">
-            <div class="review-head">
-                <div class="avatar">T</div>
-                <div><div class="review-name">T*****</div><div class="stars" style="font-size:13px">★★★★★</div></div>
-            </div>
-            <p>Kem mịn, không bết, mùi dịu nhẹ. Đóng gói cẩn thận, giao nhanh.</p>
-            <div class="review-imgs" data-list="reviewImages.1" data-ratio="ratio-1" data-label="Ảnh"></div>
-        </div>
-        <div style="margin-top:18px"><button type="button" class="btn pulse js-buy">🛒 MUA NGAY CHO BÉ</button></div>
     </section>
 
     </main>
@@ -944,80 +1165,17 @@ body.sheet-open .sheet { transform: translate(-50%, 0); visibility: visible; }
     </footer>
 </div>
 
-<!-- THANH MUA DÍNH DƯỚI -->
+<!-- THANH MUA DÍNH DƯỚI (mobile) / NÚT NỔI (PC) -->
 <div class="sticky-buy">
     <a href="tel:0901234567" class="sticky-call" aria-label="Gọi hotline">📞</a>
     <a href="https://zalo.me/0901234567" target="_blank" rel="noopener" class="sticky-zalo" aria-label="Chat Zalo">Zalo</a>
-    <button type="button" class="btn js-buy"><span>MUA NGAY <small class="js-price">49.000đ</small></span></button>
+    <a href="#order" class="btn js-buy"><span>MUA NGAY <small class="js-price">49.000đ</small></span></a>
 </div>
 
 <!-- THÔNG BÁO ĐẶT HÀNG -->
 <div class="toast" id="toast" role="status" aria-live="polite">
     <div class="toast-icon">🛍️</div>
     <div class="toast-text" id="toastText"></div>
-</div>
-
-<!-- FORM ĐẶT HÀNG -->
-<div class="sheet-backdrop" id="sheetBackdrop"></div>
-<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
-    <div class="sheet-grip"></div>
-    <button type="button" class="sheet-close" id="sheetClose" aria-label="Đóng">✕</button>
-
-    <div id="orderBox">
-        <h2 id="sheetTitle">Đặt mua Kem Hăm Bon Bon</h2>
-        <p class="sheet-sub">Nhân viên sẽ gọi xác nhận đơn cho mẹ</p>
-        <div class="order-product">
-            <img src="assets/mascot-bear.webp" alt="">
-            <div>
-                <b>Kem Hăm Cho Bé Bon Bon 5g</b>
-                <span class="p"><span class="js-price">49.000đ</span><s class="js-list-price">80.000đ</s></span>
-            </div>
-        </div>
-        <form id="orderForm" novalidate>
-            <div class="field">
-                <label for="name">Họ và tên <i>*</i></label>
-                <input class="input" id="name" name="name" autocomplete="name" maxlength="80" placeholder="VD: Nguyễn Thị Lan">
-                <div class="err" id="nameErr">Mẹ nhập giúp họ tên nhé</div>
-            </div>
-            <div class="field">
-                <label for="phone">Số điện thoại <i>*</i></label>
-                <input class="input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="16" placeholder="VD: 0901 234 567">
-                <div class="err" id="phoneErr">Số điện thoại chưa đúng</div>
-            </div>
-            <div class="field">
-                <label for="address">Địa chỉ nhận hàng <i>*</i></label>
-                <input class="input" id="address" name="address" autocomplete="street-address" maxlength="200" placeholder="Số nhà, đường, phường/xã, tỉnh/thành">
-                <div class="err" id="addressErr">Mẹ nhập giúp địa chỉ nhận hàng nhé</div>
-            </div>
-            <div class="qty-row">
-                <div>
-                    <span class="qty-label">Số lượng</span>
-                    <div class="qty">
-                        <button type="button" id="qtyMinus" aria-label="Giảm">−</button>
-                        <input id="qty" type="number" inputmode="numeric" min="1" max="20" value="1" aria-label="Số lượng">
-                        <button type="button" id="qtyPlus" aria-label="Tăng">+</button>
-                    </div>
-                </div>
-                <div class="total">Tạm tính<b id="total">49.000đ</b></div>
-            </div>
-            <div class="field">
-                <label for="note">Ghi chú</label>
-                <input class="input" id="note" name="note" maxlength="300" placeholder="VD: Bé 6 tháng, bị hăm vùng bẹn">
-            </div>
-            <div class="hp" aria-hidden="true"><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
-            <button type="submit" class="btn" id="submitBtn">✅ XÁC NHẬN ĐẶT HÀNG</button>
-            <div class="form-alert" id="formAlert" role="alert"></div>
-            <p class="secure">🔒 Thông tin của mẹ được bảo mật</p>
-        </form>
-    </div>
-
-    <div class="success" id="successBox">
-        <img src="assets/mascot-kitten.webp" alt="">
-        <h3>Đặt hàng thành công!</h3>
-        <p>Cảm ơn mẹ đã tin chọn Bon Bon. Nhân viên sẽ gọi xác nhận đơn cho mẹ sớm nhất nhé!</p>
-        <div class="summary" id="summary"></div>
-        <a href="https://zalo.me/0901234567" target="_blank" rel="noopener" class="btn" style="background:#0068ff">💬 Nhắn Zalo cho Bon Bon</a>
-    </div>
 </div>
 
 <script>
@@ -1029,7 +1187,6 @@ body.sheet-open .sheet { transform: translate(-50%, 0); visibility: visible; }
         get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
         set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
     };
-    const body = document.body;
 
     // ===== Áp cấu hình liên hệ & giá =====
     if (CFG.hotline) document.querySelectorAll('a[href^="tel:"]').forEach(a => a.href = 'tel:' + CFG.hotline);
@@ -1104,7 +1261,7 @@ body.sheet-open .sheet { transform: translate(-50%, 0); visibility: visible; }
         const items = get(wrap.dataset.slider) || [];
         const track = document.createElement('div'); track.className = 'slides';
         const dots = document.createElement('div'); dots.className = 'dots';
-        const goTo = s => track.scrollTo({ left: s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2, behavior: 'smooth' });
+        const goTo = s => track.scrollTo({ left: s.offsetLeft - track.offsetLeft - (track.clientWidth - s.offsetWidth) / 2, behavior: 'smooth' });
         items.forEach((it, i) => {
             const s = document.createElement('div');
             s.className = 'slide media ' + wrap.dataset.ratio;
@@ -1121,12 +1278,18 @@ body.sheet-open .sheet { transform: translate(-50%, 0); visibility: visible; }
         const update = () => {
             const center = track.scrollLeft + track.clientWidth / 2;
             let dist = Infinity;
-            [...track.children].forEach((s, i) => { const d = Math.abs(s.offsetLeft + s.offsetWidth / 2 - center); if (d < dist) { dist = d; current = i; } });
+            [...track.children].forEach((s, i) => { const d = Math.abs(s.offsetLeft - track.offsetLeft + s.offsetWidth / 2 - center); if (d < dist) { dist = d; current = i; } });
             [...dots.children].forEach((d, i) => d.classList.toggle('on', i === current));
+            // Ẩn chấm khi mọi ảnh đã hiển thị cùng lúc (PC, slider 3 ảnh)
+            dots.style.visibility = track.scrollWidth <= track.clientWidth + 2 ? 'hidden' : '';
         };
         track.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+        window.addEventListener('resize', update);
         update();
-        const auto = setInterval(() => { const sl = track.children; if (sl.length) goTo(sl[(current + 1) % sl.length]); }, 3500);
+        const auto = setInterval(() => {
+            if (track.scrollWidth <= track.clientWidth + 2) return;
+            const sl = track.children; if (sl.length) goTo(sl[(current + 1) % sl.length]);
+        }, 3500);
         ['touchstart', 'pointerdown', 'wheel'].forEach(ev => track.addEventListener(ev, () => clearInterval(auto), { once: true, passive: true }));
     });
 
@@ -1149,30 +1312,50 @@ body.sheet-open .sheet { transform: translate(-50%, 0); visibility: visible; }
         return saved;
     })();
 
-    // ===== Form đặt hàng (bottom sheet) =====
-    const sheet = document.getElementById('sheet');
-    const orderBox = document.getElementById('orderBox');
-    let lastFocus = null, tracked = false;
-    function openSheet(e) {
-        lastFocus = e && e.currentTarget;
-        body.classList.add('sheet-open');
-        if (!tracked) { tracked = true; window.bonbonTrack && bonbonTrack('InitiateCheckout', { currency: 'VND', value: CFG.price }); }
-        setTimeout(() => { if (orderBox.style.display !== 'none') document.getElementById('name').focus({ preventScroll: true }); }, 380);
-    }
-    function closeSheet() { body.classList.remove('sheet-open'); if (lastFocus) lastFocus.focus({ preventScroll: true }); }
-    document.querySelectorAll('.js-buy').forEach(b => b.addEventListener('click', openSheet));
-    document.getElementById('sheetClose').addEventListener('click', closeSheet);
-    document.getElementById('sheetBackdrop').addEventListener('click', closeSheet);
-    document.addEventListener('keydown', e => { if (e.key === 'Escape' && body.classList.contains('sheet-open')) closeSheet(); });
+    // ===== Nút MUA NGAY: cuộn tới form, đặt con trỏ vào ô họ tên =====
+    let checkoutTracked = false;
+    document.querySelectorAll('.js-buy').forEach(b => b.addEventListener('click', e => {
+        e.preventDefault();
+        document.getElementById('order').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (!checkoutTracked) { checkoutTracked = true; window.bonbonTrack && bonbonTrack('InitiateCheckout', { currency: 'VND', value: CFG.price }); }
+        const name = document.getElementById('name');
+        if (name && name.offsetParent) setTimeout(() => name.focus({ preventScroll: true }), 700);
+    }));
 
-    const qty = document.getElementById('qty');
-    const total = document.getElementById('total');
-    const clampQty = () => { let v = parseInt(qty.value, 10); if (!v || v < 1) v = 1; if (v > 20) v = 20; qty.value = v; total.textContent = fmt(v * CFG.price); return v; };
-    document.getElementById('qtyMinus').addEventListener('click', () => { qty.value = (parseInt(qty.value, 10) || 1) - 1; clampQty(); });
-    document.getElementById('qtyPlus').addEventListener('click', () => { qty.value = (parseInt(qty.value, 10) || 1) + 1; clampQty(); });
-    qty.addEventListener('change', clampQty);
-    clampQty();
+    // ===== Đồng hồ ưu đãi (lưu theo từng khách, hết giờ tự chạy lại) =====
+    (function countdown() {
+        const DURATION = Math.round((CFG.offerMinutes || 10.5) * 60 * 1000);
+        let end = parseInt(store.get('bonbon_offer_end'), 10);
+        if (!end || end < Date.now()) { end = Date.now() + DURATION; store.set('bonbon_offer_end', end); }
+        const mEl = document.getElementById('cdMin'), sEl = document.getElementById('cdSec');
+        const tick = () => {
+            let left = end - Date.now();
+            if (left <= 0) { end = Date.now() + DURATION; store.set('bonbon_offer_end', end); left = DURATION; }
+            mEl.textContent = String(Math.floor(left / 60000)).padStart(2, '0');
+            sEl.textContent = String(Math.floor((left % 60000) / 1000)).padStart(2, '0');
+        };
+        tick(); setInterval(tick, 1000);
+    })();
 
+    // ===== Các gói "Chọn mua" =====
+    const packs = CFG.packages && CFG.packages.length ? CFG.packages : [{ qty: 1, price: CFG.price, listPrice: CFG.listPrice }];
+    const packsEl = document.getElementById('packs');
+    packs.forEach((p, i) => {
+        const label = document.createElement('label');
+        label.className = 'pack' + (i === 0 ? ' on' : '');
+        const r = document.createElement('input');
+        r.type = 'radio'; r.name = 'pack'; r.value = i; r.checked = i === 0;
+        const name = document.createElement('span'); name.className = 'pack-name'; name.textContent = p.qty + ' hũ';
+        const price = document.createElement('span'); price.className = 'pack-price';
+        const b = document.createElement('b'); b.textContent = fmt(p.price);
+        const s = document.createElement('s'); s.textContent = 'Giá gốc ' + fmt(p.listPrice);
+        price.append(b, s);
+        label.append(r, name, price);
+        packsEl.appendChild(label);
+        r.addEventListener('change', () => packsEl.querySelectorAll('.pack').forEach(l => l.classList.toggle('on', l.querySelector('input').checked)));
+    });
+
+    // ===== Gửi đơn =====
     const normalizePhone = raw => {
         let p = raw.replace(/[\s.\-()]/g, '');
         if (p.startsWith('+84')) p = '0' + p.slice(3);
@@ -1180,14 +1363,18 @@ body.sheet-open .sheet { transform: translate(-50%, 0); visibility: visible; }
         return p;
     };
     function setErr(id, bad) {
-        document.getElementById(id).classList.toggle('error', bad);
-        document.getElementById(id).setAttribute('aria-invalid', bad ? 'true' : 'false');
+        const el = document.getElementById(id);
+        el.classList.toggle('error', bad);
+        el.setAttribute('aria-invalid', bad ? 'true' : 'false');
         document.getElementById(id + 'Err').classList.toggle('show', bad);
     }
     document.querySelectorAll('#orderForm .input').forEach(i => i.addEventListener('input', () => {
         i.classList.remove('error');
         const e = document.getElementById(i.id + 'Err'); if (e) e.classList.remove('show');
     }));
+    document.getElementById('orderForm').addEventListener('focusin', () => {
+        if (!checkoutTracked) { checkoutTracked = true; window.bonbonTrack && bonbonTrack('InitiateCheckout', { currency: 'VND', value: CFG.price }); }
+    });
 
     function sendLead(data) {
         let backup = [];
@@ -1212,22 +1399,20 @@ body.sheet-open .sheet { transform: translate(-50%, 0); visibility: visible; }
         alertBox.classList.remove('show');
         const name = document.getElementById('name').value.trim();
         const phone = normalizePhone(document.getElementById('phone').value);
-        const address = document.getElementById('address').value.trim();
-        const bad = { name: name.length < 2, phone: !/^0[1-9]\d{8,9}$/.test(phone), address: address.length < 6 };
+        const bad = { name: name.length < 2, phone: !/^0[1-9]\d{8,9}$/.test(phone) };
         Object.keys(bad).forEach(k => setErr(k, bad[k]));
         const first = Object.keys(bad).find(k => bad[k]);
         if (first) { document.getElementById(first).focus(); return; }
 
-        const q = clampQty();
-        if (document.getElementById('website').value) { showSuccess({ name, phone, address }, q); return; }
+        const pack = packs[parseInt(form.querySelector('input[name="pack"]:checked').value, 10)];
+        if (document.getElementById('website').value) { showSuccess(name, phone, pack); return; }
         const data = Object.assign({
             time: new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }),
-            name, phone, address,
-            product: CFG.productName + ' x' + q,
-            product_code: 'kem-ham-5g',
-            quantity: q,
-            price: q * CFG.price,
-            note: document.getElementById('note').value.trim(),
+            name, phone,
+            product: CFG.productName + ' x' + pack.qty,
+            product_code: 'kem-ham-5g-' + pack.qty,
+            quantity: pack.qty,
+            price: pack.price,
             page: location.href.split('?')[0],
             user_agent: navigator.userAgent
         }, attribution);
@@ -1235,8 +1420,8 @@ body.sheet-open .sheet { transform: translate(-50%, 0); visibility: visible; }
         sending = true; submitBtn.disabled = true;
         submitBtn.innerHTML = '<span class="spinner"></span> ĐANG GỬI...';
         sendLead(data).then(() => {
-            window.bonbonTrack && bonbonTrack('Lead', { content_name: CFG.productName, value: data.price, currency: 'VND' });
-            showSuccess(data, q);
+            window.bonbonTrack && bonbonTrack('Lead', { content_name: CFG.productName, value: pack.price, currency: 'VND' });
+            showSuccess(name, phone, pack);
         }).catch(() => {
             alertBox.textContent = 'Gửi chưa thành công do mạng chập chờn. Mẹ thử lại hoặc ';
             const a = document.createElement('a'); a.href = 'tel:' + (CFG.hotline || ''); a.textContent = 'gọi ' + (CFG.hotlineDisplay || 'hotline');
@@ -1245,15 +1430,15 @@ body.sheet-open .sheet { transform: translate(-50%, 0); visibility: visible; }
         }).finally(() => { sending = false; submitBtn.disabled = false; submitBtn.innerHTML = btnHTML; });
     });
 
-    function showSuccess(d, q) {
-        orderBox.style.display = 'none';
+    function showSuccess(name, phone, pack) {
+        form.style.display = 'none';
         const sum = document.getElementById('summary'); sum.textContent = '';
-        [['Người nhận', d.name], ['Số điện thoại', d.phone], ['Địa chỉ', d.address], ['Sản phẩm', CFG.productName + ' × ' + q], ['Tạm tính', fmt(q * CFG.price)]].forEach(([k, v]) => {
+        [['Người nhận', name], ['Số điện thoại', phone], ['Sản phẩm', CFG.productName + ' × ' + pack.qty], ['Tạm tính', fmt(pack.price)]].forEach(([k, v]) => {
             const row = document.createElement('div'); const b = document.createElement('b'); b.textContent = k + ': ';
             row.append(b, document.createTextNode(v)); sum.appendChild(row);
         });
         document.getElementById('successBox').classList.add('show');
-        sheet.scrollTop = 0;
+        document.getElementById('order').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     // ===== Hiệu ứng thông báo đặt hàng =====
@@ -1263,9 +1448,9 @@ body.sheet-open .sheet { transform: translate(-50%, 0); visibility: visible; }
     const toastText = document.getElementById('toastText');
     let ti = Math.floor(Math.random() * people.length);
     function showToast() {
-        if (body.classList.contains('sheet-open')) return;
         const [n, c] = people[ti++ % people.length];
-        const q = Math.random() < 0.75 ? 1 : 2;
+        const r = Math.random();
+        const q = r < 0.6 ? 1 : r < 0.85 ? 2 : 3;
         const mins = 1 + Math.floor(Math.random() * 9);
         const b = document.createElement('b'); b.textContent = n + ' (' + c + ')';
         const sm = document.createElement('small'); sm.textContent = mins + ' phút trước';
