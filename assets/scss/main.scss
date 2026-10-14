@@ -223,6 +223,7 @@ strong { color: var(--dark); }
    HEADER
    ============================================ */
 .topbar {
+    display: none;
     position: sticky; top: 0; z-index: 50;
     background: rgba(255,255,255,.96);
     backdrop-filter: blur(10px);
@@ -237,9 +238,15 @@ strong { color: var(--dark); }
 .topbar-actions { display: flex; align-items: center; gap: 10px; }
 .topbar-call {
     display: inline-flex; align-items: center; gap: 6px;
-    background: var(--primary-soft); color: var(--primary-deep);
+    background: rgba(255, 126, 179, 0.15); color: #d63384;
     font-weight: 800; font-size: 14px;
     padding: 7px 14px; border-radius: 30px;
+    border: 1px solid #ff7eb3;
+    transition: all .2s ease;
+}
+.topbar-call:hover {
+    background: #ff7eb3;
+    color: #fff;
 }
 .topbar-buy { display: none; }
 
@@ -1028,13 +1035,20 @@ strong { color: var(--dark); }
     color: #fff;
     display: flex; align-items: center; justify-content: center;
 }
-.sticky-call { background: #22c55e; font-size: 22px; animation: ring 1.6s ease-in-out infinite; }
+.sticky-call {
+    background: #ff7eb3;
+    font-size: 22px;
+    animation: ring 1.6s ease-in-out infinite;
+    box-shadow: 0 4px 14px rgba(255, 126, 179, 0.45);
+    transition: transform .2s ease, background .2s ease;
+}
+.sticky-call:hover { background: #f768a2; }
 .sticky-zalo { background: #0068ff; font-weight: 800; font-size: 13px; }
 @keyframes ring {
-    0%, 100% { transform: rotate(0); box-shadow: 0 0 0 0 rgba(34,197,94,.45); }
+    0%, 100% { transform: rotate(0); box-shadow: 0 0 0 0 rgba(255, 126, 179, .55); }
     10%, 30% { transform: rotate(-14deg); }
     20%, 40% { transform: rotate(14deg); }
-    50% { transform: rotate(0); box-shadow: 0 0 0 12px rgba(34,197,94,0); }
+    50% { transform: rotate(0); box-shadow: 0 0 0 14px rgba(255, 126, 179, 0); }
 }
 .sticky-buy .btn { min-height: 50px; font-size: 16px; padding: 10px 14px; flex: 1; }
 .sticky-buy .btn small { font-size: 13px; opacity: .9; font-weight: 600; }
@@ -1042,7 +1056,7 @@ strong { color: var(--dark); }
 /* Thông báo đặt hàng (hiệu ứng) */
 .toast {
     position: fixed; z-index: 70;
-    left: 50%; top: 64px;
+    left: 50%; top: 20px;
     width: calc(100% - 24px); max-width: 420px;
     transform: translate(-50%, -160%);
     display: flex; align-items: center; gap: 10px;
@@ -1084,6 +1098,7 @@ strong { color: var(--dark); }
     .split.flip > :first-child { order: 2; }
 
     /* Header có menu + nút mua */
+    .topbar { display: block; }
     .topbar-inner { max-width: 1120px; margin: 0 auto; padding: 14px 32px; }
     .brand { font-size: 20px; }
     .brand-dot { width: 36px; height: 36px; font-size: 18px; }
@@ -1091,6 +1106,7 @@ strong { color: var(--dark); }
     .topnav a { font-size: 18px; color: var(--dark); transition: color .2s ease; padding: 4px 0; }
     .topnav a:hover { color: var(--primary-deep); }
     .topbar-buy { display: inline-flex; width: auto; min-height: 44px; padding: 10px 24px; font-size: 15.5px; }
+    .toast { top: 80px; }
 
     /* Hero 2 cột: chữ trái, ảnh trước-sau phải */
     .hero { padding: 72px 32px 88px; }
