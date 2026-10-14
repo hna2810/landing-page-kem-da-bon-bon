@@ -49,11 +49,6 @@ if ($list_price_val > $price_val && $list_price_val > 0) {
 
             <div class="offer-product-wrap">
                 <img src="<?php echo esc_url($order_product_img); ?>" alt="<?php esc_attr_e('Kem Hăm Cho Bé Bon Bon', 'lx-landing'); ?>" class="offer-product-img" loading="lazy">
-                <div class="offer-trust-badges">
-                    <span class="badge-item"><i class="badge-icon">✓</i> 100% thảo dược thiên nhiên, dịu nhẹ cho da bé</span>
-                    <span class="badge-item"><i class="badge-icon">✓</i> Miễn phí giao hàng toàn quốc từ 2 hũ</span>
-                    <span class="badge-item"><i class="badge-icon">✓</i> Được kiểm tra hàng trước khi thanh toán</span>
-                </div>
             </div>
         </div>
 

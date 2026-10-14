@@ -22,30 +22,6 @@ function lx_ensure_cf7_form() {
         return false;
     }
 
-    // Check if form already exists
-    $existing = get_posts(array(
-        'post_type'      => 'wpcf7_contact_form',
-        'post_status'    => 'publish',
-        'posts_per_page' => 1,
-        'title'          => 'Đặt Hàng Bon Bon',
-    ));
-
-    if (!empty($existing)) {
-        return $existing[0]->ID;
-    }
-
-    // Also check if ANY contact form exists
-    $any_form = get_posts(array(
-        'post_type'      => 'wpcf7_contact_form',
-        'post_status'    => 'publish',
-        'posts_per_page' => 1,
-    ));
-
-    if (!empty($any_form)) {
-        return $any_form[0]->ID;
-    }
-
-    // Create a new Contact Form 7 form
     $form_content = '<div class="field">' . "\n"
         . '    <label for="your-name">Họ tên <i>*</i></label>' . "\n"
         . '    [text* your-name id:name class:input autocomplete:name placeholder "VD: Nguyễn Thị Lan"]' . "\n"
@@ -56,9 +32,42 @@ function lx_ensure_cf7_form() {
         . '</div>' . "\n"
         . '<div class="field">' . "\n"
         . '    <span class="field-label">Chọn mua <i style="color:#e5484d; font-style:normal">*</i></span>' . "\n"
-        . '    <div class="packs-wrap">[radio package use_label_element default:1 "1 hũ (49.000đ)" "2 hũ (98.000đ)" "3 hũ (147.000đ)"]</div>' . "\n"
+        . '    <div class="packs-wrap">[radio package use_label_element default:1 "1 hũ 49.000đ (giá gốc 80.000đ)" "2 hũ 98.000đ (giá gốc 160.000đ)" "3 hũ 147.000đ (giá gốc 240.000đ)"]</div>' . "\n"
         . '</div>' . "\n"
         . '[submit class:btn class:pink class:pulse id:submitBtn "🎁 ĐẶT HÀNG NGAY!"]';
+
+    // Check if form already exists
+    $existing = get_posts(array(
+        'post_type'      => 'wpcf7_contact_form',
+        'post_status'    => 'publish',
+        'posts_per_page' => 1,
+        'title'          => 'Đặt Hàng Bon Bon',
+    ));
+
+    if (!empty($existing)) {
+        $fid = $existing[0]->ID;
+        $current_content = get_post_meta($fid, '_form', true);
+        if (strpos($current_content, 'giá gốc 80.000đ') === false) {
+            update_post_meta($fid, '_form', $form_content);
+        }
+        return $fid;
+    }
+
+    // Also check if ANY contact form exists
+    $any_form = get_posts(array(
+        'post_type'      => 'wpcf7_contact_form',
+        'post_status'    => 'publish',
+        'posts_per_page' => 1,
+    ));
+
+    if (!empty($any_form)) {
+        $fid = $any_form[0]->ID;
+        $current_content = get_post_meta($fid, '_form', true);
+        if (strpos($current_content, 'giá gốc 80.000đ') === false) {
+            update_post_meta($fid, '_form', $form_content);
+        }
+        return $fid;
+    }
 
     $form_post = array(
         'post_title'   => 'Đặt Hàng Bon Bon',

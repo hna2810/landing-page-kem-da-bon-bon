@@ -517,6 +517,25 @@ document.addEventListener('wpcf7mailsent', function (event) {
                 return;
             }
         }
-    });
 })();
 
+// ===== Định dạng nhãn gói chọn mua của CF7 (tách giá gốc và gạch ngang) =====
+(function () {
+    function formatCf7Packages() {
+        document.querySelectorAll('.order-card .wpcf7-list-item-label').forEach(el => {
+            if (el.dataset.formatted) return;
+            const txt = el.textContent.trim();
+            const m = txt.match(/^(.*?)\s*(\(giá gốc.*?\))$/i);
+            if (m) {
+                el.innerHTML = '<span class="pkg-title">' + m[1] + '</span> <span class="pkg-orig">' + m[2] + '</span>';
+                el.dataset.formatted = 'true';
+            }
+        });
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', formatCf7Packages);
+    } else {
+        formatCf7Packages();
+    }
+    document.addEventListener('wpcf7init', formatCf7Packages);
+})();
