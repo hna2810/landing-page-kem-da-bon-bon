@@ -517,6 +517,7 @@ document.addEventListener('wpcf7mailsent', function (event) {
                 return;
             }
         }
+    });
 })();
 
 // ===== Định dạng nhãn gói chọn mua của CF7 (tách giá gốc và gạch ngang) =====
