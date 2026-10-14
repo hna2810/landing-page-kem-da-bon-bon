@@ -28,6 +28,16 @@
       "ui": 1
     },
     {
+      "key": "field_lx_logo_height",
+      "label": "Chiều cao Logo hiển thị (px)",
+      "name": "lx_logo_height",
+      "type": "number",
+      "instructions": "Chiều cao hiển thị của logo trên thanh điều hướng (khuyến nghị 36 - 60px). Mặc định: 46.",
+      "default_value": 46,
+      "min": 24,
+      "max": 80
+    },
+    {
       "key": "field_lx_brand_name",
       "label": "Tên thương hiệu",
       "name": "lx_brand_name",
@@ -154,6 +164,15 @@
       "name": "lx_hero_image",
       "type": "image",
       "return_format": "url"
+    },
+    {
+      "key": "field_lx_hero_show_mascot",
+      "label": "Hiển thị linh vật gấu ở Hero",
+      "name": "lx_hero_show_mascot",
+      "type": "true_false",
+      "instructions": "Bật tùy chọn này nếu muốn hiển thị linh vật gấu trang trí (mặc định tắt để tránh che hình ảnh banner).",
+      "default_value": 0,
+      "ui": 1
     },
     {
       "key": "field_tab_pain_solution",

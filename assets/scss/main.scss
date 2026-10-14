@@ -227,7 +227,7 @@ strong { color: var(--dark); }
 .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px; }
 .brand { display: flex; align-items: center; gap: 8px; font-family: var(--font-heading); font-weight: 700; color: var(--primary-deep); font-size: 17px; }
 .brand-dot { width: 30px; height: 30px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
-.brand-logo-img { height: 38px; max-height: 44px; width: auto; max-width: 180px; object-fit: contain; display: inline-block; flex-shrink: 0; }
+.brand-logo-img { height: 44px; max-height: 54px; width: auto; max-width: 220px; object-fit: contain; display: inline-block; flex-shrink: 0; }
 .brand-text { font-family: var(--font-heading); font-weight: 700; color: var(--primary-deep); font-size: 17px; }
 .topnav { display: none; }
 .topbar-actions { display: flex; align-items: center; gap: 10px; }
@@ -687,7 +687,7 @@ strong { color: var(--dark); }
     .hero-img { aspect-ratio: 1 / 1; border-radius: var(--radius); }
     .ba .media .caption { font-size: 14px; padding: 5px 14px; top: 12px; left: 12px; }
     .hero-visual { position: relative; }
-    .hero-mascot { width: 150px; right: auto; left: -60px; top: auto; bottom: -70px; }
+    .hero-visual .hero-mascot { display: none !important; }
     .ba-mobile, .hero-mascot-m { display: none !important; }
     .hero-visual { display: block; }
 

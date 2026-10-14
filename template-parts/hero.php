@@ -17,15 +17,18 @@ $item_2       = lx_get_field('lx_hero_item_2', 'option', 'Giảm hăm tã, hăm 
 $no_list_str  = lx_get_field('lx_hero_no_list', 'option', 'Không Corticoid, Không Paraben, Không hương liệu');
 $no_items     = array_map('trim', explode(',', $no_list_str));
 
-$price      = lx_format_price(lx_get_field('lx_price', 'option', 49000));
-$list_price = lx_format_price(lx_get_field('lx_list_price', 'option', 80000));
-$hero_img   = lx_get_image_url('lx_hero_image', '', 'full', 'option');
+$price       = lx_format_price(lx_get_field('lx_price', 'option', 49000));
+$list_price  = lx_format_price(lx_get_field('lx_list_price', 'option', 80000));
+$hero_img    = lx_get_image_url('lx_hero_image', '', 'full', 'option');
+$show_mascot = lx_get_field('lx_hero_show_mascot', 'option', 0);
 ?>
 <!-- 1. HERO: bên trái text, bên phải ảnh trước - sau -->
 <section class="hero">
     <div class="container">
         <div class="hero-text-col">
-            <img src="<?php echo LX_THEME_URI; ?>/assets/mascot-bear.webp" alt="" class="hero-mascot hero-mascot-m" aria-hidden="true">
+            <?php if (!empty($show_mascot)) : ?>
+                <img src="<?php echo LX_THEME_URI; ?>/assets/mascot-bear.webp" alt="" class="hero-mascot hero-mascot-m" aria-hidden="true">
+            <?php endif; ?>
             <h1 class="hero-title"><?php echo $hero_title; ?></h1>
             <p class="hero-q"><?php echo $hero_q; ?></p>
             <div class="hero-grid">
@@ -66,7 +69,9 @@ $hero_img   = lx_get_image_url('lx_hero_image', '', 'full', 'option');
                     <?php endif; ?>
                 </div>
             </div>
-            <img src="<?php echo LX_THEME_URI; ?>/assets/mascot-bear.webp" alt="" class="hero-mascot" aria-hidden="true">
+            <?php if (!empty($show_mascot)) : ?>
+                <img src="<?php echo LX_THEME_URI; ?>/assets/mascot-bear.webp" alt="" class="hero-mascot" aria-hidden="true">
+            <?php endif; ?>
         </div>
     </div>
 </section>
