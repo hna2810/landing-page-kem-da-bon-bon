@@ -1,0 +1,486 @@
+{
+  "key": "group_lx_landing_settings",
+  "title": "Cài đặt Landing Page Bon Bon",
+  "fields": [
+    {
+      "key": "field_tab_general",
+      "label": "1. Chung & Liên hệ",
+      "name": "",
+      "type": "tab"
+    },
+    {
+      "key": "field_lx_brand_name",
+      "label": "Tên thương hiệu",
+      "name": "lx_brand_name",
+      "type": "text",
+      "default_value": "Bon Bon"
+    },
+    {
+      "key": "field_lx_hotline",
+      "label": "Số điện thoại Hotline",
+      "name": "lx_hotline",
+      "type": "text",
+      "default_value": "0901234567"
+    },
+    {
+      "key": "field_lx_hotline_display",
+      "label": "Hotline hiển thị",
+      "name": "lx_hotline_display",
+      "type": "text",
+      "default_value": "0901.234.567"
+    },
+    {
+      "key": "field_lx_zalo",
+      "label": "Số điện thoại Zalo",
+      "name": "lx_zalo",
+      "type": "text",
+      "default_value": "0901234567"
+    },
+    {
+      "key": "field_lx_product_name",
+      "label": "Tên sản phẩm chính",
+      "name": "lx_product_name",
+      "type": "text",
+      "default_value": "Kem Hăm Cho Bé Bon Bon 5g"
+    },
+    {
+      "key": "field_lx_price",
+      "label": "Giá ưu đãi (VND)",
+      "name": "lx_price",
+      "type": "number",
+      "default_value": 49000
+    },
+    {
+      "key": "field_lx_list_price",
+      "label": "Giá niêm yết gốc (VND)",
+      "name": "lx_list_price",
+      "type": "number",
+      "default_value": 80000
+    },
+    {
+      "key": "field_lx_offer_minutes",
+      "label": "Thời gian đếm ngược (phút)",
+      "name": "lx_offer_minutes",
+      "type": "number",
+      "default_value": 10.5
+    },
+    {
+      "key": "field_lx_sheet_endpoint",
+      "label": "Google Sheet Web App URL",
+      "name": "lx_sheet_endpoint",
+      "type": "text"
+    },
+    {
+      "key": "field_lx_facebook_pixel_id",
+      "label": "Facebook Pixel ID",
+      "name": "lx_facebook_pixel_id",
+      "type": "text"
+    },
+    {
+      "key": "field_lx_google_analytics_id",
+      "label": "Google Analytics 4 ID",
+      "name": "lx_google_analytics_id",
+      "type": "text"
+    },
+    {
+      "key": "field_lx_tiktok_pixel_id",
+      "label": "TikTok Pixel ID",
+      "name": "lx_tiktok_pixel_id",
+      "type": "text"
+    },
+    {
+      "key": "field_lx_notif_enabled",
+      "label": "Bật thông báo vừa đặt hàng",
+      "name": "lx_notif_enabled",
+      "type": "true_false",
+      "default_value": 1
+    },
+    {
+      "key": "field_tab_hero",
+      "label": "2. Hero (Đầu trang)",
+      "name": "",
+      "type": "tab"
+    },
+    {
+      "key": "field_lx_hero_title",
+      "label": "Tiêu đề Hero",
+      "name": "lx_hero_title",
+      "type": "text",
+      "default_value": "Da bé <span class=\"hl\">ửng đỏ</span> vì hăm"
+    },
+    {
+      "key": "field_lx_hero_q",
+      "label": "Câu hỏi Hero",
+      "name": "lx_hero_q",
+      "type": "text",
+      "default_value": "Mẹ đã tìm được cách chăm sóc phù hợp?"
+    },
+    {
+      "key": "field_lx_hero_product_name",
+      "label": "Tên sản phẩm trong Hero",
+      "name": "lx_hero_product_name",
+      "type": "text",
+      "default_value": "Kem Hăm Cho Bé Bon Bon"
+    },
+    {
+      "key": "field_lx_hero_no_list",
+      "label": "Dòng cam kết Không",
+      "name": "lx_hero_no_list",
+      "type": "text",
+      "default_value": "Không Corticoid, Không Paraben, Không hương liệu"
+    },
+    {
+      "key": "field_lx_hero_image",
+      "label": "Ảnh Trước - Sau (ghép sẵn)",
+      "name": "lx_hero_image",
+      "type": "image",
+      "return_format": "url"
+    },
+    {
+      "key": "field_tab_pain_solution",
+      "label": "3. Nỗi lo & Giải pháp",
+      "name": "",
+      "type": "tab"
+    },
+    {
+      "key": "field_lx_pain_title",
+      "label": "Tiêu đề Nỗi lo",
+      "name": "lx_pain_title",
+      "type": "text",
+      "default_value": "<span class=\"nw\">Mẹ lo lắng mỗi lần thấy</span><br><span class=\"hl nw\">da con đỏ ửng</span>"
+    },
+    {
+      "key": "field_lx_pain_alert",
+      "label": "Lời nhắc cảnh báo",
+      "name": "lx_pain_alert",
+      "type": "text",
+      "default_value": "Đừng để tình trạng hăm kéo dài, Mẹ ạ!"
+    },
+    {
+      "key": "field_lx_rash_slides",
+      "label": "Slider ảnh vị trí bé bị hăm",
+      "name": "lx_rash_slides",
+      "type": "repeater",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_rash_img",
+          "label": "Hình ảnh",
+          "name": "image",
+          "type": "image",
+          "return_format": "url"
+        },
+        {
+          "key": "field_rash_cap",
+          "label": "Chú thích vị trí",
+          "name": "caption",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "key": "field_lx_solution_title",
+      "label": "Tiêu đề Giải pháp",
+      "name": "lx_solution_title",
+      "type": "text",
+      "default_value": "<span class=\"hl\">Bon Bon</span> – Nhẹ nhàng chăm sóc vùng da bé bị hăm"
+    },
+    {
+      "key": "field_lx_solution_desc",
+      "label": "Mô tả Giải pháp",
+      "name": "lx_solution_desc",
+      "type": "textarea",
+      "default_value": "Với kết cấu kem mịn cùng công thức an lành, Kem Da Bon Bon giúp mẹ chủ động chăm sóc da bé thoát khỏi hăm."
+    },
+    {
+      "key": "field_lx_solution_image",
+      "label": "Ảnh mẹ ôm bé",
+      "name": "lx_solution_image",
+      "type": "image",
+      "return_format": "url"
+    },
+    {
+      "key": "field_tab_ingredients_trust",
+      "label": "4. Thành phần & An tâm",
+      "name": "",
+      "type": "tab"
+    },
+    {
+      "key": "field_lx_ingr_title",
+      "label": "Tiêu đề Thành phần",
+      "name": "lx_ingr_title",
+      "type": "text",
+      "default_value": "THÀNH PHẦN <span class=\"hl\">DỊU NHẸ</span>"
+    },
+    {
+      "key": "field_lx_ingr_sub",
+      "label": "Phụ đề Thành phần",
+      "name": "lx_ingr_sub",
+      "type": "text",
+      "default_value": "Phù hợp với trẻ sơ sinh & trẻ nhỏ Việt"
+    },
+    {
+      "key": "field_lx_five_no",
+      "label": "Danh sách 5 KHÔNG (phân tách bởi dấu phẩy)",
+      "name": "lx_five_no",
+      "type": "text",
+      "default_value": "Không Corticoid, Không Paraben, Không hương liệu, Không bết rít, Không để lại vệt trên da"
+    },
+    {
+      "key": "field_lx_cream_image",
+      "label": "Ảnh cận cảnh chất kem",
+      "name": "lx_cream_image",
+      "type": "image",
+      "return_format": "url"
+    },
+    {
+      "key": "field_lx_trust_title",
+      "label": "Tiêu đề An tâm",
+      "name": "lx_trust_title",
+      "type": "text",
+      "default_value": "An tâm <span class=\"hl\">sử dụng</span>"
+    },
+    {
+      "key": "field_lx_cert_image",
+      "label": "Ảnh Giấy công bố",
+      "name": "lx_cert_image",
+      "type": "image",
+      "return_format": "url"
+    },
+    {
+      "key": "field_lx_cert_text",
+      "label": "Số công bố hiển thị",
+      "name": "lx_cert_text",
+      "type": "text",
+      "default_value": "80/26/CBMP-NB"
+    },
+    {
+      "key": "field_lx_stamp_image",
+      "label": "Ảnh Tem chống giả",
+      "name": "lx_stamp_image",
+      "type": "image",
+      "return_format": "url"
+    },
+    {
+      "key": "field_lx_stamp_text",
+      "label": "Cơ quan cấp tem",
+      "name": "lx_stamp_text",
+      "type": "text",
+      "default_value": "Bộ Công An"
+    },
+    {
+      "key": "field_tab_feedback_seminar",
+      "label": "5. Feedback & 3 Miền",
+      "name": "",
+      "type": "tab"
+    },
+    {
+      "key": "field_lx_feedback_title",
+      "label": "Tiêu đề Feedback",
+      "name": "lx_feedback_title",
+      "type": "text",
+      "default_value": "Hàng ngàn mẹ <span class=\"hl\">tin dùng</span>"
+    },
+    {
+      "key": "field_lx_feedback_slides",
+      "label": "Ảnh phản hồi của các mẹ (Gallery)",
+      "name": "lx_feedback_slides",
+      "type": "gallery"
+    },
+    {
+      "key": "field_lx_video_slides",
+      "label": "Video chia sẻ của các mẹ (YouTube / MP4)",
+      "name": "lx_video_slides",
+      "type": "repeater",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_vid_url",
+          "label": "Link Video (YouTube/Shorts/MP4)",
+          "name": "video_url",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "key": "field_lx_seminar_title",
+      "label": "Tiêu đề 3 Miền",
+      "name": "lx_seminar_title",
+      "type": "text",
+      "default_value": "BON BON <span class=\"hl\">TRÊN KHẮP 3 MIỀN</span>"
+    },
+    {
+      "key": "field_lx_seminar_sub",
+      "label": "Phụ đề 3 Miền",
+      "name": "lx_seminar_sub",
+      "type": "textarea",
+      "default_value": "Đồng hành cùng hàng ngàn mẹ bầu, mẹ bỉm tại các hội thảo tiền sản và bệnh viện Sản - Nhi uy tín"
+    },
+    {
+      "key": "field_lx_seminar_slides",
+      "label": "Ảnh hội thảo 3 Miền",
+      "name": "lx_seminar_slides",
+      "type": "repeater",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_sem_img",
+          "label": "Ảnh hội thảo",
+          "name": "image",
+          "type": "image",
+          "return_format": "url"
+        },
+        {
+          "key": "field_sem_cap",
+          "label": "Chú thích hội thảo",
+          "name": "caption",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "key": "field_tab_steps_spec",
+      "label": "6. 3 Bước & Thông số",
+      "name": "",
+      "type": "tab"
+    },
+    {
+      "key": "field_lx_steps_title",
+      "label": "Tiêu đề 3 Bước",
+      "name": "lx_steps_title",
+      "type": "text",
+      "default_value": "Chăm sóc da bé nhẹ nhàng <span class=\"hl\">với 3 bước</span>"
+    },
+    {
+      "key": "field_lx_guide_video",
+      "label": "Link Video hướng dẫn sử dụng",
+      "name": "lx_guide_video",
+      "type": "text"
+    },
+    {
+      "key": "field_lx_spec_brand",
+      "label": "Thương hiệu",
+      "name": "lx_spec_brand",
+      "type": "text",
+      "default_value": "Home Care"
+    },
+    {
+      "key": "field_lx_spec_origin",
+      "label": "Xuất xứ",
+      "name": "lx_spec_origin",
+      "type": "text",
+      "default_value": "Việt Nam"
+    },
+    {
+      "key": "field_lx_spec_weight",
+      "label": "Khối lượng",
+      "name": "lx_spec_weight",
+      "type": "text",
+      "default_value": "5g"
+    },
+    {
+      "key": "field_lx_spec_license",
+      "label": "Số công bố",
+      "name": "lx_spec_license",
+      "type": "text",
+      "default_value": "25618/25/CBMP-HN"
+    },
+    {
+      "key": "field_tab_order_form",
+      "label": "7. Form Đặt Hàng & CF7",
+      "name": "",
+      "type": "tab"
+    },
+    {
+      "key": "field_lx_order_title",
+      "label": "Tiêu đề Form Đặt Hàng",
+      "name": "lx_order_title",
+      "type": "text",
+      "default_value": "Ưu đãi tặng riêng cho mẹ"
+    },
+    {
+      "key": "field_lx_cf7_shortcode",
+      "label": "Mã Shortcode Contact Form 7",
+      "name": "lx_cf7_shortcode",
+      "type": "text",
+      "instructions": "Dán mã shortcode CF7 vào đây (ví dụ: [contact-form-7 id=\"...\"]). Nếu để trống, theme sẽ tự động tạo và dùng form chuẩn."
+    },
+    {
+      "key": "field_lx_packages",
+      "label": "Các gói mua hàng",
+      "name": "lx_packages",
+      "type": "repeater",
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_pkg_qty",
+          "label": "Số lượng (hũ)",
+          "name": "qty",
+          "type": "number"
+        },
+        {
+          "key": "field_pkg_price",
+          "label": "Giá ưu đãi (VND)",
+          "name": "price",
+          "type": "number"
+        },
+        {
+          "key": "field_pkg_list_price",
+          "label": "Giá gốc niêm yết (VND)",
+          "name": "list_price",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "key": "field_tab_faq_story",
+      "label": "8. FAQ & Câu chuyện",
+      "name": "",
+      "type": "tab"
+    },
+    {
+      "key": "field_lx_faq_title",
+      "label": "Tiêu đề FAQ",
+      "name": "lx_faq_title",
+      "type": "text",
+      "default_value": "Mẹ còn băn khoăn điều gì về <span class=\"hl\">Kem Hăm Bon Bon?</span>"
+    },
+    {
+      "key": "field_lx_story_title",
+      "label": "Tiêu đề Câu chuyện thương hiệu",
+      "name": "lx_story_title",
+      "type": "text",
+      "default_value": "YÊU CON -<br><span class=\"hl\">MẸ CHỌN BON BON</span>"
+    },
+    {
+      "key": "field_lx_story_tagline",
+      "label": "Băng rôn slogan",
+      "name": "lx_story_tagline",
+      "type": "text",
+      "default_value": "Bon Bon - Dịu dàng chăm bé, trọn vẹn yêu thương."
+    },
+    {
+      "key": "field_lx_rating_num",
+      "label": "Điểm đánh giá",
+      "name": "lx_rating_num",
+      "type": "text",
+      "default_value": "4.9"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "options_page",
+        "operator": "==",
+        "value": "lx-landing-settings"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "description": "Cài đặt toàn bộ nội dung, hình ảnh và form cho Landing Page Bon Bon"
+}
