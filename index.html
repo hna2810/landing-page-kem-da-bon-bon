@@ -21,12 +21,94 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 
-    <!-- Facebook Pixel (Replace YOUR_PIXEL_ID) -->
-    <!-- <script>!function(f,b,e,v,n,t,s){...}('YOUR_PIXEL_ID');</script> -->
-    <!-- Google Analytics (Replace YOUR_GA_ID) -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script> -->
-    <!-- TikTok Pixel (Replace YOUR_TIKTOK_PIXEL_ID) -->
-    <!-- <script>!function(w,d,t){...}('YOUR_TIKTOK_PIXEL_ID');</script> -->
+    <!-- ============================================
+         CẤU HÌNH LANDING PAGE — chỉ cần sửa ở đây
+         ============================================ -->
+    <script>
+    window.BONBON_CONFIG = {
+        hotline: '0901234567',          // Số hotline (chỉ chữ số)
+        hotlineDisplay: '0901.234.567', // Số hotline hiển thị
+        zalo: '0901234567',             // Số Zalo OA / cá nhân
+        email: 'info@homecarevietnam.com',
+        // URL Web App của Google Apps Script (xem google-apps-script/Code.gs + README)
+        // Để trống => đơn chỉ lưu tạm trên trình duyệt (chế độ demo)
+        sheetEndpoint: '',
+        facebookPixelId: '',            // VD: '1234567890123456'
+        googleAnalyticsId: '',          // VD: 'G-XXXXXXXXXX'
+        tiktokPixelId: '',              // VD: 'CXXXXXXXXXXXXXXXXXXX'
+        products: {
+            'kem-49k':  { name: 'Kem Bon Bon (ưu đãi 49K)', price: 49000 },
+            'combo-50': { name: 'Combo 3 SP Bon Bon (giảm 50%)', price: 420000 }
+        }
+    };
+    </script>
+
+    <!-- Tracking pixels: chỉ tải khi đã điền ID trong BONBON_CONFIG -->
+    <script>
+    (function(cfg) {
+        if (cfg.facebookPixelId) {
+            !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+            n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+            document,'script','https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', cfg.facebookPixelId);
+            fbq('track', 'PageView');
+            fbq('track', 'ViewContent', { content_name: 'Kem Bon Bon', value: 49000, currency: 'VND' });
+        }
+        if (cfg.googleAnalyticsId) {
+            var g = document.createElement('script');
+            g.async = true;
+            g.src = 'https://www.googletagmanager.com/gtag/js?id=' + cfg.googleAnalyticsId;
+            document.head.appendChild(g);
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function(){ dataLayer.push(arguments); };
+            gtag('js', new Date());
+            gtag('config', cfg.googleAnalyticsId);
+        }
+        if (cfg.tiktokPixelId) {
+            !function (w, d, t) {
+            w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var s=d.createElement("script");s.type="text/javascript",s.async=!0,s.src=r+"?sdkid="+e+"&lib="+t;var a=d.getElementsByTagName("script")[0];a.parentNode.insertBefore(s,a)};
+            ttq.load(cfg.tiktokPixelId);
+            ttq.page();
+            }(window, document, 'ttq');
+        }
+
+        // Gửi sự kiện tới mọi nền tảng đã bật
+        window.bonbonTrack = function(event, params) {
+            params = params || {};
+            try {
+                if (window.fbq) fbq('track', event, params);
+                if (window.gtag) {
+                    var gaMap = { Lead: 'generate_lead', InitiateCheckout: 'begin_checkout', Contact: 'contact' };
+                    gtag('event', gaMap[event] || event, params);
+                }
+                if (window.ttq) {
+                    var ttMap = { Lead: 'SubmitForm', InitiateCheckout: 'InitiateCheckout', Contact: 'Contact' };
+                    ttq.track(ttMap[event] || event, params);
+                }
+            } catch (err) { /* tracking không được làm hỏng trang */ }
+        };
+    })(window.BONBON_CONFIG);
+    </script>
+
+    <!-- Structured data (SEO) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Kem Bôi Chàm Sữa, Mụn Cà Kê Cho Bé Bon Bon",
+        "image": "https://cdn.hstatic.net/products/200001066686/mua1tang1-kem-boi-cham-sua-mun-ca-ke-cho-be-bonbon-homecare__1__866121945139436d875f0a957d88a58f_master.jpg",
+        "description": "Kem bôi chàm sữa, mụn cà kê, hăm tã cho bé từ 0 tháng tuổi. Không Corticoid, không Paraben. Số CBMP: 214/26/CBMP-NB.",
+        "brand": { "@type": "Brand", "name": "Home Care Việt Nam" },
+        "offers": {
+            "@type": "Offer",
+            "priceCurrency": "VND",
+            "price": "49000",
+            "availability": "https://schema.org/InStock"
+        }
+    }
+    </script>
 
 <style>
 /* ============================================
@@ -1247,6 +1329,8 @@ input, textarea, select { font-family: var(--font-body); }
     transition: var(--transition);
 }
 .footer-links a:hover { color: var(--primary); }
+.footer-contact a { color: inherit; text-decoration: none; }
+.footer-contact a:hover { color: var(--primary); }
 .footer-bottom {
     border-top: 1px solid rgba(255,255,255,0.1);
     padding-top: 20px;
@@ -1659,6 +1743,516 @@ input, textarea, select { font-family: var(--font-body); }
 .form-input:not(:placeholder-shown) + .typing-hint {
     opacity: 0;
 }
+
+/* ============================================
+   TEXT REVIEW CARDS
+   ============================================ */
+.text-review-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+.text-review-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid #F0F0F0;
+    transition: var(--transition);
+}
+.text-review-card:hover {
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary-light);
+}
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+.review-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-ultra-light), var(--pink-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+.review-info { flex: 1; min-width: 0; }
+.review-name {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--dark);
+}
+.review-meta { font-size: 12px; color: var(--gray); margin-top: 2px; }
+.review-stars { font-size: 13px; letter-spacing: 1px; }
+.review-body {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #4A5568;
+    font-style: italic;
+    margin-bottom: 12px;
+    padding-left: 16px;
+    border-left: 3px solid var(--primary-light);
+}
+.review-tag {
+    display: inline-block;
+    background: var(--green);
+    color: var(--dark);
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 700;
+}
+@media (min-width: 768px) {
+    .text-review-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 1200px) {
+    .text-review-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ============================================
+   GALLERY SUBTITLE
+   ============================================ */
+.gallery-subtitle {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 20px;
+    margin-top: 8px;
+}
+.gallery-subtitle span { color: var(--primary); }
+
+/* ============================================
+   ORDER PROCESS SECTION
+   ============================================ */
+.process-section {
+    background: linear-gradient(180deg, var(--white), var(--primary-ultra-light));
+}
+.process-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.process-step {
+    text-align: center;
+    padding: 32px 24px;
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 2px solid #F0F0F0;
+    transition: var(--transition);
+    width: 100%;
+    position: relative;
+}
+.process-step:hover {
+    border-color: var(--primary-light);
+    box-shadow: var(--shadow);
+}
+.process-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-ultra-light), var(--pink-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin: 0 auto 16px;
+}
+.process-step h4 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: var(--dark);
+}
+.process-step p {
+    font-size: 14px;
+    color: #4A5568;
+    line-height: 1.5;
+}
+.process-step-number {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(76,192,211,0.3);
+}
+.process-arrow {
+    font-size: 28px;
+    color: var(--primary);
+    transform: rotate(90deg);
+    font-weight: 700;
+    line-height: 1;
+}
+@media (min-width: 768px) {
+    .process-grid {
+        flex-direction: row;
+        gap: 12px;
+    }
+    .process-step { width: auto; flex: 1; }
+    .process-arrow { transform: none; flex-shrink: 0; font-size: 32px; }
+}
+
+/* ============================================
+   COMPARISON TABLE
+   ============================================ */
+.compare-section {
+    background: linear-gradient(180deg, var(--primary-ultra-light), var(--white));
+}
+.compare-table-wrap {
+    max-width: 700px;
+    margin: 0 auto;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background: var(--white);
+}
+.compare-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.compare-table th,
+.compare-table td {
+    padding: 14px 16px;
+    text-align: center;
+    font-size: 14px;
+    border-bottom: 1px solid #F0F0F0;
+}
+.compare-table thead th {
+    background: var(--primary);
+    color: white;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 14px;
+    padding: 16px 12px;
+}
+.compare-table thead th:first-child {
+    text-align: left;
+    background: var(--dark);
+}
+.compare-table tbody td:first-child {
+    text-align: left;
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 13px;
+}
+.compare-table tbody tr:nth-child(even) {
+    background: var(--gray-ultra-light);
+}
+.compare-table tbody tr:hover {
+    background: var(--primary-ultra-light);
+}
+.compare-check { color: var(--green-dark); font-size: 18px; }
+.compare-cross { color: #FF6B6B; font-size: 18px; }
+@media (max-width: 500px) {
+    .compare-table th,
+    .compare-table td {
+        padding: 10px 8px;
+        font-size: 12px;
+    }
+    .compare-table thead th { font-size: 12px; }
+    .compare-table tbody td:first-child { font-size: 12px; }
+}
+
+/* ============================================
+   IMPROVED CONTRAST & POLISH
+   ============================================ */
+.section-desc { color: #4A5568; }
+.feature-text p,
+.ingr-info p,
+.step-content p,
+.faq-answer-inner { color: #4A5568; }
+.hero-title { text-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+
+/* ============================================
+   BABY THEME ENHANCEMENTS
+   ============================================ */
+.hero {
+    background: linear-gradient(160deg, var(--pink-light) 0%, var(--white) 28%, var(--primary-ultra-light) 52%, var(--peach-light) 80%, var(--yellow-light) 100%);
+}
+.pain-section {
+    background: linear-gradient(180deg, var(--pink-light), var(--peach-light));
+}
+.howto-section {
+    background: linear-gradient(180deg, var(--white), var(--peach-light));
+}
+.social-proof-section {
+    background: linear-gradient(180deg, var(--peach-light), var(--pink-light), var(--white));
+}
+.faq-section {
+    background: linear-gradient(180deg, var(--white), var(--pink-light));
+}
+.form-section {
+    background: linear-gradient(180deg, var(--pink-light), var(--white), var(--peach-light));
+}
+.trust-section {
+    background: linear-gradient(180deg, var(--white), var(--pink-light));
+}
+.guarantee-section {
+    background: linear-gradient(180deg, var(--peach-light), var(--pink-light));
+}
+.pain-card {
+    border: 2px solid var(--pink-light);
+}
+.pain-icon {
+    background: linear-gradient(135deg, var(--pink-light), var(--peach-light));
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+}
+.feature-item {
+    background: linear-gradient(135deg, var(--pink-light) 0%, var(--primary-ultra-light) 100%);
+}
+.ingr-card {
+    border-left-color: var(--pink);
+}
+.trust-badge-card {
+    background: linear-gradient(135deg, var(--white), var(--pink-light));
+    border-color: var(--pink-light);
+}
+.form-wrapper {
+    border-color: var(--pink);
+}
+.form-wrapper::before {
+    background: linear-gradient(90deg, var(--pink), var(--primary), var(--peach), var(--pink));
+}
+.process-step {
+    border-color: var(--pink-light);
+}
+.process-icon {
+    background: linear-gradient(135deg, var(--pink-light), var(--peach-light));
+}
+.step-number {
+    background: linear-gradient(135deg, var(--pink-dark), var(--primary));
+}
+.stat-card {
+    border: 1px solid var(--pink-light);
+}
+.stat-number {
+    color: var(--pink-dark);
+}
+.hero-badge {
+    background: linear-gradient(135deg, #FF7EB3, #FF6B6B);
+}
+.header-cta {
+    background: linear-gradient(135deg, var(--pink-dark), var(--primary));
+    box-shadow: 0 4px 15px rgba(255,126,179,0.35);
+}
+.header-cta:hover {
+    box-shadow: 0 6px 25px rgba(255,126,179,0.45);
+    background: linear-gradient(135deg, #E96DA0, var(--primary-dark));
+}
+.marquee-section {
+    background: linear-gradient(90deg, var(--primary), var(--pink-dark));
+}
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--pink-dark));
+    box-shadow: 0 6px 30px rgba(255,126,179,0.3);
+}
+.btn-primary:hover {
+    box-shadow: 0 8px 40px rgba(255,126,179,0.4);
+}
+.btn-submit {
+    background: linear-gradient(135deg, var(--pink-dark), var(--primary));
+    box-shadow: 0 6px 30px rgba(255,126,179,0.35);
+}
+.btn-submit:hover {
+    box-shadow: 0 8px 40px rgba(255,126,179,0.45);
+}
+.btn-sticky {
+    background: linear-gradient(135deg, var(--pink-dark), var(--primary));
+    box-shadow: 0 4px 15px rgba(255,126,179,0.35);
+}
+.feature-icon {
+    background: linear-gradient(135deg, var(--pink-dark), var(--primary));
+}
+.scroll-progress {
+    background: linear-gradient(90deg, var(--pink-dark), var(--primary));
+}
+
+/* ============================================
+   PRODUCT DETAIL SECTION
+   ============================================ */
+.product-detail-section {
+    background: linear-gradient(180deg, var(--white), var(--peach-light));
+}
+.product-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+.product-detail-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--pink-light);
+    transition: var(--transition);
+}
+.product-detail-card:hover {
+    box-shadow: var(--shadow);
+    border-color: var(--pink);
+}
+.detail-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink-light), var(--peach-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+.detail-info h4 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--primary-dark);
+    margin-bottom: 4px;
+}
+.detail-info p {
+    font-size: 14px;
+    color: #4A5568;
+    line-height: 1.5;
+}
+@media (min-width: 768px) {
+    .product-detail-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ============================================
+   EXPERT QUOTE
+   ============================================ */
+.expert-quote-card {
+    text-align: center;
+    max-width: 600px;
+    margin: 32px auto 0;
+    padding: 28px;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--pink-light);
+}
+.expert-avatar-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+.expert-quote-card blockquote {
+    font-size: 15px;
+    font-style: italic;
+    color: #4A5568;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    padding: 0 12px;
+}
+.expert-info strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 15px;
+    color: var(--primary-dark);
+    margin-bottom: 2px;
+}
+.expert-info span {
+    font-size: 13px;
+    color: var(--gray);
+}
+
+/* ============================================
+   FORM STATES (loading / lỗi gửi / thành công)
+   ============================================ */
+.hp-field {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px; height: 1px; overflow: hidden;
+}
+.btn-submit:disabled { opacity: 0.75; cursor: wait; }
+.btn-submit .spinner {
+    display: inline-block;
+    width: 18px; height: 18px;
+    border: 3px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    vertical-align: -3px;
+    margin-right: 8px;
+    animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.form-alert {
+    display: none;
+    margin-top: 14px;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    background: #FFF0F0;
+    color: #D64545;
+    font-size: 14px;
+    line-height: 1.5;
+}
+.form-alert.show { display: block; }
+.form-alert a { color: #D64545; font-weight: 700; }
+.order-summary {
+    margin: 20px auto 0;
+    max-width: 380px;
+    text-align: left;
+    background: var(--primary-ultra-light);
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+    font-size: 14px;
+    line-height: 1.8;
+}
+.order-summary strong { color: var(--dark); }
+.success-actions {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    justify-content: center; margin-top: 22px;
+}
+.success-actions a {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 12px 22px; border-radius: 50px;
+    font-weight: 700; font-size: 14px; text-decoration: none; color: #fff;
+}
+.success-actions .sa-zalo { background: #0068FF; }
+.success-actions .sa-phone { background: var(--green-dark); }
+
+/* ============================================
+   FALLBACK: không có GSAP hoặc người dùng giảm chuyển động
+   ============================================ */
+.no-anim .reveal, .no-anim .reveal-left, .no-anim .reveal-right, .no-anim .reveal-scale,
+.no-anim .guarantee-section {
+    opacity: 1 !important;
+    transform: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+    .marquee-track { animation: none !important; }
+}
 </style>
 </head>
 <body>
@@ -1690,13 +2284,13 @@ input, textarea, select { font-family: var(--font-body); }
 <!-- HEADER -->
 <header class="header" id="header">
     <div class="header-inner">
-        <a href="#" class="header-logo">
+        <a href="#hero" class="header-logo" aria-label="Về đầu trang">
             <img src="https://cdn.hstatic.net/themes/200001066686/1001439050/14/logo.png" alt="Home Care Việt Nam" loading="eager">
         </a>
         <div class="header-actions">
             <a href="tel:0901234567" class="header-phone">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                Hotline: 0901.234.567
+                Hotline: <span class="js-hotline">0901.234.567</span>
             </a>
             <a href="#form-section" class="header-cta scroll-to-form">Đăng Ký Ngay 🎁</a>
         </div>
@@ -1893,6 +2487,145 @@ input, textarea, select { font-family: var(--font-body); }
 </div>
 
 <!-- ============================================
+     COMPARISON TABLE
+     ============================================ -->
+<section class="section compare-section" id="compare-section">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-label">SO SÁNH</span>
+            <h2 class="section-title">Tại Sao Chọn <span>Bon Bon</span>? 🤔</h2>
+            <p class="section-desc">So sánh Kem Bon Bon với các sản phẩm thông thường trên thị trường</p>
+        </div>
+        
+        <div class="compare-table-wrap reveal">
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th>Tiêu chí</th>
+                        <th>🧴 Bon Bon</th>
+                        <th>💊 SP Thường</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>An toàn từ 0 tháng tuổi</td>
+                        <td><span class="compare-check">✔️</span></td>
+                        <td><span class="compare-cross">✖️</span></td>
+                    </tr>
+                    <tr>
+                        <td>Không Corticoid</td>
+                        <td><span class="compare-check">✔️</span></td>
+                        <td><span class="compare-cross">✖️</span></td>
+                    </tr>
+                    <tr>
+                        <td>Không Paraben</td>
+                        <td><span class="compare-check">✔️</span></td>
+                        <td><span class="compare-cross">✖️</span></td>
+                    </tr>
+                    <tr>
+                        <td>Thành phần thiên nhiên</td>
+                        <td><span class="compare-check">✔️</span></td>
+                        <td><span class="compare-cross">✖️</span></td>
+                    </tr>
+                    <tr>
+                        <td>Thẩm thấu nhanh</td>
+                        <td><span class="compare-check">✔️</span></td>
+                        <td><span class="compare-cross">✖️</span></td>
+                    </tr>
+                    <tr>
+                        <td>Công bố mỹ phẩm hợp pháp</td>
+                        <td><span class="compare-check">✔️</span></td>
+                        <td><span class="compare-cross">✖️</span></td>
+                    </tr>
+                    <tr>
+                        <td>Tem chống giả Bộ Công An</td>
+                        <td><span class="compare-check">✔️</span></td>
+                        <td><span class="compare-cross">✖️</span></td>
+                    </tr>
+                    <tr>
+                        <td>Dùng lâu dài không tác dụng phụ</td>
+                        <td><span class="compare-check">✔️</span></td>
+                        <td><span class="compare-cross">✖️</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     PRODUCT DETAILS
+     ============================================ -->
+<section class="section product-detail-section" id="product-detail">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-label">CHI TIẾT SẢN PHẨM</span>
+            <h2 class="section-title">Mọi Thứ Mẹ Cần <span>Biết</span> Về Bon Bon 📋</h2>
+            <p class="section-desc">Thông tin đầy đủ giúp mẹ yên tâm lựa chọn cho con yêu</p>
+        </div>
+        
+        <div class="product-detail-grid">
+            <div class="product-detail-card reveal">
+                <div class="detail-icon">🧴</div>
+                <div class="detail-info">
+                    <h4>Tên sản phẩm</h4>
+                    <p>Kem Bôi Chàm Sữa, Mụn Cà Kê Cho Bé Bon Bon — Home Care Việt Nam</p>
+                </div>
+            </div>
+            <div class="product-detail-card reveal">
+                <div class="detail-icon">📦</div>
+                <div class="detail-info">
+                    <h4>Dung tích</h4>
+                    <p>30g / hộp — Đủ dùng khoảng 3-4 tuần tùy mức độ sử dụng</p>
+                </div>
+            </div>
+            <div class="product-detail-card reveal">
+                <div class="detail-icon">👶</div>
+                <div class="detail-info">
+                    <h4>Đối tượng sử dụng</h4>
+                    <p>Trẻ sơ sinh từ 0 tháng tuổi, trẻ nhỏ, trẻ em. An toàn cho mọi loại da nhạy cảm</p>
+                </div>
+            </div>
+            <div class="product-detail-card reveal">
+                <div class="detail-icon">🩹</div>
+                <div class="detail-info">
+                    <h4>Công dụng chính</h4>
+                    <p>Hỗ trợ xoa dịu chàm sữa (lác sữa), mụn cà kê, hăm tã, da khô nẻ, mẩn đỏ, rôm sảy</p>
+                </div>
+            </div>
+            <div class="product-detail-card reveal">
+                <div class="detail-icon">🌿</div>
+                <div class="detail-info">
+                    <h4>Thành phần chính</h4>
+                    <p>Petrolatum, Tinh bột sắn, Bạc keo (Colloidal Silver), Tinh dầu nghệ, Dầu bơ — 100% thân thiện</p>
+                </div>
+            </div>
+            <div class="product-detail-card reveal">
+                <div class="detail-icon">⏰</div>
+                <div class="detail-info">
+                    <h4>Liều lượng & Cách dùng</h4>
+                    <p>Thoa lớp mỏng 2-3 lần/ngày lên vùng da tổn thương. Thấy cải thiện sau 3-7 ngày sử dụng</p>
+                </div>
+            </div>
+            <div class="product-detail-card reveal">
+                <div class="detail-icon">📋</div>
+                <div class="detail-info">
+                    <h4>Số Công bố mỹ phẩm</h4>
+                    <p>214/26/CBMP-NB — Đạt chuẩn an toàn theo quy định pháp luật Việt Nam</p>
+                </div>
+            </div>
+            <div class="product-detail-card reveal">
+                <div class="detail-icon">🇻🇳</div>
+                <div class="detail-info">
+                    <h4>Xuất xứ & Hạn sử dụng</h4>
+                    <p>Sản xuất tại Việt Nam — Hạn sử dụng 02 năm kể từ ngày sản xuất. Bảo quản nơi khô mát</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
      INGREDIENTS SECTION
      ============================================ -->
 <section class="section ingredients-section" id="ingredients-section">
@@ -2065,6 +2798,16 @@ input, textarea, select { font-family: var(--font-body); }
                 <span class="g-badge">🚚 Giao hàng toàn quốc</span>
                 <span class="g-badge">📞 Hỗ trợ 24/7</span>
                 <span class="g-badge">💰 Thanh toán khi nhận hàng</span>
+            </div>            
+            <div class="expert-quote-card reveal">
+                <div class="expert-avatar-icon">👩‍⚕️</div>
+                <blockquote>
+                    "Kem Bon Bon với thành phần dịu nhẹ từ thiên nhiên, không chứa Corticoid là giải pháp an toàn cho làn da nhạy cảm của trẻ sơ sinh bị chàm sữa. Chúng tôi sử dụng sản phẩm này trong dịch vụ tắm bé và nhận được phản hồi rất tích cực từ phụ huynh."
+                </blockquote>
+                <div class="expert-info">
+                    <strong>TAROSHI Baby Spa</strong>
+                    <span>Dịch vụ tắm bé chuẩn Y Hoàng Gia</span>
+                </div>
             </div>
         </div>
     </div>
@@ -2102,22 +2845,100 @@ input, textarea, select { font-family: var(--font-body); }
             </div>
         </div>
 
-        <div class="testimonial-grid">
-            <div class="testimonial-card reveal">
+        <!-- Text Reviews -->
+        <div class="text-review-grid">
+            <div class="text-review-card reveal">
+                <div class="review-header">
+                    <div class="review-avatar">👩‍🍼</div>
+                    <div class="review-info">
+                        <div class="review-name">Chị Lan Anh</div>
+                        <div class="review-meta">Mẹ bé 4 tháng · Hà Nội</div>
+                    </div>
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                </div>
+                <p class="review-body">"Con mình bị chàm sữa nặng ở 2 bên má, bôi 5 ngày là thấy giảm rõ rệt. Trước đó dùng mấy loại khác đều không ăn thua. Cảm ơn Bon Bon nhiều!"</p>
+                <span class="review-tag">✅ Đã mua hàng</span>
+            </div>
+            <div class="text-review-card reveal">
+                <div class="review-header">
+                    <div class="review-avatar">🤱</div>
+                    <div class="review-info">
+                        <div class="review-name">Mẹ Hương</div>
+                        <div class="review-meta">Mẹ bé 2 tháng · TP.HCM</div>
+                    </div>
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                </div>
+                <p class="review-body">"Mua cho bé nhà mình bị hăm tã vùng bẹn, bôi 3 ngày là hết hẳn. Kem thấm nhanh, không bết dính, bé không quấy khóc khi bôi. Sẽ mua thêm combo!"</p>
+                <span class="review-tag">✅ Đã mua hàng</span>
+            </div>
+            <div class="text-review-card reveal">
+                <div class="review-header">
+                    <div class="review-avatar">👩</div>
+                    <div class="review-info">
+                        <div class="review-name">Chị Thảo</div>
+                        <div class="review-meta">Mẹ bé 6 tháng · Đà Nẵng</div>
+                    </div>
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                </div>
+                <p class="review-body">"Trước dùng thuốc bác sĩ kê sợ có corticoid lắm, chuyển sang Bon Bon yên tâm hơn nhiều. Da con giờ mềm mịn lại, hết khô ráp. Recommend cho các mẹ!"</p>
+                <span class="review-tag">✅ Đã mua hàng</span>
+            </div>
+            <div class="text-review-card reveal">
+                <div class="review-header">
+                    <div class="review-avatar">👩‍🍼</div>
+                    <div class="review-info">
+                        <div class="review-name">Mẹ Ngọc</div>
+                        <div class="review-meta">Mẹ bé 3 tháng · Cần Thơ</div>
+                    </div>
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                </div>
+                <p class="review-body">"Combo 3 sản phẩm xài rất ổn, kết hợp tắm muối + gội thảo mộc + bôi kem thì da bé cải thiện nhanh hơn nhiều. Bé 3 tháng dùng được luôn."</p>
+                <span class="review-tag">✅ Đã mua Combo</span>
+            </div>
+            <div class="text-review-card reveal">
+                <div class="review-header">
+                    <div class="review-avatar">🤱</div>
+                    <div class="review-info">
+                        <div class="review-name">Chị Mai</div>
+                        <div class="review-meta">Mẹ bé 5 tháng · Hải Phòng</div>
+                    </div>
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                </div>
+                <p class="review-body">"Da bé mềm mịn lại sau 1 tuần sử dụng. Bé ngủ ngon hơn hẳn, không còn gãi ngứa nữa. Ship nhanh, đóng gói cẩn thận. Sẽ giới thiệu cho các mẹ khác."</p>
+                <span class="review-tag">✅ Đã mua hàng</span>
+            </div>
+            <div class="text-review-card reveal">
+                <div class="review-header">
+                    <div class="review-avatar">👩</div>
+                    <div class="review-info">
+                        <div class="review-name">Mẹ Trang</div>
+                        <div class="review-meta">Mẹ bé 7 tháng · Bình Dương</div>
+                    </div>
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                </div>
+                <p class="review-body">"Bé nhà mình bị mụn cà kê chi chít ở trán, bôi Bon Bon 4 ngày thấy giảm hẳn. Kem mát da, con không khó chịu. Giá 49K quá hời luôn mẹ ơi!"</p>
+                <span class="review-tag">✅ Đã mua hàng</span>
+            </div>
+        </div>
+
+        <!-- Gallery: Hình ảnh phản hồi -->
+        <h3 class="gallery-subtitle reveal">📸 Hình Ảnh Phản Hồi <span>Từ Các Mẹ</span></h3>
+        <div class="gallery-scroll">
+            <div class="gallery-scroll-item">
                 <img src="https://cdn.hstatic.net/products/200001066686/cong-bo-kem-boi-cham-sua-mun-ca-ke-cho-be-bonbon-homecare__8__b200c64a13064051b5eb3fdcdf0dae38_master.jpg" 
-                     alt="Feedback mẹ bỉm" loading="lazy">
+                     alt="Feedback mẹ bỉm - Kem Bon Bon hiệu quả" loading="lazy">
             </div>
-            <div class="testimonial-card reveal">
+            <div class="gallery-scroll-item">
                 <img src="https://cdn.hstatic.net/products/200001066686/cong-bo-kem-boi-cham-sua-mun-ca-ke-cho-be-bonbon-homecare__7__11cf5f3f6e9d4282ab72bd964fdc39c0_master.jpg" 
-                     alt="Feedback mẹ bỉm" loading="lazy">
+                     alt="Feedback mẹ bỉm - Chàm sữa hết nhanh" loading="lazy">
             </div>
-            <div class="testimonial-card reveal">
+            <div class="gallery-scroll-item">
                 <img src="https://cdn.hstatic.net/products/200001066686/cong-bo-kem-boi-cham-sua-mun-ca-ke-cho-be-bonbon-homecare__6__880141bc382b4192899dc2480d47356e_master.jpg" 
-                     alt="Feedback mẹ bỉm" loading="lazy">
+                     alt="Feedback mẹ bỉm - Da bé mềm mịn" loading="lazy">
             </div>
-            <div class="testimonial-card reveal">
+            <div class="gallery-scroll-item">
                 <img src="https://cdn.hstatic.net/files/200001066686/file/feedback-kem-boi-cham-sua-mun-ca-ke-cho-be-bonbon-homecare_grande.jpg" 
-                     alt="Feedback mẹ bỉm" loading="lazy">
+                     alt="Tổng hợp feedback mẹ bỉm Bon Bon" loading="lazy">
             </div>
         </div>
 
@@ -2206,6 +3027,42 @@ input, textarea, select { font-family: var(--font-body); }
 </section>
 
 <!-- ============================================
+     ORDER PROCESS
+     ============================================ -->
+<section class="section process-section" id="process-section">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-label">QUY TRÌNH ĐẶT HÀNG</span>
+            <h2 class="section-title">Chỉ <span>3 Bước</span> Đơn Giản 🚀</h2>
+            <p class="section-desc">Nhận hàng tận nơi — Thanh toán khi nhận — Không cần ứng trước</p>
+        </div>
+        
+        <div class="process-grid">
+            <div class="process-step reveal">
+                <span class="process-step-number">1</span>
+                <div class="process-icon">📝</div>
+                <h4>Điền Form Đăng Ký</h4>
+                <p>Chỉ cần nhập tên và số điện thoại của mẹ ở form bên dưới</p>
+            </div>
+            <div class="process-arrow reveal">➜</div>
+            <div class="process-step reveal">
+                <span class="process-step-number">2</span>
+                <div class="process-icon">📞</div>
+                <h4>Nhận Cuộc Gọi Xác Nhận</h4>
+                <p>Nhân viên gọi xác nhận đơn hàng trong vòng 30 phút</p>
+            </div>
+            <div class="process-arrow reveal">➜</div>
+            <div class="process-step reveal">
+                <span class="process-step-number">3</span>
+                <div class="process-icon">📦</div>
+                <h4>Nhận Hàng & Thanh Toán</h4>
+                <p>Giao tận nơi toàn quốc, thanh toán khi nhận hàng (COD)</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
      REGISTRATION FORM
      ============================================ -->
 <section class="section form-section" id="form-section">
@@ -2222,20 +3079,21 @@ input, textarea, select { font-family: var(--font-body); }
                 
                 <form id="registrationForm" novalidate>
                     <div class="form-group">
-                        <label>Họ và tên <span class="req">*</span></label>
-                        <input type="text" class="form-input" id="fullName" placeholder="VD: Nguyễn Thị Lan" required>
+                        <label for="fullName">Họ và tên <span class="req">*</span></label>
+                        <input type="text" class="form-input" id="fullName" name="fullName" placeholder="VD: Nguyễn Thị Lan" autocomplete="name" maxlength="80" required>
                         <div class="error-msg" id="nameError">Vui lòng nhập họ và tên</div>
                     </div>
                     
                     <div class="form-group">
-                        <label>Số điện thoại <span class="req">*</span></label>
-                        <input type="tel" class="form-input" id="phone" placeholder="VD: 0901 234 567" required>
+                        <label for="phone">Số điện thoại <span class="req">*</span></label>
+                        <input type="tel" class="form-input" id="phone" name="phone" placeholder="VD: 0901 234 567" autocomplete="tel" inputmode="tel" maxlength="16" required>
                         <div class="error-msg" id="phoneError">Vui lòng nhập số điện thoại hợp lệ</div>
                     </div>
                     
                     <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-input" id="email" placeholder="VD: mama@email.com">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-input" id="email" name="email" placeholder="VD: mama@email.com" autocomplete="email" maxlength="120">
+                        <div class="error-msg" id="emailError">Email chưa đúng định dạng</div>
                     </div>
                     
                     <div class="form-group">
@@ -2255,22 +3113,34 @@ input, textarea, select { font-family: var(--font-body); }
                     </div>
                     
                     <div class="form-group">
-                        <label>Ghi chú (tuỳ chọn)</label>
-                        <textarea class="form-input" id="note" rows="3" placeholder="VD: Bé 3 tháng, bị chàm sữa ở má..."></textarea>
+                        <label for="note">Ghi chú (tuỳ chọn)</label>
+                        <textarea class="form-input" id="note" name="note" rows="3" maxlength="500" placeholder="VD: Bé 3 tháng, bị chàm sữa ở má..."></textarea>
                     </div>
                     
-                    <button type="submit" class="btn-submit">
+                    <!-- Chống spam: bot sẽ điền ô ẩn này -->
+                    <div class="hp-field" aria-hidden="true">
+                        <label for="website">Website</label>
+                        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="submitBtn">
                         🚀 GỬI ĐĂNG KÝ NGAY
                     </button>
+                    <div class="form-alert" id="formAlert" role="alert"></div>
                 </form>
                 
                 <p class="form-security">🔒 Thông tin của mẹ được bảo mật tuyệt đối</p>
             </div>
             
-            <div class="form-success" id="formSuccess">
+            <div class="form-success" id="formSuccess" role="status" aria-live="polite">
                 <div class="success-emoji">🎉</div>
                 <h3>Chúc Mừng Mẹ! Đăng Ký Thành Công!</h3>
                 <p>Cảm ơn mẹ đã tin tưởng Bon Bon. Chúng tôi sẽ liên hệ với mẹ trong vòng <strong>30 phút</strong> để xác nhận đơn hàng và gửi ưu đãi nhé! 💖</p>
+                <div class="order-summary" id="orderSummary"></div>
+                <div class="success-actions">
+                    <a href="https://zalo.me/0901234567" target="_blank" rel="noopener" class="sa-zalo">💬 Nhắn Zalo ngay</a>
+                    <a href="tel:0901234567" class="sa-phone">📞 Gọi <span class="js-hotline">0901.234.567</span></a>
+                </div>
             </div>
         </div>
     </div>
@@ -2288,7 +3158,7 @@ input, textarea, select { font-family: var(--font-body); }
         
         <div class="faq-list">
             <div class="faq-item reveal">
-                <button class="faq-question">
+                <button type="button" class="faq-question" aria-expanded="false">
                     Sản phẩm có an toàn cho trẻ sơ sinh không?
                     <span class="faq-arrow">▼</span>
                 </button>
@@ -2299,7 +3169,7 @@ input, textarea, select { font-family: var(--font-body); }
                 </div>
             </div>
             <div class="faq-item reveal">
-                <button class="faq-question">
+                <button type="button" class="faq-question" aria-expanded="false">
                     Bao lâu thì thấy hiệu quả?
                     <span class="faq-arrow">▼</span>
                 </button>
@@ -2310,7 +3180,7 @@ input, textarea, select { font-family: var(--font-body); }
                 </div>
             </div>
             <div class="faq-item reveal">
-                <button class="faq-question">
+                <button type="button" class="faq-question" aria-expanded="false">
                     Ưu đãi 49K áp dụng như thế nào?
                     <span class="faq-arrow">▼</span>
                 </button>
@@ -2321,7 +3191,7 @@ input, textarea, select { font-family: var(--font-body); }
                 </div>
             </div>
             <div class="faq-item reveal">
-                <button class="faq-question">
+                <button type="button" class="faq-question" aria-expanded="false">
                     Sản phẩm có chứa Corticoid không?
                     <span class="faq-arrow">▼</span>
                 </button>
@@ -2332,7 +3202,7 @@ input, textarea, select { font-family: var(--font-body); }
                 </div>
             </div>
             <div class="faq-item reveal">
-                <button class="faq-question">
+                <button type="button" class="faq-question" aria-expanded="false">
                     Combo giảm 50% bao gồm những gì?
                     <span class="faq-arrow">▼</span>
                 </button>
@@ -2358,20 +3228,20 @@ input, textarea, select { font-family: var(--font-body); }
             </div>
             <div class="footer-contact">
                 <h4>Liên Hệ</h4>
-                <p>📞 Hotline: 0901.234.567</p>
-                <p>📧 Email: info@homecarevietnam.com</p>
+                <p>📞 Hotline: <a href="tel:0901234567" class="js-hotline">0901.234.567</a></p>
+                <p>📧 Email: <a href="mailto:info@homecarevietnam.com" class="js-email">info@homecarevietnam.com</a></p>
                 <p>🌐 homecarevietnam.com</p>
             </div>
             <div class="footer-links">
                 <h4>Thông Tin</h4>
-                <a href="https://homecarevietnam.com" target="_blank">Trang chủ</a>
-                <a href="https://homecarevietnam.com/collections/all" target="_blank">Sản phẩm</a>
+                <a href="https://homecarevietnam.com" target="_blank" rel="noopener">Trang chủ</a>
+                <a href="https://homecarevietnam.com/collections/all" target="_blank" rel="noopener">Sản phẩm</a>
                 <a href="#faq-section">Câu hỏi thường gặp</a>
                 <a href="#form-section" class="scroll-to-form">Đăng ký ưu đãi</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Home Care Việt Nam. All rights reserved. | Designed with 💖 for Mẹ & Bé</p>
+            <p>&copy; <span id="year">2026</span> Home Care Việt Nam. All rights reserved. | Designed with 💖 for Mẹ & Bé</p>
         </div>
     </div>
 </footer>
@@ -2387,9 +3257,9 @@ input, textarea, select { font-family: var(--font-body); }
 
 <!-- FLOATING BUTTONS -->
 <div class="floating-btns">
-    <a href="tel:0901234567" class="float-btn phone" title="Gọi ngay">📞</a>
-    <a href="https://zalo.me/0901234567" target="_blank" class="float-btn zalo" title="Chat Zalo">💬</a>
-    <button class="float-btn top" id="backToTop" title="Lên đầu trang">⬆️</button>
+    <a href="tel:0901234567" class="float-btn phone" title="Gọi ngay" aria-label="Gọi hotline">📞</a>
+    <a href="https://zalo.me/0901234567" target="_blank" rel="noopener" class="float-btn zalo" title="Chat Zalo" aria-label="Chat Zalo">💬</a>
+    <button type="button" class="float-btn top" id="backToTop" title="Lên đầu trang" aria-label="Lên đầu trang">⬆️</button>
 </div>
 
 <!-- CONFETTI -->
@@ -2401,115 +3271,159 @@ input, textarea, select { font-family: var(--font-body); }
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
-    // ===== GSAP REGISTER =====
-    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+    const CFG = window.BONBON_CONFIG || {};
+    const hasGsap = typeof window.gsap !== 'undefined';
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // ===== LOADING SCREEN =====
-    const loader = document.getElementById('loader');
-    gsap.to(loader, {
-        opacity: 0,
-        duration: 0.6,
-        delay: 1.8,
-        onComplete: () => {
-            loader.classList.add('hidden');
-            initAnimations();
-        }
-    });
+    // localStorage có thể bị chặn (chế độ ẩn danh, in-app browser)
+    const store = {
+        get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+        set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+    };
 
-    // ===== SCROLL PROGRESS BAR =====
-    window.addEventListener('scroll', () => {
-        const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-        document.getElementById('scrollProgress').style.width = scrolled + '%';
-    });
+    // ===== ÁP DỤNG CẤU HÌNH LIÊN HỆ =====
+    if (CFG.hotline) {
+        document.querySelectorAll('a[href^="tel:"]').forEach(a => a.href = 'tel:' + CFG.hotline);
+    }
+    if (CFG.zalo) {
+        document.querySelectorAll('a[href*="zalo.me/"]').forEach(a => a.href = 'https://zalo.me/' + CFG.zalo);
+    }
+    if (CFG.hotlineDisplay) {
+        document.querySelectorAll('.js-hotline').forEach(el => el.textContent = CFG.hotlineDisplay);
+    }
+    if (CFG.email) {
+        document.querySelectorAll('.js-email').forEach(el => {
+            el.textContent = CFG.email;
+            el.href = 'mailto:' + CFG.email;
+        });
+    }
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ===== HEADER SCROLL =====
-    const header = document.getElementById('header');
-    const stickyBottom = document.getElementById('stickyBottom');
-    const backToTop = document.getElementById('backToTop');
-    
-    window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        
-        // Header
-        if (scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-        
-        // Sticky bottom
-        if (scrollY > 600) {
-            stickyBottom.classList.add('show');
-        } else {
-            stickyBottom.classList.remove('show');
-        }
-
-        // Back to top
-        if (scrollY > 800) {
-            backToTop.classList.add('show');
-        } else {
-            backToTop.classList.remove('show');
-        }
-    });
-
-    // ===== BACK TO TOP =====
-    backToTop.addEventListener('click', () => {
-        gsap.to(window, { scrollTo: 0, duration: 1, ease: 'power2.inOut' });
-    });
-
-    // ===== SMOOTH SCROLL TO FORM =====
-    document.querySelectorAll('.scroll-to-form').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            gsap.to(window, { scrollTo: '#form-section', duration: 1, ease: 'power2.inOut', offsetY: 80 });
+    // ===== TRACKING: click gọi / Zalo =====
+    document.querySelectorAll('a[href^="tel:"], a[href*="zalo.me/"]').forEach(a => {
+        a.addEventListener('click', () => {
+            window.bonbonTrack && bonbonTrack('Contact', { method: a.href.startsWith('tel:') ? 'phone' : 'zalo' });
         });
     });
 
+    // ===== LƯU NGUỒN QUẢNG CÁO (UTM) =====
+    const TRACK_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid', 'ttclid'];
+    const attribution = (() => {
+        let saved = {};
+        try { saved = JSON.parse(sessionStorage.getItem('bonbon_attr') || '{}'); } catch (e) {}
+        const params = new URLSearchParams(window.location.search);
+        TRACK_KEYS.forEach(k => { if (params.get(k)) saved[k] = params.get(k); });
+        if (!saved.referrer && document.referrer) saved.referrer = document.referrer;
+        try { sessionStorage.setItem('bonbon_attr', JSON.stringify(saved)); } catch (e) {}
+        return saved;
+    })();
+
+    // ===== CUỘN MƯỢT =====
+    function scrollToTarget(target, offset) {
+        offset = offset === undefined ? 80 : offset;
+        if (hasGsap && !reduceMotion) {
+            gsap.to(window, { scrollTo: { y: target, offsetY: offset }, duration: 1, ease: 'power2.inOut' });
+        } else {
+            const el = typeof target === 'string' ? document.querySelector(target) : target;
+            const y = el ? el.getBoundingClientRect().top + window.scrollY - offset : 0;
+            window.scrollTo({ top: y, behavior: reduceMotion ? 'auto' : 'smooth' });
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+            const href = anchor.getAttribute('href');
+            const target = href.length > 1 ? document.getElementById(href.slice(1)) : null;
+            if (!target) return;
+            e.preventDefault();
+            scrollToTarget(target);
+            if (target.id === 'form-section') {
+                setTimeout(() => document.getElementById('fullName').focus({ preventScroll: true }), 1000);
+            }
+        });
+    });
+
+    // ===== LOADING SCREEN =====
+    const loader = document.getElementById('loader');
+    function hideLoader() {
+        loader.classList.add('hidden');
+        if (hasGsap && !reduceMotion) {
+            gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+            initAnimations();
+        } else {
+            document.documentElement.classList.add('no-anim');
+        }
+    }
+    if (hasGsap) {
+        gsap.registerPlugin(ScrollToPlugin);
+        // Quảng cáo trả tiền theo click: không bắt khách chờ lâu
+        setTimeout(hideLoader, reduceMotion ? 0 : 700);
+    } else {
+        hideLoader();
+    }
+
+    // ===== SCROLL: progress, header, sticky bar, back-to-top =====
+    const header = document.getElementById('header');
+    const stickyBottom = document.getElementById('stickyBottom');
+    const backToTop = document.getElementById('backToTop');
+    const progress = document.getElementById('scrollProgress');
+    let ticking = false;
+
+    function onScroll() {
+        const scrollY = window.scrollY;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = (max > 0 ? (scrollY / max) * 100 : 0) + '%';
+        header.classList.toggle('scrolled', scrollY > 50);
+        stickyBottom.classList.toggle('show', scrollY > 600);
+        backToTop.classList.toggle('show', scrollY > 800);
+        ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+        if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
+    }, { passive: true });
+    onScroll();
+
+    backToTop.addEventListener('click', () => scrollToTarget(0, 0));
+
     // ===== COUNTDOWN TIMER =====
     function initCountdown() {
-        // Reset daily - set end time to today + a few hours
-        let endTime = localStorage.getItem('bonbon_countdown_end');
-        const now = Date.now();
-        
-        if (!endTime || parseInt(endTime) < now) {
-            endTime = now + (3 * 60 * 60 * 1000) + (45 * 60 * 1000) + (12 * 1000); // 3h 45m 12s
-            localStorage.setItem('bonbon_countdown_end', endTime);
+        const DURATION = (3 * 60 * 60 + 45 * 60 + 12) * 1000; // 3h 45m 12s
+        let endTime = parseInt(store.get('bonbon_countdown_end'), 10);
+
+        if (!endTime || endTime < Date.now()) {
+            endTime = Date.now() + DURATION;
+            store.set('bonbon_countdown_end', endTime);
         }
-        
+
+        const hEl = document.getElementById('hours');
+        const mEl = document.getElementById('minutes');
+        const sEl = document.getElementById('seconds');
+
         function updateCountdown() {
-            const remaining = parseInt(localStorage.getItem('bonbon_countdown_end')) - Date.now();
-            
+            let remaining = endTime - Date.now();
             if (remaining <= 0) {
-                // Reset
-                const newEnd = Date.now() + (3 * 60 * 60 * 1000) + (45 * 60 * 1000);
-                localStorage.setItem('bonbon_countdown_end', newEnd);
-                return;
+                endTime = Date.now() + DURATION;
+                store.set('bonbon_countdown_end', endTime);
+                remaining = DURATION;
             }
-            
-            const hours = Math.floor(remaining / (1000 * 60 * 60));
-            const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
-            
-            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            hEl.textContent = String(Math.floor(remaining / 3600000)).padStart(2, '0');
+            mEl.textContent = String(Math.floor((remaining % 3600000) / 60000)).padStart(2, '0');
+            sEl.textContent = String(Math.floor((remaining % 60000) / 1000)).padStart(2, '0');
         }
-        
+
         updateCountdown();
         setInterval(updateCountdown, 1000);
     }
     initCountdown();
 
-    // ===== FAKE STOCK DECREASE =====
+    // ===== STOCK DECREASE =====
     let stock = 23;
     setInterval(() => {
-        if (stock > 5) {
-            if (Math.random() > 0.7) {
-                stock--;
-                const el = document.getElementById('stockCount');
-                el.textContent = stock;
-                gsap.fromTo(el, { scale: 1.3, color: '#FFD700' }, { scale: 1, color: '#FFE4A0', duration: 0.5 });
-            }
+        if (stock > 5 && Math.random() > 0.7) {
+            stock--;
+            const el = document.getElementById('stockCount');
+            el.textContent = stock;
+            if (hasGsap) gsap.fromTo(el, { scale: 1.3, color: '#FFD700' }, { scale: 1, color: '#FFE4A0', duration: 0.5 });
         }
     }, 15000);
 
@@ -2519,82 +3433,182 @@ document.addEventListener('DOMContentLoaded', function() {
             const item = btn.parentElement;
             const answer = item.querySelector('.faq-answer');
             const isActive = item.classList.contains('active');
-            
-            // Close all
+
             document.querySelectorAll('.faq-item').forEach(faq => {
                 faq.classList.remove('active');
                 faq.querySelector('.faq-answer').style.maxHeight = null;
+                faq.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
             });
-            
+
             if (!isActive) {
                 item.classList.add('active');
                 answer.style.maxHeight = answer.scrollHeight + 'px';
+                btn.setAttribute('aria-expanded', 'true');
             }
         });
     });
 
     // ===== RADIO OPTIONS =====
-    document.querySelectorAll('.radio-option').forEach(opt => {
-        opt.addEventListener('click', () => {
-            document.querySelectorAll('.radio-option').forEach(o => o.classList.remove('active'));
-            opt.classList.add('active');
+    const radioOptions = document.querySelectorAll('.radio-option');
+    radioOptions.forEach(opt => {
+        opt.querySelector('input').addEventListener('change', () => {
+            radioOptions.forEach(o => o.classList.toggle('active', o.querySelector('input').checked));
+        });
+    });
+
+    // Nút "Đăng ký combo" chọn sẵn combo trong form
+    document.querySelectorAll('.btn-combo').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const combo = document.querySelector('input[name="product"][value="combo-50"]');
+            combo.checked = true;
+            combo.dispatchEvent(new Event('change'));
         });
     });
 
     // ===== FORM VALIDATION & SUBMISSION =====
     const form = document.getElementById('registrationForm');
-    
+    const submitBtn = document.getElementById('submitBtn');
+    const submitBtnHTML = submitBtn.innerHTML;
+    const formAlert = document.getElementById('formAlert');
+    let submitting = false;
+
+    // Sự kiện "bắt đầu điền form" — 1 lần
+    form.addEventListener('focusin', () => {
+        window.bonbonTrack && bonbonTrack('InitiateCheckout', { currency: 'VND', value: 49000 });
+    }, { once: true });
+
+    function normalizePhone(raw) {
+        let p = raw.replace(/[\s.\-()]/g, '');
+        if (p.startsWith('+84')) p = '0' + p.slice(3);
+        else if (p.startsWith('84') && p.length === 11) p = '0' + p.slice(2);
+        return p;
+    }
+
+    function setFieldError(input, errorEl, hasError) {
+        input.classList.toggle('error', hasError);
+        input.setAttribute('aria-invalid', hasError ? 'true' : 'false');
+        errorEl.classList.toggle('show', hasError);
+    }
+
+    function validate() {
+        const name = document.getElementById('fullName');
+        const phone = document.getElementById('phone');
+        const email = document.getElementById('email');
+
+        const nameBad = name.value.trim().length < 2;
+        const phoneBad = !/^0[1-9]\d{8,9}$/.test(normalizePhone(phone.value));
+        const emailBad = email.value.trim() !== '' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim());
+
+        setFieldError(name, document.getElementById('nameError'), nameBad);
+        setFieldError(phone, document.getElementById('phoneError'), phoneBad);
+        setFieldError(email, document.getElementById('emailError'), emailBad);
+
+        const firstBad = [nameBad && name, phoneBad && phone, emailBad && email].find(Boolean);
+        if (firstBad) firstBad.focus();
+        return !firstBad;
+    }
+
+    function sendLead(data) {
+        // Luôn giữ bản sao trên máy khách để không mất đơn khi mạng lỗi
+        let backup = [];
+        try { backup = JSON.parse(store.get('bonbon_leads') || '[]'); } catch (e) {}
+        backup.push(data);
+        store.set('bonbon_leads', JSON.stringify(backup.slice(-20)));
+
+        if (!CFG.sheetEndpoint) {
+            console.warn('[Bon Bon] Chưa cấu hình sheetEndpoint — đơn chỉ được lưu tạm trên trình duyệt:', data);
+            return Promise.resolve();
+        }
+
+        const controller = 'AbortController' in window ? new AbortController() : null;
+        const timer = controller && setTimeout(() => controller.abort(), 15000);
+        // Google Apps Script không trả CORS header => dùng no-cors (phản hồi "opaque")
+        return fetch(CFG.sheetEndpoint, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: new URLSearchParams(data),
+            signal: controller ? controller.signal : undefined
+        }).finally(() => timer && clearTimeout(timer));
+    }
+
+    function showSuccess(data, product) {
+        document.getElementById('formContent').style.display = 'none';
+
+        const summary = document.getElementById('orderSummary');
+        summary.textContent = '';
+        [['Người nhận', data.name], ['Số điện thoại', data.phone], ['Sản phẩm', product.name],
+         ['Thanh toán', product.price.toLocaleString('vi-VN') + 'đ (khi nhận hàng)']].forEach(([label, value]) => {
+            const row = document.createElement('div');
+            const strong = document.createElement('strong');
+            strong.textContent = label + ': ';
+            row.appendChild(strong);
+            row.appendChild(document.createTextNode(value));
+            summary.appendChild(row);
+        });
+
+        document.getElementById('formSuccess').classList.add('show');
+        if (hasGsap && !reduceMotion) createConfetti();
+        scrollToTarget('#form-section', 100);
+    }
+
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        let isValid = true;
-        
-        // Name
-        const name = document.getElementById('fullName');
-        const nameError = document.getElementById('nameError');
-        if (!name.value.trim()) {
-            name.classList.add('error');
-            nameError.classList.add('show');
-            isValid = false;
-        } else {
-            name.classList.remove('error');
-            nameError.classList.remove('show');
-        }
-        
-        // Phone
-        const phone = document.getElementById('phone');
-        const phoneError = document.getElementById('phoneError');
-        const phoneRegex = /^(0[1-9])[0-9]{8,9}$/;
-        if (!phoneRegex.test(phone.value.replace(/\s/g, ''))) {
-            phone.classList.add('error');
-            phoneError.classList.add('show');
-            isValid = false;
-        } else {
-            phone.classList.remove('error');
-            phoneError.classList.remove('show');
-        }
-        
-        if (isValid) {
-            // Show success
+        if (submitting) return;
+        formAlert.classList.remove('show');
+
+        if (!validate()) return;
+
+        // Bot điền ô ẩn => giả vờ thành công, không gửi
+        if (document.getElementById('website').value) {
             document.getElementById('formContent').style.display = 'none';
-            const success = document.getElementById('formSuccess');
-            success.classList.add('show');
-            
-            // Confetti
-            createConfetti();
-            
-            // Scroll to form
-            gsap.to(window, { scrollTo: '#form-section', duration: 0.5, offsetY: 100 });
-            
-            // Track conversion (placeholder)
-            // fbq('track', 'Lead');
-            // gtag('event', 'generate_lead');
+            document.getElementById('formSuccess').classList.add('show');
+            return;
         }
+
+        const productKey = form.querySelector('input[name="product"]:checked').value;
+        const product = (CFG.products && CFG.products[productKey]) || { name: productKey, price: 0 };
+        const data = Object.assign({
+            time: new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }),
+            name: document.getElementById('fullName').value.trim(),
+            phone: normalizePhone(document.getElementById('phone').value),
+            email: document.getElementById('email').value.trim(),
+            product: product.name,
+            product_code: productKey,
+            price: product.price,
+            note: document.getElementById('note').value.trim(),
+            page: window.location.href.split('?')[0],
+            user_agent: navigator.userAgent
+        }, attribution);
+
+        submitting = true;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="spinner"></span>ĐANG GỬI...';
+
+        sendLead(data)
+            .then(() => {
+                window.bonbonTrack && bonbonTrack('Lead', {
+                    content_name: product.name, value: product.price, currency: 'VND'
+                });
+                showSuccess(data, product);
+            })
+            .catch(() => {
+                formAlert.innerHTML = 'Gửi chưa thành công do mạng không ổn định. Mẹ thử lại giúp em, hoặc gọi ' +
+                    '<a href="tel:' + (CFG.hotline || '') + '">' + (CFG.hotlineDisplay || 'hotline') + '</a> / ' +
+                    '<a href="https://zalo.me/' + (CFG.zalo || '') + '" target="_blank" rel="noopener">nhắn Zalo</a> để đặt nhanh nhé!';
+                formAlert.classList.add('show');
+            })
+            .finally(() => {
+                submitting = false;
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = submitBtnHTML;
+            });
     });
-    
+
     // Remove error on input
     document.querySelectorAll('.form-input').forEach(input => {
         input.addEventListener('input', () => {
             input.classList.remove('error');
+            input.removeAttribute('aria-invalid');
             const errorMsg = input.nextElementSibling;
             if (errorMsg && errorMsg.classList.contains('error-msg')) {
                 errorMsg.classList.remove('show');
@@ -2606,7 +3620,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function createConfetti() {
         const container = document.getElementById('confettiContainer');
         const colors = ['#4cc0d3', '#FFB6C1', '#FF69B4', '#FFE4A0', '#A8E6CF', '#E8D5F5', '#FF6B6B'];
-        
+
         for (let i = 0; i < 80; i++) {
             const piece = document.createElement('div');
             piece.classList.add('confetti-piece');
@@ -2615,7 +3629,7 @@ document.addEventListener('DOMContentLoaded', function() {
             piece.style.width = Math.random() * 10 + 5 + 'px';
             piece.style.height = Math.random() * 10 + 5 + 'px';
             container.appendChild(piece);
-            
+
             gsap.to(piece, {
                 y: window.innerHeight + 100,
                 x: (Math.random() - 0.5) * 400,
@@ -2931,6 +3945,51 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
+        // Text review cards stagger
+        gsap.utils.toArray('.text-review-card').forEach((card, i) => {
+            gsap.to(card, {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                delay: i * 0.1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%'
+                }
+            });
+        });
+
+        // Gallery scroll items
+        gsap.utils.toArray('.gallery-scroll-item').forEach((item, i) => {
+            gsap.from(item, {
+                x: 60,
+                opacity: 0,
+                duration: 0.6,
+                delay: i * 0.1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.gallery-scroll',
+                    start: 'top 85%'
+                }
+            });
+        });
+
+        // Process steps stagger
+        gsap.utils.toArray('.process-step').forEach((step, i) => {
+            gsap.to(step, {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                delay: i * 0.15,
+                ease: 'back.out(1.4)',
+                scrollTrigger: {
+                    trigger: '.process-grid',
+                    start: 'top 85%'
+                }
+            });
+        });
+
         // Mini CTA animation
         gsap.from('.mini-cta-text', {
             y: 30,
@@ -3004,7 +4063,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const lbClose = lightbox.querySelector('.lightbox-close');
 
     // Make testimonial and cert images zoomable
-    document.querySelectorAll('.testimonial-card img, .cert-card img, .ingr-img, .howto-img').forEach(img => {
+    document.querySelectorAll('.testimonial-card img, .cert-card img, .ingr-img, .howto-img, .gallery-scroll-item img').forEach(img => {
         img.classList.add('zoomable');
         img.addEventListener('click', () => {
             lbImg.src = img.src;
@@ -3123,29 +4182,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ===== SMOOTH ANCHOR SCROLLS =====
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                e.preventDefault();
-                gsap.to(window, { 
-                    scrollTo: { y: target, offsetY: 80 }, 
-                    duration: 1, 
-                    ease: 'power2.inOut' 
-                });
-            }
-        });
-    });
-
     // ===== PARALLAX FLOATING ELEMENTS =====
+    const floatItems = document.querySelectorAll('.float-item');
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
-        document.querySelectorAll('.float-item').forEach((item, i) => {
+        floatItems.forEach((item, i) => {
             const speed = 0.02 + (i * 0.005);
             item.style.transform = `translateY(${scrollY * speed}px)`;
         });
-    });
+    }, { passive: true });
 
 })();
 </script>

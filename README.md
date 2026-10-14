@@ -19,3 +19,24 @@ Landing page tối ưu chuyển đổi cao (High Conversion Rate) dành cho chi�
 - HTML5 / CSS3 / Vanilla JavaScript
 - GSAP 3 & ScrollTrigger (CDN)
 - Google Fonts (Quicksand & Nunito)
+
+## ⚙️ Cấu hình (chỉ sửa 1 chỗ)
+Mở `index.html`, tìm `window.BONBON_CONFIG` ở đầu file và điền:
+
+| Trường | Ý nghĩa |
+|---|---|
+| `hotline`, `hotlineDisplay`, `zalo`, `email` | Thông tin liên hệ — tự áp dụng cho mọi nút gọi / Zalo / footer |
+| `sheetEndpoint` | URL Web App Google Apps Script để nhận đơn (xem bên dưới). Để trống = chế độ demo, đơn chỉ lưu tạm trên trình duyệt |
+| `facebookPixelId`, `googleAnalyticsId`, `tiktokPixelId` | ID pixel. Để trống thì không tải script đó |
+
+Sự kiện được bắn tự động: `PageView`, `ViewContent`, `InitiateCheckout` (khi bắt đầu điền form), `Contact` (bấm gọi / Zalo), `Lead` (gửi form thành công, kèm giá trị đơn VND).
+
+## 📥 Kết nối form với Google Sheet
+1. Tạo 1 Google Sheet mới → **Tiện ích mở rộng → Apps Script**.
+2. Dán nội dung file `google-apps-script/Code.gs` vào, bấm Lưu. (Tuỳ chọn: điền `NOTIFY_EMAIL` để nhận email khi có đơn.)
+3. **Triển khai → Tùy chọn triển khai mới → Ứng dụng web**: *Thực thi với tư cách*: **Tôi**, *Ai có quyền truy cập*: **Bất kỳ ai**.
+4. Copy URL dạng `https://script.google.com/macros/s/.../exec` dán vào `sheetEndpoint`.
+
+Mỗi đơn ghi 1 dòng gồm: thời gian, họ tên, SĐT (chuẩn hoá về dạng 0xxx), email, sản phẩm, giá, ghi chú, UTM (`utm_source/medium/campaign/content/term`), `fbclid/gclid/ttclid`, referrer, thiết bị — để đo chính xác hiệu quả từng chiến dịch quảng cáo.
+
+Form có chống spam (honeypot), chống bấm gửi 2 lần, báo lỗi + gợi ý gọi/Zalo khi mạng lỗi, và luôn giữ bản sao đơn trên trình duyệt khách.
