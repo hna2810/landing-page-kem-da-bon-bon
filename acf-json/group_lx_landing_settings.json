@@ -125,6 +125,44 @@
       "default_value": 1
     },
     {
+      "key": "field_lx_footer_logo",
+      "label": "Ảnh Logo Footer",
+      "name": "lx_footer_logo",
+      "type": "image",
+      "instructions": "Logo hiển thị ở chân trang footer (để trống sẽ tự động lấy Logo Bon Bon).",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_lx_footer_title",
+      "label": "Tiêu đề / Slogan Footer",
+      "name": "lx_footer_title",
+      "type": "text",
+      "default_value": "Bon Bon - Nâng Niu Làn Da Bé"
+    },
+    {
+      "key": "field_lx_footer_company",
+      "label": "Tên công ty Footer",
+      "name": "lx_footer_company",
+      "type": "text",
+      "default_value": "CÔNG TY TNHH CHĂM SÓC MẸ VÀ BÉ TẠI NHÀ HOME CARE"
+    },
+    {
+      "key": "field_lx_footer_address",
+      "label": "Địa chỉ doanh nghiệp",
+      "name": "lx_footer_address",
+      "type": "text",
+      "default_value": "Địa chỉ: 20 Huy Du, Phường Từ Liêm, TP Hà Nội, Việt Nam."
+    },
+    {
+      "key": "field_lx_footer_tax",
+      "label": "Mã số doanh nghiệp",
+      "name": "lx_footer_tax",
+      "type": "text",
+      "default_value": "Mã số doanh nghiệp: 0107375668 do Sở Kế hoạch & Đầu tư TP Hà Nội cấp lần đầu ngày 29/03/2016"
+    },
+    {
       "key": "field_tab_hero",
       "label": "2. Hero (Đầu trang)",
       "name": "",

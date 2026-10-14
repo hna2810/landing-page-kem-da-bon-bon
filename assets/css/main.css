@@ -582,9 +582,77 @@ strong { color: var(--dark); }
 .review-imgs .placeholder span { font-size: 18px; }
 .review-imgs .placeholder { font-size: 11px; }
 
-.footer { background: var(--primary-deep); color: rgba(255,255,255,.85); text-align: center; padding: 26px 18px; font-size: 14px; }
-.footer b { color: #fff; font-family: var(--font-heading); font-size: 17px; display: block; margin-bottom: 4px; }
-.footer a { color: #fff; font-weight: 800; }
+.footer {
+    background: var(--primary-deep);
+    color: rgba(255, 255, 255, 0.88);
+    text-align: center;
+    padding: 34px 18px calc(var(--sticky-h) + 26px);
+    font-size: 14px;
+    line-height: 1.6;
+}
+.footer-logo-wrap {
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.footer-logo {
+    height: 48px;
+    max-height: 56px;
+    width: auto;
+    object-fit: contain;
+    background: #ffffff;
+    padding: 6px 18px;
+    border-radius: 999px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+.footer-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 8px;
+    letter-spacing: -0.2px;
+}
+.footer-hotline {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+.footer-hotline a {
+    color: #ffe066;
+    text-decoration: underline;
+    font-weight: 800;
+    transition: color .2s;
+}
+.footer-hotline a:hover {
+    color: #ffffff;
+}
+.footer-company {
+    font-size: 14px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+.footer-address,
+.footer-tax {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.84);
+    margin-bottom: 6px;
+    line-height: 1.5;
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.footer-copy {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.65);
+}
 
 /* ============================================
    THANH MUA DÍNH DƯỚI + NÚT GỌI (mobile)
