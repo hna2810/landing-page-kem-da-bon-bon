@@ -338,7 +338,7 @@ document.documentElement.classList.add('js');
     if (people.length) setTimeout(() => { showToast(); setInterval(showToast, 16000); }, 6000);
 })();
 
-// Contact Form 7 tracking integration
+// Contact Form 7 tracking and success box transition
 document.addEventListener('wpcf7mailsent', function (event) {
     if (window.bonbonTrack) {
         window.bonbonTrack('Lead', {
@@ -346,5 +346,13 @@ document.addEventListener('wpcf7mailsent', function (event) {
             value: (window.BONBON_CONFIG && window.BONBON_CONFIG.price) || 49000,
             currency: 'VND'
         });
+    }
+
+    const wpcf7Container = document.querySelector('.order-card .wpcf7');
+    const successBox = document.getElementById('successBox');
+    if (wpcf7Container && successBox) {
+        wpcf7Container.style.display = 'none';
+        successBox.classList.add('show');
+        successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 }, false);

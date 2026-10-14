@@ -81,8 +81,34 @@ function lx_ensure_cf7_form() {
                          . "Trang gửi: [_url]\n",
         );
 
+        $messages = array(
+            'mail_sent_ok'             => '🎉 Cảm ơn mẹ! Đơn đặt hàng đã được gửi thành công. Chuyên viên Bon Bon sẽ liên hệ xác nhận đơn với mẹ ngay ạ!',
+            'mail_sent_ng'             => '❌ Có lỗi xảy ra trong quá trình gửi đơn. Mẹ vui lòng liên hệ hotline hoặc thử lại sau nhé.',
+            'validation_error'         => '⚠️ Mẹ vui lòng kiểm tra lại thông tin và điền đầy đủ các mục bắt buộc nhé!',
+            'spam'                     => '❌ Có lỗi xảy ra trong quá trình gửi đơn. Mẹ vui lòng thử lại sau nhé.',
+            'accept_terms'             => 'Mẹ vui lòng đồng ý với các điều khoản trước khi gửi đơn.',
+            'invalid_required'         => 'Mẹ vui lòng nhập thông tin vào trường này nhé!',
+            'invalid_too_long'         => 'Nội dung quá dài, mẹ vui lòng nhập ngắn gọn hơn.',
+            'invalid_too_short'        => 'Nội dung quá ngắn, mẹ vui lòng nhập đầy đủ hơn.',
+            'upload_failed'            => 'Không thể tải tệp lên. Mẹ vui lòng thử lại sau.',
+            'upload_file_type_invalid' => 'Định dạng tệp không được hỗ trợ.',
+            'upload_file_too_large'    => 'Dung lượng tệp tải lên quá lớn.',
+            'upload_failed_php_error'  => 'Có lỗi hệ thống khi tải tệp lên.',
+            'invalid_date'             => 'Ngày tháng không hợp lệ (định dạng YYYY-MM-DD).',
+            'date_too_early'           => 'Ngày đã chọn quá sớm.',
+            'date_too_late'            => 'Ngày đã chọn quá muộn.',
+            'invalid_number'           => 'Vui lòng nhập một chữ số hợp lệ.',
+            'number_too_small'         => 'Số lượng nhập vào quá nhỏ.',
+            'number_too_large'         => 'Số lượng nhập vào quá lớn.',
+            'quiz_answer_not_correct'  => 'Câu trả lời xác thực chưa chính xác.',
+            'invalid_email'            => 'Địa chỉ email chưa chính xác. Mẹ vui lòng kiểm tra lại nhé.',
+            'invalid_url'              => 'Đường dẫn liên kết (URL) chưa chính xác.',
+            'invalid_tel'              => 'Số điện thoại chưa đúng định dạng. Mẹ vui lòng kiểm tra lại nhé (VD: 0901 234 567).',
+        );
+
         update_post_meta($form_id, '_form', $form_content);
         update_post_meta($form_id, '_mail', $mail_tags);
+        update_post_meta($form_id, '_messages', $messages);
         return $form_id;
     }
 
