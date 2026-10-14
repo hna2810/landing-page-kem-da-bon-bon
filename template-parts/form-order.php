@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$order_title       = lx_get_field('lx_order_title', 'option', 'Ưu đãi tặng riêng cho mẹ');
+$order_title       = lx_get_field('lx_order_title', 'option', 'Ưu đãi tặng mẹ');
 $price_val         = intval(lx_get_field('lx_price', 'option', 49000));
 $list_price_val    = intval(lx_get_field('lx_list_price', 'option', 80000));
 $price             = lx_format_price($price_val);
@@ -22,11 +22,10 @@ if ($list_price_val > $price_val && $list_price_val > 0) {
     $discount_percent = round((($list_price_val - $price_val) / $list_price_val) * 100);
 }
 ?>
-<!-- 10. FORM ƯU ĐÃI TẶNG RIÊNG CHO MẸ -->
+<!-- 10. FORM ƯU ĐÃI TẶNG MẸ -->
 <section class="order-sec" id="order">
     <div class="order-card">
         <div class="offer">
-            <div class="offer-badge">🎁 ƯU ĐÃI ĐẶC QUYỀN HÔM NAY</div>
             <h2 class="offer-title"><?php echo $order_title; ?></h2>
             <div class="offer-price-wrap">
                 <span class="offer-price-now js-price"><?php echo $price; ?></span>

@@ -41,3 +41,17 @@ function lx_acf_json_load_point($paths) {
     return $paths;
 }
 add_filter('acf/settings/load_json', 'lx_acf_json_load_point');
+
+/**
+ * Auto-migrate default field values if needed
+ */
+function lx_acf_auto_migrate_defaults() {
+    $current_title = get_option('options_lx_order_title');
+    if ($current_title === 'Ưu đãi tặng riêng cho mẹ' || empty($current_title)) {
+        update_option('options_lx_order_title', 'Ưu đãi tặng mẹ');
+        if (function_exists('update_field')) {
+            update_field('lx_order_title', 'Ưu đãi tặng mẹ', 'option');
+        }
+    }
+}
+add_action('init', 'lx_acf_auto_migrate_defaults');
