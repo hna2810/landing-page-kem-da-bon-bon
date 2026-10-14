@@ -57,8 +57,8 @@
             creamTexture: '',
             certificate: '',
             antiFakeStamp: '',
-            feedback: ['', ''],
-            testimonialVideo: '',
+            feedback: ['', '', ''],          // slider ảnh feedback (thêm bao nhiêu ảnh cũng được)
+            testimonialVideos: ['', '', ''], // slider video các mẹ chia sẻ (YouTube / Shorts / .mp4)
             seminarSlides: [
                 { src: '', caption: '' },
                 { src: '', caption: '' },
@@ -188,7 +188,10 @@ strong { color: var(--dark); }
 }
 .sec-title .hl { color: var(--primary-dark); }
 .sec-sub { text-align: center; color: var(--muted); font-size: 15.5px; margin-top: 6px; }
-.sec-head { margin-bottom: 20px; position: relative; padding: 0 50px; }
+.sec-head { margin-bottom: 20px; position: relative; padding: 0 44px; }
+#pain .sec-title { font-size: clamp(19px, 5.6vw, 24px); }
+.nw { white-space: nowrap; }
+@media (max-width: 340px) { .nw { white-space: normal; } }
 .sec-head::after {
     content: '';
     display: block;
@@ -327,6 +330,8 @@ strong { color: var(--dark); }
 .slides::-webkit-scrollbar { display: none; }
 .slide { flex: 0 0 82%; scroll-snap-align: center; }
 .dots { display: flex; justify-content: center; gap: 7px; margin-top: 12px; }
+.slider.videos .slide { flex-basis: 62%; }
+#feedback .slider + .label-line, #feedback .split > div + div { margin-top: 0; }
 .dots button { width: 8px; height: 8px; border-radius: 8px; background: var(--primary-light); transition: all .25s ease; }
 .dots button.on { width: 22px; background: var(--primary); }
 
@@ -465,16 +470,44 @@ strong { color: var(--dark); }
 .spec dt { color: var(--muted); }
 .spec dd { color: var(--dark); font-weight: 800; text-align: right; }
 .cta-card {
-    background: var(--white);
-    border: 2px solid var(--primary-light);
-    border-radius: var(--radius);
-    padding: 22px 18px;
+    background: var(--primary);
+    color: var(--white);
+    border-radius: 24px;
+    padding: 28px 20px 24px;
     text-align: center;
-    box-shadow: var(--shadow);
     position: relative;
     margin-top: 54px;
+    animation: ctaGlow 2.6s ease-in-out infinite;
 }
-.cta-card .mascot { width: 84px; top: -58px; right: 10px; left: auto; }
+/* Viền đứt nét bên trong */
+.cta-card::before {
+    content: '';
+    position: absolute; inset: 8px;
+    border: 2px dashed rgba(255,255,255,.55);
+    border-radius: 18px;
+    pointer-events: none;
+}
+@keyframes ctaGlow {
+    0%, 100% { box-shadow: 0 16px 36px rgba(31,127,144,.35), 0 0 0 0 rgba(76,192,211,.45); }
+    50% { box-shadow: 0 16px 36px rgba(31,127,144,.35), 0 0 0 12px rgba(76,192,211,0); }
+}
+.cta-card .sec-title { color: var(--white); position: relative; }
+.cta-card .price-box { position: relative; margin: 14px 0 18px; }
+.cta-card .price-tag { background: var(--white); color: var(--pink-deep); }
+.cta-card .price-now { color: #ffe45c; font-size: 42px; text-shadow: 0 3px 0 rgba(20,90,104,.25); }
+.cta-card .price-old, .cta-card .price-old s { color: rgba(255,255,255,.88); }
+.cta-card .btn {
+    background: var(--pink);
+    box-shadow: 0 8px 20px rgba(214,77,134,.45);
+    animation: pinkPulse 1.8s ease-in-out infinite;
+    position: relative;
+}
+.cta-card .btn:hover { background: #f0629f; }
+@keyframes pinkPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 8px 20px rgba(214,77,134,.45), 0 0 0 0 rgba(255,255,255,.6); }
+    50% { transform: scale(1.03); box-shadow: 0 8px 20px rgba(214,77,134,.45), 0 0 0 10px rgba(255,255,255,0); }
+}
+.cta-card .mascot { width: 90px; top: -62px; right: 6px; left: auto; z-index: 1; }
 .cta-card .sec-title { font-size: 22px; padding-right: 40px; }
 
 /* ============================================
@@ -592,13 +625,56 @@ strong { color: var(--dark); }
 .faq details[open] summary::after { transform: rotate(45deg); background: var(--primary); color: #fff; }
 .faq details p { padding: 0 16px 16px; font-size: 15.5px; }
 
-.story p { font-size: 16px; margin-bottom: 12px; }
-.story .tagline {
-    text-align: center;
-    font-family: var(--font-heading); font-weight: 700;
-    font-size: 19px; color: var(--primary-deep);
-    margin-top: 6px;
+.story { background: linear-gradient(180deg, var(--white), var(--primary-soft)); }
+.story-hero { text-align: center; }
+.story-mascot { width: 130px; margin: 0 auto 4px; animation: bob 5s ease-in-out infinite; filter: drop-shadow(0 8px 14px rgba(31,127,144,.15)); }
+.story-hero .sec-head { padding: 0; }
+.story-steps { list-style: none; display: grid; gap: 14px; position: relative; margin-bottom: 22px; }
+/* Đường chấm nối các thẻ như một hành trình */
+.story-steps::before {
+    content: '';
+    position: absolute; left: 27px; top: 28px; bottom: 28px;
+    border-left: 3px dotted var(--primary-light);
 }
+.story-steps li {
+    position: relative;
+    display: flex; gap: 14px; align-items: flex-start;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 16px 16px 12px;
+    box-shadow: var(--shadow);
+}
+.story-icon {
+    width: 56px; height: 56px; flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 0 0 5px var(--primary-soft);
+    position: relative;
+}
+.story-steps p { font-size: 16px; color: var(--dark); line-height: 1.6; padding-top: 2px; }
+.story-tagline { text-align: center; }
+.story-tagline span {
+    display: inline-block;
+    position: relative;
+    background: var(--primary-deep);
+    color: var(--white);
+    font-family: var(--font-heading); font-weight: 700;
+    font-size: 18px; line-height: 1.4;
+    padding: 14px 26px;
+    border-radius: 18px;
+    box-shadow: 0 10px 24px rgba(31,127,144,.25);
+}
+.story-tagline span::before, .story-tagline span::after {
+    position: absolute;
+    font-size: 46px; line-height: 1;
+    color: #ffe45c;
+    font-family: Georgia, serif;
+}
+.story-tagline span::before { content: '\201C'; left: 8px; top: -14px; }
+.story-tagline span::after { content: '\201D'; right: 8px; bottom: -32px; }
 
 .rating-box {
     background: var(--pink-soft);
@@ -738,6 +814,9 @@ strong { color: var(--dark); }
     .slides { margin: 0; padding: 0 0 4px; }
     .slide { flex-basis: 100%; }
     #seminar .slide { flex-basis: calc((100% - 24px) / 3); }
+    #feedback .slide { flex-basis: calc((100% - 12px) / 2); }
+    #feedback .slider.videos .slide { flex-basis: 58%; }
+    #feedback .split { align-items: start; }
     .lead { font-size: 18.5px; text-align: left; }
 
     .ingr { grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -752,7 +831,8 @@ strong { color: var(--dark); }
 
     .steps li { font-size: 17.5px; padding: 18px 20px; }
 
-    .cta-card { margin-top: 0; padding: 36px 32px; }
+    .cta-card { margin-top: 0; padding: 44px 36px 36px; }
+    .cta-card .price-now { font-size: 52px; }
     .cta-card .sec-title { font-size: 28px; padding-right: 0; }
     .cta-card .mascot { width: 120px; top: -80px; right: -20px; }
 
@@ -771,9 +851,13 @@ strong { color: var(--dark); }
     .offer-mascot { display: block; width: 170px; margin-top: 18px; animation: bob 5s ease-in-out infinite; }
 
     .faq-wrap { max-width: 820px; margin: 0 auto; }
-    .story-wrap { max-width: 820px; margin: 0 auto; text-align: center; }
-    .story p { font-size: 17.5px; }
-    .story .tagline { font-size: 24px; }
+    .story-mascot { width: 170px; }
+    .story-steps { grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
+    .story-steps::before { left: 16%; right: 16%; top: 58px; bottom: auto; border-left: 0; border-top: 3px dotted var(--primary-light); }
+    .story-steps li { flex-direction: column; align-items: center; text-align: center; padding: 30px 24px 26px; }
+    .story-icon { width: 64px; height: 64px; font-size: 30px; }
+    .story-steps p { font-size: 17px; }
+    .story-tagline span { font-size: 24px; padding: 18px 44px; }
 
     .reviews-list { grid-template-columns: 1fr 1fr; gap: 24px; }
     .review { background: var(--white); border-radius: var(--radius); padding: 20px; border: 1px solid var(--line); }
@@ -869,7 +953,7 @@ strong { color: var(--dark); }
             <div>
                 <div class="sec-head left-pc reveal">
                     <img src="assets/mascot-kitten.webp" alt="" class="mascot l" aria-hidden="true">
-                    <h2 class="sec-title">Mẹ lo lắng mỗi lần thấy <span class="hl">da con đỏ ửng</span></h2>
+                    <h2 class="sec-title"><span class="nw">Mẹ lo lắng mỗi lần thấy</span><br><span class="hl nw">da con đỏ ửng</span></h2>
                 </div>
                 <ul class="pain-list">
                     <li class="reveal"><span>😣</span> Vùng da mông, bẹn ửng đỏ khiến bé khó chịu, quấy khóc</li>
@@ -957,13 +1041,11 @@ strong { color: var(--dark); }
             <div class="split">
                 <div>
                     <p class="label-line">Hình ảnh feedback</p>
-                    <div class="duo reveal" data-list="feedback" data-ratio="ratio-34" data-label="Ảnh feedback"></div>
+                    <div class="slider reveal" data-slider="feedback" data-ratio="ratio-34" data-label="Ảnh feedback"></div>
                 </div>
                 <div>
                     <p class="label-line">Nghe các mẹ chia sẻ</p>
-                    <div class="video-wrap reveal">
-                        <div class="media ratio-916" data-video="testimonialVideo" data-label="Video các mẹ chia sẻ"></div>
-                    </div>
+                    <div class="slider videos reveal" data-slider="testimonialVideos" data-kind="video" data-ratio="ratio-916" data-label="Video các mẹ chia sẻ"></div>
                 </div>
             </div>
         </div>
@@ -1102,15 +1184,19 @@ strong { color: var(--dark); }
 
     <!-- 12. CÂU CHUYỆN THƯƠNG HIỆU -->
     <section class="sec story" id="story">
-        <div class="container story-wrap">
-            <div class="sec-head reveal">
-                <img src="assets/mascot-lion.webp" alt="" class="mascot r" aria-hidden="true">
-                <h2 class="sec-title">YÊU CON - <span class="hl">MẸ CHỌN BON BON</span></h2>
+        <div class="container">
+            <div class="story-hero reveal">
+                <img src="assets/mascot-bear.webp" alt="" class="story-mascot" aria-hidden="true">
+                <div class="sec-head">
+                    <h2 class="sec-title">YÊU CON -<br><span class="hl">MẸ CHỌN BON BON</span></h2>
+                </div>
             </div>
-            <p class="reveal">Bon Bon đồng hành cùng mẹ từ những ngày đầu đời của bé, từ tắm bé, massage đến chăm sóc da và rốn tại nhà và trung tâm.</p>
-            <p class="reveal">Với sự chăm chút nhẹ nhàng và các thành phần được lựa chọn phù hợp, Bon Bon cùng mẹ nâng niu làn da non nớt, chăm sóc bé yêu mỗi ngày.</p>
-            <p class="reveal">Bon Bon còn đồng hành cùng mẹ tại các hội thảo tiền sản và bệnh viện Sản – Nhi trên khắp ba miền Bắc – Trung – Nam.</p>
-            <p class="tagline reveal">Bon Bon - Dịu dàng chăm bé, trọn vẹn yêu thương.</p>
+            <ol class="story-steps">
+                <li class="reveal"><span class="story-icon" aria-hidden="true">🛁</span><p>Bon Bon đồng hành cùng mẹ từ những ngày đầu đời của bé, từ tắm bé, massage đến chăm sóc da và rốn tại nhà và trung tâm.</p></li>
+                <li class="reveal"><span class="story-icon" aria-hidden="true">🌿</span><p>Với sự chăm chút nhẹ nhàng và các thành phần được lựa chọn phù hợp, Bon Bon cùng mẹ nâng niu làn da non nớt, chăm sóc bé yêu mỗi ngày.</p></li>
+                <li class="reveal"><span class="story-icon" aria-hidden="true">🏥</span><p>Bon Bon còn đồng hành cùng mẹ tại các hội thảo tiền sản và bệnh viện Sản – Nhi trên khắp ba miền Bắc – Trung – Nam.</p></li>
+            </ol>
+            <p class="story-tagline reveal"><span>Bon Bon - Dịu dàng chăm bé, trọn vẹn yêu thương.</span></p>
         </div>
     </section>
 
@@ -1258,10 +1344,14 @@ strong { color: var(--dark); }
         const track = document.createElement('div'); track.className = 'slides';
         const dots = document.createElement('div'); dots.className = 'dots';
         const goTo = s => track.scrollTo({ left: s.offsetLeft - track.offsetLeft - (track.clientWidth - s.offsetWidth) / 2, behavior: 'smooth' });
-        items.forEach((it, i) => {
+        const isVideo = wrap.dataset.kind === 'video';
+        items.forEach((raw, i) => {
+            const it = typeof raw === 'string' ? { src: raw } : raw;
             const s = document.createElement('div');
             s.className = 'slide media ' + wrap.dataset.ratio;
-            fillImage(s, it.src, it.src ? (it.caption || wrap.dataset.label) : wrap.dataset.label);
+            const label = wrap.dataset.label + (items.length > 1 ? ' ' + (i + 1) : '');
+            if (isVideo) fillVideo(s, it.src, label);
+            else fillImage(s, it.src, it.src ? (it.caption || label) : label);
             if (it.caption) { const c = document.createElement('span'); c.className = 'caption'; c.textContent = it.caption; s.appendChild(c); }
             track.appendChild(s);
             const d = document.createElement('button');
@@ -1282,6 +1372,7 @@ strong { color: var(--dark); }
         track.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
         window.addEventListener('resize', update);
         update();
+        if (isVideo) return; // video: không tự chuyển để khỏi cắt ngang khi mẹ đang xem
         const auto = setInterval(() => {
             if (track.scrollWidth <= track.clientWidth + 2) return;
             const sl = track.children; if (sl.length) goTo(sl[(current + 1) % sl.length]);
