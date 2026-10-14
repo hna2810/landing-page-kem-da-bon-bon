@@ -2806,6 +2806,114 @@ img.faq-help-mascot { width: 130px; height: auto; }
 @media (min-width: 768px) { .combo-mascot { width: 220px; } }
 
 /* ============================================
+   BỐ CỤC ĐỠ TRỐNG MÀ KHÔNG RỐI
+   - Dải nền xen kẽ trắng / xanh nhạt, viền lượn sóng
+   - Mảng màu mềm phía sau các section nền trắng
+   - Linh vật 3D cạnh tiêu đề + bong bóng nước
+   ============================================ */
+body { background: #FFFFFF; }
+.band {
+    background: #E8F7FA;
+    padding-top: 76px;
+    padding-bottom: 76px;
+}
+.trust-section.band, .guarantee-section.band { padding-top: 64px; padding-bottom: 64px; }
+.band::before, .band::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 44px;
+    z-index: 0;
+    pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath d='M0 0H1440V26C1260 48 1080 6 900 22C720 38 540 54 360 30C200 10 80 20 0 30Z' fill='%23ffffff'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+}
+.band::before { top: -1px; }
+.band::after { bottom: -1px; transform: scale(-1, -1); }
+.band-notail::after, .band-nohead::before { display: none; }
+.trust-section.band-notail { padding-bottom: 24px; }
+.guarantee-section.band-nohead { padding-top: 24px; }
+@media (min-width: 768px) {
+    .band { padding-top: 96px; padding-bottom: 96px; }
+    .band::before, .band::after { height: 64px; }
+}
+
+/* Mảng màu mềm cho section nền trắng */
+.section:not(.band):not(.combo-section)::before,
+.section:not(.band):not(.combo-section)::after {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+    background: #EEF9FB;
+    border-radius: 42% 58% 63% 37% / 45% 40% 60% 55%;
+}
+.section:not(.band):not(.combo-section)::before { width: 260px; height: 260px; top: 8%; left: -150px; }
+.section:not(.band):not(.combo-section)::after { width: 220px; height: 220px; bottom: 6%; right: -120px; border-radius: 60% 40% 35% 65% / 50% 60% 40% 50%; }
+@media (min-width: 768px) {
+    .section:not(.band):not(.combo-section)::before { width: 440px; height: 440px; left: -220px; }
+    .section:not(.band):not(.combo-section)::after { width: 380px; height: 380px; right: -180px; }
+}
+.hero::after {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    right: -120px; top: 12%;
+    width: 520px; height: 520px;
+    background: #E8F7FA;
+    border-radius: 60% 40% 45% 55% / 50% 55% 45% 50%;
+}
+
+/* Linh vật 3D cạnh tiêu đề */
+.hdeco, .peek, .form-peek, .compare-score-mascot, .perks-mascot {
+    filter: url(#puffy) drop-shadow(0 8px 10px rgba(45,58,74,0.12));
+}
+.hdeco { width: 50px; height: 50px; }
+@media (min-width: 768px) {
+    .hdeco { top: 22px; width: 104px; height: 104px; }
+    .hdeco-l { left: -118px; }
+    .hdeco-r { right: -118px; }
+}
+@media (min-width: 1100px) {
+    .hdeco { top: 14px; width: 128px; height: 128px; }
+    .hdeco-l { left: -168px; }
+    .hdeco-r { right: -168px; }
+}
+
+/* Bong bóng nước (giống ảnh linh vật) */
+.bub {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle at 32% 30%, rgba(255,255,255,0.95) 0 14%, rgba(206,240,246,0.55) 40%, rgba(76,192,211,0.2) 100%);
+    border: 1.5px solid rgba(76,192,211,0.35);
+    box-shadow: inset -3px -4px 8px rgba(76,192,211,0.15);
+    display: flex; align-items: center; justify-content: center;
+    animation: bubFloat 5s ease-in-out infinite;
+}
+.bub.leaf { font-size: 14px; border-color: rgba(120,190,90,0.55); }
+@keyframes bubFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+.b1 { width: 14px; height: 14px; left: 50px; top: -16px; }
+.b2 { width: 10px; height: 10px; right: 54px; top: 30px; animation-delay: -2s; }
+.b3 { width: 24px; height: 24px; right: 2px; top: 44px; animation-delay: -1s; }
+@media (min-width: 768px) {
+    .b1 { width: 26px; height: 26px; left: -14px; top: 8px; }
+    .b2 { width: 18px; height: 18px; right: auto; left: -150px; top: 130px; }
+    .b3 { width: 40px; height: 40px; right: -40px; top: 0; }
+    .bub.leaf { font-size: 22px; }
+}
+@media (min-width: 1100px) {
+    .b2 { left: -190px; top: 150px; }
+    .b3 { right: -56px; top: -6px; }
+}
+.hb1 { width: 34px; height: 34px; top: 4%; right: 10%; }
+.hb2 { width: 20px; height: 20px; top: 24%; right: 0; animation-delay: -2s; }
+.hb3 { width: 46px; height: 46px; bottom: 16%; right: -2%; font-size: 22px; animation-delay: -1s; }
+.combo-section .bub { border-color: rgba(255,255,255,0.6); }
+
+/* ============================================
    FORM STATES (loading / lỗi gửi / thành công)
    ============================================ */
 .hp-field {
@@ -3035,6 +3143,54 @@ img.faq-help-mascot { width: 130px; height: auto; }
             <text x="74" y="30" font-size="16" font-family="Quicksand, sans-serif" font-weight="800" fill="#8AD6E2">z</text>
             <text x="84" y="16" font-size="12" font-family="Quicksand, sans-serif" font-weight="800" fill="#8AD6E2">z</text>
         </symbol>
+        <!-- Vịt cao su -->
+        <symbol id="a-duck" viewBox="0 0 120 120">
+            <ellipse cx="62" cy="84" rx="44" ry="28" fill="#FFD84D"/>
+            <path d="M96 70 Q112 60 110 78 Q104 84 96 82 Z" fill="#FFD84D"/>
+            <circle cx="50" cy="48" r="28" fill="#FFD84D"/>
+            <path d="M20 48 Q12 46 10 52 Q14 60 26 56 Z" fill="#FF9F43"/>
+            <circle cx="44" cy="42" r="4.5" fill="#2D3A4A"/><circle cx="45.4" cy="40.6" r="1.4" fill="#fff"/>
+            <ellipse cx="36" cy="54" rx="6" ry="3.5" fill="#FF9DB5" opacity=".7"/>
+            <path d="M58 82 Q72 72 86 82 Q72 92 58 82 Z" fill="#FFC93C"/>
+        </symbol>
+        <!-- Ếch -->
+        <symbol id="a-frog" viewBox="0 0 120 120">
+            <circle cx="36" cy="36" r="17" fill="#8ED69B"/><circle cx="84" cy="36" r="17" fill="#8ED69B"/>
+            <circle cx="36" cy="36" r="10" fill="#fff"/><circle cx="84" cy="36" r="10" fill="#fff"/>
+            <circle cx="38" cy="37" r="5" fill="#2D3A4A"/><circle cx="82" cy="37" r="5" fill="#2D3A4A"/>
+            <circle cx="39.5" cy="35.5" r="1.6" fill="#fff"/><circle cx="83.5" cy="35.5" r="1.6" fill="#fff"/>
+            <ellipse cx="60" cy="72" rx="46" ry="36" fill="#8ED69B"/>
+            <ellipse cx="60" cy="84" rx="28" ry="18" fill="#D8F3DC"/>
+            <path d="M44 66 Q60 78 76 66" stroke="#3E7D4F" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+            <ellipse cx="28" cy="64" rx="7" ry="4.5" fill="#FF9DB5" opacity=".7"/><ellipse cx="92" cy="64" rx="7" ry="4.5" fill="#FF9DB5" opacity=".7"/>
+        </symbol>
+        <!-- Koala -->
+        <symbol id="a-koala" viewBox="0 0 120 120">
+            <circle cx="24" cy="44" r="20" fill="#B9C2CC"/><circle cx="24" cy="46" r="11" fill="#F2DDE3"/>
+            <circle cx="96" cy="44" r="20" fill="#B9C2CC"/><circle cx="96" cy="46" r="11" fill="#F2DDE3"/>
+            <ellipse cx="60" cy="68" rx="40" ry="38" fill="#C9D1DA"/>
+            <ellipse cx="60" cy="74" rx="11" ry="15" fill="#4A4F5A"/>
+            <circle cx="44" cy="60" r="4.5" fill="#2D3A4A"/><circle cx="76" cy="60" r="4.5" fill="#2D3A4A"/>
+            <circle cx="45.4" cy="58.6" r="1.4" fill="#fff"/><circle cx="77.4" cy="58.6" r="1.4" fill="#fff"/>
+            <path d="M54 94 Q60 98 66 94" stroke="#4A4F5A" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <ellipse cx="36" cy="78" rx="7" ry="4" fill="#FFB3C6" opacity=".8"/><ellipse cx="84" cy="78" rx="7" ry="4" fill="#FFB3C6" opacity=".8"/>
+        </symbol>
+        <!-- Bộ lọc tạo khối bóng (giống đồ chơi 3D) -->
+        <filter id="puffy" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="blur"/>
+            <feSpecularLighting in="blur" surfaceScale="6" specularConstant="0.75" specularExponent="28" lighting-color="#ffffff" result="spec">
+                <fePointLight x="20" y="0" z="160"/>
+            </feSpecularLighting>
+            <feComposite in="spec" in2="SourceAlpha" operator="in" result="specIn"/>
+            <feDiffuseLighting in="blur" surfaceScale="5" diffuseConstant="1" lighting-color="#ffffff" result="diff">
+                <feDistantLight azimuth="225" elevation="55"/>
+            </feDiffuseLighting>
+            <feComposite in="diff" in2="SourceAlpha" operator="in" result="diffIn"/>
+            <feBlend in="SourceGraphic" in2="diffIn" mode="multiply" result="shaded"/>
+            <feComposite in="shaded" in2="SourceGraphic" operator="arithmetic" k2="0.5" k3="0.5" result="soft"/>
+            <feComposite in="soft" in2="specIn" operator="arithmetic" k2="1" k3="0.42" result="lit"/>
+            <feComposite in="lit" in2="SourceAlpha" operator="in"/>
+        </filter>
         <!-- Dấu chân -->
         <symbol id="a-paw" viewBox="0 0 100 100">
             <ellipse cx="50" cy="64" rx="22" ry="18" fill="currentColor"/>
@@ -3111,6 +3267,7 @@ img.faq-help-mascot { width: 130px; height: auto; }
                 <span class="hero-product-deco">⭐</span>
                 <span class="hero-product-deco">🌸</span>
                 <span class="hero-product-deco">✨</span>
+                <span class="bub hb1" aria-hidden="true"></span><span class="bub hb2" aria-hidden="true"></span><span class="bub hb3 leaf" aria-hidden="true">🌿</span>
                 <img src="assets/mascot-lion.webp" alt="" class="hero-mascot" width="631" height="640" loading="eager" aria-hidden="true">
             </div>
         </div>
@@ -3152,11 +3309,12 @@ img.faq-help-mascot { width: 130px; height: auto; }
 <!-- ============================================
      PAIN POINTS SECTION
      ============================================ -->
-<section class="section pain-section" id="pain-section">
+<section class="section pain-section band" id="pain-section">
     <div class="container">
         <div class="section-header reveal">
-            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-cat"/></svg>
+            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-koala"/></svg>
             <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-cloud"/></svg>
+            <span class="bub b1" aria-hidden="true"></span><span class="bub b2" aria-hidden="true"></span><span aria-hidden="true" class="bub b3"></span>
             <span class="section-label">VẤN ĐỀ CỦA MẸ</span>
             <h2 class="section-title">Mẹ Có Đang <span>Lo Lắng</span> Vì Con... 😟</h2>
             <p class="section-desc">Hãy để Bon Bon đồng hành cùng mẹ giải quyết những nỗi lo này</p>
@@ -3215,6 +3373,7 @@ img.faq-help-mascot { width: 130px; height: auto; }
         <div class="section-header reveal">
             <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-bear"/></svg>
             <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-star"/></svg>
+            <span class="bub b1" aria-hidden="true"></span><span class="bub b2" aria-hidden="true"></span><span aria-hidden="true" class="bub b3 leaf">🌿</span>
             <span class="section-label">GIẢI PHÁP TỪ THIÊN NHIÊN</span>
             <h2 class="section-title">Kem Bôi Chàm Sữa <span>Bon Bon</span> 🌿</h2>
             <p class="section-desc">Giải pháp dịu nhẹ từ thiên nhiên — Chuyên gia tin dùng — An toàn tuyệt đối cho bé</p>
@@ -3285,11 +3444,12 @@ img.faq-help-mascot { width: 130px; height: auto; }
 <!-- ============================================
      COMPARISON TABLE
      ============================================ -->
-<section class="section compare-section" id="compare-section">
+<section class="section compare-section band" id="compare-section">
     <div class="container">
         <div class="section-header reveal">
             <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-chick"/></svg>
             <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-fox"/></svg>
+            <span class="bub b1" aria-hidden="true"></span><span class="bub b2" aria-hidden="true"></span><span aria-hidden="true" class="bub b3"></span>
             <span class="section-label">SO SÁNH</span>
             <h2 class="section-title">Tại Sao Chọn <span>Bon Bon</span>? 🤔</h2>
             <p class="section-desc">So sánh Kem Bon Bon với các sản phẩm thông thường trên thị trường</p>
@@ -3378,8 +3538,9 @@ img.faq-help-mascot { width: 130px; height: auto; }
 <section class="section product-detail-section" id="product-detail">
     <div class="container">
         <div class="section-header reveal">
-            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-elephant"/></svg>
+            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-duck"/></svg>
             <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-rainbow"/></svg>
+            <span class="bub b1" aria-hidden="true"></span><span class="bub b2" aria-hidden="true"></span><span aria-hidden="true" class="bub b3 leaf">🌿</span>
             <span class="section-label">CHI TIẾT SẢN PHẨM</span>
             <h2 class="section-title">Mọi Thứ Mẹ Cần <span>Biết</span> Về Bon Bon 📋</h2>
             <p class="section-desc">Thông tin đầy đủ giúp mẹ yên tâm lựa chọn cho con yêu</p>
@@ -3458,11 +3619,12 @@ img.faq-help-mascot { width: 130px; height: auto; }
 <!-- ============================================
      INGREDIENTS SECTION
      ============================================ -->
-<section class="section ingredients-section" id="ingredients-section">
+<section class="section ingredients-section band" id="ingredients-section">
     <div class="container">
         <div class="section-header reveal">
             <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-bunny"/></svg>
-            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-sheep"/></svg>
+            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-frog"/></svg>
+            <span class="bub b1" aria-hidden="true"></span><span class="bub b2" aria-hidden="true"></span><span aria-hidden="true" class="bub b3 leaf">🌿</span>
             <span class="section-label">THÀNH PHẦN TỰ NHIÊN</span>
             <h2 class="section-title">Thân Thiện Với <span>Làn Da Bé</span> 🌸</h2>
             <p class="section-desc">Mỗi thành phần được chọn lọc kỹ lưỡng để bảo vệ làn da mỏng manh của con</p>
@@ -3537,6 +3699,7 @@ img.faq-help-mascot { width: 130px; height: auto; }
         <div class="section-header reveal">
             <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-whale"/></svg>
             <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-moon"/></svg>
+            <span class="bub b1" aria-hidden="true"></span><span class="bub b2" aria-hidden="true"></span><span aria-hidden="true" class="bub b3"></span>
             <span class="section-label">HƯỚNG DẪN SỬ DỤNG</span>
             <h2 class="section-title">Mẹ Bôi Kem <span>Đúng Cách</span> Cho Con 📝</h2>
             <p class="section-desc">Chỉ 4 bước đơn giản để bảo vệ làn da bé mỗi ngày</p>
@@ -3599,7 +3762,7 @@ img.faq-help-mascot { width: 130px; height: auto; }
 </div>
 
 <!-- TRUST BADGES SECTION -->
-<section class="trust-section" id="trust-section">
+<section class="trust-section band band-notail" id="trust-section">
     <div class="container">
         <div class="trust-grid">
             <div class="trust-badge-card reveal">
@@ -3635,7 +3798,7 @@ img.faq-help-mascot { width: 130px; height: auto; }
 </section>
 
 <!-- GUARANTEE SECTION -->
-<section class="guarantee-section reveal">
+<section class="guarantee-section band band-nohead reveal">
     <div class="container">
         <div class="guarantee-inner">
             <div class="guarantee-icon">🛡️</div>
@@ -3682,6 +3845,7 @@ img.faq-help-mascot { width: 130px; height: auto; }
         <div class="section-header reveal">
             <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-panda"/></svg>
             <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-cat"/></svg>
+            <span class="bub b1" aria-hidden="true"></span><span class="bub b2" aria-hidden="true"></span><span aria-hidden="true" class="bub b3"></span>
             <span class="section-label">FEEDBACK TỪ CÁC MẸ</span>
             <h2 class="section-title">Hàng Ngàn Mẹ <span>Tin Dùng</span> Và Hài Lòng 🌟</h2>
         </div>
@@ -3827,7 +3991,8 @@ img.faq-help-mascot { width: 130px; height: auto; }
     <div class="container">
         <div class="section-header reveal">
             <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-star"/></svg>
-            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-balloon"/></svg>
+            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-duck"/></svg>
+            <span class="bub b1" aria-hidden="true"></span><span class="bub b2" aria-hidden="true"></span><span aria-hidden="true" class="bub b3"></span>
             <span class="section-label">ƯU ĐÃI ĐẶC BIỆT</span>
             <h2 class="section-title">Combo Siêu Tiết Kiệm — <span>Giảm 50%</span> 🎁</h2>
             <p class="section-desc">Bộ 3 sản phẩm chăm sóc bé toàn diện với mức giá không thể tốt hơn</p>
@@ -3906,11 +4071,12 @@ img.faq-help-mascot { width: 130px; height: auto; }
 <!-- ============================================
      ORDER PROCESS
      ============================================ -->
-<section class="section process-section" id="process-section">
+<section class="section process-section band" id="process-section">
     <div class="container">
         <div class="section-header reveal">
             <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-chick"/></svg>
             <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-penguin"/></svg>
+            <span class="bub b1" aria-hidden="true"></span><span class="bub b2" aria-hidden="true"></span><span aria-hidden="true" class="bub b3"></span>
             <span class="section-label">QUY TRÌNH ĐẶT HÀNG</span>
             <h2 class="section-title">Chỉ <span>3 Bước</span> Đơn Giản 🚀</h2>
             <p class="section-desc">Nhận hàng tận nơi — Thanh toán khi nhận — Không cần ứng trước</p>
@@ -4063,11 +4229,12 @@ img.faq-help-mascot { width: 130px; height: auto; }
 <!-- ============================================
      FAQ SECTION
      ============================================ -->
-<section class="section faq-section" id="faq-section">
+<section class="section faq-section band" id="faq-section">
     <div class="container">
         <div class="section-header reveal">
-            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-cloud"/></svg>
-            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-sheep"/></svg>
+            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-sheep"/></svg>
+            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-cloud"/></svg>
+            <span class="bub b1" aria-hidden="true"></span><span class="bub b2" aria-hidden="true"></span><span aria-hidden="true" class="bub b3"></span>
             <span class="section-label">HỎI ĐÁP</span>
             <h2 class="section-title">Câu Hỏi <span>Thường Gặp</span> 💬</h2>
         </div>
