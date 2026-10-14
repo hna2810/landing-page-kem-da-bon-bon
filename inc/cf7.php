@@ -72,7 +72,7 @@ function lx_ensure_cf7_form() {
             'active'    => true,
             'subject'   => 'Đơn đặt hàng Kem Hăm Bon Bon mới từ [your-name]',
             'sender'    => '[_site_title] <wordpress@' . ($_SERVER['SERVER_NAME'] ?? 'kemham.bonbonhomecare.vn') . '>',
-            'recipient' => get_option('admin_email'),
+            'recipient' => 'tuyenhomecare@gmail.com',
             'body'      => "Thông tin đơn hàng mới từ Landing Page:\n\n"
                          . "Họ tên: [your-name]\n"
                          . "Số điện thoại: [your-phone]\n"
