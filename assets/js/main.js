@@ -251,12 +251,18 @@ document.documentElement.classList.add('js');
         const DURATION = Math.round((CFG.offerMinutes || 10.5) * 60 * 1000);
         let end = parseInt(store.get('bonbon_offer_end'), 10);
         if (!end || end < Date.now()) { end = Date.now() + DURATION; store.set('bonbon_offer_end', end); }
-        const mEl = document.getElementById('cdMin'), sEl = document.getElementById('cdSec');
+        const hEl = document.getElementById('cdHour');
+        const mEl = document.getElementById('cdMin');
+        const sEl = document.getElementById('cdSec');
         const tick = () => {
             let left = end - Date.now();
             if (left <= 0) { end = Date.now() + DURATION; store.set('bonbon_offer_end', end); left = DURATION; }
-            mEl.textContent = String(Math.floor(left / 60000)).padStart(2, '0');
-            sEl.textContent = String(Math.floor((left % 60000) / 1000)).padStart(2, '0');
+            const hours = Math.floor(left / 3600000);
+            const mins = Math.floor((left % 3600000) / 60000);
+            const secs = Math.floor((left % 60000) / 1000);
+            if (hEl) hEl.textContent = String(hours).padStart(2, '0');
+            if (mEl) mEl.textContent = String(mins).padStart(2, '0');
+            if (sEl) sEl.textContent = String(secs).padStart(2, '0');
         };
         tick(); setInterval(tick, 1000);
     })();

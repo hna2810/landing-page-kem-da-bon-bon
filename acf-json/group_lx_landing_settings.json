@@ -485,6 +485,16 @@
       "default_value": "Ưu đãi tặng riêng cho mẹ"
     },
     {
+      "key": "field_lx_order_product_img",
+      "label": "Ảnh sản phẩm khối đặt hàng",
+      "name": "lx_order_product_img",
+      "type": "image",
+      "instructions": "Tải lên hoặc chọn ảnh hũ Kem Hăm Bon Bon để hiển thị trong khối ưu đãi đặt hàng (thay thế cho hình con mèo hoạt hình).",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
       "key": "field_lx_cf7_shortcode",
       "label": "Mã Shortcode Contact Form 7",
       "name": "lx_cf7_shortcode",
