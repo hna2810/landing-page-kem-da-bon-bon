@@ -9,6 +9,25 @@
       "type": "tab"
     },
     {
+      "key": "field_lx_logo_image",
+      "label": "Ảnh Logo thương hiệu",
+      "name": "lx_logo_image",
+      "type": "image",
+      "instructions": "Tải lên ảnh logo thương hiệu (PNG trong suốt, SVG hoặc WebP). Chiều cao hiển thị chuẩn: 36px - 44px.",
+      "return_format": "url",
+      "preview_size": "medium",
+      "library": "all"
+    },
+    {
+      "key": "field_lx_show_brand_name_with_logo",
+      "label": "Hiển thị tên thương hiệu cùng Logo",
+      "name": "lx_show_brand_name_with_logo",
+      "type": "true_false",
+      "instructions": "Bật tùy chọn này nếu muốn hiển thị cả ảnh logo và chữ tên thương hiệu cạnh nhau.",
+      "default_value": 0,
+      "ui": 1
+    },
+    {
       "key": "field_lx_brand_name",
       "label": "Tên thương hiệu",
       "name": "lx_brand_name",

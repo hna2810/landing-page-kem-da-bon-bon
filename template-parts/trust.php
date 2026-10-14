@@ -12,8 +12,8 @@ if (!defined('ABSPATH')) {
 $trust_title = lx_get_field('lx_trust_title', 'option', 'An tâm <span class="hl">sử dụng</span>');
 $cert_text   = lx_get_field('lx_cert_text', 'option', '80/26/CBMP-NB');
 $stamp_text  = lx_get_field('lx_stamp_text', 'option', 'Bộ Công An');
-$cert_img    = lx_get_image_url('lx_cert_image', 'option', '');
-$stamp_img   = lx_get_image_url('lx_stamp_image', 'option', '');
+$cert_img    = lx_get_image_url('lx_cert_image', '', 'full', 'option');
+$stamp_img   = lx_get_image_url('lx_stamp_image', '', 'full', 'option');
 ?>
 <!-- 5. AN TÂM -->
 <section class="sec" id="trust">

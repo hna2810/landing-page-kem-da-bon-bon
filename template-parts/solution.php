@@ -11,7 +11,7 @@ if (!defined('ABSPATH')) {
 
 $solution_title = lx_get_field('lx_solution_title', 'option', '<span class="hl">Bon Bon</span> – Nhẹ nhàng chăm sóc vùng da bé bị hăm');
 $solution_desc  = lx_get_field('lx_solution_desc', 'option', 'Với kết cấu kem mịn cùng công thức an lành, Kem Da Bon Bon giúp mẹ chủ động chăm sóc da bé thoát khỏi hăm.');
-$mother_baby    = lx_get_image_url('lx_solution_image', 'option', '');
+$mother_baby    = lx_get_image_url('lx_solution_image', '', 'full', 'option');
 ?>
 <!-- 3. GIẢI PHÁP -->
 <section class="sec" id="solution">

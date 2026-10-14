@@ -19,7 +19,7 @@ $no_items     = array_map('trim', explode(',', $no_list_str));
 
 $price      = lx_format_price(lx_get_field('lx_price', 'option', 49000));
 $list_price = lx_format_price(lx_get_field('lx_list_price', 'option', 80000));
-$hero_img   = lx_get_image_url('lx_hero_image', 'option', '');
+$hero_img   = lx_get_image_url('lx_hero_image', '', 'full', 'option');
 ?>
 <!-- 1. HERO: bên trái text, bên phải ảnh trước - sau -->
 <section class="hero">

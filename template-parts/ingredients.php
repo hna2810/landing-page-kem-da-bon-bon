@@ -13,7 +13,7 @@ $ingr_title = lx_get_field('lx_ingr_title', 'option', 'THÀNH PHẦN <span class
 $ingr_sub   = lx_get_field('lx_ingr_sub', 'option', 'Phù hợp với trẻ sơ sinh & trẻ nhỏ Việt');
 $five_no_str = lx_get_field('lx_five_no', 'option', 'Không Corticoid, Không Paraben, Không hương liệu, Không bết rít, Không để lại vệt trên da');
 $five_nos    = array_map('trim', explode(',', $five_no_str));
-$cream_img   = lx_get_image_url('lx_cream_image', 'option', '');
+$cream_img   = lx_get_image_url('lx_cream_image', '', 'full', 'option');
 
 $default_ingrs = array(
     array('icon' => '🛡️', 'name' => 'Petrolatum', 'desc' => 'Tạo lớp màng bảo vệ da, hạn chế mất nước'),

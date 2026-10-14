@@ -37,6 +37,13 @@ function lx_get_field($selector, $post_id = 'option', $default = '') {
  * @return string
  */
 function lx_get_image_url($selector, $default = '', $size = 'full', $post_id = 'option') {
+    // Guard against accidental parameter swapping where 'option' was passed as 2nd param
+    if ($default === 'option') {
+        $post_id = 'option';
+        $default = (is_string($size) && $size !== 'full') ? $size : '';
+        $size = 'full';
+    }
+
     if (function_exists('get_field')) {
         $img = get_field($selector, $post_id);
         if (!empty($img)) {
@@ -52,12 +59,12 @@ function lx_get_image_url($selector, $default = '', $size = 'full', $post_id = '
                     return $src;
                 }
             }
-            if (is_string($img)) {
+            if (is_string($img) && trim($img) !== '' && $img !== 'option') {
                 return $img;
             }
         }
     }
-    return $default;
+    return ($default !== 'option') ? $default : '';
 }
 
 /**

@@ -92,11 +92,11 @@ function lx_enqueue_scripts() {
     }
 
     // Media
-    $hero_img      = lx_get_image_url('lx_hero_image', 'option', '');
-    $mother_baby   = lx_get_image_url('lx_solution_image', 'option', '');
-    $cream_texture = lx_get_image_url('lx_cream_image', 'option', '');
-    $cert_img      = lx_get_image_url('lx_cert_image', 'option', '');
-    $stamp_img     = lx_get_image_url('lx_stamp_image', 'option', '');
+    $hero_img      = lx_get_image_url('lx_hero_image', '', 'full', 'option');
+    $mother_baby   = lx_get_image_url('lx_solution_image', '', 'full', 'option');
+    $cream_texture = lx_get_image_url('lx_cream_image', '', 'full', 'option');
+    $cert_img      = lx_get_image_url('lx_cert_image', '', 'full', 'option');
+    $stamp_img     = lx_get_image_url('lx_stamp_image', '', 'full', 'option');
     $guide_video   = lx_get_field('lx_guide_video', 'option', '');
 
     // Rash Slides
