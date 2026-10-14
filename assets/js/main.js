@@ -92,12 +92,14 @@ document.documentElement.classList.add('js');
         const m = url.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/);
         return m ? m[1] : null;
     }
-    function fillVideo(box, url, label) {
+    function fillVideo(box, item, label) {
+        const url = (typeof item === 'object' && item !== null) ? (item.src || '') : (item || '');
+        const customThumb = (typeof item === 'object' && item !== null) ? (item.thumb || '') : '';
         if (!url) { box.appendChild(placeholder(label, '🎬')); return; }
         const yt = youtubeId(url);
         if (yt) {
             const img = document.createElement('img');
-            img.src = 'https://i.ytimg.com/vi/' + yt + '/hqdefault.jpg';
+            img.src = customThumb || ('https://i.ytimg.com/vi/' + yt + '/hqdefault.jpg');
             img.alt = label; img.loading = 'lazy';
             const play = document.createElement('button');
             play.type = 'button'; play.className = 'video-play'; play.setAttribute('aria-label', 'Phát ' + label);
@@ -112,6 +114,7 @@ document.documentElement.classList.add('js');
         } else {
             const v = document.createElement('video');
             v.src = url; v.controls = true; v.playsInline = true; v.preload = 'metadata';
+            if (customThumb) v.poster = customThumb;
             box.appendChild(v);
         }
     }
@@ -472,12 +475,40 @@ document.addEventListener('wpcf7mailsent', function (event) {
 
     const modalImg = modal.querySelector('img');
     document.addEventListener('click', function (e) {
-        const item = e.target.closest('.review-img-item');
-        if (item) {
-            const src = item.dataset.full || item.querySelector('img')?.src;
+        // Bỏ qua nếu bấm vào nút điều khiển, mũi tên slider hoặc nút phát video
+        if (e.target.closest('button, a, .video-play, .slider-arrow, .dots, .lightbox-close')) return;
+
+        // 1. Ảnh slide Feedback
+        const feedbackSlide = e.target.closest('#feedback [data-slider="feedback"] .slide');
+        if (feedbackSlide) {
+            const img = feedbackSlide.querySelector('img');
+            const src = feedbackSlide.dataset.full || (img ? img.src : null);
+            if (src && !src.includes('placeholder')) {
+                modalImg.src = src;
+                modal.classList.add('open');
+                return;
+            }
+        }
+
+        // 2. Ảnh Đánh giá của khách hàng (Reviews)
+        const reviewItem = e.target.closest('.review-img-item, .review-imgs img');
+        if (reviewItem) {
+            const src = reviewItem.dataset.full || reviewItem.src || reviewItem.querySelector('img')?.src;
             if (src) {
                 modalImg.src = src;
                 modal.classList.add('open');
+                return;
+            }
+        }
+
+        // 3. Ảnh Trước - Sau (Before / After), Giấy chứng nhận, Hội thảo
+        const otherImg = e.target.closest('.ba .media img, .trust-img, .duo img, .seminar-slide img, [data-zoom]');
+        if (otherImg) {
+            const src = otherImg.dataset.full || otherImg.src || otherImg.querySelector('img')?.src;
+            if (src && !src.includes('placeholder')) {
+                modalImg.src = src;
+                modal.classList.add('open');
+                return;
             }
         }
     });

@@ -375,6 +375,16 @@
           "label": "Link Video (YouTube/Shorts/MP4)",
           "name": "video_url",
           "type": "text"
+        },
+        {
+          "key": "field_vid_thumb",
+          "label": "Ảnh Thumbnail Video (tùy chọn)",
+          "name": "video_thumb",
+          "type": "image",
+          "instructions": "Tải lên ảnh thumbnail bìa cho video (khuyến nghị tỉ lệ dọc 9:16 để hiển thị đẹp nhất)",
+          "return_format": "url",
+          "preview_size": "medium",
+          "library": "all"
         }
       ]
     },

@@ -138,14 +138,35 @@ function lx_enqueue_scripts() {
     $testimonial_videos = array();
     if (!empty($raw_videos) && is_array($raw_videos)) {
         foreach ($raw_videos as $v) {
-            $src = is_array($v) ? ($v['video_url'] ?? '') : $v;
+            $src   = '';
+            $thumb = '';
+            if (is_array($v)) {
+                $src = !empty($v['video_url']) ? trim($v['video_url']) : '';
+                if (!empty($v['video_thumb'])) {
+                    if (is_array($v['video_thumb']) && !empty($v['video_thumb']['url'])) {
+                        $thumb = $v['video_thumb']['url'];
+                    } elseif (is_numeric($v['video_thumb'])) {
+                        $thumb = wp_get_attachment_image_url($v['video_thumb'], 'large');
+                    } elseif (is_string($v['video_thumb'])) {
+                        $thumb = trim($v['video_thumb']);
+                    }
+                }
+            } elseif (is_string($v)) {
+                $src = trim($v);
+            }
             if ($src) {
-                $testimonial_videos[] = $src;
+                $testimonial_videos[] = array(
+                    'src'   => $src,
+                    'thumb' => $thumb,
+                );
             }
         }
     }
     if (empty($testimonial_videos)) {
-        $testimonial_videos = array('', '', '');
+        $testimonial_videos = array(
+            array('src' => '', 'thumb' => ''),
+            array('src' => '', 'thumb' => ''),
+        );
     }
 
     // Seminar Slides
