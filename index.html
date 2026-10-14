@@ -2755,6 +2755,57 @@ body::before { opacity: 0.45; }
 }
 
 /* ============================================
+   THOÁNG HƠN: BỎ HOẠ TIẾT NỀN, TRANG TRÍ QUANH TIÊU ĐỀ
+   ============================================ */
+body::before { display: none; }
+.section-header { position: relative; }
+.hdeco {
+    position: absolute;
+    top: -10px;
+    width: 46px; height: 46px;
+    pointer-events: none;
+    animation: decoBob 6s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(76,192,211,0.18));
+}
+.hdeco-l { left: 0; }
+.hdeco-r { right: 0; animation-delay: -3s; }
+@media (min-width: 768px) {
+    .hdeco { top: 34px; width: 88px; height: 88px; }
+    .hdeco-l { left: -96px; }
+    .hdeco-r { right: -96px; }
+}
+@media (min-width: 1100px) {
+    .hdeco { width: 104px; height: 104px; }
+    .hdeco-l { left: -140px; }
+    .hdeco-r { right: -140px; }
+}
+
+/* Ảnh linh vật */
+.hero-mascot {
+    position: absolute;
+    left: -6px; bottom: -18px;
+    width: 120px; height: auto;
+    z-index: 3;
+    animation: decoBob 5s ease-in-out infinite;
+    filter: drop-shadow(0 10px 16px rgba(0,0,0,0.08));
+}
+@media (min-width: 768px) { .hero-mascot { width: 180px; left: -40px; bottom: -30px; } }
+img.info-banner-art { width: 150px; height: auto; }
+@media (min-width: 768px) {
+    .info-banner { grid-template-columns: 200px 1fr; }
+    img.info-banner-art { width: 200px; }
+}
+img.faq-help-mascot { width: 130px; height: auto; }
+.combo-mascot {
+    display: block;
+    width: 170px; height: auto;
+    margin: 0 auto 6px;
+    animation: decoBob 6s ease-in-out infinite;
+    filter: drop-shadow(0 10px 18px rgba(0,0,0,0.12));
+}
+@media (min-width: 768px) { .combo-mascot { width: 220px; } }
+
+/* ============================================
    FORM STATES (loading / lỗi gửi / thành công)
    ============================================ */
 .hp-field {
@@ -2912,11 +2963,6 @@ body::before { opacity: 0.45; }
             <circle cx="40" cy="50" r="3.5" fill="#5B4A1E"/><circle cx="60" cy="50" r="3.5" fill="#5B4A1E"/>
             <path d="M44 60 Q50 65 56 60" stroke="#5B4A1E" stroke-width="3" fill="none" stroke-linecap="round"/>
         </symbol>
-        <!-- Trái tim -->
-        <symbol id="a-heart" viewBox="0 0 100 100">
-            <path d="M50 88 C20 66 6 50 10 32 C14 14 38 10 50 28 C62 10 86 14 90 32 C94 50 80 66 50 88 Z" fill="#FFB3C6"/>
-            <ellipse cx="30" cy="32" rx="8" ry="5" fill="#fff" opacity=".6" transform="rotate(-30 30 32)"/>
-        </symbol>
         <!-- Bóng bay -->
         <symbol id="a-balloon" viewBox="0 0 60 120">
             <ellipse cx="30" cy="34" rx="26" ry="32" fill="#A8E6CF"/>
@@ -3011,18 +3057,6 @@ body::before { opacity: 0.45; }
 <!-- SCROLL PROGRESS -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<!-- FLOATING BG ELEMENTS -->
-<div class="floating-elements">
-    <span class="float-item">⭐</span>
-    <span class="float-item">💖</span>
-    <span class="float-item">🌸</span>
-    <span class="float-item">✨</span>
-    <span class="float-item">🧸</span>
-    <span class="float-item">🎀</span>
-    <span class="float-item">🍼</span>
-    <span class="float-item">☁️</span>
-</div>
-
 <!-- HEADER -->
 <header class="header" id="header">
     <div class="header-inner">
@@ -3043,12 +3077,6 @@ body::before { opacity: 0.45; }
      HERO SECTION
      ============================================ -->
 <section class="hero" id="hero">
-    <svg class="deco deco-tl lg" aria-hidden="true"><use href="#a-cloud"/></svg>
-    <svg class="deco deco-tr sm wiggle" aria-hidden="true"><use href="#a-star"/></svg>
-    <svg class="deco deco-bl lg" aria-hidden="true"><use href="#a-bunny"/></svg>
-    <svg class="deco deco-br" aria-hidden="true"><use href="#a-balloon"/></svg>
-    <svg class="deco deco-ml sm" aria-hidden="true"><use href="#a-moon"/></svg>
-    <svg class="deco deco-mr xs wiggle" aria-hidden="true"><use href="#a-heart"/></svg>
     <div class="hero-bg-circle"></div>
     <div class="hero-bg-circle"></div>
     
@@ -3060,7 +3088,7 @@ body::before { opacity: 0.45; }
                 </div>
                 <h1 class="hero-title">
                     Mẹ Ơi, <span>Da Con</span><br>
-                    <span class="highlight-pink">Mềm Màng</span> Trở Lại Rồi! 💖
+                    <span class="highlight-pink">Mềm Màng</span> Trở Lại Rồi! ✨
                 </h1>
                 <p class="hero-subtitle">
                     <strong>Kem Bôi Chàm Sữa Bon Bon</strong> — Chuyên Gia #1 Được 
@@ -3082,7 +3110,8 @@ body::before { opacity: 0.45; }
                      alt="Kem Bôi Chàm Sữa Bon Bon" class="hero-product-img" loading="eager">
                 <span class="hero-product-deco">⭐</span>
                 <span class="hero-product-deco">🌸</span>
-                <span class="hero-product-deco">💖</span>
+                <span class="hero-product-deco">✨</span>
+                <img src="assets/mascot-lion.webp" alt="" class="hero-mascot" width="631" height="640" loading="eager" aria-hidden="true">
             </div>
         </div>
     </div>
@@ -3095,7 +3124,7 @@ body::before { opacity: 0.45; }
         <span class="marquee-item"><span class="m-icon">🏥</span> Có mặt tại Nhà Thuốc, Bệnh Viện toàn quốc</span>
         <span class="marquee-item"><span class="m-icon">📋</span> Số Công bố: 214/26/CBMP-NB</span>
         <span class="marquee-item"><span class="m-icon">🚫</span> Không Corticoid - Không Paraben</span>
-        <span class="marquee-item"><span class="m-icon">💖</span> 10,000+ Mẹ tin dùng</span>
+        <span class="marquee-item"><span class="m-icon">👶</span> 10,000+ Mẹ tin dùng</span>
         <span class="marquee-item"><span class="m-icon">🔒</span> Tem chống hàng giả Bộ Công An</span>
         <span class="marquee-item"><span class="m-icon">🎁</span> Ưu đãi chỉ 49K hôm nay</span>
         <span class="marquee-item"><span class="m-icon">⭐</span> Đánh giá 4.9/5 sao</span>
@@ -3104,7 +3133,7 @@ body::before { opacity: 0.45; }
         <span class="marquee-item"><span class="m-icon">🏥</span> Có mặt tại Nhà Thuốc, Bệnh Viện toàn quốc</span>
         <span class="marquee-item"><span class="m-icon">📋</span> Số Công bố: 214/26/CBMP-NB</span>
         <span class="marquee-item"><span class="m-icon">🚫</span> Không Corticoid - Không Paraben</span>
-        <span class="marquee-item"><span class="m-icon">💖</span> 10,000+ Mẹ tin dùng</span>
+        <span class="marquee-item"><span class="m-icon">👶</span> 10,000+ Mẹ tin dùng</span>
         <span class="marquee-item"><span class="m-icon">🔒</span> Tem chống hàng giả Bộ Công An</span>
         <span class="marquee-item"><span class="m-icon">🎁</span> Ưu đãi chỉ 49K hôm nay</span>
         <span class="marquee-item"><span class="m-icon">⭐</span> Đánh giá 4.9/5 sao</span>
@@ -3124,13 +3153,10 @@ body::before { opacity: 0.45; }
      PAIN POINTS SECTION
      ============================================ -->
 <section class="section pain-section" id="pain-section">
-    <svg class="deco deco-tl" aria-hidden="true"><use href="#a-cloud"/></svg>
-    <svg class="deco deco-tr" aria-hidden="true"><use href="#a-cat"/></svg>
-    <svg class="deco deco-bl sm" aria-hidden="true"><use href="#a-sheep"/></svg>
-    <svg class="deco deco-ml xs wiggle" aria-hidden="true"><use href="#a-star"/></svg>
-    <svg class="deco deco-mr xs wiggle" aria-hidden="true"><use href="#a-heart"/></svg>
     <div class="container">
         <div class="section-header reveal">
+            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-cat"/></svg>
+            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-cloud"/></svg>
             <span class="section-label">VẤN ĐỀ CỦA MẸ</span>
             <h2 class="section-title">Mẹ Có Đang <span>Lo Lắng</span> Vì Con... 😟</h2>
             <p class="section-desc">Hãy để Bon Bon đồng hành cùng mẹ giải quyết những nỗi lo này</p>
@@ -3156,7 +3182,7 @@ body::before { opacity: 0.45; }
         </div>
 
         <div class="info-banner reveal">
-            <svg class="info-banner-art" aria-hidden="true"><use href="#a-panda"/></svg>
+            <img src="assets/mascot-elephant.webp" alt="" class="info-banner-art" width="640" height="502" loading="lazy" aria-hidden="true">
             <div class="info-banner-body">
                 <h3>Mẹ không hề đơn độc! 🤗</h3>
                 <p>Chàm sữa (viêm da cơ địa) là vấn đề da <strong>rất thường gặp ở trẻ nhỏ</strong>, nhất là trong những tháng đầu đời. Điều quan trọng là chọn sản phẩm <strong>dịu nhẹ, không Corticoid</strong> và chăm da bé đúng cách mỗi ngày.</p>
@@ -3185,13 +3211,10 @@ body::before { opacity: 0.45; }
      SOLUTION / PRODUCT SECTION
      ============================================ -->
 <section class="section solution-section" id="solution-section">
-    <svg class="deco deco-tl" aria-hidden="true"><use href="#a-bear"/></svg>
-    <svg class="deco deco-tr sm wiggle" aria-hidden="true"><use href="#a-heart"/></svg>
-    <svg class="deco deco-bl sm" aria-hidden="true"><use href="#a-penguin"/></svg>
-    <svg class="deco deco-br xs wiggle" aria-hidden="true"><use href="#a-star"/></svg>
-    <svg class="deco deco-mr sm" aria-hidden="true"><use href="#a-cloud"/></svg>
     <div class="container">
         <div class="section-header reveal">
+            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-bear"/></svg>
+            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-star"/></svg>
             <span class="section-label">GIẢI PHÁP TỪ THIÊN NHIÊN</span>
             <h2 class="section-title">Kem Bôi Chàm Sữa <span>Bon Bon</span> 🌿</h2>
             <p class="section-desc">Giải pháp dịu nhẹ từ thiên nhiên — Chuyên gia tin dùng — An toàn tuyệt đối cho bé</p>
@@ -3263,13 +3286,10 @@ body::before { opacity: 0.45; }
      COMPARISON TABLE
      ============================================ -->
 <section class="section compare-section" id="compare-section">
-    <svg class="deco deco-tl sm wiggle" aria-hidden="true"><use href="#a-star"/></svg>
-    <svg class="deco deco-tr" aria-hidden="true"><use href="#a-chick"/></svg>
-    <svg class="deco deco-bl sm" aria-hidden="true"><use href="#a-fox"/></svg>
-    <svg class="deco deco-br sm" aria-hidden="true"><use href="#a-balloon"/></svg>
-    <svg class="deco deco-ml xs wiggle" aria-hidden="true"><use href="#a-heart"/></svg>
     <div class="container">
         <div class="section-header reveal">
+            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-chick"/></svg>
+            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-fox"/></svg>
             <span class="section-label">SO SÁNH</span>
             <h2 class="section-title">Tại Sao Chọn <span>Bon Bon</span>? 🤔</h2>
             <p class="section-desc">So sánh Kem Bon Bon với các sản phẩm thông thường trên thị trường</p>
@@ -3356,13 +3376,10 @@ body::before { opacity: 0.45; }
      PRODUCT DETAILS
      ============================================ -->
 <section class="section product-detail-section" id="product-detail">
-    <svg class="deco deco-tl" aria-hidden="true"><use href="#a-elephant"/></svg>
-    <svg class="deco deco-tr" aria-hidden="true"><use href="#a-rainbow"/></svg>
-    <svg class="deco deco-bl sm" aria-hidden="true"><use href="#a-panda"/></svg>
-    <svg class="deco deco-br xs wiggle" aria-hidden="true"><use href="#a-heart"/></svg>
-    <svg class="deco deco-mr xs wiggle" aria-hidden="true"><use href="#a-star"/></svg>
     <div class="container">
         <div class="section-header reveal">
+            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-elephant"/></svg>
+            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-rainbow"/></svg>
             <span class="section-label">CHI TIẾT SẢN PHẨM</span>
             <h2 class="section-title">Mọi Thứ Mẹ Cần <span>Biết</span> Về Bon Bon 📋</h2>
             <p class="section-desc">Thông tin đầy đủ giúp mẹ yên tâm lựa chọn cho con yêu</p>
@@ -3442,13 +3459,10 @@ body::before { opacity: 0.45; }
      INGREDIENTS SECTION
      ============================================ -->
 <section class="section ingredients-section" id="ingredients-section">
-    <svg class="deco deco-tl sm wiggle" aria-hidden="true"><use href="#a-heart"/></svg>
-    <svg class="deco deco-tr" aria-hidden="true"><use href="#a-bunny"/></svg>
-    <svg class="deco deco-bl" aria-hidden="true"><use href="#a-cloud"/></svg>
-    <svg class="deco deco-br sm" aria-hidden="true"><use href="#a-sheep"/></svg>
-    <svg class="deco deco-ml xs wiggle" aria-hidden="true"><use href="#a-star"/></svg>
     <div class="container">
         <div class="section-header reveal">
+            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-bunny"/></svg>
+            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-sheep"/></svg>
             <span class="section-label">THÀNH PHẦN TỰ NHIÊN</span>
             <h2 class="section-title">Thân Thiện Với <span>Làn Da Bé</span> 🌸</h2>
             <p class="section-desc">Mỗi thành phần được chọn lọc kỹ lưỡng để bảo vệ làn da mỏng manh của con</p>
@@ -3519,13 +3533,10 @@ body::before { opacity: 0.45; }
      HOW TO USE SECTION
      ============================================ -->
 <section class="section howto-section" id="howto-section">
-    <svg class="deco deco-tl" aria-hidden="true"><use href="#a-whale"/></svg>
-    <svg class="deco deco-tr sm wiggle" aria-hidden="true"><use href="#a-star"/></svg>
-    <svg class="deco deco-bl xs" aria-hidden="true"><use href="#a-chick"/></svg>
-    <svg class="deco deco-br sm" aria-hidden="true"><use href="#a-moon"/></svg>
-    <svg class="deco deco-mr xs wiggle" aria-hidden="true"><use href="#a-heart"/></svg>
     <div class="container">
         <div class="section-header reveal">
+            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-whale"/></svg>
+            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-moon"/></svg>
             <span class="section-label">HƯỚNG DẪN SỬ DỤNG</span>
             <h2 class="section-title">Mẹ Bôi Kem <span>Đúng Cách</span> Cho Con 📝</h2>
             <p class="section-desc">Chỉ 4 bước đơn giản để bảo vệ làn da bé mỗi ngày</p>
@@ -3572,7 +3583,7 @@ body::before { opacity: 0.45; }
 
 <!-- MINI CTA -->
 <div class="mini-cta">
-    <p class="mini-cta-text">Hơn <span>10,000 mẹ</span> đã chọn Bon Bon cho con yêu 💕</p>
+    <p class="mini-cta-text">Hơn <span>10,000 mẹ</span> đã chọn Bon Bon cho con yêu 🌟</p>
     <a href="#form-section" class="btn-primary mega pulse scroll-to-form">
         🎁 ĐĂNG KÝ NHẬN ƯU ĐÃI 49K
     </a>
@@ -3589,10 +3600,6 @@ body::before { opacity: 0.45; }
 
 <!-- TRUST BADGES SECTION -->
 <section class="trust-section" id="trust-section">
-    <svg class="deco deco-tl sm" aria-hidden="true"><use href="#a-chick"/></svg>
-    <svg class="deco deco-tr sm wiggle" aria-hidden="true"><use href="#a-heart"/></svg>
-    <svg class="deco deco-bl xs" aria-hidden="true"><use href="#a-fox"/></svg>
-    <svg class="deco deco-br xs wiggle" aria-hidden="true"><use href="#a-star"/></svg>
     <div class="container">
         <div class="trust-grid">
             <div class="trust-badge-card reveal">
@@ -3629,10 +3636,6 @@ body::before { opacity: 0.45; }
 
 <!-- GUARANTEE SECTION -->
 <section class="guarantee-section reveal">
-    <svg class="deco deco-tl sm" aria-hidden="true"><use href="#a-rainbow"/></svg>
-    <svg class="deco deco-tr xs wiggle" aria-hidden="true"><use href="#a-star"/></svg>
-    <svg class="deco deco-br" aria-hidden="true"><use href="#a-bear"/></svg>
-    <svg class="deco deco-bl sm" aria-hidden="true"><use href="#a-panda"/></svg>
     <div class="container">
         <div class="guarantee-inner">
             <div class="guarantee-icon">🛡️</div>
@@ -3675,16 +3678,12 @@ body::before { opacity: 0.45; }
      SOCIAL PROOF / TESTIMONIALS
      ============================================ -->
 <section class="section social-proof-section" id="social-proof">
-    <svg class="deco deco-tl" aria-hidden="true"><use href="#a-cat"/></svg>
-    <svg class="deco deco-tr sm wiggle" aria-hidden="true"><use href="#a-heart"/></svg>
-    <svg class="deco deco-bl sm" aria-hidden="true"><use href="#a-panda"/></svg>
-    <svg class="deco deco-br" aria-hidden="true"><use href="#a-cloud"/></svg>
-    <svg class="deco deco-mr sm" aria-hidden="true"><use href="#a-balloon"/></svg>
-    <svg class="deco deco-ml xs wiggle" aria-hidden="true"><use href="#a-star"/></svg>
     <div class="container">
         <div class="section-header reveal">
+            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-panda"/></svg>
+            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-cat"/></svg>
             <span class="section-label">FEEDBACK TỪ CÁC MẸ</span>
-            <h2 class="section-title">Hàng Ngàn Mẹ <span>Tin Dùng</span> Và Hài Lòng 💕</h2>
+            <h2 class="section-title">Hàng Ngàn Mẹ <span>Tin Dùng</span> Và Hài Lòng 🌟</h2>
         </div>
         
         <div class="stats-grid reveal">
@@ -3825,12 +3824,10 @@ body::before { opacity: 0.45; }
      COMBO DEAL SECTION
      ============================================ -->
 <section class="section combo-section" id="combo-section">
-    <svg class="deco deco-tl sm wiggle" aria-hidden="true"><use href="#a-star"/></svg>
-    <svg class="deco deco-tr" aria-hidden="true"><use href="#a-balloon"/></svg>
-    <svg class="deco deco-bl xs wiggle" aria-hidden="true"><use href="#a-heart"/></svg>
-    <svg class="deco deco-br sm" aria-hidden="true"><use href="#a-cloud"/></svg>
     <div class="container">
         <div class="section-header reveal">
+            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-star"/></svg>
+            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-balloon"/></svg>
             <span class="section-label">ƯU ĐÃI ĐẶC BIỆT</span>
             <h2 class="section-title">Combo Siêu Tiết Kiệm — <span>Giảm 50%</span> 🎁</h2>
             <p class="section-desc">Bộ 3 sản phẩm chăm sóc bé toàn diện với mức giá không thể tốt hơn</p>
@@ -3855,6 +3852,7 @@ body::before { opacity: 0.45; }
         </div>
         
         <div class="combo-price-box reveal">
+            <img src="assets/mascot-elephant.webp" alt="" class="combo-mascot" width="640" height="502" loading="lazy" aria-hidden="true">
             <div class="combo-old-price">Giá gốc: 840.000đ</div>
             <div class="combo-new-price">420.000đ</div>
             <div class="combo-save">TIẾT KIỆM 420K 🔥</div>
@@ -3872,8 +3870,6 @@ body::before { opacity: 0.45; }
      URGENCY / COUNTDOWN
      ============================================ -->
 <section class="urgency-section" id="urgency-section">
-    <svg class="deco deco-tl sm" aria-hidden="true"><use href="#a-chick"/></svg>
-    <svg class="deco deco-tr sm" aria-hidden="true"><use href="#a-moon"/></svg>
     <div class="container">
         <div class="urgency-inner">
             <h3 class="urgency-title">⏰ Ưu Đãi 49K Kết Thúc Sau:</h3>
@@ -3911,12 +3907,10 @@ body::before { opacity: 0.45; }
      ORDER PROCESS
      ============================================ -->
 <section class="section process-section" id="process-section">
-    <svg class="deco deco-tl" aria-hidden="true"><use href="#a-chick"/></svg>
-    <svg class="deco deco-tr sm" aria-hidden="true"><use href="#a-rainbow"/></svg>
-    <svg class="deco deco-bl xs" aria-hidden="true"><use href="#a-sheep"/></svg>
-    <svg class="deco deco-br" aria-hidden="true"><use href="#a-elephant"/></svg>
     <div class="container">
         <div class="section-header reveal">
+            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-chick"/></svg>
+            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-penguin"/></svg>
             <span class="section-label">QUY TRÌNH ĐẶT HÀNG</span>
             <h2 class="section-title">Chỉ <span>3 Bước</span> Đơn Giản 🚀</h2>
             <p class="section-desc">Nhận hàng tận nơi — Thanh toán khi nhận — Không cần ứng trước</p>
@@ -3960,11 +3954,6 @@ body::before { opacity: 0.45; }
      REGISTRATION FORM
      ============================================ -->
 <section class="section form-section" id="form-section">
-    <svg class="deco deco-tl" aria-hidden="true"><use href="#a-cloud"/></svg>
-    <svg class="deco deco-tr xs wiggle" aria-hidden="true"><use href="#a-star"/></svg>
-    <svg class="deco deco-bl xs wiggle" aria-hidden="true"><use href="#a-heart"/></svg>
-    <svg class="deco deco-br" aria-hidden="true"><use href="#a-bunny"/></svg>
-    <svg class="deco deco-ml sm" aria-hidden="true"><use href="#a-fox"/></svg>
     <div class="container">
         <div class="form-layout">
             <aside class="form-perks reveal">
@@ -4049,7 +4038,7 @@ body::before { opacity: 0.45; }
                 <div class="form-success" id="formSuccess" role="status" aria-live="polite">
                     <div class="success-emoji">🎉</div>
                     <h3>Chúc Mừng Mẹ! Đăng Ký Thành Công!</h3>
-                    <p>Cảm ơn mẹ đã tin tưởng Bon Bon. Chúng tôi sẽ liên hệ với mẹ trong vòng <strong>30 phút</strong> để xác nhận đơn hàng và gửi ưu đãi nhé! 💖</p>
+                    <p>Cảm ơn mẹ đã tin tưởng Bon Bon. Chúng tôi sẽ liên hệ với mẹ trong vòng <strong>30 phút</strong> để xác nhận đơn hàng và gửi ưu đãi nhé! 🌸</p>
                     <div class="order-summary" id="orderSummary"></div>
                     <div class="success-actions">
                         <a href="https://zalo.me/0901234567" target="_blank" rel="noopener" class="sa-zalo">💬 Nhắn Zalo ngay</a>
@@ -4075,12 +4064,10 @@ body::before { opacity: 0.45; }
      FAQ SECTION
      ============================================ -->
 <section class="section faq-section" id="faq-section">
-    <svg class="deco deco-tl" aria-hidden="true"><use href="#a-cloud"/></svg>
-    <svg class="deco deco-tr" aria-hidden="true"><use href="#a-whale"/></svg>
-    <svg class="deco deco-bl sm" aria-hidden="true"><use href="#a-sheep"/></svg>
-    <svg class="deco deco-br xs wiggle" aria-hidden="true"><use href="#a-star"/></svg>
     <div class="container">
         <div class="section-header reveal">
+            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-cloud"/></svg>
+            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-sheep"/></svg>
             <span class="section-label">HỎI ĐÁP</span>
             <h2 class="section-title">Câu Hỏi <span>Thường Gặp</span> 💬</h2>
         </div>
@@ -4188,7 +4175,7 @@ body::before { opacity: 0.45; }
                 </div>
             </div>
             <aside class="faq-help reveal">
-                <svg class="faq-help-mascot" aria-hidden="true"><use href="#a-penguin"/></svg>
+                <img src="assets/mascot-lion.webp" alt="" class="faq-help-mascot" width="631" height="640" loading="lazy" aria-hidden="true">
                 <h4>Mẹ vẫn còn băn khoăn?</h4>
                 <p>Chuyên viên Bon Bon luôn sẵn sàng tư vấn miễn phí cách chăm da cho bé.</p>
                 <a href="https://zalo.me/0901234567" target="_blank" rel="noopener" class="help-btn help-zalo">💬 Chat Zalo ngay</a>
@@ -4230,7 +4217,7 @@ body::before { opacity: 0.45; }
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; <span id="year">2026</span> Home Care Việt Nam. All rights reserved. | Designed with 💖 for Mẹ & Bé</p>
+            <p>&copy; <span id="year">2026</span> Home Care Việt Nam. All rights reserved. | Designed with 🌸 for Mẹ & Bé</p>
         </div>
     </div>
 </footer>
@@ -5200,15 +5187,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ===== PARALLAX FLOATING ELEMENTS =====
-    const floatItems = document.querySelectorAll('.float-item');
-    window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        floatItems.forEach((item, i) => {
-            const speed = 0.02 + (i * 0.005);
-            item.style.transform = `translateY(${scrollY * speed}px)`;
-        });
-    }, { passive: true });
 
 })();
 </script>
