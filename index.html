@@ -2183,6 +2183,307 @@ input, textarea, select { font-family: var(--font-body); }
 }
 
 /* ============================================
+   NỀN LIỀN MẠCH + HOẠ TIẾT DỄ THƯƠNG
+   ============================================ */
+body {
+    font-size: 17px;
+    background: linear-gradient(180deg,
+        #FFF0F5 0%, #EAF8FB 12%, #FFF6EC 24%, #FFF0F5 36%,
+        #EAF8FB 48%, #FFF8E7 60%, #FFF0F5 72%, #EAF8FB 86%, #FFF6EC 100%);
+}
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.55;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cpath d='M30 38c-6-5-10-8-9-12 1-4 7-5 9-1 2-4 8-3 9 1 1 4-3 7-9 12z' fill='%23FFC2D4'/%3E%3Ccircle cx='120' cy='30' r='4' fill='%23A8E4ED'/%3E%3Cpath d='M150 110l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z' fill='%23FFE27A'/%3E%3Ccircle cx='70' cy='140' r='3' fill='%23FFC2D4'/%3E%3Ccircle cx='90' cy='80' r='2.5' fill='%23A8E6CF'/%3E%3Cg fill='%23E8D5F5'%3E%3Cellipse cx='30' cy='120' rx='5' ry='4'/%3E%3Ccircle cx='24' cy='113' r='2'/%3E%3Ccircle cx='29' cy='110' r='2'/%3E%3Ccircle cx='34' cy='110' r='2'/%3E%3Ccircle cx='38' cy='114' r='2'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 180px 180px;
+}
+.hero, .pain-section, .solution-section, .compare-section, .product-detail-section,
+.ingredients-section, .howto-section, .trust-section, .guarantee-section,
+.social-proof-section, .process-section, .form-section, .faq-section {
+    background: transparent;
+}
+.hero, .section, .trust-section, .guarantee-section, .urgency-section, .mini-cta {
+    position: relative;
+    overflow: hidden;
+}
+.section > .container, .trust-section > .container, .guarantee-section > .container,
+.hero > .container, .urgency-section > .container {
+    position: relative;
+    z-index: 1;
+}
+.section { padding: 48px 0; }
+@media (min-width: 768px) {
+    .section { padding: 64px 0; }
+}
+
+/* Khối nổi bật dạng thẻ bo tròn thay cho dải màu tràn viền */
+.combo-section, .urgency-section, .mini-cta {
+    width: calc(100% - 24px);
+    max-width: 1160px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 36px;
+}
+.urgency-section { margin-top: 14px; }
+.mini-cta { box-shadow: 0 10px 40px rgba(255,126,179,0.15); border: 2px dashed var(--pink); }
+.guarantee-inner {
+    background: rgba(255,255,255,0.8);
+    border-radius: 36px;
+    padding: 36px 20px;
+    box-shadow: var(--shadow);
+    max-width: 760px;
+}
+.footer-wave { margin-top: 24px; }
+
+/* ============================================
+   CON VẬT TRANG TRÍ
+   ============================================ */
+.deco {
+    position: absolute;
+    width: 62px;
+    height: 62px;
+    z-index: 0;
+    pointer-events: none;
+    animation: decoBob 6s ease-in-out infinite;
+    filter: drop-shadow(0 6px 10px rgba(255,126,179,0.18));
+}
+.deco.lg { width: 84px; height: 84px; }
+.deco.sm { width: 40px; height: 40px; }
+.deco-tl { top: 6px; left: 3%; }
+.deco-tr { top: 6px; right: 3%; animation-delay: -2s; }
+.deco-bl { bottom: 10px; left: 2%; animation-delay: -4s; opacity: 0.6; }
+.deco-br { bottom: 10px; right: 2%; animation-delay: -1s; opacity: 0.6; }
+.deco.wiggle { animation-name: decoWiggle; }
+@keyframes decoBob {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+}
+@keyframes decoWiggle {
+    0%, 100% { transform: rotate(-8deg); }
+    50% { transform: rotate(8deg) scale(1.05); }
+}
+@media (min-width: 768px) {
+    .deco { width: 96px; height: 96px; }
+    .deco.lg { width: 130px; height: 130px; }
+    .deco.sm { width: 56px; height: 56px; }
+    .deco-tl { top: 20px; left: 4%; }
+    .deco-tr { top: 20px; right: 4%; }
+    .deco-bl, .deco-br { opacity: 0.9; bottom: 24px; }
+}
+.hero .deco-bl { bottom: 30px; }
+
+/* ============================================
+   CẦU NỐI GIỮA CÁC SECTION (dấu chân dẫn đường)
+   ============================================ */
+.bridge {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 16px;
+}
+.bridge::before, .bridge::after {
+    content: '';
+    width: 22px;
+    height: 46px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='23' viewBox='0 0 100 100'%3E%3Cg fill='%23FF9DBF'%3E%3Cellipse cx='50' cy='64' rx='22' ry='18'/%3E%3Ccircle cx='24' cy='40' r='9'/%3E%3Ccircle cx='40' cy='24' r='9'/%3E%3Ccircle cx='60' cy='24' r='9'/%3E%3Ccircle cx='76' cy='40' r='9'/%3E%3C/g%3E%3C/svg%3E") center top / 16px 16px repeat-y;
+    opacity: 0.75;
+}
+.bridge-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 100%;
+    background: var(--white);
+    padding: 8px 20px 8px 8px;
+    border-radius: 60px;
+    border: 2px solid var(--pink-light);
+    box-shadow: 0 8px 24px rgba(255,126,179,0.18);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.35;
+    color: var(--dark);
+    transition: var(--transition);
+}
+.bridge-link:hover { border-color: var(--pink); transform: translateY(-2px); color: var(--pink-dark); }
+.bridge-icon {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--pink-light), var(--primary-ultra-light));
+}
+.bridge-icon svg { width: 34px; height: 34px; }
+.bridge-arrow {
+    color: var(--pink-dark);
+    font-size: 18px;
+    animation: arrowNudge 1.6s ease-in-out infinite;
+}
+@keyframes arrowNudge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+}
+@media (min-width: 768px) {
+    .bridge-link { font-size: 18px; padding: 10px 26px 10px 10px; }
+    .bridge-icon { width: 52px; height: 52px; }
+    .bridge-icon svg { width: 40px; height: 40px; }
+}
+
+/* Nhãn & tiêu đề section đồng bộ */
+.section-label::before { content: '🐾 '; }
+.section-title::after {
+    content: '';
+    display: block;
+    width: 96px;
+    height: 12px;
+    margin: 12px auto 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='12' viewBox='0 0 96 12'%3E%3Cpath d='M2 6 Q10 0 18 6 T34 6 T50 6 T66 6 T82 6 T94 6' stroke='%23FF7EB3' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center;
+}
+
+/* ============================================
+   THANH ĐIỀU HƯỚNG CHẤM (desktop)
+   ============================================ */
+.dot-nav { display: none; }
+@media (min-width: 1100px) {
+    .dot-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        position: fixed;
+        top: 50%;
+        right: 22px;
+        transform: translateY(-50%);
+        z-index: 9996;
+    }
+    .dot-nav a {
+        position: relative;
+        width: 12px; height: 12px;
+        border-radius: 50%;
+        background: var(--pink);
+        opacity: 0.55;
+        transition: var(--transition);
+    }
+    .dot-nav a:hover, .dot-nav a.active {
+        opacity: 1;
+        background: var(--pink-dark);
+        transform: scale(1.35);
+    }
+    .dot-nav a::after {
+        content: attr(data-label);
+        position: absolute;
+        right: 22px;
+        top: 50%;
+        transform: translateY(-50%) scale(0.75);
+        white-space: nowrap;
+        background: var(--white);
+        color: var(--dark);
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 11px;
+        padding: 5px 12px;
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        opacity: 0;
+        pointer-events: none;
+        transition: var(--transition);
+    }
+    .dot-nav a:hover::after { opacity: 1; }
+    .floating-btns { right: 54px; }
+}
+
+/* ============================================
+   TĂNG CỠ CHỮ — DỄ ĐỌC HƠN TRÊN ĐIỆN THOẠI
+   ============================================ */
+.hero-title { font-size: 34px; }
+.hero-subtitle { font-size: 18px; }
+.hero-badge { font-size: 15px; }
+.trust-item { font-size: 14.5px; }
+.btn-primary { font-size: 18px; }
+.marquee-item { font-size: 15.5px; }
+.section-label { font-size: 14px; }
+.section-title { font-size: 30px; }
+.section-desc { font-size: 17px; }
+.pain-text { font-size: 17px; }
+.feature-text h4 { font-size: 17px; }
+.feature-text p { font-size: 15.5px; }
+.compare-table th, .compare-table td { font-size: 15.5px; }
+.compare-table tbody td:first-child { font-size: 15px; }
+.detail-info h4 { font-size: 16px; }
+.detail-info p { font-size: 15.5px; }
+.ingr-info h4 { font-size: 17px; }
+.ingr-info p { font-size: 15.5px; }
+.step-content h4 { font-size: 18px; }
+.step-content p { font-size: 16px; }
+.mini-cta-text { font-size: 22px; }
+.trust-badge-title { font-size: 16px; }
+.trust-badge-desc { font-size: 14px; }
+.spec-tag { font-size: 14.5px; }
+.guarantee-title { font-size: 26px; }
+.guarantee-text { font-size: 17px; }
+.g-badge { font-size: 14.5px; }
+.expert-quote-card blockquote { font-size: 16.5px; }
+.stat-label { font-size: 14px; }
+.review-name { font-size: 16.5px; }
+.review-meta { font-size: 13.5px; }
+.review-body { font-size: 16px; }
+.review-tag { font-size: 13px; }
+.gallery-subtitle { font-size: 21px; }
+.combo-name { font-size: 18px; }
+.combo-desc { font-size: 15.5px; }
+.combo-save { font-size: 15px; }
+.btn-combo { font-size: 18px; }
+.urgency-title { font-size: 24px; }
+.urgency-stock { font-size: 18px; }
+.countdown-label { font-size: 12px; }
+.process-step h4 { font-size: 18px; }
+.process-step p { font-size: 15.5px; }
+.form-header h2 { font-size: 27px; }
+.form-header p { font-size: 16px; }
+.form-group label { font-size: 15.5px; }
+.form-input { font-size: 16px; } /* >=16px: iPhone không tự zoom khi nhập */
+.radio-option .radio-label { font-size: 15.5px; }
+.radio-option .radio-price { font-size: 17px; }
+.error-msg { font-size: 13.5px; }
+.form-security { font-size: 14px; }
+.faq-question { font-size: 16.5px; }
+.faq-answer-inner { font-size: 16px; }
+.footer-brand p, .footer-contact p, .footer-links a { font-size: 15px; }
+.footer-bottom { font-size: 14px; }
+.sticky-bottom .btn-sticky { font-size: 15px; }
+.live-notification .notif-text { font-size: 14px; }
+@media (max-width: 500px) {
+    .compare-table th, .compare-table td,
+    .compare-table tbody td:first-child { font-size: 14px; }
+}
+@media (min-width: 768px) {
+    .hero-title { font-size: 46px; }
+    .hero-subtitle { font-size: 20px; }
+    .section-title { font-size: 40px; }
+    .section-desc { font-size: 18px; }
+    .pain-text { font-size: 18px; }
+    .feature-text h4 { font-size: 18px; }
+    .feature-text p { font-size: 16px; }
+    .step-content h4 { font-size: 19px; }
+    .step-content p { font-size: 17px; }
+    .mini-cta-text { font-size: 28px; }
+    .guarantee-title { font-size: 30px; }
+    .stat-label { font-size: 16px; }
+    .urgency-title { font-size: 30px; }
+    .form-header h2 { font-size: 33px; }
+    .faq-question { font-size: 17.5px; }
+    .faq-answer-inner { font-size: 16.5px; }
+}
+@media (min-width: 1200px) {
+    .hero-title { font-size: 54px; }
+}
+
+/* ============================================
    FORM STATES (loading / lỗi gửi / thành công)
    ============================================ */
 .hp-field {
@@ -2257,6 +2558,111 @@ input, textarea, select { font-family: var(--font-body); }
 </head>
 <body>
 
+<!-- CUTE ANIMAL SPRITE (dùng lại bằng <use href="#a-...">) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+        <!-- Gấu -->
+        <symbol id="a-bear" viewBox="0 0 120 120">
+            <circle cx="30" cy="30" r="18" fill="#C9956B"/><circle cx="30" cy="30" r="9" fill="#F4C7A1"/>
+            <circle cx="90" cy="30" r="18" fill="#C9956B"/><circle cx="90" cy="30" r="9" fill="#F4C7A1"/>
+            <circle cx="60" cy="66" r="44" fill="#D9A77C"/>
+            <ellipse cx="60" cy="82" rx="20" ry="15" fill="#F8DCC2"/>
+            <ellipse cx="60" cy="75" rx="7" ry="5" fill="#5B3A29"/>
+            <path d="M54 86 Q60 92 66 86" stroke="#5B3A29" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <circle cx="44" cy="58" r="5" fill="#3B2A20"/><circle cx="76" cy="58" r="5" fill="#3B2A20"/>
+            <circle cx="45.5" cy="56.5" r="1.6" fill="#fff"/><circle cx="77.5" cy="56.5" r="1.6" fill="#fff"/>
+            <ellipse cx="32" cy="76" rx="8" ry="5" fill="#FF9DB5" opacity=".7"/><ellipse cx="88" cy="76" rx="8" ry="5" fill="#FF9DB5" opacity=".7"/>
+        </symbol>
+        <!-- Thỏ -->
+        <symbol id="a-bunny" viewBox="0 0 120 120">
+            <ellipse cx="42" cy="30" rx="11" ry="28" fill="#fff" stroke="#F2D4DE" stroke-width="2"/><ellipse cx="42" cy="32" rx="5" ry="19" fill="#FFC2D4"/>
+            <ellipse cx="78" cy="30" rx="11" ry="28" fill="#fff" stroke="#F2D4DE" stroke-width="2" transform="rotate(12 78 30)"/><ellipse cx="78" cy="32" rx="5" ry="19" fill="#FFC2D4" transform="rotate(12 78 32)"/>
+            <circle cx="60" cy="76" r="38" fill="#fff" stroke="#F2D4DE" stroke-width="2"/>
+            <circle cx="46" cy="72" r="4.5" fill="#3B2A20"/><circle cx="74" cy="72" r="4.5" fill="#3B2A20"/>
+            <circle cx="47.3" cy="70.6" r="1.4" fill="#fff"/><circle cx="75.3" cy="70.6" r="1.4" fill="#fff"/>
+            <path d="M56 82 L64 82 L60 87 Z" fill="#FF8FAB"/>
+            <path d="M60 87 Q55 93 51 90 M60 87 Q65 93 69 90" stroke="#C98A9C" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <ellipse cx="36" cy="86" rx="7" ry="4.5" fill="#FFB3C6" opacity=".8"/><ellipse cx="84" cy="86" rx="7" ry="4.5" fill="#FFB3C6" opacity=".8"/>
+        </symbol>
+        <!-- Gà con -->
+        <symbol id="a-chick" viewBox="0 0 120 120">
+            <path d="M60 14 Q64 4 70 10 Q66 12 64 18 Z" fill="#FFC93C"/>
+            <ellipse cx="60" cy="68" rx="42" ry="40" fill="#FFE27A"/>
+            <ellipse cx="26" cy="74" rx="10" ry="16" fill="#FFD447" transform="rotate(-20 26 74)"/>
+            <ellipse cx="94" cy="74" rx="10" ry="16" fill="#FFD447" transform="rotate(20 94 74)"/>
+            <circle cx="46" cy="60" r="5" fill="#3B2A20"/><circle cx="74" cy="60" r="5" fill="#3B2A20"/>
+            <circle cx="47.5" cy="58.5" r="1.6" fill="#fff"/><circle cx="75.5" cy="58.5" r="1.6" fill="#fff"/>
+            <path d="M52 70 L68 70 L60 80 Z" fill="#FF9F43"/>
+            <ellipse cx="36" cy="74" rx="7" ry="4" fill="#FF9DB5" opacity=".7"/><ellipse cx="84" cy="74" rx="7" ry="4" fill="#FF9DB5" opacity=".7"/>
+            <path d="M48 106 v8 M44 114 h8 M72 106 v8 M68 114 h8" stroke="#FF9F43" stroke-width="3" stroke-linecap="round"/>
+        </symbol>
+        <!-- Mèo -->
+        <symbol id="a-cat" viewBox="0 0 120 120">
+            <path d="M22 50 L28 12 L52 34 Z" fill="#B8B8D9"/><path d="M29 22 L33 40 L44 33 Z" fill="#FFC2D4"/>
+            <path d="M98 50 L92 12 L68 34 Z" fill="#B8B8D9"/><path d="M91 22 L87 40 L76 33 Z" fill="#FFC2D4"/>
+            <ellipse cx="60" cy="68" rx="44" ry="40" fill="#CFCFEA"/>
+            <path d="M44 62 Q48 56 52 62" stroke="#3B2A20" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+            <path d="M68 62 Q72 56 76 62" stroke="#3B2A20" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+            <path d="M56 74 L64 74 L60 79 Z" fill="#FF8FAB"/>
+            <path d="M60 79 Q56 85 52 82 M60 79 Q64 85 68 82" stroke="#7A6E8F" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M24 74 H40 M24 82 L40 79 M96 74 H80 M96 82 L80 79" stroke="#9A93B8" stroke-width="2" stroke-linecap="round"/>
+            <ellipse cx="38" cy="86" rx="7" ry="4" fill="#FFB3C6" opacity=".8"/><ellipse cx="82" cy="86" rx="7" ry="4" fill="#FFB3C6" opacity=".8"/>
+        </symbol>
+        <!-- Cá voi -->
+        <symbol id="a-whale" viewBox="0 0 120 120">
+            <path d="M60 30 Q56 18 50 20 M60 30 Q60 16 60 12 M60 30 Q64 18 70 20" stroke="#7FD3E2" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <path d="M14 70 Q14 34 56 34 Q98 34 98 66 Q98 96 56 96 Q22 96 14 70 Z" fill="#7FD3E2"/>
+            <path d="M96 64 Q108 50 114 58 Q108 66 112 78 Q104 74 96 74 Z" fill="#6CC6D6"/>
+            <path d="M22 76 Q56 100 92 76 Q80 96 56 96 Q30 96 22 76 Z" fill="#C9F0F6"/>
+            <circle cx="40" cy="62" r="5" fill="#2D3A4A"/><circle cx="41.5" cy="60.5" r="1.6" fill="#fff"/>
+            <path d="M48 74 Q54 79 60 74" stroke="#2D3A4A" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <ellipse cx="30" cy="72" rx="6" ry="3.5" fill="#FF9DB5" opacity=".7"/>
+        </symbol>
+        <!-- Voi -->
+        <symbol id="a-elephant" viewBox="0 0 120 120">
+            <ellipse cx="22" cy="58" rx="20" ry="26" fill="#A9C4E8"/><ellipse cx="24" cy="58" rx="12" ry="17" fill="#FFC2D4"/>
+            <ellipse cx="98" cy="58" rx="20" ry="26" fill="#A9C4E8"/><ellipse cx="96" cy="58" rx="12" ry="17" fill="#FFC2D4"/>
+            <circle cx="60" cy="56" r="34" fill="#BCD3F0"/>
+            <path d="M52 72 Q50 100 64 106 Q72 108 72 100 Q62 98 66 72 Z" fill="#BCD3F0"/>
+            <circle cx="47" cy="52" r="4.5" fill="#2D3A4A"/><circle cx="73" cy="52" r="4.5" fill="#2D3A4A"/>
+            <circle cx="48.4" cy="50.6" r="1.4" fill="#fff"/><circle cx="74.4" cy="50.6" r="1.4" fill="#fff"/>
+            <ellipse cx="38" cy="64" rx="6" ry="3.5" fill="#FF9DB5" opacity=".7"/><ellipse cx="82" cy="64" rx="6" ry="3.5" fill="#FF9DB5" opacity=".7"/>
+        </symbol>
+        <!-- Mây -->
+        <symbol id="a-cloud" viewBox="0 0 120 70">
+            <path d="M24 60 Q4 60 8 42 Q12 28 28 32 Q32 12 54 14 Q72 14 78 30 Q96 24 106 38 Q116 58 94 60 Z" fill="#fff"/>
+            <circle cx="48" cy="42" r="3" fill="#7A8A99"/><circle cx="70" cy="42" r="3" fill="#7A8A99"/>
+            <path d="M54 48 Q59 52 64 48" stroke="#7A8A99" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <ellipse cx="40" cy="48" rx="5" ry="3" fill="#FFB3C6" opacity=".8"/><ellipse cx="78" cy="48" rx="5" ry="3" fill="#FFB3C6" opacity=".8"/>
+        </symbol>
+        <!-- Ngôi sao -->
+        <symbol id="a-star" viewBox="0 0 100 100">
+            <path d="M50 6 L62 36 L94 38 L69 58 L78 90 L50 72 L22 90 L31 58 L6 38 L38 36 Z" fill="#FFE27A" stroke="#FFC93C" stroke-width="4" stroke-linejoin="round"/>
+            <circle cx="40" cy="50" r="3.5" fill="#5B4A1E"/><circle cx="60" cy="50" r="3.5" fill="#5B4A1E"/>
+            <path d="M44 60 Q50 65 56 60" stroke="#5B4A1E" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </symbol>
+        <!-- Trái tim -->
+        <symbol id="a-heart" viewBox="0 0 100 100">
+            <path d="M50 88 C20 66 6 50 10 32 C14 14 38 10 50 28 C62 10 86 14 90 32 C94 50 80 66 50 88 Z" fill="#FFB3C6"/>
+            <ellipse cx="30" cy="32" rx="8" ry="5" fill="#fff" opacity=".6" transform="rotate(-30 30 32)"/>
+        </symbol>
+        <!-- Bóng bay -->
+        <symbol id="a-balloon" viewBox="0 0 60 120">
+            <ellipse cx="30" cy="34" rx="26" ry="32" fill="#A8E6CF"/>
+            <path d="M26 66 L34 66 L30 72 Z" fill="#8FD9BC"/>
+            <path d="M30 72 Q22 88 32 100 Q40 110 30 120" stroke="#9AA9B5" stroke-width="2" fill="none"/>
+            <ellipse cx="20" cy="24" rx="6" ry="9" fill="#fff" opacity=".55"/>
+        </symbol>
+        <!-- Dấu chân -->
+        <symbol id="a-paw" viewBox="0 0 100 100">
+            <ellipse cx="50" cy="64" rx="22" ry="18" fill="currentColor"/>
+            <circle cx="24" cy="40" r="9" fill="currentColor"/><circle cx="40" cy="24" r="9" fill="currentColor"/>
+            <circle cx="60" cy="24" r="9" fill="currentColor"/><circle cx="76" cy="40" r="9" fill="currentColor"/>
+        </symbol>
+    </defs>
+</svg>
+
+
 <!-- LOADING SCREEN -->
 <div class="loader" id="loader">
     <div class="loader-baby">👶</div>
@@ -2301,6 +2707,10 @@ input, textarea, select { font-family: var(--font-body); }
      HERO SECTION
      ============================================ -->
 <section class="hero" id="hero">
+    <svg class="deco deco-tl lg" aria-hidden="true"><use href="#a-cloud"/></svg>
+    <svg class="deco deco-tr sm wiggle" aria-hidden="true"><use href="#a-star"/></svg>
+    <svg class="deco deco-bl lg" aria-hidden="true"><use href="#a-bunny"/></svg>
+    <svg class="deco deco-br" aria-hidden="true"><use href="#a-balloon"/></svg>
     <div class="hero-bg-circle"></div>
     <div class="hero-bg-circle"></div>
     
@@ -2363,17 +2773,21 @@ input, textarea, select { font-family: var(--font-body); }
     </div>
 </div>
 
-<!-- WAVE DIVIDER -->
-<div class="wave-divider">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
-        <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,20 1440,30 L1440,60 L0,60 Z" fill="#FFF0F5"/>
-    </svg>
+<!-- CẦU NỐI -->
+<div class="bridge">
+    <a href="#pain-section" class="bridge-link">
+        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-cat"/></svg></span>
+        <span>Mẹ có đang gặp những điều này không?</span>
+        <span class="bridge-arrow" aria-hidden="true">↓</span>
+    </a>
 </div>
 
 <!-- ============================================
      PAIN POINTS SECTION
      ============================================ -->
 <section class="section pain-section" id="pain-section">
+    <svg class="deco deco-tl" aria-hidden="true"><use href="#a-cloud"/></svg>
+    <svg class="deco deco-tr" aria-hidden="true"><use href="#a-cat"/></svg>
     <div class="container">
         <div class="section-header reveal">
             <span class="section-label">VẤN ĐỀ CỦA MẸ</span>
@@ -2400,25 +2814,24 @@ input, textarea, select { font-family: var(--font-body); }
             </div>
         </div>
 
-        <div class="pain-cta reveal">
-            <a href="#solution-section" class="btn-primary scroll-to">
-                ✨ Bon Bon Có Giải Pháp Cho Mẹ!
-            </a>
-        </div>
     </div>
 </section>
 
-<!-- WAVE DIVIDER -->
-<div class="wave-divider flip">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
-        <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,20 1440,30 L1440,60 L0,60 Z" fill="#FFF0F5"/>
-    </svg>
+<!-- CẦU NỐI -->
+<div class="bridge">
+    <a href="#solution-section" class="bridge-link">
+        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-bunny"/></svg></span>
+        <span>Đừng lo, Bon Bon có giải pháp dịu nhẹ cho bé</span>
+        <span class="bridge-arrow" aria-hidden="true">↓</span>
+    </a>
 </div>
 
 <!-- ============================================
      SOLUTION / PRODUCT SECTION
      ============================================ -->
 <section class="section solution-section" id="solution-section">
+    <svg class="deco deco-tl" aria-hidden="true"><use href="#a-bear"/></svg>
+    <svg class="deco deco-br sm wiggle" aria-hidden="true"><use href="#a-heart"/></svg>
     <div class="container">
         <div class="section-header reveal">
             <span class="section-label">GIẢI PHÁP TỪ THIÊN NHIÊN</span>
@@ -2479,17 +2892,21 @@ input, textarea, select { font-family: var(--font-body); }
     </div>
 </section>
 
-<!-- WAVE DIVIDER -->
-<div class="wave-divider">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
-        <path d="M0,0 L0,30 C360,0 720,60 1080,30 C1260,15 1380,40 1440,30 L1440,0 Z" fill="white"/>
-    </svg>
+<!-- CẦU NỐI -->
+<div class="bridge">
+    <a href="#compare-section" class="bridge-link">
+        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-chick"/></svg></span>
+        <span>Vì sao mẹ nên chọn Bon Bon?</span>
+        <span class="bridge-arrow" aria-hidden="true">↓</span>
+    </a>
 </div>
 
 <!-- ============================================
      COMPARISON TABLE
      ============================================ -->
 <section class="section compare-section" id="compare-section">
+    <svg class="deco deco-tl sm wiggle" aria-hidden="true"><use href="#a-star"/></svg>
+    <svg class="deco deco-tr" aria-hidden="true"><use href="#a-chick"/></svg>
     <div class="container">
         <div class="section-header reveal">
             <span class="section-label">SO SÁNH</span>
@@ -2553,10 +2970,21 @@ input, textarea, select { font-family: var(--font-body); }
     </div>
 </section>
 
+<!-- CẦU NỐI -->
+<div class="bridge">
+    <a href="#product-detail" class="bridge-link">
+        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-elephant"/></svg></span>
+        <span>Xem chi tiết sản phẩm</span>
+        <span class="bridge-arrow" aria-hidden="true">↓</span>
+    </a>
+</div>
+
 <!-- ============================================
      PRODUCT DETAILS
      ============================================ -->
 <section class="section product-detail-section" id="product-detail">
+    <svg class="deco deco-tl" aria-hidden="true"><use href="#a-elephant"/></svg>
+    <svg class="deco deco-br" aria-hidden="true"><use href="#a-balloon"/></svg>
     <div class="container">
         <div class="section-header reveal">
             <span class="section-label">CHI TIẾT SẢN PHẨM</span>
@@ -2625,10 +3053,22 @@ input, textarea, select { font-family: var(--font-body); }
     </div>
 </section>
 
+<!-- CẦU NỐI -->
+<div class="bridge">
+    <a href="#ingredients-section" class="bridge-link">
+        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-bear"/></svg></span>
+        <span>Bên trong hộp kem có gì?</span>
+        <span class="bridge-arrow" aria-hidden="true">↓</span>
+    </a>
+</div>
+
 <!-- ============================================
      INGREDIENTS SECTION
      ============================================ -->
 <section class="section ingredients-section" id="ingredients-section">
+    <svg class="deco deco-tl sm wiggle" aria-hidden="true"><use href="#a-heart"/></svg>
+    <svg class="deco deco-tr" aria-hidden="true"><use href="#a-bunny"/></svg>
+    <svg class="deco deco-bl" aria-hidden="true"><use href="#a-cloud"/></svg>
     <div class="container">
         <div class="section-header reveal">
             <span class="section-label">THÀNH PHẦN TỰ NHIÊN</span>
@@ -2681,17 +3121,21 @@ input, textarea, select { font-family: var(--font-body); }
     </div>
 </section>
 
-<!-- WAVE DIVIDER -->
-<div class="wave-divider">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
-        <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,20 1440,30 L1440,60 L0,60 Z" fill="white"/>
-    </svg>
+<!-- CẦU NỐI -->
+<div class="bridge">
+    <a href="#howto-section" class="bridge-link">
+        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-whale"/></svg></span>
+        <span>Cách dùng cực đơn giản</span>
+        <span class="bridge-arrow" aria-hidden="true">↓</span>
+    </a>
 </div>
 
 <!-- ============================================
      HOW TO USE SECTION
      ============================================ -->
 <section class="section howto-section" id="howto-section">
+    <svg class="deco deco-tl" aria-hidden="true"><use href="#a-whale"/></svg>
+    <svg class="deco deco-tr sm wiggle" aria-hidden="true"><use href="#a-star"/></svg>
     <div class="container">
         <div class="section-header reveal">
             <span class="section-label">HƯỚNG DẪN SỬ DỤNG</span>
@@ -2746,8 +3190,19 @@ input, textarea, select { font-family: var(--font-body); }
     </a>
 </div>
 
+<!-- CẦU NỐI -->
+<div class="bridge">
+    <a href="#trust-section" class="bridge-link">
+        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-star"/></svg></span>
+        <span>Chứng nhận & cam kết chất lượng</span>
+        <span class="bridge-arrow" aria-hidden="true">↓</span>
+    </a>
+</div>
+
 <!-- TRUST BADGES SECTION -->
 <section class="trust-section" id="trust-section">
+    <svg class="deco deco-tl sm" aria-hidden="true"><use href="#a-chick"/></svg>
+    <svg class="deco deco-tr sm wiggle" aria-hidden="true"><use href="#a-heart"/></svg>
     <div class="container">
         <div class="trust-grid">
             <div class="trust-badge-card reveal">
@@ -2784,6 +3239,7 @@ input, textarea, select { font-family: var(--font-body); }
 
 <!-- GUARANTEE SECTION -->
 <section class="guarantee-section reveal">
+    <svg class="deco deco-br" aria-hidden="true"><use href="#a-bear"/></svg>
     <div class="container">
         <div class="guarantee-inner">
             <div class="guarantee-icon">🛡️</div>
@@ -2813,17 +3269,22 @@ input, textarea, select { font-family: var(--font-body); }
     </div>
 </section>
 
-<!-- WAVE DIVIDER -->
-<div class="wave-divider">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
-        <path d="M0,0 L0,30 C360,0 720,60 1080,30 C1260,15 1380,40 1440,30 L1440,0 Z" fill="#FFF8E7"/>
-    </svg>
+<!-- CẦU NỐI -->
+<div class="bridge">
+    <a href="#social-proof" class="bridge-link">
+        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-cat"/></svg></span>
+        <span>Các mẹ nói gì về Bon Bon?</span>
+        <span class="bridge-arrow" aria-hidden="true">↓</span>
+    </a>
 </div>
 
 <!-- ============================================
      SOCIAL PROOF / TESTIMONIALS
      ============================================ -->
 <section class="section social-proof-section" id="social-proof">
+    <svg class="deco deco-tl" aria-hidden="true"><use href="#a-cat"/></svg>
+    <svg class="deco deco-tr sm wiggle" aria-hidden="true"><use href="#a-heart"/></svg>
+    <svg class="deco deco-br" aria-hidden="true"><use href="#a-cloud"/></svg>
     <div class="container">
         <div class="section-header reveal">
             <span class="section-label">FEEDBACK TỪ CÁC MẸ</span>
@@ -2955,10 +3416,21 @@ input, textarea, select { font-family: var(--font-body); }
     </div>
 </section>
 
+<!-- CẦU NỐI -->
+<div class="bridge">
+    <a href="#combo-section" class="bridge-link">
+        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-balloon"/></svg></span>
+        <span>Mua combo còn tiết kiệm hơn</span>
+        <span class="bridge-arrow" aria-hidden="true">↓</span>
+    </a>
+</div>
+
 <!-- ============================================
      COMBO DEAL SECTION
      ============================================ -->
 <section class="section combo-section" id="combo-section">
+    <svg class="deco deco-tl sm wiggle" aria-hidden="true"><use href="#a-star"/></svg>
+    <svg class="deco deco-tr" aria-hidden="true"><use href="#a-balloon"/></svg>
     <div class="container">
         <div class="section-header reveal">
             <span class="section-label">ƯU ĐÃI ĐẶC BIỆT</span>
@@ -3026,10 +3498,21 @@ input, textarea, select { font-family: var(--font-body); }
     </div>
 </section>
 
+<!-- CẦU NỐI -->
+<div class="bridge">
+    <a href="#process-section" class="bridge-link">
+        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-chick"/></svg></span>
+        <span>Đặt hàng chỉ 3 bước</span>
+        <span class="bridge-arrow" aria-hidden="true">↓</span>
+    </a>
+</div>
+
 <!-- ============================================
      ORDER PROCESS
      ============================================ -->
 <section class="section process-section" id="process-section">
+    <svg class="deco deco-tl" aria-hidden="true"><use href="#a-chick"/></svg>
+    <svg class="deco deco-br" aria-hidden="true"><use href="#a-elephant"/></svg>
     <div class="container">
         <div class="section-header reveal">
             <span class="section-label">QUY TRÌNH ĐẶT HÀNG</span>
@@ -3062,10 +3545,21 @@ input, textarea, select { font-family: var(--font-body); }
     </div>
 </section>
 
+<!-- CẦU NỐI -->
+<div class="bridge">
+    <a href="#form-section" class="bridge-link">
+        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-bunny"/></svg></span>
+        <span>Điền form nhận ưu đãi ngay</span>
+        <span class="bridge-arrow" aria-hidden="true">↓</span>
+    </a>
+</div>
+
 <!-- ============================================
      REGISTRATION FORM
      ============================================ -->
 <section class="section form-section" id="form-section">
+    <svg class="deco deco-tl" aria-hidden="true"><use href="#a-bear"/></svg>
+    <svg class="deco deco-br" aria-hidden="true"><use href="#a-bunny"/></svg>
     <div class="container">
         <div class="form-wrapper reveal-scale">
             <span class="form-deco-left">🍼</span>
@@ -3146,10 +3640,21 @@ input, textarea, select { font-family: var(--font-body); }
     </div>
 </section>
 
+<!-- CẦU NỐI -->
+<div class="bridge">
+    <a href="#faq-section" class="bridge-link">
+        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-bear"/></svg></span>
+        <span>Mẹ còn thắc mắc? Xem giải đáp nhé</span>
+        <span class="bridge-arrow" aria-hidden="true">↓</span>
+    </a>
+</div>
+
 <!-- ============================================
      FAQ SECTION
      ============================================ -->
 <section class="section faq-section" id="faq-section">
+    <svg class="deco deco-tl" aria-hidden="true"><use href="#a-cloud"/></svg>
+    <svg class="deco deco-tr" aria-hidden="true"><use href="#a-whale"/></svg>
     <div class="container">
         <div class="section-header reveal">
             <span class="section-label">HỎI ĐÁP</span>
@@ -3216,6 +3721,12 @@ input, textarea, select { font-family: var(--font-body); }
     </div>
 </section>
 
+<div class="wave-divider footer-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+        <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,20 1440,30 L1440,60 L0,60 Z" fill="#2D3436"/>
+    </svg>
+</div>
+
 <!-- ============================================
      FOOTER
      ============================================ -->
@@ -3245,6 +3756,20 @@ input, textarea, select { font-family: var(--font-body); }
         </div>
     </div>
 </footer>
+
+<!-- ĐIỀU HƯỚNG CHẤM (desktop) -->
+<nav class="dot-nav" aria-label="Điều hướng nhanh">
+    <a href="#hero" data-label="Đầu trang" aria-label="Đầu trang"></a>
+    <a href="#pain-section" data-label="Nỗi lo của mẹ" aria-label="Nỗi lo của mẹ"></a>
+    <a href="#solution-section" data-label="Giải pháp" aria-label="Giải pháp"></a>
+    <a href="#compare-section" data-label="So sánh" aria-label="So sánh"></a>
+    <a href="#ingredients-section" data-label="Thành phần" aria-label="Thành phần"></a>
+    <a href="#howto-section" data-label="Cách dùng" aria-label="Cách dùng"></a>
+    <a href="#social-proof" data-label="Feedback" aria-label="Feedback"></a>
+    <a href="#combo-section" data-label="Combo" aria-label="Combo"></a>
+    <a href="#form-section" data-label="Đăng ký" aria-label="Đăng ký"></a>
+    <a href="#faq-section" data-label="Hỏi đáp" aria-label="Hỏi đáp"></a>
+</nav>
 
 <!-- STICKY BOTTOM BAR (Mobile) -->
 <div class="sticky-bottom" id="stickyBottom">
@@ -3342,6 +3867,21 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // ===== ĐIỀU HƯỚNG CHẤM: đánh dấu section đang xem =====
+    const dotLinks = document.querySelectorAll('.dot-nav a');
+    if (dotLinks.length && 'IntersectionObserver' in window) {
+        const dotObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                dotLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id));
+            });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+        dotLinks.forEach(a => {
+            const sec = document.getElementById(a.getAttribute('href').slice(1));
+            if (sec) dotObserver.observe(sec);
+        });
+    }
 
     // ===== LOADING SCREEN =====
     const loader = document.getElementById('loader');
