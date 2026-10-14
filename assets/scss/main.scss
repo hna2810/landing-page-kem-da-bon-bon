@@ -121,13 +121,41 @@ strong { color: var(--dark); }
     animation: shine 2.8s ease-in-out infinite;
 }
 @keyframes shine { 0% { left: -60%; } 60%, 100% { left: 130%; } }
-.btn.pulse { animation: pulse 2s ease-in-out infinite; }
-@keyframes pulse {
-    0%,100% { box-shadow: 0 8px 20px rgba(76,192,211,.40), 0 0 0 0 rgba(76,192,211,.45); }
-    50% { box-shadow: 0 8px 20px rgba(76,192,211,.40), 0 0 0 10px rgba(76,192,211,0); }
+.btn.pulse,
+.btn.js-buy {
+    animation: pulse 1.8s ease-in-out infinite;
 }
-.btn.pink { background: var(--pink); box-shadow: 0 8px 20px rgba(255,126,179,.40); }
-.btn.pink:hover { background: #f0629f; }
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 8px 20px rgba(31, 127, 144, 0.35), 0 0 0 0 rgba(76, 192, 211, 0.55);
+    }
+    50% {
+        transform: scale(1.03);
+        box-shadow: 0 12px 26px rgba(31, 127, 144, 0.45), 0 0 0 10px rgba(76, 192, 211, 0);
+    }
+}
+.btn.pink {
+    background: var(--pink);
+    box-shadow: 0 8px 20px rgba(255, 126, 179, 0.40);
+}
+.btn.pink,
+.btn.pink.pulse {
+    animation: pinkPulse 1.8s ease-in-out infinite;
+}
+.btn.pink:hover {
+    background: #f0629f;
+}
+@keyframes pinkPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 8px 20px rgba(214, 77, 134, 0.45), 0 0 0 0 rgba(255, 126, 179, 0.6);
+    }
+    50% {
+        transform: scale(1.03);
+        box-shadow: 0 12px 26px rgba(214, 77, 134, 0.55), 0 0 0 10px rgba(255, 126, 179, 0);
+    }
+}
 
 /* Giá flash sale */
 .price-box {
@@ -1416,6 +1444,7 @@ strong { color: var(--dark); }
     cursor: pointer;
     transition: transform .15s, box-shadow .2s;
     margin-top: 14px;
+    animation: pinkPulse 1.8s ease-in-out infinite;
 }
 .order-card input.wpcf7-submit:hover {
     box-shadow: 0 14px 30px rgba(255,126,179,0.48);

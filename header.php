@@ -58,7 +58,7 @@ $hotline_display = lx_get_field('lx_hotline_display', 'option', '0901.234.567');
             </nav>
             <div class="topbar-actions">
                 <a href="tel:<?php echo $hotline; ?>" class="topbar-call">📞 <span class="js-hotline"><?php echo $hotline_display; ?></span></a>
-                <a href="#order" class="btn topbar-buy js-buy">Mua ngay</a>
+                <a href="#order" class="btn topbar-buy pulse js-buy">Mua ngay</a>
             </div>
         </div>
     </header>

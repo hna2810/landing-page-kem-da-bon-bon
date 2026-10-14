@@ -17,7 +17,7 @@ $price   = lx_format_price(lx_get_field('lx_price', 'option', 49000));
 <div class="sticky-buy">
     <a href="tel:<?php echo $hotline; ?>" class="sticky-call" aria-label="Gọi hotline">📞</a>
     <a href="https://zalo.me/<?php echo $zalo; ?>" target="_blank" rel="noopener" class="sticky-zalo" aria-label="Chat Zalo">Zalo</a>
-    <a href="#order" class="btn js-buy"><span>MUA NGAY <small class="js-price"><?php echo $price; ?></small></span></a>
+    <a href="#order" class="btn pulse js-buy"><span>MUA NGAY <small class="js-price"><?php echo $price; ?></small></span></a>
 </div>
 
 <!-- THÔNG BÁO ĐẶT HÀNG -->

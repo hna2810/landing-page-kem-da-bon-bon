@@ -20,6 +20,6 @@ $seminar_sub   = lx_get_field('lx_seminar_sub', 'option', 'Đồng hành cùng h
             <p class="sec-sub"><?php echo $seminar_sub; ?></p>
         </div>
         <div class="slider reveal" data-slider="seminarSlides" data-ratio="ratio-43" data-label="Ảnh hội thảo Bon Bon"></div>
-        <div style="max-width:380px; margin:24px auto 0"><a href="#order" class="btn js-buy">🛒 ĐẶT MUA NGAY</a></div>
+        <div style="max-width:380px; margin:24px auto 0"><a href="#order" class="btn pulse js-buy">🛒 ĐẶT MUA NGAY</a></div>
     </div>
 </section>
