@@ -21,7 +21,7 @@ $feedback_title = lx_get_field('lx_feedback_title', 'option', 'Hàng ngàn mẹ 
         <div class="split">
             <div>
                 <p class="label-line">Hình ảnh feedback</p>
-                <div class="slider reveal" data-slider="feedback" data-ratio="ratio-34" data-label="Ảnh feedback"></div>
+                <div class="slider reveal" data-slider="feedback" data-ratio="ratio-1" data-label="Ảnh feedback"></div>
             </div>
             <div>
                 <p class="label-line">Nghe các mẹ chia sẻ</p>

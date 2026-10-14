@@ -541,6 +541,160 @@
       "name": "lx_rating_num",
       "type": "text",
       "default_value": "4.9"
+    },
+    {
+      "key": "field_lx_chip_all_label",
+      "label": "Nhãn chip Tất cả",
+      "name": "lx_chip_all_label",
+      "type": "text",
+      "default_value": "Tất cả"
+    },
+    {
+      "key": "field_lx_chip_5star_label",
+      "label": "Nhãn chip 5 Sao",
+      "name": "lx_chip_5star_label",
+      "type": "text",
+      "default_value": "5 Sao (1.6K)"
+    },
+    {
+      "key": "field_lx_chip_4star_label",
+      "label": "Nhãn chip 4 Sao",
+      "name": "lx_chip_4star_label",
+      "type": "text",
+      "default_value": "4 Sao (55)"
+    },
+    {
+      "key": "field_lx_chip_3star_label",
+      "label": "Nhãn chip 3 Sao",
+      "name": "lx_chip_3star_label",
+      "type": "text",
+      "default_value": "3 Sao (12)"
+    },
+    {
+      "key": "field_lx_chip_comment_label",
+      "label": "Nhãn chip Có Bình Luận",
+      "name": "lx_chip_comment_label",
+      "type": "text",
+      "default_value": "Có Bình Luận (684)"
+    },
+    {
+      "key": "field_lx_chip_media_label",
+      "label": "Nhãn chip Có Hình Ảnh / Video",
+      "name": "lx_chip_media_label",
+      "type": "text",
+      "default_value": "Có Hình Ảnh / Video (572)"
+    },
+    {
+      "key": "field_lx_reviews_list",
+      "label": "Danh sách Đánh giá của khách hàng",
+      "name": "lx_reviews_list",
+      "type": "repeater",
+      "instructions": "Thêm, bớt, xóa hoặc sắp xếp lại các đánh giá hiển thị trên landing page. Nếu để trống sẽ dùng đánh giá mặc định.",
+      "collapsed": "field_lx_rev_name",
+      "min": 0,
+      "max": 0,
+      "layout": "block",
+      "button_label": "+ Thêm đánh giá",
+      "sub_fields": [
+        {
+          "key": "field_lx_rev_name",
+          "label": "Tên khách hàng",
+          "name": "name",
+          "type": "text",
+          "instructions": "Ví dụ: n*****, Thu Trang (Mẹ Bắp), Chị Lan Anh...",
+          "required": 1,
+          "default_value": ""
+        },
+        {
+          "key": "field_lx_rev_avatar_type",
+          "label": "Loại Avatar",
+          "name": "avatar_type",
+          "type": "radio",
+          "choices": {
+            "text": "Chữ cái viết tắt",
+            "image": "Ảnh đại diện"
+          },
+          "default_value": "text",
+          "layout": "horizontal"
+        },
+        {
+          "key": "field_lx_rev_avatar_text",
+          "label": "Chữ cái Avatar",
+          "name": "avatar_text",
+          "type": "text",
+          "instructions": "Ví dụ: N, T, B... (Để trống hệ thống sẽ tự động lấy chữ cái đầu của Tên)",
+          "conditional_logic": [
+            [
+              {
+                "field": "field_lx_rev_avatar_type",
+                "operator": "==",
+                "value": "text"
+              }
+            ]
+          ]
+        },
+        {
+          "key": "field_lx_rev_avatar_img",
+          "label": "Tải ảnh Avatar",
+          "name": "avatar_img",
+          "type": "image",
+          "instructions": "Ảnh chân dung hoặc avatar của khách hàng",
+          "return_format": "url",
+          "preview_size": "thumbnail",
+          "library": "all",
+          "conditional_logic": [
+            [
+              {
+                "field": "field_lx_rev_avatar_type",
+                "operator": "==",
+                "value": "image"
+              }
+            ]
+          ]
+        },
+        {
+          "key": "field_lx_rev_stars",
+          "label": "Số sao đánh giá",
+          "name": "stars",
+          "type": "select",
+          "choices": {
+            "5": "5 sao ★★★★★",
+            "4": "4 sao ★★★★☆",
+            "3": "3 sao ★★★☆☆",
+            "2": "2 sao ★★☆☆☆",
+            "1": "1 sao ★☆☆☆☆"
+          },
+          "default_value": "5",
+          "ui": 1
+        },
+        {
+          "key": "field_lx_rev_date",
+          "label": "Thời gian đánh giá",
+          "name": "date",
+          "type": "text",
+          "instructions": "Ví dụ: 2 ngày trước, Hôm qua, 12/10/2026...",
+          "default_value": "Gần đây"
+        },
+        {
+          "key": "field_lx_rev_comment",
+          "label": "Nội dung nhận xét",
+          "name": "comment",
+          "type": "textarea",
+          "rows": 3,
+          "instructions": "Lời nhận xét chi tiết của mẹ về sản phẩm"
+        },
+        {
+          "key": "field_lx_rev_gallery",
+          "label": "Hình ảnh đính kèm",
+          "name": "gallery",
+          "type": "gallery",
+          "instructions": "Chọn một hoặc nhiều hình ảnh feedback đính kèm (nếu có)",
+          "return_format": "url",
+          "preview_size": "thumbnail",
+          "insert": "append",
+          "library": "all"
+        }
+      ]
     }
   ],
   "location": [

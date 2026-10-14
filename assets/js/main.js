@@ -133,8 +133,27 @@ document.documentElement.classList.add('js');
         const items = get(wrap.dataset.slider) || [];
         const track = document.createElement('div'); track.className = 'slides';
         const dots = document.createElement('div'); dots.className = 'dots';
-        const goTo = s => track.scrollTo({ left: s.offsetLeft - track.offsetLeft - (track.clientWidth - s.offsetWidth) / 2, behavior: 'smooth' });
         const isVideo = wrap.dataset.kind === 'video';
+        const isFeedback15 = wrap.closest('#feedback') && !isVideo;
+        const goTo = s => {
+            const leftPos = isFeedback15 
+                ? (s.offsetLeft - track.offsetLeft) 
+                : (s.offsetLeft - track.offsetLeft - (track.clientWidth - s.offsetWidth) / 2);
+            track.scrollTo({ left: leftPos, behavior: 'smooth' });
+        };
+
+        const prevBtn = document.createElement('button');
+        prevBtn.type = 'button';
+        prevBtn.className = 'slider-arrow prev';
+        prevBtn.setAttribute('aria-label', 'Ảnh trước');
+        prevBtn.innerHTML = '&#8249;';
+
+        const nextBtn = document.createElement('button');
+        nextBtn.type = 'button';
+        nextBtn.className = 'slider-arrow next';
+        nextBtn.setAttribute('aria-label', 'Ảnh tiếp');
+        nextBtn.innerHTML = '&#8250;';
+
         items.forEach((raw, i) => {
             const it = typeof raw === 'string' ? { src: raw } : raw;
             const s = document.createElement('div');
@@ -149,12 +168,37 @@ document.documentElement.classList.add('js');
             d.addEventListener('click', () => goTo(s));
             dots.appendChild(d);
         });
-        wrap.append(track, dots);
+
+        prevBtn.addEventListener('click', () => {
+            const sl = track.children;
+            if (sl.length) {
+                const targetIdx = Math.max(0, current - 1);
+                goTo(sl[targetIdx]);
+            }
+        });
+        nextBtn.addEventListener('click', () => {
+            const sl = track.children;
+            if (sl.length) {
+                const targetIdx = Math.min(sl.length - 1, current + 1);
+                goTo(sl[targetIdx]);
+            }
+        });
+
+        wrap.append(prevBtn, track, nextBtn, dots);
         let current = 0;
         const update = () => {
-            const center = track.scrollLeft + track.clientWidth / 2;
+            const checkPoint = isFeedback15 
+                ? (track.scrollLeft + 20) 
+                : (track.scrollLeft + track.clientWidth / 2);
             let dist = Infinity;
-            [...track.children].forEach((s, i) => { const d = Math.abs(s.offsetLeft - track.offsetLeft + s.offsetWidth / 2 - center); if (d < dist) { dist = d; current = i; } });
+            [...track.children].forEach((s, i) => {
+                if (!s.classList.contains('slide')) return;
+                const sPoint = isFeedback15 
+                    ? (s.offsetLeft - track.offsetLeft) 
+                    : (s.offsetLeft - track.offsetLeft + s.offsetWidth / 2);
+                const d = Math.abs(sPoint - checkPoint);
+                if (d < dist) { dist = d; current = i; }
+            });
             [...dots.children].forEach((d, i) => d.classList.toggle('on', i === current));
             // Ẩn chấm khi mọi ảnh đã hiển thị cùng lúc (PC, slider 3 ảnh)
             dots.style.visibility = track.scrollWidth <= track.clientWidth + 2 ? 'hidden' : '';
@@ -356,3 +400,86 @@ document.addEventListener('wpcf7mailsent', function (event) {
         successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 }, false);
+
+// ===== Bộ lọc Đánh giá (Review Filters) =====
+(function initReviewsFilter() {
+    const chips = document.querySelectorAll('.chips .chip, .chips span');
+    const reviews = document.querySelectorAll('.reviews-list .review');
+    const emptyBox = document.getElementById('reviewsEmpty');
+
+    if (!chips.length || !reviews.length) return;
+
+    chips.forEach(chip => {
+        chip.addEventListener('click', function () {
+            chips.forEach(c => {
+                c.classList.remove('on');
+                c.setAttribute('aria-selected', 'false');
+            });
+            this.classList.add('on');
+            this.setAttribute('aria-selected', 'true');
+
+            const filter = this.dataset.filter || 'all';
+            let visibleCount = 0;
+
+            reviews.forEach(review => {
+                const stars = review.dataset.stars || '5';
+                const hasComment = review.dataset.hasComment === '1';
+                const hasMedia = review.dataset.hasMedia === '1';
+
+                let match = false;
+                if (filter === 'all') {
+                    match = true;
+                } else if (filter === '5' || filter === '4' || filter === '3' || filter === '2' || filter === '1') {
+                    match = (stars === filter);
+                } else if (filter === 'comment') {
+                    match = hasComment;
+                } else if (filter === 'media') {
+                    match = hasMedia;
+                }
+
+                if (match) {
+                    review.style.display = '';
+                    visibleCount++;
+                } else {
+                    review.style.display = 'none';
+                }
+            });
+
+            if (emptyBox) {
+                emptyBox.style.display = (visibleCount === 0) ? 'block' : 'none';
+            }
+        });
+    });
+})();
+
+// ===== Lightbox xem ảnh feedback & review phóng to =====
+(function initReviewLightbox() {
+    let modal = document.getElementById('reviewLightbox');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'reviewLightbox';
+        modal.className = 'review-lightbox';
+        modal.innerHTML = '<div class="lightbox-backdrop"></div><div class="lightbox-content"><img src="" alt="Ảnh phóng to"><button type="button" class="lightbox-close" aria-label="Đóng">&times;</button></div>';
+        document.body.appendChild(modal);
+
+        const closeBtn = modal.querySelector('.lightbox-close');
+        const backdrop = modal.querySelector('.lightbox-backdrop');
+        const closeModal = () => modal.classList.remove('open');
+        closeBtn.addEventListener('click', closeModal);
+        backdrop.addEventListener('click', closeModal);
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    }
+
+    const modalImg = modal.querySelector('img');
+    document.addEventListener('click', function (e) {
+        const item = e.target.closest('.review-img-item');
+        if (item) {
+            const src = item.dataset.full || item.querySelector('img')?.src;
+            if (src) {
+                modalImg.src = src;
+                modal.classList.add('open');
+            }
+        }
+    });
+})();
+
