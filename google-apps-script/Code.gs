@@ -14,6 +14,8 @@ var COLUMNS = [
   ['time', 'Thời gian'],
   ['name', 'Họ tên'],
   ['phone', 'Số điện thoại'],
+  ['address', 'Địa chỉ'],
+  ['quantity', 'Số lượng'],
   ['email', 'Email'],
   ['product', 'Sản phẩm'],
   ['price', 'Giá'],

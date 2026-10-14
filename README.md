@@ -1,42 +1,42 @@
-# Landing Page — Kem Bôi Chàm Sữa Bon Bon (Home Care Việt Nam)
+# Landing Page — Kem Hăm Cho Bé Bon Bon (Mobile First)
 
-Landing page tối ưu chuyển đổi cao (High Conversion Rate) dành cho chiến dịch chạy quảng cáo Facebook Ads, Google Ads, TikTok Ads.
+Landing page bán hàng ưu tiên điện thoại cho **Kem Hăm Cho Bé Bon Bon 5g** (Home Care), dùng chạy quảng cáo Facebook / TikTok / Google.
 
-## ✨ Điểm nổi bật
-- **Màu chủ đạo**: `#4cc0d3` kết hợp bảng màu pastel baby cute (hồng phấn, vàng nhạt, xanh bạc hà).
-- **Hiệu ứng mượt mà & Awwwards-style**: Sử dụng **GSAP 3** + **ScrollTrigger** + **ScrollToPlugin**.
-- **Social Proof Real-time**: Popup thông báo khách đặt hàng tự động theo thời gian thực.
-- **Marquee Ticker**: Dải chứng nhận, cam kết, số công bố mỹ phẩm chạy liên tục.
-- **Đếm ngược giới hạn**: Countdown timer & thông báo số lượng suất ưu đãi còn lại tạo tính cấp bách (Urgency).
-- **Form đăng ký chuẩn UX**: Kiểm tra dữ liệu (Validation) tức thì, lựa chọn sản phẩm đơn lẻ (49k) hoặc Combo giảm 50%, hiệu ứng bắn pháo hoa Confetti khi đăng ký thành công.
-- **Lightbox**: Phóng to xem ảnh feedback và giấy chứng nhận kiểm định.
-- **Tối ưu Mobile First**: Sticky CTA bar cố định bên dưới màn hình, nút gọi Hotline / Chat Zalo tiện lợi.
+## Cấu trúc trang (theo wireframe)
+1. Hero: "Da bé ửng đỏ vì hăm" — text bên trái, ảnh **trước / sau** bên phải, giá flash sale, nút MUA NGAY CHO BÉ
+2. Nỗi lo của mẹ + slider ảnh các vị trí bé bị hăm
+3. Bon Bon – Nhẹ nhàng chăm sóc vùng da bé bị hăm + ảnh mẹ ôm bé
+4. Thành phần dịu nhẹ + 5 Không + ảnh cận cảnh chất kem
+5. An tâm sử dụng: giấy công bố, tem chống hàng giả
+6. Hàng ngàn mẹ tin dùng: ảnh feedback + video các mẹ chia sẻ
+7. Bon Bon trên khắp 3 miền: slider ảnh hội thảo + nút đặt mua
+8. 3 bước chăm sóc + video hướng dẫn
+9. Thông tin sản phẩm + khối CTA giá
+10. Hỏi đáp
+11. Yêu con – Mẹ chọn Bon Bon
+12. Đánh giá sản phẩm
 
-## 🚀 Cấu trúc file
-- `index.html`: Toàn bộ mã nguồn Landing Page (HTML5, CSS3, JavaScript) chạy độc lập, không phụ thuộc build tool phức tạp.
+Hiệu ứng: thông báo "vừa đặt hàng", nút gọi điện rung, thanh mua hàng dính dưới màn hình, form đặt hàng trượt lên từ dưới (bottom sheet).
 
-## 🛠️ Công nghệ sử dụng
-- HTML5 / CSS3 / Vanilla JavaScript
-- GSAP 3 & ScrollTrigger (CDN)
-- Google Fonts (Quicksand & Nunito)
-
-## ⚙️ Cấu hình (chỉ sửa 1 chỗ)
-Mở `index.html`, tìm `window.BONBON_CONFIG` ở đầu file và điền:
+## ⚙️ Cấu hình — chỉ sửa 1 chỗ
+Mở `index.html`, tìm `window.BONBON_CONFIG`:
 
 | Trường | Ý nghĩa |
 |---|---|
-| `hotline`, `hotlineDisplay`, `zalo`, `email` | Thông tin liên hệ — tự áp dụng cho mọi nút gọi / Zalo / footer |
-| `sheetEndpoint` | URL Web App Google Apps Script để nhận đơn (xem bên dưới). Để trống = chế độ demo, đơn chỉ lưu tạm trên trình duyệt |
-| `facebookPixelId`, `googleAnalyticsId`, `tiktokPixelId` | ID pixel. Để trống thì không tải script đó |
+| `hotline`, `hotlineDisplay`, `zalo` | Số liên hệ, tự áp cho mọi nút gọi / Zalo |
+| `price`, `listPrice` | Giá flash sale và giá niêm yết |
+| `sheetEndpoint` | URL Web App Google Apps Script nhận đơn (trống = demo, đơn chỉ lưu trên trình duyệt) |
+| `facebookPixelId`, `googleAnalyticsId`, `tiktokPixelId` | ID pixel, để trống thì không tải |
+| `media` | **Link ảnh / video** cho từng khung. Ô nào trống sẽ hiện khung chờ có ghi chú. Video nhận link YouTube (kể cả Shorts) hoặc file `.mp4` |
 
-Sự kiện được bắn tự động: `PageView`, `ViewContent`, `InitiateCheckout` (khi bắt đầu điền form), `Contact` (bấm gọi / Zalo), `Lead` (gửi form thành công, kèm giá trị đơn VND).
+Ảnh có thể để trong thư mục `assets/` rồi điền đường dẫn dạng `assets/ten-anh.jpg`.
 
-## 📥 Kết nối form với Google Sheet
-1. Tạo 1 Google Sheet mới → **Tiện ích mở rộng → Apps Script**.
-2. Dán nội dung file `google-apps-script/Code.gs` vào, bấm Lưu. (Tuỳ chọn: điền `NOTIFY_EMAIL` để nhận email khi có đơn.)
-3. **Triển khai → Tùy chọn triển khai mới → Ứng dụng web**: *Thực thi với tư cách*: **Tôi**, *Ai có quyền truy cập*: **Bất kỳ ai**.
-4. Copy URL dạng `https://script.google.com/macros/s/.../exec` dán vào `sheetEndpoint`.
+## 📥 Nhận đơn về Google Sheet
+1. Tạo Google Sheet → **Tiện ích mở rộng → Apps Script**, dán nội dung `google-apps-script/Code.gs`, Lưu.
+2. **Triển khai → Tùy chọn triển khai mới → Ứng dụng web**: Thực thi với tư cách **Tôi**, quyền truy cập **Bất kỳ ai**.
+3. Dán URL `https://script.google.com/macros/s/.../exec` vào `sheetEndpoint`.
 
-Mỗi đơn ghi 1 dòng gồm: thời gian, họ tên, SĐT (chuẩn hoá về dạng 0xxx), email, sản phẩm, giá, ghi chú, UTM (`utm_source/medium/campaign/content/term`), `fbclid/gclid/ttclid`, referrer, thiết bị — để đo chính xác hiệu quả từng chiến dịch quảng cáo.
+Mỗi đơn gồm: thời gian, họ tên, SĐT, địa chỉ, số lượng, sản phẩm, tạm tính, ghi chú, UTM / fbclid / gclid / ttclid.
 
-Form có chống spam (honeypot), chống bấm gửi 2 lần, báo lỗi + gợi ý gọi/Zalo khi mạng lỗi, và luôn giữ bản sao đơn trên trình duyệt khách.
+## 🛠️ Công nghệ
+HTML / CSS / JavaScript thuần, không cần build. Không dùng thư viện ngoài (nhẹ, tải nhanh trên 4G).
