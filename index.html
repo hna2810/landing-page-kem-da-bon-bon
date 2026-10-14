@@ -30,6 +30,11 @@
             { qty: 2, price: 98000,  listPrice: 160000 },
             { qty: 3, price: 147000, listPrice: 240000 }
         ],
+        // Hiệu ứng thông báo "vừa đặt hàng". DỮ LIỆU MẪU — thay bằng đơn hàng thật, hoặc đặt enabled: false để tắt
+        orderNotifications: {
+            enabled: true,
+            items: [['Chị Lan', 'Hà Nội'], ['Mẹ Hương', 'TP.HCM'], ['Chị Thảo', 'Đà Nẵng'], ['Mẹ Ngọc', 'Cần Thơ'], ['Chị Mai', 'Hải Phòng']]
+        },
         offerMinutes: 10.5,   // Đồng hồ "Chỉ còn 10 phút 30 giây" (tự chạy lại khi hết giờ)
         // URL Web App Google Apps Script (xem google-apps-script/Code.gs + README). Trống = chế độ demo.
         sheetEndpoint: '',
@@ -43,11 +48,11 @@
             heroBefore: '',
             heroAfter: '',
             rashSlides: [
-                { src: '', caption: 'Vùng mông' },
-                { src: '', caption: 'Vùng bẹn' },
-                { src: '', caption: 'Vùng nếp gấp' },
-                { src: '', caption: 'Kẽ tay' },
-                { src: '', caption: 'Kẽ chân' }
+                { src: '', caption: '' },
+                { src: '', caption: '' },
+                { src: '', caption: '' },
+                { src: '', caption: '' },
+                { src: '', caption: '' }
             ],
             motherBaby: '',
             creamTexture: '',
@@ -56,9 +61,9 @@
             feedback: ['', ''],
             testimonialVideo: '',
             seminarSlides: [
-                { src: '', caption: 'Hội thảo tiền sản' },
-                { src: '', caption: 'Bệnh viện Sản - Nhi' },
-                { src: '', caption: 'Đồng hành cùng mẹ bầu, mẹ bỉm' }
+                { src: '', caption: '' },
+                { src: '', caption: '' },
+                { src: '', caption: '' }
             ],
             guideVideo: '',
             reviewImages: [['', ''], ['', '']]
@@ -826,7 +831,6 @@ strong { color: var(--dark); }
         <div class="container">
             <div class="hero-text-col">
                 <img src="assets/mascot-bear.webp" alt="" class="hero-mascot hero-mascot-m" aria-hidden="true">
-                <span class="hero-badge">⚡ Flash sale hôm nay</span>
                 <h1 class="hero-title">Da bé <span class="hl">ửng đỏ</span> vì hăm</h1>
                 <p class="hero-q">Mẹ đã tìm được cách chăm sóc phù hợp?</p>
                 <div class="hero-grid">
@@ -1032,18 +1036,13 @@ strong { color: var(--dark); }
                 <h2 class="offer-title">Ưu đãi tặng riêng cho mẹ</h2>
                 <p class="offer-price">Chỉ còn <b class="js-price">49.000đ</b> <s>Giá gốc <span class="js-list-price">80.000đ</span></s></p>
                 <div class="countdown-wrap">
-                    <p class="countdown-label">⏰ Ưu đãi chỉ còn</p>
+                    <p class="countdown-label">⏰ Chỉ còn</p>
                     <div class="countdown" role="timer" aria-live="off">
                         <div class="unit"><b id="cdMin">10</b><span>Phút</span></div>
                         <span class="colon">:</span>
                         <div class="unit"><b id="cdSec">30</b><span>Giây</span></div>
                     </div>
                 </div>
-                <ul class="offer-perks">
-                    <li><span>🛡️</span> Không Corticoid - Không Paraben - Không hương liệu</li>
-                    <li><span>👩‍⚕️</span> Chuyên gia tin dùng</li>
-                    <li><span>📞</span> Nhân viên gọi xác nhận đơn cho mẹ</li>
-                </ul>
                 <img src="assets/mascot-kitten.webp" alt="" class="offer-mascot" aria-hidden="true">
             </div>
 
@@ -1066,13 +1065,12 @@ strong { color: var(--dark); }
                     <div class="hp" aria-hidden="true"><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
                     <button type="submit" class="btn pink pulse" id="submitBtn">🎁 ĐẶT HÀNG NGAY!</button>
                     <div class="form-alert" id="formAlert" role="alert"></div>
-                    <p class="secure">🔒 Thông tin của mẹ được bảo mật</p>
                 </form>
 
                 <div class="success" id="successBox" role="status" aria-live="polite">
                     <img src="assets/mascot-kitten.webp" alt="">
                     <h3>Đặt hàng thành công!</h3>
-                    <p>Cảm ơn mẹ đã tin chọn Bon Bon. Nhân viên sẽ gọi xác nhận đơn cho mẹ sớm nhất nhé!</p>
+                    <p>Cảm ơn mẹ đã đặt hàng Bon Bon.</p>
                     <div class="summary" id="summary"></div>
                     <a href="https://zalo.me/0901234567" target="_blank" rel="noopener" class="btn" style="background:#0068ff">💬 Nhắn Zalo cho Bon Bon</a>
                 </div>
@@ -1151,7 +1149,6 @@ strong { color: var(--dark); }
                     <div class="review-imgs" data-list="reviewImages.1" data-ratio="ratio-1" data-label="Ảnh"></div>
                 </div>
             </div>
-            <div class="reviews-cta" style="margin-top:18px"><a href="#order" class="btn pulse js-buy">🛒 MUA NGAY CHO BÉ</a></div>
         </div>
     </section>
 
@@ -1161,7 +1158,7 @@ strong { color: var(--dark); }
         <b>Bon Bon - Home Care</b>
         Dịu dàng chăm bé, trọn vẹn yêu thương.<br>
         Hotline: <a href="tel:0901234567" class="js-hotline">0901.234.567</a>
-        <div style="margin-top:8px; opacity:.7">&copy; <span id="year">2026</span> Home Care Việt Nam</div>
+        <div style="margin-top:8px; opacity:.7">&copy; <span id="year">2026</span> Home Care</div>
     </footer>
 </div>
 
@@ -1442,8 +1439,8 @@ strong { color: var(--dark); }
     }
 
     // ===== Hiệu ứng thông báo đặt hàng =====
-    const people = [['Chị Lan', 'Hà Nội'], ['Mẹ Hương', 'TP.HCM'], ['Chị Thảo', 'Đà Nẵng'], ['Mẹ Ngọc', 'Cần Thơ'], ['Chị Mai', 'Hải Phòng'],
-                    ['Mẹ Trang', 'Bình Dương'], ['Chị Vy', 'Nghệ An'], ['Mẹ Hà', 'Thanh Hoá'], ['Chị Linh', 'Đồng Nai'], ['Mẹ Phương', 'Huế']];
+    const notif = CFG.orderNotifications || {};
+    const people = (notif.enabled && notif.items) || [];
     const toast = document.getElementById('toast');
     const toastText = document.getElementById('toastText');
     let ti = Math.floor(Math.random() * people.length);
@@ -1458,7 +1455,7 @@ strong { color: var(--dark); }
         toast.classList.add('show');
         setTimeout(() => toast.classList.remove('show'), 4500);
     }
-    setTimeout(() => { showToast(); setInterval(showToast, 16000); }, 6000);
+    if (people.length) setTimeout(() => { showToast(); setInterval(showToast, 16000); }, 6000);
 })();
 </script>
 </body>

@@ -29,6 +29,7 @@ Mở `index.html`, tìm `window.BONBON_CONFIG`:
 | `hotline`, `hotlineDisplay`, `zalo` | Số liên hệ, tự áp cho mọi nút gọi / Zalo |
 | `price`, `listPrice` | Giá flash sale và giá niêm yết |
 | `packages` | Các gói trong form (số hũ, giá, giá gốc) |
+| `orderNotifications` | Thông báo "vừa đặt hàng". **Tên trong file là dữ liệu mẫu** — thay bằng đơn thật hoặc đặt `enabled: false` để tắt |
 | `offerMinutes` | Thời gian đồng hồ ưu đãi (mặc định 10.5 = 10 phút 30 giây, hết giờ tự chạy lại) |
 | `sheetEndpoint` | URL Web App Google Apps Script nhận đơn (trống = demo, đơn chỉ lưu trên trình duyệt) |
 | `facebookPixelId`, `googleAnalyticsId`, `tiktokPixelId` | ID pixel, để trống thì không tải |
