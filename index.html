@@ -2914,6 +2914,43 @@ body { background: #FFFFFF; }
 .combo-section .bub { border-color: rgba(255,255,255,0.6); }
 
 /* ============================================
+   ẢNH LINH VẬT (thay toàn bộ icon mặt con vật)
+   ============================================ */
+.hmascot {
+    position: absolute;
+    top: -26px;
+    width: 78px; height: auto;
+    pointer-events: none;
+    animation: decoBob 6s ease-in-out infinite;
+    filter: drop-shadow(0 8px 12px rgba(45,58,74,0.10));
+}
+.hmascot-l { left: -6px; }
+.hmascot-r { right: -6px; animation-delay: -3s; }
+@media (min-width: 768px) {
+    .hmascot { width: 110px; top: -40px; }
+    .hmascot-l { left: -20px; }
+    .hmascot-r { right: -20px; }
+}
+@media (min-width: 1100px) {
+    .hmascot { width: 190px; top: -24px; }
+    .hmascot-l { left: -230px; }
+    .hmascot-r { right: -230px; }
+}
+.bridge-icon { font-size: 22px; }
+@media (min-width: 768px) { .bridge-icon { font-size: 26px; } }
+.compare-layout { padding-top: 10px; }
+/* Mèo con trong chậu ló đầu sau form */
+.form-col { padding-top: 92px; }
+img.form-peek {
+    width: 150px; height: auto;
+    margin-left: -75px;
+    top: 0;
+    filter: drop-shadow(0 6px 10px rgba(45,58,74,0.10));
+}
+img.perks-mascot { width: 92px; height: auto; top: -52px; right: 10px; filter: drop-shadow(0 6px 10px rgba(45,58,74,0.10)); }
+.form-perks h3 { padding-right: 84px; }
+
+/* ============================================
    FORM STATES (loading / lỗi gửi / thành công)
    ============================================ */
 .hp-field {
@@ -2987,218 +3024,6 @@ body { background: #FFFFFF; }
 </style>
 </head>
 <body>
-
-<!-- CUTE ANIMAL SPRITE (dùng lại bằng <use href="#a-...">) -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-    <defs>
-        <!-- Gấu -->
-        <symbol id="a-bear" viewBox="0 0 120 120">
-            <circle cx="30" cy="30" r="18" fill="#C9956B"/><circle cx="30" cy="30" r="9" fill="#F4C7A1"/>
-            <circle cx="90" cy="30" r="18" fill="#C9956B"/><circle cx="90" cy="30" r="9" fill="#F4C7A1"/>
-            <circle cx="60" cy="66" r="44" fill="#D9A77C"/>
-            <ellipse cx="60" cy="82" rx="20" ry="15" fill="#F8DCC2"/>
-            <ellipse cx="60" cy="75" rx="7" ry="5" fill="#5B3A29"/>
-            <path d="M54 86 Q60 92 66 86" stroke="#5B3A29" stroke-width="3" fill="none" stroke-linecap="round"/>
-            <circle cx="44" cy="58" r="5" fill="#3B2A20"/><circle cx="76" cy="58" r="5" fill="#3B2A20"/>
-            <circle cx="45.5" cy="56.5" r="1.6" fill="#fff"/><circle cx="77.5" cy="56.5" r="1.6" fill="#fff"/>
-            <ellipse cx="32" cy="76" rx="8" ry="5" fill="#FF9DB5" opacity=".7"/><ellipse cx="88" cy="76" rx="8" ry="5" fill="#FF9DB5" opacity=".7"/>
-        </symbol>
-        <!-- Thỏ -->
-        <symbol id="a-bunny" viewBox="0 0 120 120">
-            <ellipse cx="42" cy="30" rx="11" ry="28" fill="#fff" stroke="#F2D4DE" stroke-width="2"/><ellipse cx="42" cy="32" rx="5" ry="19" fill="#FFC2D4"/>
-            <ellipse cx="78" cy="30" rx="11" ry="28" fill="#fff" stroke="#F2D4DE" stroke-width="2" transform="rotate(12 78 30)"/><ellipse cx="78" cy="32" rx="5" ry="19" fill="#FFC2D4" transform="rotate(12 78 32)"/>
-            <circle cx="60" cy="76" r="38" fill="#fff" stroke="#F2D4DE" stroke-width="2"/>
-            <circle cx="46" cy="72" r="4.5" fill="#3B2A20"/><circle cx="74" cy="72" r="4.5" fill="#3B2A20"/>
-            <circle cx="47.3" cy="70.6" r="1.4" fill="#fff"/><circle cx="75.3" cy="70.6" r="1.4" fill="#fff"/>
-            <path d="M56 82 L64 82 L60 87 Z" fill="#FF8FAB"/>
-            <path d="M60 87 Q55 93 51 90 M60 87 Q65 93 69 90" stroke="#C98A9C" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <ellipse cx="36" cy="86" rx="7" ry="4.5" fill="#FFB3C6" opacity=".8"/><ellipse cx="84" cy="86" rx="7" ry="4.5" fill="#FFB3C6" opacity=".8"/>
-        </symbol>
-        <!-- Gà con -->
-        <symbol id="a-chick" viewBox="0 0 120 120">
-            <path d="M60 14 Q64 4 70 10 Q66 12 64 18 Z" fill="#FFC93C"/>
-            <ellipse cx="60" cy="68" rx="42" ry="40" fill="#FFE27A"/>
-            <ellipse cx="26" cy="74" rx="10" ry="16" fill="#FFD447" transform="rotate(-20 26 74)"/>
-            <ellipse cx="94" cy="74" rx="10" ry="16" fill="#FFD447" transform="rotate(20 94 74)"/>
-            <circle cx="46" cy="60" r="5" fill="#3B2A20"/><circle cx="74" cy="60" r="5" fill="#3B2A20"/>
-            <circle cx="47.5" cy="58.5" r="1.6" fill="#fff"/><circle cx="75.5" cy="58.5" r="1.6" fill="#fff"/>
-            <path d="M52 70 L68 70 L60 80 Z" fill="#FF9F43"/>
-            <ellipse cx="36" cy="74" rx="7" ry="4" fill="#FF9DB5" opacity=".7"/><ellipse cx="84" cy="74" rx="7" ry="4" fill="#FF9DB5" opacity=".7"/>
-            <path d="M48 106 v8 M44 114 h8 M72 106 v8 M68 114 h8" stroke="#FF9F43" stroke-width="3" stroke-linecap="round"/>
-        </symbol>
-        <!-- Mèo -->
-        <symbol id="a-cat" viewBox="0 0 120 120">
-            <path d="M22 50 L28 12 L52 34 Z" fill="#B8B8D9"/><path d="M29 22 L33 40 L44 33 Z" fill="#FFC2D4"/>
-            <path d="M98 50 L92 12 L68 34 Z" fill="#B8B8D9"/><path d="M91 22 L87 40 L76 33 Z" fill="#FFC2D4"/>
-            <ellipse cx="60" cy="68" rx="44" ry="40" fill="#CFCFEA"/>
-            <path d="M44 62 Q48 56 52 62" stroke="#3B2A20" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-            <path d="M68 62 Q72 56 76 62" stroke="#3B2A20" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-            <path d="M56 74 L64 74 L60 79 Z" fill="#FF8FAB"/>
-            <path d="M60 79 Q56 85 52 82 M60 79 Q64 85 68 82" stroke="#7A6E8F" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <path d="M24 74 H40 M24 82 L40 79 M96 74 H80 M96 82 L80 79" stroke="#9A93B8" stroke-width="2" stroke-linecap="round"/>
-            <ellipse cx="38" cy="86" rx="7" ry="4" fill="#FFB3C6" opacity=".8"/><ellipse cx="82" cy="86" rx="7" ry="4" fill="#FFB3C6" opacity=".8"/>
-        </symbol>
-        <!-- Cá voi -->
-        <symbol id="a-whale" viewBox="0 0 120 120">
-            <path d="M60 30 Q56 18 50 20 M60 30 Q60 16 60 12 M60 30 Q64 18 70 20" stroke="#7FD3E2" stroke-width="4" fill="none" stroke-linecap="round"/>
-            <path d="M14 70 Q14 34 56 34 Q98 34 98 66 Q98 96 56 96 Q22 96 14 70 Z" fill="#7FD3E2"/>
-            <path d="M96 64 Q108 50 114 58 Q108 66 112 78 Q104 74 96 74 Z" fill="#6CC6D6"/>
-            <path d="M22 76 Q56 100 92 76 Q80 96 56 96 Q30 96 22 76 Z" fill="#C9F0F6"/>
-            <circle cx="40" cy="62" r="5" fill="#2D3A4A"/><circle cx="41.5" cy="60.5" r="1.6" fill="#fff"/>
-            <path d="M48 74 Q54 79 60 74" stroke="#2D3A4A" stroke-width="3" fill="none" stroke-linecap="round"/>
-            <ellipse cx="30" cy="72" rx="6" ry="3.5" fill="#FF9DB5" opacity=".7"/>
-        </symbol>
-        <!-- Voi -->
-        <symbol id="a-elephant" viewBox="0 0 120 120">
-            <ellipse cx="22" cy="58" rx="20" ry="26" fill="#A9C4E8"/><ellipse cx="24" cy="58" rx="12" ry="17" fill="#FFC2D4"/>
-            <ellipse cx="98" cy="58" rx="20" ry="26" fill="#A9C4E8"/><ellipse cx="96" cy="58" rx="12" ry="17" fill="#FFC2D4"/>
-            <circle cx="60" cy="56" r="34" fill="#BCD3F0"/>
-            <path d="M52 72 Q50 100 64 106 Q72 108 72 100 Q62 98 66 72 Z" fill="#BCD3F0"/>
-            <circle cx="47" cy="52" r="4.5" fill="#2D3A4A"/><circle cx="73" cy="52" r="4.5" fill="#2D3A4A"/>
-            <circle cx="48.4" cy="50.6" r="1.4" fill="#fff"/><circle cx="74.4" cy="50.6" r="1.4" fill="#fff"/>
-            <ellipse cx="38" cy="64" rx="6" ry="3.5" fill="#FF9DB5" opacity=".7"/><ellipse cx="82" cy="64" rx="6" ry="3.5" fill="#FF9DB5" opacity=".7"/>
-        </symbol>
-        <!-- Mây -->
-        <symbol id="a-cloud" viewBox="0 0 120 70">
-            <path d="M24 60 Q4 60 8 42 Q12 28 28 32 Q32 12 54 14 Q72 14 78 30 Q96 24 106 38 Q116 58 94 60 Z" fill="#fff"/>
-            <circle cx="48" cy="42" r="3" fill="#7A8A99"/><circle cx="70" cy="42" r="3" fill="#7A8A99"/>
-            <path d="M54 48 Q59 52 64 48" stroke="#7A8A99" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <ellipse cx="40" cy="48" rx="5" ry="3" fill="#FFB3C6" opacity=".8"/><ellipse cx="78" cy="48" rx="5" ry="3" fill="#FFB3C6" opacity=".8"/>
-        </symbol>
-        <!-- Ngôi sao -->
-        <symbol id="a-star" viewBox="0 0 100 100">
-            <path d="M50 6 L62 36 L94 38 L69 58 L78 90 L50 72 L22 90 L31 58 L6 38 L38 36 Z" fill="#FFE27A" stroke="#FFC93C" stroke-width="4" stroke-linejoin="round"/>
-            <circle cx="40" cy="50" r="3.5" fill="#5B4A1E"/><circle cx="60" cy="50" r="3.5" fill="#5B4A1E"/>
-            <path d="M44 60 Q50 65 56 60" stroke="#5B4A1E" stroke-width="3" fill="none" stroke-linecap="round"/>
-        </symbol>
-        <!-- Bóng bay -->
-        <symbol id="a-balloon" viewBox="0 0 60 120">
-            <ellipse cx="30" cy="34" rx="26" ry="32" fill="#A8E6CF"/>
-            <path d="M26 66 L34 66 L30 72 Z" fill="#8FD9BC"/>
-            <path d="M30 72 Q22 88 32 100 Q40 110 30 120" stroke="#9AA9B5" stroke-width="2" fill="none"/>
-            <ellipse cx="20" cy="24" rx="6" ry="9" fill="#fff" opacity=".55"/>
-        </symbol>
-        <!-- Gấu trúc -->
-        <symbol id="a-panda" viewBox="0 0 120 120">
-            <circle cx="28" cy="30" r="16" fill="#3A3F47"/><circle cx="92" cy="30" r="16" fill="#3A3F47"/>
-            <circle cx="60" cy="66" r="44" fill="#fff" stroke="#E3EEF1" stroke-width="2"/>
-            <ellipse cx="42" cy="60" rx="12" ry="15" fill="#3A3F47" transform="rotate(-25 42 60)"/>
-            <ellipse cx="78" cy="60" rx="12" ry="15" fill="#3A3F47" transform="rotate(25 78 60)"/>
-            <circle cx="43" cy="59" r="4.5" fill="#fff"/><circle cx="77" cy="59" r="4.5" fill="#fff"/>
-            <circle cx="44" cy="59" r="2.4" fill="#3A3F47"/><circle cx="76" cy="59" r="2.4" fill="#3A3F47"/>
-            <ellipse cx="60" cy="78" rx="7" ry="5" fill="#3A3F47"/>
-            <path d="M54 88 Q60 93 66 88" stroke="#3A3F47" stroke-width="3" fill="none" stroke-linecap="round"/>
-            <ellipse cx="30" cy="82" rx="8" ry="5" fill="#FFB3C6" opacity=".8"/><ellipse cx="90" cy="82" rx="8" ry="5" fill="#FFB3C6" opacity=".8"/>
-        </symbol>
-        <!-- Chim cánh cụt -->
-        <symbol id="a-penguin" viewBox="0 0 120 120">
-            <ellipse cx="60" cy="66" rx="40" ry="48" fill="#3E5568"/>
-            <ellipse cx="22" cy="72" rx="9" ry="22" fill="#3E5568" transform="rotate(20 22 72)"/>
-            <ellipse cx="98" cy="72" rx="9" ry="22" fill="#3E5568" transform="rotate(-20 98 72)"/>
-            <path d="M60 32 Q88 34 88 64 Q88 104 60 106 Q32 104 32 64 Q32 34 60 32 Z" fill="#fff"/>
-            <circle cx="48" cy="56" r="5" fill="#2D3A4A"/><circle cx="72" cy="56" r="5" fill="#2D3A4A"/>
-            <circle cx="49.5" cy="54.5" r="1.6" fill="#fff"/><circle cx="73.5" cy="54.5" r="1.6" fill="#fff"/>
-            <path d="M53 64 L67 64 L60 73 Z" fill="#FFB547"/>
-            <ellipse cx="40" cy="68" rx="6" ry="3.5" fill="#FFB3C6" opacity=".8"/><ellipse cx="80" cy="68" rx="6" ry="3.5" fill="#FFB3C6" opacity=".8"/>
-            <ellipse cx="46" cy="112" rx="10" ry="5" fill="#FFB547"/><ellipse cx="74" cy="112" rx="10" ry="5" fill="#FFB547"/>
-        </symbol>
-        <!-- Cừu -->
-        <symbol id="a-sheep" viewBox="0 0 120 120">
-            <g fill="#fff" stroke="#E6EEF0" stroke-width="2">
-                <circle cx="30" cy="50" r="16"/><circle cx="50" cy="34" r="17"/><circle cx="72" cy="34" r="17"/><circle cx="92" cy="50" r="16"/>
-                <circle cx="94" cy="74" r="15"/><circle cx="28" cy="74" r="15"/><circle cx="44" cy="94" r="15"/><circle cx="76" cy="94" r="15"/>
-            </g>
-            <ellipse cx="61" cy="68" rx="26" ry="28" fill="#F6E2D3"/>
-            <ellipse cx="34" cy="62" rx="10" ry="6" fill="#EBCDB7" transform="rotate(-25 34 62)"/>
-            <ellipse cx="88" cy="62" rx="10" ry="6" fill="#EBCDB7" transform="rotate(25 88 62)"/>
-            <circle cx="52" cy="64" r="4.2" fill="#3B2A20"/><circle cx="70" cy="64" r="4.2" fill="#3B2A20"/>
-            <circle cx="53.2" cy="62.8" r="1.3" fill="#fff"/><circle cx="71.2" cy="62.8" r="1.3" fill="#fff"/>
-            <path d="M56 78 Q61 82 66 78" stroke="#8A5C45" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <ellipse cx="45" cy="74" rx="5" ry="3" fill="#FFB3C6" opacity=".8"/><ellipse cx="77" cy="74" rx="5" ry="3" fill="#FFB3C6" opacity=".8"/>
-        </symbol>
-        <!-- Cáo -->
-        <symbol id="a-fox" viewBox="0 0 120 120">
-            <path d="M18 18 L48 40 L28 62 Z" fill="#FFA45C"/><path d="M24 26 L40 40 L30 52 Z" fill="#FFE0C7"/>
-            <path d="M102 18 L72 40 L92 62 Z" fill="#FFA45C"/><path d="M96 26 L80 40 L90 52 Z" fill="#FFE0C7"/>
-            <path d="M14 56 Q16 34 60 34 Q104 34 106 56 Q102 90 60 106 Q18 90 14 56 Z" fill="#FFA45C"/>
-            <path d="M20 64 Q40 66 60 84 Q80 66 100 64 Q94 92 60 106 Q26 92 20 64 Z" fill="#FFF4EA"/>
-            <circle cx="44" cy="62" r="4.5" fill="#3B2A20"/><circle cx="76" cy="62" r="4.5" fill="#3B2A20"/>
-            <circle cx="45.4" cy="60.6" r="1.4" fill="#fff"/><circle cx="77.4" cy="60.6" r="1.4" fill="#fff"/>
-            <ellipse cx="60" cy="88" rx="6" ry="4.5" fill="#3B2A20"/>
-            <ellipse cx="34" cy="74" rx="6" ry="3.5" fill="#FF8FAB" opacity=".7"/><ellipse cx="86" cy="74" rx="6" ry="3.5" fill="#FF8FAB" opacity=".7"/>
-        </symbol>
-        <!-- Cầu vồng -->
-        <symbol id="a-rainbow" viewBox="0 0 140 80">
-            <path d="M10 74 A60 60 0 0 1 130 74" stroke="#FFB3C6" stroke-width="12" fill="none"/>
-            <path d="M22 74 A48 48 0 0 1 118 74" stroke="#FFE27A" stroke-width="12" fill="none"/>
-            <path d="M34 74 A36 36 0 0 1 106 74" stroke="#A8E6CF" stroke-width="12" fill="none"/>
-            <path d="M46 74 A24 24 0 0 1 94 74" stroke="#8AD6E2" stroke-width="12" fill="none"/>
-            <ellipse cx="18" cy="72" rx="16" ry="9" fill="#fff"/><ellipse cx="122" cy="72" rx="16" ry="9" fill="#fff"/>
-        </symbol>
-        <!-- Trăng ngủ -->
-        <symbol id="a-moon" viewBox="0 0 100 100">
-            <path d="M62 8 A42 42 0 1 0 92 70 A34 34 0 1 1 62 8 Z" fill="#FFE9A8"/>
-            <path d="M40 54 Q44 58 48 54 M58 62 Q62 66 66 62" stroke="#B8923A" stroke-width="3" fill="none" stroke-linecap="round"/>
-            <path d="M50 74 Q55 78 60 74" stroke="#B8923A" stroke-width="3" fill="none" stroke-linecap="round"/>
-            <text x="74" y="30" font-size="16" font-family="Quicksand, sans-serif" font-weight="800" fill="#8AD6E2">z</text>
-            <text x="84" y="16" font-size="12" font-family="Quicksand, sans-serif" font-weight="800" fill="#8AD6E2">z</text>
-        </symbol>
-        <!-- Vịt cao su -->
-        <symbol id="a-duck" viewBox="0 0 120 120">
-            <ellipse cx="62" cy="84" rx="44" ry="28" fill="#FFD84D"/>
-            <path d="M96 70 Q112 60 110 78 Q104 84 96 82 Z" fill="#FFD84D"/>
-            <circle cx="50" cy="48" r="28" fill="#FFD84D"/>
-            <path d="M20 48 Q12 46 10 52 Q14 60 26 56 Z" fill="#FF9F43"/>
-            <circle cx="44" cy="42" r="4.5" fill="#2D3A4A"/><circle cx="45.4" cy="40.6" r="1.4" fill="#fff"/>
-            <ellipse cx="36" cy="54" rx="6" ry="3.5" fill="#FF9DB5" opacity=".7"/>
-            <path d="M58 82 Q72 72 86 82 Q72 92 58 82 Z" fill="#FFC93C"/>
-        </symbol>
-        <!-- Ếch -->
-        <symbol id="a-frog" viewBox="0 0 120 120">
-            <circle cx="36" cy="36" r="17" fill="#8ED69B"/><circle cx="84" cy="36" r="17" fill="#8ED69B"/>
-            <circle cx="36" cy="36" r="10" fill="#fff"/><circle cx="84" cy="36" r="10" fill="#fff"/>
-            <circle cx="38" cy="37" r="5" fill="#2D3A4A"/><circle cx="82" cy="37" r="5" fill="#2D3A4A"/>
-            <circle cx="39.5" cy="35.5" r="1.6" fill="#fff"/><circle cx="83.5" cy="35.5" r="1.6" fill="#fff"/>
-            <ellipse cx="60" cy="72" rx="46" ry="36" fill="#8ED69B"/>
-            <ellipse cx="60" cy="84" rx="28" ry="18" fill="#D8F3DC"/>
-            <path d="M44 66 Q60 78 76 66" stroke="#3E7D4F" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-            <ellipse cx="28" cy="64" rx="7" ry="4.5" fill="#FF9DB5" opacity=".7"/><ellipse cx="92" cy="64" rx="7" ry="4.5" fill="#FF9DB5" opacity=".7"/>
-        </symbol>
-        <!-- Koala -->
-        <symbol id="a-koala" viewBox="0 0 120 120">
-            <circle cx="24" cy="44" r="20" fill="#B9C2CC"/><circle cx="24" cy="46" r="11" fill="#F2DDE3"/>
-            <circle cx="96" cy="44" r="20" fill="#B9C2CC"/><circle cx="96" cy="46" r="11" fill="#F2DDE3"/>
-            <ellipse cx="60" cy="68" rx="40" ry="38" fill="#C9D1DA"/>
-            <ellipse cx="60" cy="74" rx="11" ry="15" fill="#4A4F5A"/>
-            <circle cx="44" cy="60" r="4.5" fill="#2D3A4A"/><circle cx="76" cy="60" r="4.5" fill="#2D3A4A"/>
-            <circle cx="45.4" cy="58.6" r="1.4" fill="#fff"/><circle cx="77.4" cy="58.6" r="1.4" fill="#fff"/>
-            <path d="M54 94 Q60 98 66 94" stroke="#4A4F5A" stroke-width="3" fill="none" stroke-linecap="round"/>
-            <ellipse cx="36" cy="78" rx="7" ry="4" fill="#FFB3C6" opacity=".8"/><ellipse cx="84" cy="78" rx="7" ry="4" fill="#FFB3C6" opacity=".8"/>
-        </symbol>
-        <!-- Bộ lọc tạo khối bóng (giống đồ chơi 3D) -->
-        <filter id="puffy" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
-            <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="blur"/>
-            <feSpecularLighting in="blur" surfaceScale="6" specularConstant="0.75" specularExponent="28" lighting-color="#ffffff" result="spec">
-                <fePointLight x="20" y="0" z="160"/>
-            </feSpecularLighting>
-            <feComposite in="spec" in2="SourceAlpha" operator="in" result="specIn"/>
-            <feDiffuseLighting in="blur" surfaceScale="5" diffuseConstant="1" lighting-color="#ffffff" result="diff">
-                <feDistantLight azimuth="225" elevation="55"/>
-            </feDiffuseLighting>
-            <feComposite in="diff" in2="SourceAlpha" operator="in" result="diffIn"/>
-            <feBlend in="SourceGraphic" in2="diffIn" mode="multiply" result="shaded"/>
-            <feComposite in="shaded" in2="SourceGraphic" operator="arithmetic" k2="0.5" k3="0.5" result="soft"/>
-            <feComposite in="soft" in2="specIn" operator="arithmetic" k2="1" k3="0.42" result="lit"/>
-            <feComposite in="lit" in2="SourceAlpha" operator="in"/>
-        </filter>
-        <!-- Dấu chân -->
-        <symbol id="a-paw" viewBox="0 0 100 100">
-            <ellipse cx="50" cy="64" rx="22" ry="18" fill="currentColor"/>
-            <circle cx="24" cy="40" r="9" fill="currentColor"/><circle cx="40" cy="24" r="9" fill="currentColor"/>
-            <circle cx="60" cy="24" r="9" fill="currentColor"/><circle cx="76" cy="40" r="9" fill="currentColor"/>
-        </symbol>
-    </defs>
-</svg>
 
 
 <!-- LOADING SCREEN -->
@@ -3300,7 +3125,7 @@ body { background: #FFFFFF; }
 <!-- CẦU NỐI -->
 <div class="bridge">
     <a href="#pain-section" class="bridge-link">
-        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-cat"/></svg></span>
+        <span class="bridge-icon" aria-hidden="true">🔍</span>
         <span>Mẹ có đang gặp những điều này không?</span>
         <span class="bridge-arrow" aria-hidden="true">↓</span>
     </a>
@@ -3312,8 +3137,7 @@ body { background: #FFFFFF; }
 <section class="section pain-section band" id="pain-section">
     <div class="container">
         <div class="section-header reveal">
-            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-koala"/></svg>
-            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-cloud"/></svg>
+            <img src="assets/mascot-kitten.webp" alt="" class="hmascot hmascot-l" loading="lazy" aria-hidden="true">
             <span class="bub b1" aria-hidden="true"></span><span class="bub b2" aria-hidden="true"></span><span aria-hidden="true" class="bub b3"></span>
             <span class="section-label">VẤN ĐỀ CỦA MẸ</span>
             <h2 class="section-title">Mẹ Có Đang <span>Lo Lắng</span> Vì Con... 😟</h2>
@@ -3359,7 +3183,7 @@ body { background: #FFFFFF; }
 <!-- CẦU NỐI -->
 <div class="bridge">
     <a href="#solution-section" class="bridge-link">
-        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-bunny"/></svg></span>
+        <span class="bridge-icon" aria-hidden="true">🌿</span>
         <span>Đừng lo, Bon Bon có giải pháp dịu nhẹ cho bé</span>
         <span class="bridge-arrow" aria-hidden="true">↓</span>
     </a>
@@ -3371,8 +3195,7 @@ body { background: #FFFFFF; }
 <section class="section solution-section" id="solution-section">
     <div class="container">
         <div class="section-header reveal">
-            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-bear"/></svg>
-            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-star"/></svg>
+            <img src="assets/mascot-bear.webp" alt="" class="hmascot hmascot-r" loading="lazy" aria-hidden="true">
             <span class="bub b1" aria-hidden="true"></span><span class="bub b2" aria-hidden="true"></span><span aria-hidden="true" class="bub b3 leaf">🌿</span>
             <span class="section-label">GIẢI PHÁP TỪ THIÊN NHIÊN</span>
             <h2 class="section-title">Kem Bôi Chàm Sữa <span>Bon Bon</span> 🌿</h2>
@@ -3435,7 +3258,7 @@ body { background: #FFFFFF; }
 <!-- CẦU NỐI -->
 <div class="bridge">
     <a href="#compare-section" class="bridge-link">
-        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-chick"/></svg></span>
+        <span class="bridge-icon" aria-hidden="true">⚖️</span>
         <span>Vì sao mẹ nên chọn Bon Bon?</span>
         <span class="bridge-arrow" aria-hidden="true">↓</span>
     </a>
@@ -3447,8 +3270,7 @@ body { background: #FFFFFF; }
 <section class="section compare-section band" id="compare-section">
     <div class="container">
         <div class="section-header reveal">
-            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-chick"/></svg>
-            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-fox"/></svg>
+            <img src="assets/mascot-puppy.webp" alt="" class="hmascot hmascot-l" loading="lazy" aria-hidden="true">
             <span class="bub b1" aria-hidden="true"></span><span class="bub b2" aria-hidden="true"></span><span aria-hidden="true" class="bub b3"></span>
             <span class="section-label">SO SÁNH</span>
             <h2 class="section-title">Tại Sao Chọn <span>Bon Bon</span>? 🤔</h2>
@@ -3457,7 +3279,6 @@ body { background: #FFFFFF; }
         
         <div class="compare-layout">
         <div class="peek-host">
-        <svg class="peek peek-right" aria-hidden="true"><use href="#a-bunny"/></svg>
         <div class="compare-table-wrap reveal">
             <table class="compare-table">
                 <thead>
@@ -3513,7 +3334,6 @@ body { background: #FFFFFF; }
         </div>
         </div>
         <aside class="compare-score reveal">
-            <svg class="compare-score-mascot" aria-hidden="true"><use href="#a-bear"/></svg>
             <div class="score-ring"><strong>8/8</strong><span>tiêu chí</span></div>
             <h4>Bon Bon đạt trọn vẹn!</h4>
             <p>An toàn, dịu nhẹ, minh bạch nguồn gốc — đúng những điều mẹ cần nhất khi chọn kem cho bé.</p>
@@ -3526,7 +3346,7 @@ body { background: #FFFFFF; }
 <!-- CẦU NỐI -->
 <div class="bridge">
     <a href="#product-detail" class="bridge-link">
-        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-elephant"/></svg></span>
+        <span class="bridge-icon" aria-hidden="true">📋</span>
         <span>Xem chi tiết sản phẩm</span>
         <span class="bridge-arrow" aria-hidden="true">↓</span>
     </a>
@@ -3538,8 +3358,6 @@ body { background: #FFFFFF; }
 <section class="section product-detail-section" id="product-detail">
     <div class="container">
         <div class="section-header reveal">
-            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-duck"/></svg>
-            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-rainbow"/></svg>
             <span class="bub b1" aria-hidden="true"></span><span class="bub b2" aria-hidden="true"></span><span aria-hidden="true" class="bub b3 leaf">🌿</span>
             <span class="section-label">CHI TIẾT SẢN PHẨM</span>
             <h2 class="section-title">Mọi Thứ Mẹ Cần <span>Biết</span> Về Bon Bon 📋</h2>
@@ -3610,7 +3428,7 @@ body { background: #FFFFFF; }
 <!-- CẦU NỐI -->
 <div class="bridge">
     <a href="#ingredients-section" class="bridge-link">
-        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-bear"/></svg></span>
+        <span class="bridge-icon" aria-hidden="true">🧪</span>
         <span>Bên trong hộp kem có gì?</span>
         <span class="bridge-arrow" aria-hidden="true">↓</span>
     </a>
@@ -3622,8 +3440,7 @@ body { background: #FFFFFF; }
 <section class="section ingredients-section band" id="ingredients-section">
     <div class="container">
         <div class="section-header reveal">
-            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-bunny"/></svg>
-            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-frog"/></svg>
+            <img src="assets/mascot-hippo.webp" alt="" class="hmascot hmascot-r" loading="lazy" aria-hidden="true">
             <span class="bub b1" aria-hidden="true"></span><span class="bub b2" aria-hidden="true"></span><span aria-hidden="true" class="bub b3 leaf">🌿</span>
             <span class="section-label">THÀNH PHẦN TỰ NHIÊN</span>
             <h2 class="section-title">Thân Thiện Với <span>Làn Da Bé</span> 🌸</h2>
@@ -3685,7 +3502,7 @@ body { background: #FFFFFF; }
 <!-- CẦU NỐI -->
 <div class="bridge">
     <a href="#howto-section" class="bridge-link">
-        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-whale"/></svg></span>
+        <span class="bridge-icon" aria-hidden="true">🧴</span>
         <span>Cách dùng cực đơn giản</span>
         <span class="bridge-arrow" aria-hidden="true">↓</span>
     </a>
@@ -3697,8 +3514,7 @@ body { background: #FFFFFF; }
 <section class="section howto-section" id="howto-section">
     <div class="container">
         <div class="section-header reveal">
-            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-whale"/></svg>
-            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-moon"/></svg>
+            <img src="assets/mascot-elephant.webp" alt="" class="hmascot hmascot-l" loading="lazy" aria-hidden="true">
             <span class="bub b1" aria-hidden="true"></span><span class="bub b2" aria-hidden="true"></span><span aria-hidden="true" class="bub b3"></span>
             <span class="section-label">HƯỚNG DẪN SỬ DỤNG</span>
             <h2 class="section-title">Mẹ Bôi Kem <span>Đúng Cách</span> Cho Con 📝</h2>
@@ -3755,7 +3571,7 @@ body { background: #FFFFFF; }
 <!-- CẦU NỐI -->
 <div class="bridge">
     <a href="#trust-section" class="bridge-link">
-        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-star"/></svg></span>
+        <span class="bridge-icon" aria-hidden="true">✅</span>
         <span>Chứng nhận & cam kết chất lượng</span>
         <span class="bridge-arrow" aria-hidden="true">↓</span>
     </a>
@@ -3831,7 +3647,7 @@ body { background: #FFFFFF; }
 <!-- CẦU NỐI -->
 <div class="bridge">
     <a href="#social-proof" class="bridge-link">
-        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-cat"/></svg></span>
+        <span class="bridge-icon" aria-hidden="true">💬</span>
         <span>Các mẹ nói gì về Bon Bon?</span>
         <span class="bridge-arrow" aria-hidden="true">↓</span>
     </a>
@@ -3843,8 +3659,7 @@ body { background: #FFFFFF; }
 <section class="section social-proof-section" id="social-proof">
     <div class="container">
         <div class="section-header reveal">
-            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-panda"/></svg>
-            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-cat"/></svg>
+            <img src="assets/mascot-lion.webp" alt="" class="hmascot hmascot-r" loading="lazy" aria-hidden="true">
             <span class="bub b1" aria-hidden="true"></span><span class="bub b2" aria-hidden="true"></span><span aria-hidden="true" class="bub b3"></span>
             <span class="section-label">FEEDBACK TỪ CÁC MẸ</span>
             <h2 class="section-title">Hàng Ngàn Mẹ <span>Tin Dùng</span> Và Hài Lòng 🌟</h2>
@@ -3978,7 +3793,7 @@ body { background: #FFFFFF; }
 <!-- CẦU NỐI -->
 <div class="bridge">
     <a href="#combo-section" class="bridge-link">
-        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-balloon"/></svg></span>
+        <span class="bridge-icon" aria-hidden="true">🎁</span>
         <span>Mua combo còn tiết kiệm hơn</span>
         <span class="bridge-arrow" aria-hidden="true">↓</span>
     </a>
@@ -3990,8 +3805,6 @@ body { background: #FFFFFF; }
 <section class="section combo-section" id="combo-section">
     <div class="container">
         <div class="section-header reveal">
-            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-star"/></svg>
-            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-duck"/></svg>
             <span class="bub b1" aria-hidden="true"></span><span class="bub b2" aria-hidden="true"></span><span aria-hidden="true" class="bub b3"></span>
             <span class="section-label">ƯU ĐÃI ĐẶC BIỆT</span>
             <h2 class="section-title">Combo Siêu Tiết Kiệm — <span>Giảm 50%</span> 🎁</h2>
@@ -4062,7 +3875,7 @@ body { background: #FFFFFF; }
 <!-- CẦU NỐI -->
 <div class="bridge">
     <a href="#process-section" class="bridge-link">
-        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-chick"/></svg></span>
+        <span class="bridge-icon" aria-hidden="true">🚚</span>
         <span>Đặt hàng chỉ 3 bước</span>
         <span class="bridge-arrow" aria-hidden="true">↓</span>
     </a>
@@ -4074,8 +3887,7 @@ body { background: #FFFFFF; }
 <section class="section process-section band" id="process-section">
     <div class="container">
         <div class="section-header reveal">
-            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-chick"/></svg>
-            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-penguin"/></svg>
+            <img src="assets/mascot-bear.webp" alt="" class="hmascot hmascot-l" loading="lazy" aria-hidden="true">
             <span class="bub b1" aria-hidden="true"></span><span class="bub b2" aria-hidden="true"></span><span aria-hidden="true" class="bub b3"></span>
             <span class="section-label">QUY TRÌNH ĐẶT HÀNG</span>
             <h2 class="section-title">Chỉ <span>3 Bước</span> Đơn Giản 🚀</h2>
@@ -4110,7 +3922,7 @@ body { background: #FFFFFF; }
 <!-- CẦU NỐI -->
 <div class="bridge">
     <a href="#form-section" class="bridge-link">
-        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-bunny"/></svg></span>
+        <span class="bridge-icon" aria-hidden="true">✍️</span>
         <span>Điền form nhận ưu đãi ngay</span>
         <span class="bridge-arrow" aria-hidden="true">↓</span>
     </a>
@@ -4123,7 +3935,7 @@ body { background: #FFFFFF; }
     <div class="container">
         <div class="form-layout">
             <aside class="form-perks reveal">
-                <svg class="perks-mascot" aria-hidden="true"><use href="#a-bunny"/></svg>
+                <img src="assets/mascot-puppy.webp" alt="" class="perks-mascot" loading="lazy" aria-hidden="true">
                 <h3>Quyền lợi khi mẹ đăng ký hôm nay</h3>
                 <ul class="perks-list">
                     <li><span class="perk-icon">🎁</span><div><b>Chỉ 49.000đ</b><small>Tiết kiệm 231K so với giá gốc 280K</small></div></li>
@@ -4135,11 +3947,10 @@ body { background: #FFFFFF; }
                 <div class="perks-contact">Cần đặt nhanh? Gọi <a href="tel:0901234567" class="js-hotline">0901.234.567</a></div>
             </aside>
             <div class="form-col">
-                <svg class="form-peek" aria-hidden="true"><use href="#a-bear"/></svg>
+                <img src="assets/mascot-kitten.webp" alt="" class="form-peek" loading="lazy" aria-hidden="true">
             <div class="form-wrapper reveal-scale">
                 <span class="form-deco-left">🍼</span>
-                <span class="form-deco-right">🧸</span>
-                
+                    
                 <div id="formContent">
                     <div class="form-header">
                         <h2>ĐĂNG KÝ NHẬN ƯU ĐÃI 49K NGAY! 🎉</h2>
@@ -4220,7 +4031,7 @@ body { background: #FFFFFF; }
 <!-- CẦU NỐI -->
 <div class="bridge">
     <a href="#faq-section" class="bridge-link">
-        <span class="bridge-icon"><svg aria-hidden="true"><use href="#a-bear"/></svg></span>
+        <span class="bridge-icon" aria-hidden="true">❓</span>
         <span>Mẹ còn thắc mắc? Xem giải đáp nhé</span>
         <span class="bridge-arrow" aria-hidden="true">↓</span>
     </a>
@@ -4232,8 +4043,7 @@ body { background: #FFFFFF; }
 <section class="section faq-section band" id="faq-section">
     <div class="container">
         <div class="section-header reveal">
-            <svg class="hdeco hdeco-l" aria-hidden="true"><use href="#a-sheep"/></svg>
-            <svg class="hdeco hdeco-r" aria-hidden="true"><use href="#a-cloud"/></svg>
+            <img src="assets/mascot-kitten.webp" alt="" class="hmascot hmascot-l" loading="lazy" aria-hidden="true">
             <span class="bub b1" aria-hidden="true"></span><span class="bub b2" aria-hidden="true"></span><span aria-hidden="true" class="bub b3"></span>
             <span class="section-label">HỎI ĐÁP</span>
             <h2 class="section-title">Câu Hỏi <span>Thường Gặp</span> 💬</h2>
