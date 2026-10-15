@@ -181,13 +181,18 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
 /* Steps */
 .steps-sec { background: var(--paper); }
 .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
-.step { background: var(--white); border-radius: var(--r-lg); padding: 32px 28px; box-shadow: var(--shadow-card); }
-.step-num { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--primary); font-family: var(--serif); font-style: italic; font-size: 22px; margin-bottom: 22px; }
-.step h3 { font-size: 19px; margin-bottom: 8px; }
-.step p { color: var(--ink-2); }
+.step { background: var(--white); border-radius: var(--r-lg); padding: 12px 12px 28px; box-shadow: var(--shadow-card); }
+.step-img { position: relative; aspect-ratio: 4 / 5; border-radius: 20px; overflow: hidden; background: var(--primary-tint); margin-bottom: 22px; }
+.step-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.step:hover .step-img img { transform: scale(1.04); }
+.step-img .ph { position: absolute; inset: 0; border-radius: 0; }
+.step-img .ph-badge { left: auto; right: 12px; }
+.step-num { position: absolute; z-index: 4; top: 14px; left: 14px; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--white); font-family: var(--serif); font-style: italic; font-size: 20px; box-shadow: 0 6px 16px -6px rgba(0,0,0,.2); }
+.step h3 { font-size: 19px; margin: 0 14px 8px; }
+.step p { color: var(--ink-2); margin: 0 14px; }
 .caution { margin-top: 16px; display: flex; gap: 14px; align-items: flex-start; padding: 18px 24px; border-radius: 999px; background: rgba(255,255,255,.7); font-size: 15px; }
 .caution .icon { color: var(--cta-hover); flex: none; margin-top: 1px; }
-@media (max-width: 768px) { .steps { grid-template-columns: 1fr; gap: 12px; } .step { display: grid; grid-template-columns: 56px 1fr; column-gap: 18px; padding: 24px 22px; } .step-num { margin: 0; grid-row: span 2; } .caution { border-radius: var(--r-lg); } }
+@media (max-width: 768px) { .steps { grid-template-columns: 1fr; gap: 12px; } .step { padding: 10px 10px 22px; } .step-img { aspect-ratio: 4 / 3; margin-bottom: 16px; } .step-num { width: 44px; height: 44px; font-size: 17px; } .caution { border-radius: var(--r-lg); } }
 
 /* Placeholders (chỉ hiện ở bản xem trước khi chưa có nội dung) */
 .ph { position: relative; display: grid; place-items: center; text-align: center; background: var(--primary-tint); color: var(--ink-3); font-size: 13px; padding: 12px; border-radius: 22px; }
@@ -327,7 +332,14 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
 
 /* Order */
 .order { background: radial-gradient(50% 60% at 0% 100%, rgba(223,239,229,.8), transparent 70%), var(--primary); }
-.order .container { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.order .container { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+.order-copy { padding-top: 8px; }
+.order-visual { position: relative; margin-top: 32px; aspect-ratio: 16 / 10; border-radius: var(--r-lg); overflow: hidden; background: radial-gradient(60% 70% at 50% 45%, #fff6ee, rgba(255,255,255,.35)); display: grid; place-items: center; box-shadow: var(--shadow-card); }
+.order-visual img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.order-visual .render { height: 88%; width: auto; position: relative; z-index: 2; }
+.order-visual .botanical { position: absolute; color: var(--herb); opacity: .45; animation: sway 9s ease-in-out infinite; transform-origin: 50% 90%; }
+.order-visual .b1 { width: 22%; top: 8%; right: 10%; }
+.order-visual .b2 { width: 18%; bottom: 10%; left: 10%; animation-delay: -4s; }
 .order h2 { font-size: clamp(30px, 3.8vw, 44px); margin: 18px 0; }
 
 .order .lead { color: rgba(0,0,0,.72); margin-bottom: 32px; }
@@ -633,9 +645,9 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
     <p class="label reveal">Cách dùng</p>
     <h2 class="h2 display reveal d1">3 bước đơn giản để sử dụng.</h2>
     <div class="steps">
-      <div class="step reveal"><span class="step-num">01</span><h3>Lắc nhẹ chai xịt</h3><p>Lắc nhẹ chai trước khi sử dụng.</p></div>
-      <div class="step reveal d1"><span class="step-num">02</span><h3>Xịt lên vùng da</h3><p>Xịt lên vùng da, cách khoảng 10 – 15cm.</p></div>
-      <div class="step reveal d2"><span class="step-num">03</span><h3>Để da khô tự nhiên</h3><p>Để da khô tự nhiên, sau đó mặc quần áo.</p></div>
+      <div class="step reveal"><div class="step-img" data-step="0"><span class="step-num">01</span></div><h3>Lắc nhẹ chai xịt</h3><p>Lắc nhẹ chai trước khi sử dụng.</p></div>
+      <div class="step reveal d1"><div class="step-img" data-step="1"><span class="step-num">02</span></div><h3>Xịt lên vùng da</h3><p>Xịt lên vùng da, cách khoảng 10 – 15cm.</p></div>
+      <div class="step reveal d2"><div class="step-img" data-step="2"><span class="step-num">03</span></div><h3>Để da khô tự nhiên</h3><p>Để da khô tự nhiên, sau đó mặc quần áo.</p></div>
     </div>
     <div class="caution reveal">
       <svg class="icon"><use href="#i-alert"/></svg>
@@ -701,7 +713,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
 <!-- ORDER -->
 <section class="section order panel" id="dat-hang">
   <div class="container">
-    <div>
+    <div class="order-copy">
       <p class="label reveal">Đặt hàng</p>
       <h2 class="display reveal d1">Đừng để nỗi lo mùi cơ thể làm bạn <em>thiếu tự tin.</em></h2>
       <p class="lead reveal d1">Chủ động chăm sóc bản thân mỗi ngày với Xịt Khử Mùi Gừng Cam Mây Mây.</p>
@@ -711,6 +723,10 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
         <li><svg class="icon"><use href="#i-check"/></svg>Freeship toàn quốc</li>
         <li><svg class="icon"><use href="#i-check"/></svg>Thảo mộc thuần chay, hương thanh mát</li>
       </ul>
+      <div class="order-visual reveal d3" id="orderVisual">
+        <svg class="botanical b1" viewBox="0 0 84 84"><use href="#b-mint"/></svg>
+        <svg class="botanical b2" viewBox="0 0 84 84"><use href="#b-orange"/></svg>
+      </div>
     </div>
 
     <div class="form-card reveal d1">
@@ -821,6 +837,12 @@ const CONFIG = {
 
   // Ảnh minh hoạ trong khung tròn thành phần (ảnh vuông), theo thứ tự: Bạc hà, Trầu không, Gừng, Cam
   ingredientImages: ['', '', '', ''],
+
+  // Ảnh minh hoạ cho 3 bước sử dụng (dọc 4:5), theo thứ tự: Lắc nhẹ, Xịt lên da, Để khô
+  stepImages: ['', '', ''],
+
+  // Ảnh sản phẩm cạnh form đặt hàng (ngang 16:10). Để trống = dùng ảnh sản phẩm đầu tiên hoặc ảnh render.
+  orderImage: '',
 
   // Video review: YouTube (watch / shorts / youtu.be), TikTok (link có /video/123...), hoặc file .mp4
   videos: [
@@ -982,6 +1004,26 @@ document.querySelectorAll('[data-problem]').forEach(el => {
   else if (CONFIG.showPlaceholders) { markPreview(); el.innerHTML = `<div class="ph"><span class="ph-badge">Chờ nội dung</span>Ảnh 3:4<br>${esc(title)}</div>`; }
   else el.remove();
 });
+
+/* Ảnh 3 bước sử dụng */
+document.querySelectorAll('[data-step]').forEach(el => {
+  const src = (CONFIG.stepImages || [])[+el.dataset.step], title = el.parentElement.querySelector('h3').textContent;
+  if (src) el.insertAdjacentHTML('afterbegin', `<img src="${esc(src)}" alt="${esc(title)}" loading="lazy">`);
+  else if (CONFIG.showPlaceholders) { markPreview(); el.insertAdjacentHTML('afterbegin', `<div class="ph"><span class="ph-badge">Chờ nội dung</span>Ảnh 4:5<br>${esc(title)}</div>`); }
+  else el.style.aspectRatio = 'auto', el.style.height = '76px', el.style.background = 'transparent';
+});
+
+/* Ảnh sản phẩm cạnh form đặt hàng */
+(() => {
+  const el = document.getElementById('orderVisual');
+  const src = CONFIG.orderImage || CONFIG.productImages.filter(Boolean)[0];
+  if (src) {
+    el.querySelectorAll('.botanical').forEach(b => b.remove());
+    el.insertAdjacentHTML('afterbegin', `<img src="${esc(src)}" alt="Xịt khử mùi Gừng Cam Mây Mây 30ml" loading="lazy">`);
+  } else {
+    el.insertAdjacentHTML('afterbegin', `<svg class="render" viewBox="0 0 240 560" role="img" aria-label="Xịt khử mùi Gừng Cam Mây Mây 30ml"><use href="#packshot"/></svg>`);
+  }
+})();
 
 /* Ảnh minh hoạ thành phần (khung tròn) */
 document.querySelectorAll('[data-ing]').forEach(el => {
