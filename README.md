@@ -19,3 +19,18 @@ Landing page tối ưu chuyển đổi cao (High Conversion Rate) dành cho chi�
 - HTML5 / CSS3 / Vanilla JavaScript
 - GSAP 3 & ScrollTrigger (CDN)
 - Google Fonts (Quicksand & Nunito)
+
+---
+
+# Landing Page — Xịt Khử Mùi Gừng Cam Mây Mây 30ml
+
+File: `xit-khu-mui-may-may/index.html` (HTML/CSS/JS thuần, không cần build).
+
+- **Khuyến mãi**: Flash sale 49.000đ (niêm yết 89.000đ) + freeship toàn quốc.
+- **Concept**: năng động, thảo mộc mát — primary `#fbdfc7`, nút CTA `#ffa059`, chữ `#000000`, điểm nhấn xanh bạc hà để cân lại tông ấm.
+- **Cấu hình nhanh**: sửa object `CONFIG` ở đầu thẻ `<script>`:
+  - `productImage`: URL ảnh sản phẩm (để trống = minh hoạ chai xịt SVG)
+  - `feedbackImages`: mảng URL ảnh feedback
+  - `videoUrl`: link YouTube / TikTok / file .mp4
+  - `orderEndpoint`: URL nhận đơn (Google Apps Script Web App, webhook…)
+  - `packages`: các lựa chọn số lượng trong form
