@@ -787,6 +787,7 @@ document.addEventListener('wpcf7mailsent', function (event) {
         // Xóa text ban đầu để chuẩn bị hiệu ứng gõ
         if (bodyTextSpan) bodyTextSpan.textContent = '';
         if (highlightTextSpan) highlightTextSpan.textContent = '';
+        if (highlightTarget) highlightTarget.style.display = 'none';
 
         // Tạm thời gắn con trỏ vào sau body text khi đang gõ body
         if (cursor && bodyTarget) {
@@ -813,8 +814,11 @@ document.addEventListener('wpcf7mailsent', function (event) {
                     const delay = (char === '.' || char === ',' || char === '—') ? 70 : speed;
                     setTimeout(typeBody, delay);
                 } else if (highlightText && highlightTextSpan) {
-                    // Xong body, tạm dừng 300ms rồi chuyển con trỏ sang dòng highlight
+                    // Xong body, tạm dừng 300ms rồi hiện dòng highlight và chuyển con trỏ sang
                     setTimeout(() => {
+                        if (highlightTarget) {
+                            highlightTarget.style.display = 'block';
+                        }
                         if (cursor && highlightTarget) {
                             highlightTarget.appendChild(cursor);
                         }
@@ -848,6 +852,7 @@ document.addEventListener('wpcf7mailsent', function (event) {
             if (bodyText.length > 0) {
                 typeBody();
             } else if (highlightText.length > 0) {
+                if (highlightTarget) highlightTarget.style.display = 'block';
                 if (cursor && highlightTarget) highlightTarget.appendChild(cursor);
                 typeHighlight();
             }
