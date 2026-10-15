@@ -72,6 +72,10 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
 .btn svg { width: 18px; height: 18px; transition: transform .2s ease; }
 .btn:hover svg { transform: translateX(3px); }
 .btn-block { width: 100%; }
+.btn-lg { padding: 18px 34px; font-size: 17px; }
+.btn-lg svg:first-child { width: 20px; height: 20px; }
+.btn:hover svg:first-child:not(:last-child) { transform: none; }
+@media (max-width: 480px) { .btn-lg { width: 100%; padding: 17px 20px; font-size: 16px; } }
 .btn-ghost { background: var(--white); box-shadow: var(--shadow-card); }
 .btn-ghost:hover { background: var(--white); box-shadow: 0 14px 30px -12px rgba(120,70,30,.3); }
 .icon { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
@@ -134,26 +138,31 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
 .problems-head { max-width: 680px; margin-bottom: 56px; }
 .problems-head .h2 { margin-bottom: 0; }
 .problems { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-.problem { background: var(--paper); border-radius: var(--r-lg); padding: 28px 24px 30px; transition: transform .35s ease, box-shadow .35s ease, background .35s ease; }
+.problem { background: var(--paper); border-radius: var(--r-lg); padding: 12px 12px 26px; transition: transform .35s ease, box-shadow .35s ease, background .35s ease; }
 .problem:hover { transform: translateY(-4px); background: var(--white); box-shadow: var(--shadow-card); }
-.problem-num { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--primary); font-family: var(--serif); font-style: italic; font-size: 16px; margin-bottom: 20px; }
-.problem h3 { font-size: 20px; margin-bottom: 10px; }
-.problem p { color: var(--ink-2); font-size: 15.5px; }
+.problem-img { position: relative; aspect-ratio: 3 / 4; border-radius: 20px; overflow: hidden; background: var(--primary-tint); margin-bottom: 20px; }
+.problem-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.problem:hover .problem-img img { transform: scale(1.04); }
+.problem-img .ph { position: absolute; inset: 0; border-radius: 0; }
+.problem h3 { font-size: 20px; margin: 0 12px 8px; }
+.problem p { color: var(--ink-2); font-size: 15.5px; margin: 0 12px; }
 .callout { margin-top: 40px; padding: 36px 44px; background: var(--primary-tint); border-radius: var(--r-xl); display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 .callout p { font-family: var(--serif); font-size: clamp(21px, 2.4vw, 27px); line-height: 1.35; max-width: 680px; }
 @media (max-width: 900px) { .problems-head { margin-bottom: 40px; } .problems { grid-template-columns: 1fr 1fr; gap: 12px; } }
-@media (max-width: 540px) { .problems { grid-template-columns: 1fr; gap: 12px; } .problem { display: grid; grid-template-columns: 40px 1fr; column-gap: 16px; padding: 22px 20px; } .problem-num { margin: 0; grid-row: span 2; } .callout { padding: 28px 24px; border-radius: 32px; } }
+@media (max-width: 540px) { .problems { gap: 10px; } .problem { padding: 8px 8px 18px; border-radius: 22px; } .problem-img { border-radius: 16px; margin-bottom: 14px; } .problem h3 { font-size: 17px; margin: 0 8px 6px; } .problem p { font-size: 14px; margin: 0 8px; } .callout { padding: 28px 24px; border-radius: 32px; } }
 
 /* Ingredients */
 .ingredients-sec { background: var(--herb-tint); }
 .ing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 56px; }
 .ing { background: var(--white); border-radius: var(--r-lg); padding: 36px 24px 32px; text-align: center; box-shadow: 0 10px 30px -18px rgba(47,107,79,.35); transition: transform .35s ease; }
 .ing:hover { transform: translateY(-4px); }
-.ing svg { width: 112px; height: 112px; padding: 20px; border-radius: 50%; background: var(--herb-tint); color: var(--herb); margin: 0 auto 20px; display: block; }
+.ing-media { width: 128px; height: 128px; border-radius: 50%; background: var(--herb-tint); color: var(--herb); margin: 0 auto 20px; overflow: hidden; display: grid; place-items: center; box-shadow: 0 0 0 6px var(--white), 0 0 0 7px rgba(47,107,79,.12); }
+.ing-media svg { width: 64%; height: 64%; }
+.ing-media img { width: 100%; height: 100%; object-fit: cover; }
 .ing h3 { font-family: var(--serif); font-weight: 500; font-size: 24px; margin-bottom: 6px; }
 .ing p { font-size: 14.5px; color: var(--ink-2); }
 .ing-note { text-align: center; margin-top: 32px; color: var(--ink-2); }
-@media (max-width: 860px) { .ing-grid { grid-template-columns: 1fr 1fr; gap: 10px; } .ing { padding: 24px 12px; } .ing svg { width: 84px; height: 84px; padding: 16px; } .ing h3 { font-size: 21px; } }
+@media (max-width: 860px) { .ing-grid { grid-template-columns: 1fr 1fr; gap: 10px; } .ing { padding: 24px 12px; } .ing-media { width: 96px; height: 96px; } .ing h3 { font-size: 21px; } }
 
 /* Benefits */
 .benefits .container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
@@ -161,7 +170,12 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
 .benefit-list li { display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: start; padding: 14px 18px; background: var(--paper); border-radius: 18px; font-size: 16px; }
 .benefit-list .icon { width: 30px; height: 30px; padding: 6px; border-radius: 50%; background: var(--herb-tint); color: var(--herb); }
 .zones { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; position: absolute; left: 20px; right: 20px; bottom: 28px; z-index: 3; }
-.zones span { background: rgba(255,255,255,.88); backdrop-filter: blur(6px); border-radius: 999px; padding: 7px 14px; font-size: 13.5px; font-weight: 500; }
+.zones button { font: inherit; font-size: 13.5px; font-weight: 500; color: var(--ink); border: 0; cursor: pointer; background: rgba(255,255,255,.88); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border-radius: 999px; padding: 8px 16px; transition: background .25s, transform .25s; }
+.zones button:hover { transform: translateY(-2px); }
+.zones button[aria-selected="true"] { background: var(--cta); font-weight: 600; }
+.packshot .zone-badge { left: 50%; top: auto; bottom: 84px; transform: translateX(-50%); white-space: nowrap; }
+.packshot .photo { animation: fadeIn .45s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @media (max-width: 900px) { .benefits .container { grid-template-columns: 1fr; gap: 40px; } }
 
 /* Steps */
@@ -491,8 +505,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
         </span>
       </div>
       <div class="hero-actions reveal d3">
-        <a href="#dat-hang" class="btn">Mua ngay <svg class="icon"><use href="#i-arrow"/></svg></a>
-        <span class="ship"><svg class="icon"><use href="#i-truck"/></svg>Freeship toàn quốc</span>
+        <a href="#dat-hang" class="btn btn-lg"><svg class="icon"><use href="#i-truck"/></svg>Freeship toàn quốc – Mua ngay <svg class="icon"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
     <div class="gallery reveal">
@@ -524,29 +537,29 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
     </div>
     <div class="problems">
       <article class="problem reveal">
-        <span class="problem-num">01</span>
+        <div class="problem-img" data-problem="0"></div>
         <h3>Hôi nách</h3>
         <p>Ngại giơ tay, đứng gần người khác, lo mùi quay trở lại.</p>
       </article>
       <article class="problem reveal d1">
-        <span class="problem-num">02</span>
+        <div class="problem-img" data-problem="1"></div>
         <h3>Hôi chân</h3>
         <p>Mang giày cả ngày, ngại tháo giày vì mùi khó chịu.</p>
       </article>
       <article class="problem reveal d2">
-        <span class="problem-num">03</span>
+        <div class="problem-img" data-problem="2"></div>
         <h3>Mùi cơ thể</h3>
         <p>Đi làm, gặp gỡ hay hẹn hò đều thấp thỏm vì mùi mồ hôi.</p>
       </article>
       <article class="problem reveal d3">
-        <span class="problem-num">04</span>
+        <div class="problem-img" data-problem="3"></div>
         <h3>Bà đẻ sau sinh</h3>
         <p>Mùi sữa, cơ thể mẹ có mùi chua, hôi, khó chịu. Mùi vùng cô bé.</p>
       </article>
     </div>
     <div class="callout reveal">
       <p>Đừng để nỗi lo mùi cơ thể cản trở những khoảnh khắc tự tin của bạn.</p>
-      <a href="#thanh-phan" class="btn btn-ghost">Xem giải pháp <svg class="icon"><use href="#i-arrow"/></svg></a>
+      <a href="#thanh-phan" class="btn">Xem giải pháp <svg class="icon"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
@@ -560,10 +573,10 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
       <p class="lead reveal d2">Mây Mây mang đến giải pháp chăm sóc mùi cơ thể với thành phần thảo mộc thuần chay bí truyền từ bạc hà, trầu không, gừng và cam.</p>
     </div>
     <div class="ing-grid reveal">
-      <div class="ing"><svg><use href="#b-mint"/></svg><h3>Bạc hà</h3><p>Mát lạnh, sảng khoái</p></div>
-      <div class="ing"><svg><use href="#b-betel"/></svg><h3>Trầu không</h3><p>Thảo mộc dân gian quen thuộc</p></div>
-      <div class="ing"><svg><use href="#b-ginger"/></svg><h3>Gừng</h3><p>Ấm nhẹ, dễ chịu</p></div>
-      <div class="ing"><svg><use href="#b-orange"/></svg><h3>Cam</h3><p>Tươi tắn, thơm thanh</p></div>
+      <div class="ing"><div class="ing-media" data-ing="0"><svg><use href="#b-mint"/></svg></div><h3>Bạc hà</h3><p>Mát lạnh, sảng khoái</p></div>
+      <div class="ing"><div class="ing-media" data-ing="1"><svg><use href="#b-betel"/></svg></div><h3>Trầu không</h3><p>Thảo mộc dân gian quen thuộc</p></div>
+      <div class="ing"><div class="ing-media" data-ing="2"><svg><use href="#b-ginger"/></svg></div><h3>Gừng</h3><p>Ấm nhẹ, dễ chịu</p></div>
+      <div class="ing"><div class="ing-media" data-ing="3"><svg><use href="#b-orange"/></svg></div><h3>Cam</h3><p>Tươi tắn, thơm thanh</p></div>
     </div>
     <p class="ing-note reveal">Hương thảo mộc thanh mát mang đến trải nghiệm dễ chịu.</p>
   </div>
@@ -575,7 +588,12 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
     <div class="packshot reveal" data-visual="usage">
       <svg class="botanical b1" viewBox="0 0 84 84"><use href="#b-betel"/></svg>
       <svg class="botanical b2" viewBox="0 0 84 84"><use href="#b-ginger"/></svg>
-      <div class="zones"><span>Vùng nách</span><span>Vùng chân</span><span>Cơ thể</span><span>Vùng tiểu EVA</span></div>
+      <div class="zones" id="zones" role="tablist" aria-label="Vùng sử dụng">
+        <button type="button" role="tab" data-zone="0">Vùng nách</button>
+        <button type="button" role="tab" data-zone="1">Vùng chân</button>
+        <button type="button" role="tab" data-zone="2">Cơ thể</button>
+        <button type="button" role="tab" data-zone="3">Vùng tiểu EVA</button>
+      </div>
     </div>
     <div>
       <p class="label reveal">Công dụng</p>
@@ -587,7 +605,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
         <li><svg class="icon"><use href="#i-check"/></svg>Xịt khử mùi vùng tiểu EVA sau sinh.</li>
         <li><svg class="icon"><use href="#i-check"/></svg>Dễ sử dụng tại nhà hoặc mang theo khi đi làm, đi học, du lịch.</li>
       </ul>
-      <a href="#dat-hang" class="btn reveal d3">Mua ngay – chỉ 49K <svg class="icon"><use href="#i-arrow"/></svg></a>
+      <a href="#dat-hang" class="btn btn-lg reveal d3"><svg class="icon"><use href="#i-truck"/></svg>Đang Freeship – Mua ngay! <svg class="icon"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
@@ -793,8 +811,16 @@ const CONFIG = {
   productImages: [
     // 'https://.../packshot.jpg',
   ],
-  // Ảnh lifestyle cho phần "Công dụng" (để trống = dùng ảnh sản phẩm thứ 2 hoặc ảnh render)
+  // Ảnh lifestyle mặc định cho phần "Công dụng" (để trống = dùng ảnh sản phẩm thứ 2 hoặc ảnh render)
   usageImage: '',
+  // Ảnh cho từng nút vùng ở phần "Công dụng", theo thứ tự: Vùng nách, Vùng chân, Cơ thể, Vùng tiểu EVA
+  zoneImages: ['', '', '', ''],
+
+  // Ảnh 3:4 cho 4 thẻ nỗi lo, theo thứ tự: Hôi nách, Hôi chân, Mùi cơ thể, Bà đẻ sau sinh
+  problemImages: ['', '', '', ''],
+
+  // Ảnh minh hoạ trong khung tròn thành phần (ảnh vuông), theo thứ tự: Bạc hà, Trầu không, Gừng, Cam
+  ingredientImages: ['', '', '', ''],
 
   // Video review: YouTube (watch / shorts / youtu.be), TikTok (link có /video/123...), hoặc file .mp4
   videos: [
@@ -905,13 +931,11 @@ const VM = (() => {
 /* Product visuals + hero gallery */
 (() => {
   const imgs = CONFIG.productImages.filter(Boolean);
-  document.querySelectorAll('[data-visual]').forEach(el => {
-    const src = el.dataset.visual === 'hero' ? imgs[0] : (CONFIG.usageImage || imgs[1] || imgs[0]);
-    el.insertAdjacentHTML('afterbegin', src
-      ? `<img class="photo" src="${esc(src)}" alt="Xịt khử mùi Gừng Cam Mây Mây 30ml">`
-      : `<svg class="render" viewBox="0 0 240 560" role="img" aria-label="Xịt khử mùi Gừng Cam Mây Mây 30ml"><use href="#packshot"/></svg>`);
-    if (src) el.querySelectorAll('.botanical').forEach(b => b.remove());
-  });
+  const heroBox = document.querySelector('[data-visual="hero"]');
+  heroBox.insertAdjacentHTML('afterbegin', imgs[0]
+    ? `<img class="photo" src="${esc(imgs[0])}" alt="Xịt khử mùi Gừng Cam Mây Mây 30ml">`
+    : `<svg class="render" viewBox="0 0 240 560" role="img" aria-label="Xịt khử mùi Gừng Cam Mây Mây 30ml"><use href="#packshot"/></svg>`);
+  if (imgs[0]) heroBox.querySelectorAll('.botanical').forEach(b => b.remove());
   if (!imgs.length) return;
   const main = document.querySelector('[data-visual="hero"]'), photo = main.querySelector('img.photo');
   let current = 0;
@@ -927,6 +951,43 @@ const VM = (() => {
     thumbs.querySelectorAll('button').forEach(t => t.classList.toggle('active', t === b));
   });
 })();
+
+/* Công dụng: đổi ảnh theo vùng */
+(() => {
+  const box = document.querySelector('[data-visual="usage"]'), zones = document.getElementById('zones');
+  const imgs = CONFIG.productImages.filter(Boolean);
+  const fallback = CONFIG.usageImage || imgs[1] || imgs[0] || '';
+  const buttons = [...zones.querySelectorAll('button')];
+  const show = i => {
+    const label = buttons[i].textContent.trim(), own = (CONFIG.zoneImages || [])[i], src = own || fallback;
+    box.querySelectorAll('.photo, .render, .zone-badge').forEach(e => e.remove());
+    box.insertAdjacentHTML('afterbegin', src
+      ? `<img class="photo" src="${esc(src)}" alt="Xịt khử mùi Mây Mây – ${esc(label)}">`
+      : `<svg class="render" viewBox="0 0 240 560" role="img" aria-label="Xịt khử mùi Gừng Cam Mây Mây 30ml"><use href="#packshot"/></svg>`);
+    box.querySelectorAll('.botanical').forEach(b => b.hidden = !!src);
+    if (!own && CONFIG.showPlaceholders) {
+      markPreview();
+      box.insertAdjacentHTML('beforeend', `<span class="ph-badge zone-badge">Chờ ảnh: ${esc(label)}</span>`);
+    }
+    buttons.forEach((b, j) => b.setAttribute('aria-selected', String(j === i)));
+  };
+  zones.addEventListener('click', e => { const b = e.target.closest('button'); if (b) show(+b.dataset.zone); });
+  show(0);
+})();
+
+/* Ảnh thẻ nỗi lo (3:4) */
+document.querySelectorAll('[data-problem]').forEach(el => {
+  const i = +el.dataset.problem, src = (CONFIG.problemImages || [])[i], title = el.parentElement.querySelector('h3').textContent;
+  if (src) el.innerHTML = `<img src="${esc(src)}" alt="${esc(title)}" loading="lazy">`;
+  else if (CONFIG.showPlaceholders) { markPreview(); el.innerHTML = `<div class="ph"><span class="ph-badge">Chờ nội dung</span>Ảnh 3:4<br>${esc(title)}</div>`; }
+  else el.remove();
+});
+
+/* Ảnh minh hoạ thành phần (khung tròn) */
+document.querySelectorAll('[data-ing]').forEach(el => {
+  const src = (CONFIG.ingredientImages || [])[+el.dataset.ing];
+  if (src) el.innerHTML = `<img src="${esc(src)}" alt="${esc(el.parentElement.querySelector('h3').textContent)}" loading="lazy">`;
+});
 
 /* Video reviews */
 (() => {
