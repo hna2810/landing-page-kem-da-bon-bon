@@ -29,8 +29,13 @@ File: `xit-khu-mui-may-may/index.html` (HTML/CSS/JS thuần, không cần build)
 - **Khuyến mãi**: Flash sale 49.000đ (niêm yết 89.000đ) + freeship toàn quốc.
 - **Concept**: năng động, thảo mộc mát — primary `#fbdfc7`, nút CTA `#ffa059`, chữ `#000000`, điểm nhấn xanh bạc hà để cân lại tông ấm.
 - **Cấu hình nhanh**: sửa object `CONFIG` ở đầu thẻ `<script>`:
-  - `productImage`: URL ảnh sản phẩm (để trống = minh hoạ chai xịt SVG)
-  - `feedbackImages`: mảng URL ảnh feedback
-  - `videoUrl`: link YouTube / TikTok / file .mp4
+  - `showPlaceholders`: `true` = hiện khung "Chờ nội dung" để xem bố cục; đổi thành `false` trước khi chạy ads (phần nào chưa có nội dung sẽ tự ẩn)
+  - `productImages`: mảng ảnh sản phẩm (ảnh đầu là ảnh chính, các ảnh sau thành thumbnail)
+  - `usageImage`: ảnh lifestyle cho phần Công dụng
+  - `videos`: video review `{ url, title, author, poster }` (TikTok / YouTube / .mp4)
+  - `reviews`: đánh giá thật `{ name, location, date, rating, tag, content, images, avatar, verified }` – điểm trung bình, biểu đồ sao, bộ lọc tự tính
+  - `feedbackImages`: ảnh chụp tin nhắn / feedback
+  - `certificateImages`: ảnh giấy công bố, phiếu kiểm nghiệm
+  - `commitments`: danh sách cam kết
   - `orderEndpoint`: URL nhận đơn (Google Apps Script Web App, webhook…)
   - `packages`: các lựa chọn số lượng trong form

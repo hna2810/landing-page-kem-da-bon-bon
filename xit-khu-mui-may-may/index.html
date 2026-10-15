@@ -110,7 +110,8 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
 @media (max-width: 900px) {
   .hero { padding: 24px 0 64px; }
   .hero .container { grid-template-columns: 1fr; gap: 36px; }
-  .packshot { order: -1; aspect-ratio: 1 / 1; }
+  .hero .gallery { order: -1; }
+  .packshot { aspect-ratio: 1 / 1; }
   .packshot .render { width: 36%; }
 }
 
@@ -168,19 +169,132 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
 .caution .icon { color: var(--cta-hover); flex: none; margin-top: 1px; }
 @media (max-width: 768px) { .steps { grid-template-columns: 1fr; gap: 32px; } .step, .step + .step { padding: 0; border-left: 0; } .step + .step { padding-top: 32px; border-top: 1px solid var(--line); } }
 
-/* Reviews */
-.reviews-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px; }
-.reviews-grid figure { border-radius: var(--r); overflow: hidden; aspect-ratio: 3 / 4; background: var(--primary-tint); cursor: zoom-in; }
-.reviews-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
-.reviews-grid figure:hover img { transform: scale(1.04); }
-.video { margin: 56px auto 0; max-width: 880px; aspect-ratio: 16 / 9; border-radius: var(--r-lg); overflow: hidden; background: var(--ink); position: relative; }
-.video.vertical { aspect-ratio: 9 / 16; max-width: 380px; }
-.video iframe, .video video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-@media (max-width: 860px) { .reviews-grid { grid-template-columns: 1fr 1fr; } }
-.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.88); z-index: 200; display: none; place-items: center; padding: 16px; }
-.lightbox.open { display: grid; }
-.lightbox img { max-height: 88vh; border-radius: var(--r); }
-.lightbox button { position: absolute; top: 16px; right: 16px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--white); cursor: pointer; display: grid; place-items: center; }
+/* Placeholders (chỉ hiện ở bản xem trước khi chưa có nội dung) */
+.ph { position: relative; display: grid; place-items: center; text-align: center; background: var(--primary-tint); color: var(--ink-3); font-size: 13px; padding: 12px; border-radius: var(--r); }
+.ph-badge { position: absolute; top: 10px; left: 10px; z-index: 3; font-size: 10.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; background: var(--white); color: var(--ink-2); padding: 3px 8px; border-radius: 4px; }
+.preview-pill { position: fixed; left: 16px; bottom: 16px; z-index: 95; max-width: 340px; background: var(--ink); color: var(--white); font-size: 12.5px; line-height: 1.45; padding: 10px 14px; border-radius: var(--r); box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+.preview-pill b { color: var(--primary); }
+@media (max-width: 900px) { .preview-pill { bottom: 84px; right: 16px; max-width: none; } }
+
+/* Stars & rating */
+.stars { position: relative; display: inline-flex; vertical-align: middle; }
+.stars-base, .stars-fill { display: inline-flex; gap: 2px; }
+.stars-base { color: rgba(0,0,0,.14); }
+.stars-fill { position: absolute; top: 0; left: 0; bottom: 0; overflow: hidden; color: var(--cta); white-space: nowrap; }
+.stars svg { flex: none; width: 16px; height: 16px; fill: currentColor; }
+.rating-line { display: inline-flex; align-items: center; gap: 10px; font-size: 14.5px; color: var(--ink-2); text-decoration: none; margin: -4px 0 18px; }
+.rating-line b { color: var(--ink); font-weight: 600; }
+.rating-line:hover span:last-child { text-decoration: underline; }
+.form-rating { display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 13.5px; color: var(--ink-2); margin-top: 12px; }
+
+/* Hero gallery */
+.gallery { display: grid; gap: 12px; }
+.thumbs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.thumbs button { aspect-ratio: 1; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); background: var(--primary-tint); padding: 0; cursor: pointer; opacity: .7; transition: opacity .2s, box-shadow .2s; }
+.thumbs button.active, .thumbs button:hover { opacity: 1; }
+.thumbs button.active { box-shadow: 0 0 0 1.5px var(--ink); }
+.thumbs img { width: 100%; height: 100%; object-fit: cover; }
+.packshot.zoomable { cursor: zoom-in; }
+
+/* Section head with side actions */
+.sec-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.sec-head .h2 { margin-bottom: 0; }
+.arrows { display: flex; gap: 8px; }
+.arrows button { width: 46px; height: 46px; border-radius: 50%; border: 1px solid currentColor; background: transparent; color: inherit; cursor: pointer; display: grid; place-items: center; transition: background .2s, color .2s; }
+.arrows button:hover { background: var(--white); color: var(--ink); }
+@media (max-width: 900px) { .arrows { display: none; } }
+
+/* Video reviews */
+.videos-sec { background: var(--ink); color: var(--white); }
+.videos-sec .label, .videos-sec .lead { color: rgba(255,255,255,.68); }
+.videos-sec .display em { color: var(--primary); }
+.vid-row { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 48px) / 4); gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; margin-top: 48px; scrollbar-width: none; }
+.vid-row::-webkit-scrollbar { display: none; }
+.vid-card { position: relative; aspect-ratio: 9 / 16; border-radius: var(--r-lg); overflow: hidden; background: #1c1c1c; scroll-snap-align: start; border: 0; padding: 0; color: var(--white); text-align: left; font: inherit; cursor: pointer; }
+.vid-card img, .vid-card video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.vid-card:hover img, .vid-card:hover video { transform: scale(1.04); }
+.vid-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.72)); }
+.vid-play { position: absolute; z-index: 2; top: 50%; left: 50%; width: 60px; height: 60px; margin: -30px 0 0 -30px; border-radius: 50%; background: rgba(255,255,255,.92); color: var(--ink); display: grid; place-items: center; transition: transform .2s; }
+.vid-card:hover .vid-play { transform: scale(1.08); }
+.vid-play svg { width: 22px; height: 22px; fill: currentColor; margin-left: 3px; }
+.vid-meta { position: absolute; z-index: 2; left: 16px; right: 16px; bottom: 16px; }
+.vid-meta b { display: block; font-size: 15px; font-weight: 600; line-height: 1.35; }
+.vid-meta span { display: block; font-size: 13px; opacity: .72; margin-top: 2px; }
+.vid-card.is-ph { cursor: default; border: 1px dashed rgba(255,255,255,.18); }
+.vid-card.is-ph .vid-play { background: rgba(255,255,255,.14); color: var(--white); }
+@media (max-width: 900px) { .vid-row { grid-auto-columns: 64%; margin-right: -16px; padding-right: 16px; } }
+
+/* Customer reviews */
+.reviews-wrap { display: grid; grid-template-columns: 320px 1fr; gap: 56px; align-items: start; margin-top: 48px; }
+.summary-card { position: sticky; top: 96px; padding: 32px 28px; border-radius: var(--r-lg); background: var(--paper); border: 1px solid var(--line); }
+.avg { font-family: var(--serif); font-size: 64px; line-height: 1; margin-bottom: 10px; }
+.summary-card .stars svg { width: 20px; height: 20px; }
+.avg-sub { color: var(--ink-2); font-size: 14px; margin: 10px 0 24px; }
+.dist { display: grid; gap: 9px; }
+.dist-row { display: grid; grid-template-columns: 38px 1fr 30px; gap: 10px; align-items: center; font-size: 13.5px; color: var(--ink-2); }
+.dist-row span:last-child { text-align: right; }
+.bar { height: 6px; border-radius: 3px; background: rgba(0,0,0,.08); overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--cta); border-radius: 3px; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.chip { font: inherit; font-size: 14px; padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(0,0,0,.18); background: var(--white); color: var(--ink); cursor: pointer; transition: background .2s, color .2s; }
+.chip:hover { border-color: var(--ink); }
+.chip.active { background: var(--ink); color: var(--white); border-color: var(--ink); }
+.review-list { columns: 2; column-gap: 16px; }
+.review { position: relative; break-inside: avoid; margin-bottom: 16px; padding: 24px; border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--white); }
+.review-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--primary); display: grid; place-items: center; font-weight: 600; flex: none; overflow: hidden; }
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+.review-name { font-weight: 600; font-size: 15px; line-height: 1.3; }
+.review-sub { font-size: 12.5px; color: var(--ink-3); }
+.review-rate { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.verified { display: inline-flex; align-items: center; gap: 4px; color: var(--herb); font-size: 12.5px; font-weight: 500; }
+.verified svg { width: 14px; height: 14px; }
+.review-text { margin-top: 10px; color: rgba(0,0,0,.82); font-size: 15px; }
+.review-imgs { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.review-imgs button { width: 76px; height: 76px; border-radius: 8px; overflow: hidden; border: 0; padding: 0; cursor: zoom-in; background: var(--primary-tint); }
+.review-imgs img { width: 100%; height: 100%; object-fit: cover; }
+.review-tag { display: inline-block; font-size: 12px; background: var(--herb-tint); color: var(--herb); padding: 2px 8px; border-radius: 4px; margin-top: 14px; }
+.sk { height: 10px; border-radius: 5px; background: rgba(0,0,0,.07); margin-top: 10px; }
+.review.is-ph .avatar { background: rgba(0,0,0,.06); }
+.more-wrap { text-align: center; margin-top: 12px; }
+@media (max-width: 960px) { .reviews-wrap { grid-template-columns: 1fr; gap: 28px; } .summary-card { position: static; } }
+@media (max-width: 640px) { .review-list { columns: 1; } .review { padding: 20px; } }
+
+/* Feedback screenshots */
+.fb-masonry { columns: 4; column-gap: 16px; margin-top: 48px; }
+.fb-masonry > * { display: block; width: 100%; margin-bottom: 16px; break-inside: avoid; }
+.fb-masonry > .ph { display: grid; }
+.fb-masonry button { border: 0; padding: 0; border-radius: var(--r); overflow: hidden; cursor: zoom-in; background: var(--primary-tint); }
+.fb-masonry img { width: 100%; height: auto; transition: transform .5s ease; }
+.fb-masonry button:hover img { transform: scale(1.03); }
+@media (max-width: 900px) { .fb-masonry { columns: 2; column-gap: 12px; } .fb-masonry > * { margin-bottom: 12px; } }
+
+/* Trust */
+.trust { background: var(--herb-tint); }
+.trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 48px; }
+.trust-item { border-top: 1px solid rgba(47,107,79,.3); padding-top: 22px; }
+.trust-item .icon { width: 30px; height: 30px; color: var(--herb); margin-bottom: 16px; }
+.trust-item h3 { font-size: 17px; margin-bottom: 6px; }
+.trust-item p { font-size: 14.5px; color: var(--ink-2); }
+.certs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px; }
+.certs > * { aspect-ratio: 3 / 4; }
+.certs button { border-radius: var(--r); overflow: hidden; border: 1px solid rgba(47,107,79,.2); background: var(--white); padding: 0; cursor: zoom-in; }
+.certs img { width: 100%; height: 100%; object-fit: cover; }
+.certs .ph { background: var(--white); }
+@media (max-width: 860px) { .trust-grid { grid-template-columns: 1fr 1fr; gap: 28px 20px; } .certs { grid-template-columns: repeat(2, 1fr); } }
+
+/* Lightbox & video modal */
+.lightbox, .modal { position: fixed; inset: 0; background: rgba(0,0,0,.9); z-index: 200; display: none; place-items: center; padding: 16px; }
+.lightbox.open, .modal.open { display: grid; }
+.lightbox img { max-height: 86vh; max-width: min(1000px, 100%); border-radius: var(--r); }
+.lb-btn { position: absolute; width: 46px; height: 46px; border-radius: 50%; border: 0; background: var(--white); color: var(--ink); cursor: pointer; display: grid; place-items: center; z-index: 2; }
+.lb-close { top: 16px; right: 16px; }
+.lb-prev { left: 16px; top: 50%; margin-top: -23px; }
+.lb-next { right: 16px; top: 50%; margin-top: -23px; }
+.lb-count { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; color: rgba(255,255,255,.7); font-size: 13px; }
+.modal-inner { position: relative; width: min(420px, 100%, 49vh); aspect-ratio: 9 / 16; background: #000; border-radius: var(--r); overflow: hidden; }
+.modal-inner.wide { width: min(1000px, 100%); aspect-ratio: 16 / 9; }
+.modal-inner iframe, .modal-inner video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; object-fit: contain; }
 
 /* Specs */
 .specs { display: grid; grid-template-columns: 1fr 1.3fr; gap: 64px; align-items: start; }
@@ -288,6 +402,12 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
     <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.2v.01"/></symbol>
     <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
 
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 2.5h8l4 4v15H6z"/><path d="M14 2.5v4h4M9 12h6M9 15.5h6M9 8.5h2"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 3.5h3.5l1.5 4.5-2.2 1.3a11 11 0 0 0 6.9 6.9L16 14l4.5 1.5V19a1.5 1.5 0 0 1-1.6 1.5C10.7 20 4 13.3 3.5 5.1A1.5 1.5 0 0 1 5 3.5z"/></symbol>
+    <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+    <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+    <symbol id="i-badge" viewBox="0 0 24 24"><path d="M12 2.5l2.4 1.8 3-.1.9 2.9 2.4 1.8-1 2.8 1 2.9-2.4 1.7-.9 2.9-3-.1L12 21l-2.4-1.8-3 .1-.9-2.9-2.4-1.7 1-2.9-1-2.8L5.7 7.1l.9-2.9 3 .1z"/><path d="M8.8 12l2.2 2.2 4.2-4.4"/></symbol>
+
     <!-- Botanical line art -->
     <symbol id="b-mint" viewBox="0 0 84 84"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M42 80V22"/><path d="M42 50c-4-12-16-18-28-16 2 12 14 20 28 16z"/><path d="M42 50c-6-6-14-10-22-12"/><path d="M42 40c4-12 16-18 28-16-2 12-14 20-28 16z"/><path d="M42 40c6-6 14-10 22-12"/><path d="M42 24c-3-8-1-16 0-20 1 4 3 12 0 20z"/></g></symbol>
     <symbol id="b-betel" viewBox="0 0 84 84"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M42 76C22 62 12 46 14 32c2-12 14-18 28-10 14-8 26-2 28 10 2 14-8 30-28 44z"/><path d="M42 22v54"/><path d="M42 36c-8-4-16-4-22 0M42 36c8-4 16-4 22 0M42 50c-8-3-14-2-20 2M42 50c8-3 14-2 20 2M42 62c-5-2-10-1-13 2M42 62c5-2 10-1 13 2"/><path d="M42 22c0-6 2-12 6-16"/></g></symbol>
@@ -332,6 +452,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
       <a href="#thanh-phan">Thành phần</a>
       <a href="#cong-dung">Công dụng</a>
       <a href="#cach-dung">Cách dùng</a>
+      <a href="#danh-gia">Đánh giá</a>
       <a href="#hoi-dap">Hỏi đáp</a>
     </nav>
     <a href="#dat-hang" class="btn">Mua ngay</a>
@@ -346,6 +467,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
     <div>
       <p class="label reveal">Xịt khử mùi Gừng Cam · 30ml</p>
       <h1 class="display reveal d1">Đừng để mùi cơ thể làm bạn <em>mất tự tin.</em></h1>
+      <a class="rating-line reveal d1" id="heroRating" href="#danh-gia" hidden></a>
       <p class="lead reveal d1">Khử mùi hôi nách, chân và cơ thể với hương thảo mộc thanh mát.</p>
       <ul class="hero-points reveal d2">
         <li><svg class="icon"><use href="#i-timer"/></svg>Khô thoáng 30 giây</li>
@@ -364,9 +486,12 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
         <span class="ship"><svg class="icon"><use href="#i-truck"/></svg>Freeship toàn quốc</span>
       </div>
     </div>
-    <div class="packshot reveal" data-visual="hero">
-      <svg class="botanical b1" viewBox="0 0 84 84"><use href="#b-mint"/></svg>
-      <svg class="botanical b2" viewBox="0 0 84 84"><use href="#b-orange"/></svg>
+    <div class="gallery reveal">
+      <div class="packshot" data-visual="hero">
+        <svg class="botanical b1" viewBox="0 0 84 84"><use href="#b-mint"/></svg>
+        <svg class="botanical b2" viewBox="0 0 84 84"><use href="#b-orange"/></svg>
+      </div>
+      <div class="thumbs" id="thumbs" hidden></div>
     </div>
   </div>
 </section>
@@ -458,6 +583,23 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
   </div>
 </section>
 
+<!-- VIDEO REVIEW -->
+<section class="section videos-sec" id="video-review">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <p class="label reveal">Video review</p>
+        <h2 class="h2 display reveal d1">Xem Mây Mây <em>trong thực tế.</em></h2>
+      </div>
+      <div class="arrows" id="vidArrows">
+        <button type="button" aria-label="Video trước" data-dir="-1"><svg class="icon"><use href="#i-chev-l"/></svg></button>
+        <button type="button" aria-label="Video tiếp" data-dir="1"><svg class="icon"><use href="#i-chev-r"/></svg></button>
+      </div>
+    </div>
+    <div class="vid-row reveal" id="vidRow"></div>
+  </div>
+</section>
+
 <!-- STEPS -->
 <section class="section steps-sec" id="cach-dung">
   <div class="container">
@@ -475,15 +617,41 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
   </div>
 </section>
 
-<!-- REVIEWS (tự hiện khi có ảnh feedback / video trong CONFIG) -->
-<section class="section" id="danh-gia" hidden>
+<!-- CUSTOMER REVIEWS -->
+<section class="section" id="danh-gia">
+  <div class="container">
+    <p class="label reveal">Đánh giá</p>
+    <h2 class="h2 display reveal d1">Khách hàng nói gì về <em>Mây Mây.</em></h2>
+    <div class="reviews-wrap">
+      <aside class="summary-card reveal" id="summary"></aside>
+      <div>
+        <div class="filters" id="filters"></div>
+        <div class="review-list" id="reviewList"></div>
+        <div class="more-wrap"><button type="button" class="btn btn-ghost" id="moreReviews" hidden>Xem thêm đánh giá</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEEDBACK SCREENSHOTS -->
+<section class="section steps-sec" id="feedback">
   <div class="container">
     <div class="text-center">
-      <p class="label center reveal">Khách hàng nói gì</p>
-      <h2 class="h2 display reveal d1">Phản hồi <em>thực tế</em> từ khách hàng.</h2>
+      <p class="label center reveal">Feedback</p>
+      <h2 class="h2 display reveal d1">Hình ảnh <em>feedback</em> thực tế.</h2>
+      <p class="lead reveal d2">Tin nhắn và hình ảnh khách hàng gửi về sau khi sử dụng.</p>
     </div>
-    <div class="reviews-grid" id="reviews"></div>
-    <div class="video reveal" id="video" hidden></div>
+    <div class="fb-masonry" id="fbGrid"></div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="section trust" id="cam-ket">
+  <div class="container">
+    <p class="label reveal">Cam kết</p>
+    <h2 class="h2 display reveal d1">Yên tâm khi chọn <em>Mây Mây.</em></h2>
+    <div class="trust-grid" id="trustGrid"></div>
+    <div class="certs" id="certs"></div>
   </div>
 </section>
 
@@ -547,6 +715,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
           </div>
           <button type="submit" class="btn btn-block" id="submitBtn">Đặt hàng ngay</button>
           <p class="form-note">(*) Vui lòng kiểm tra lại thông tin nhận hàng trước khi xác nhận đơn.</p>
+          <div class="form-rating" id="formRating" hidden></div>
         </form>
       </div>
       <div class="success" id="success" role="status">
@@ -589,9 +758,17 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
   </div>
 </div>
 
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <button type="button" aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button>
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Xem ảnh">
+  <button type="button" class="lb-btn lb-close" aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button>
+  <button type="button" class="lb-btn lb-prev" aria-label="Ảnh trước"><svg class="icon"><use href="#i-chev-l"/></svg></button>
   <img alt="">
+  <button type="button" class="lb-btn lb-next" aria-label="Ảnh tiếp"><svg class="icon"><use href="#i-chev-r"/></svg></button>
+  <div class="lb-count"></div>
+</div>
+
+<div class="modal" id="vmodal" aria-hidden="true" role="dialog" aria-label="Xem video">
+  <button type="button" class="lb-btn lb-close" aria-label="Đóng"><svg class="icon"><use href="#i-close"/></svg></button>
+  <div class="modal-inner"></div>
 </div>
 
 <script>
@@ -599,14 +776,42 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
    CẤU HÌNH – chỉ cần sửa ở đây
    ========================================================= */
 const CONFIG = {
-  // Ảnh packshot sản phẩm (nền trơn, tỉ lệ 4:5). Để trống = dùng ảnh render.
-  productImage: '',
-  // Ảnh sản phẩm khi sử dụng / lifestyle cho phần "Công dụng". Để trống = dùng ảnh render.
+  // true = hiện khung chờ ở các phần chưa có nội dung (để xem bố cục).
+  // Đổi thành false trước khi chạy quảng cáo: phần nào chưa có nội dung sẽ tự ẩn.
+  showPlaceholders: true,
+
+  // Ảnh sản phẩm: ảnh đầu tiên là ảnh chính ở đầu trang, các ảnh sau hiện thành ảnh nhỏ để chuyển.
+  productImages: [
+    // 'https://.../packshot.jpg',
+  ],
+  // Ảnh lifestyle cho phần "Công dụng" (để trống = dùng ảnh sản phẩm thứ 2 hoặc ảnh render)
   usageImage: '',
-  // Ảnh feedback khách hàng. Phần "Khách hàng nói gì" chỉ hiện khi có ảnh hoặc video.
+
+  // Video review: YouTube (watch / shorts / youtu.be), TikTok (link có /video/123...), hoặc file .mp4
+  videos: [
+    // { url: 'https://www.tiktok.com/@ten/video/1234567890', title: 'Review sau 1 tuần dùng', author: '@ten_tiktok', poster: '' },
+  ],
+
+  // Đánh giá khách hàng THẬT. Điểm trung bình và biểu đồ sao được tính tự động từ danh sách này.
+  reviews: [
+    // { name: 'Chị Lan', location: 'Hà Nội', date: '12/10/2026', rating: 5, tag: 'Mẹ sau sinh',
+    //   content: 'Nội dung khách viết...', images: ['https://.../anh1.jpg'], avatar: '', verified: true },
+  ],
+
+  // Ảnh chụp tin nhắn / feedback khách gửi về
   feedbackImages: [],
-  // Video review: link YouTube (watch / shorts / youtu.be), TikTok video, hoặc file .mp4
-  videoUrl: '',
+
+  // Ảnh giấy công bố, chứng nhận, kiểm nghiệm
+  certificateImages: [],
+
+  // Cam kết hiển thị ở phần "Yên tâm khi chọn Mây Mây". icon: doc | leaf | truck | phone | shield | badge
+  commitments: [
+    { icon: 'doc', title: 'Đã công bố mỹ phẩm', text: 'Số công bố 60/26/CBMP-NB.' },
+    { icon: 'leaf', title: 'Thảo mộc thuần chay', text: 'Bạc hà, trầu không, gừng và cam.' },
+    { icon: 'truck', title: 'Freeship toàn quốc', text: 'Miễn phí vận chuyển trên toàn quốc.' },
+    { icon: 'phone', title: 'Xác nhận trước khi giao', text: 'Mây Mây gọi điện xác nhận thông tin đơn hàng trước khi giao.' }
+  ],
+
   // Endpoint nhận đơn (Google Apps Script Web App, webhook...). Để trống = chỉ hiện thông báo thành công.
   orderEndpoint: '',
   price: 49000,
@@ -620,47 +825,220 @@ const CONFIG = {
 
 const fmt = n => n.toLocaleString('vi-VN') + 'đ';
 
-/* Product visuals */
-document.querySelectorAll('[data-visual]').forEach(el => {
-  const src = el.dataset.visual === 'hero' ? CONFIG.productImage : (CONFIG.usageImage || CONFIG.productImage);
-  el.insertAdjacentHTML('afterbegin', src
-    ? `<img class="photo" src="${src}" alt="Xịt khử mùi Gừng Cam Mây Mây 30ml">`
-    : `<svg class="render" viewBox="0 0 240 560" role="img" aria-label="Xịt khử mùi Gừng Cam Mây Mây 30ml"><use href="#packshot"/></svg>`);
-  if (src) el.querySelectorAll('.botanical').forEach(b => b.remove());
-});
+const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const STAR = '<svg viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg>';
+const PLAY = '<svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>';
+const stars = r => `<span class="stars" role="img" aria-label="${(r || 0).toFixed(1)} trên 5 sao"><span class="stars-base">${STAR.repeat(5)}</span><span class="stars-fill" style="width:${(r || 0) / 5 * 100}%">${STAR.repeat(5)}</span></span>`;
+const ICONS = { doc: 'i-doc', leaf: 'i-leaf', truck: 'i-truck', phone: 'i-phone', shield: 'i-shield', badge: 'i-badge' };
 
-/* Reviews & video – only shown when provided */
+let previewShown = false;
+const markPreview = () => {
+  if (previewShown) return;
+  previewShown = true;
+  document.body.insertAdjacentHTML('beforeend', '<div class="preview-pill"><b>Bản xem trước.</b> Các khung "Chờ nội dung" sẽ được thay bằng ảnh, video, đánh giá thật.</div>');
+};
+
+/* Lightbox (ảnh) */
+const LB = (() => {
+  const el = document.getElementById('lightbox'), img = el.querySelector('img'), count = el.querySelector('.lb-count');
+  let list = [], i = 0;
+  const show = () => {
+    img.src = list[i];
+    count.textContent = list.length > 1 ? `${i + 1} / ${list.length}` : '';
+    el.querySelectorAll('.lb-prev, .lb-next').forEach(b => b.hidden = list.length < 2);
+  };
+  const close = () => { el.classList.remove('open'); el.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; };
+  const step = d => { i = (i + d + list.length) % list.length; show(); };
+  el.addEventListener('click', e => {
+    if (e.target.closest('.lb-prev')) return step(-1);
+    if (e.target.closest('.lb-next')) return step(1);
+    if (e.target !== img) close();
+  });
+  document.addEventListener('keydown', e => {
+    if (!el.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') step(-1);
+    if (e.key === 'ArrowRight') step(1);
+  });
+  return {
+    open(l, idx = 0) {
+      list = l; i = idx; show();
+      el.classList.add('open'); el.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden';
+    }
+  };
+})();
+
+/* Video modal */
+const parseVideo = url => {
+  let m;
+  if ((m = url.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/))) return { type: 'yt', id: m[1], vertical: /shorts\//.test(url), thumb: `https://i.ytimg.com/vi/${m[1]}/hqdefault.jpg` };
+  if ((m = url.match(/tiktok\.com\/.*video\/(\d+)/))) return { type: 'tt', id: m[1], vertical: true };
+  return { type: 'file', src: url, vertical: true };
+};
+const VM = (() => {
+  const el = document.getElementById('vmodal'), box = el.querySelector('.modal-inner');
+  const close = () => { el.classList.remove('open'); el.setAttribute('aria-hidden', 'true'); box.innerHTML = ''; document.body.style.overflow = ''; };
+  el.addEventListener('click', e => { if (!e.target.closest('.modal-inner')) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && el.classList.contains('open')) close(); });
+  return {
+    open(v) {
+      box.className = 'modal-inner' + (v.vertical ? '' : ' wide');
+      box.innerHTML = v.type === 'yt'
+        ? `<iframe src="https://www.youtube.com/embed/${v.id}?autoplay=1&rel=0&playsinline=1" title="Video review Mây Mây" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`
+        : v.type === 'tt'
+          ? `<iframe src="https://www.tiktok.com/embed/v2/${v.id}" title="Video review Mây Mây" allow="autoplay; encrypted-media" allowfullscreen></iframe>`
+          : `<video src="${esc(v.src)}" controls autoplay playsinline></video>`;
+      el.classList.add('open'); el.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden';
+    }
+  };
+})();
+
+/* Product visuals + hero gallery */
+(() => {
+  const imgs = CONFIG.productImages.filter(Boolean);
+  document.querySelectorAll('[data-visual]').forEach(el => {
+    const src = el.dataset.visual === 'hero' ? imgs[0] : (CONFIG.usageImage || imgs[1] || imgs[0]);
+    el.insertAdjacentHTML('afterbegin', src
+      ? `<img class="photo" src="${esc(src)}" alt="Xịt khử mùi Gừng Cam Mây Mây 30ml">`
+      : `<svg class="render" viewBox="0 0 240 560" role="img" aria-label="Xịt khử mùi Gừng Cam Mây Mây 30ml"><use href="#packshot"/></svg>`);
+    if (src) el.querySelectorAll('.botanical').forEach(b => b.remove());
+  });
+  if (!imgs.length) return;
+  const main = document.querySelector('[data-visual="hero"]'), photo = main.querySelector('img.photo');
+  let current = 0;
+  main.classList.add('zoomable');
+  main.addEventListener('click', () => LB.open(imgs, current));
+  if (imgs.length < 2) return;
+  const thumbs = document.getElementById('thumbs');
+  thumbs.hidden = false;
+  thumbs.innerHTML = imgs.slice(0, 5).map((s, i) => `<button type="button" class="${i ? '' : 'active'}" data-i="${i}" aria-label="Ảnh ${i + 1}"><img src="${esc(s)}" alt="" loading="lazy"></button>`).join('');
+  thumbs.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    current = +b.dataset.i; photo.src = imgs[current];
+    thumbs.querySelectorAll('button').forEach(t => t.classList.toggle('active', t === b));
+  });
+})();
+
+/* Video reviews */
+(() => {
+  const sec = document.getElementById('video-review'), row = document.getElementById('vidRow');
+  const vids = CONFIG.videos.filter(v => v && v.url).map(v => ({ ...v, ...parseVideo(v.url.trim()) }));
+  if (!vids.length && !CONFIG.showPlaceholders) { sec.remove(); return; }
+  if (!vids.length) {
+    markPreview();
+    row.innerHTML = [1, 2, 3, 4].map(i => `<div class="vid-card is-ph"><span class="ph-badge">Chờ nội dung</span><span class="vid-play">${PLAY}</span><span class="vid-meta"><b>Video review ${i}</b><span>TikTok, YouTube hoặc file .mp4</span></span></div>`).join('');
+  } else {
+    row.innerHTML = vids.map((v, i) => {
+      const poster = v.poster || v.thumb;
+      const media = poster ? `<img src="${esc(poster)}" alt="" loading="lazy">`
+        : v.type === 'file' ? `<video src="${esc(v.src)}#t=0.5" muted playsinline preload="metadata"></video>` : '';
+      return `<button type="button" class="vid-card" data-i="${i}" aria-label="Xem video ${esc(v.title || i + 1)}">${media}<span class="vid-play">${PLAY}</span><span class="vid-meta">${v.title ? `<b>${esc(v.title)}</b>` : ''}${v.author ? `<span>${esc(v.author)}</span>` : ''}</span></button>`;
+    }).join('');
+    row.addEventListener('click', e => { const c = e.target.closest('.vid-card'); if (c) VM.open(vids[+c.dataset.i]); });
+  }
+  const arrows = document.getElementById('vidArrows');
+  if (row.children.length <= 4) arrows.remove();
+  else arrows.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    row.scrollBy({ left: +b.dataset.dir * (row.firstElementChild.offsetWidth + 16), behavior: 'smooth' });
+  });
+})();
+
+/* Customer reviews */
 (() => {
   const sec = document.getElementById('danh-gia');
-  const grid = document.getElementById('reviews');
-  const imgs = CONFIG.feedbackImages.filter(Boolean);
-  const url = CONFIG.videoUrl.trim();
-  if (!imgs.length && !url) return;
-  sec.hidden = false;
-  grid.innerHTML = imgs.map((s, i) => `<figure class="reveal"><img src="${s}" alt="Phản hồi khách hàng ${i + 1}" loading="lazy"></figure>`).join('');
-  if (url) {
-    const box = document.getElementById('video');
-    box.hidden = false;
-    let m;
-    if ((m = url.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/))) {
-      if (/shorts\//.test(url)) box.classList.add('vertical');
-      box.innerHTML = `<iframe src="https://www.youtube.com/embed/${m[1]}?rel=0" title="Video review Mây Mây" allow="encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
-    } else if ((m = url.match(/tiktok\.com\/.*video\/(\d+)/))) {
-      box.classList.add('vertical');
-      box.innerHTML = `<iframe src="https://www.tiktok.com/embed/v2/${m[1]}" title="Video review Mây Mây" allowfullscreen loading="lazy"></iframe>`;
-    } else {
-      box.innerHTML = `<video src="${url}" controls playsinline preload="metadata"></video>`;
-    }
+  const reviews = CONFIG.reviews.filter(r => r && r.content).map(r => ({ ...r, rating: Math.min(5, Math.max(1, +r.rating || 5)), images: (r.images || []).filter(Boolean) }));
+  if (!reviews.length && !CONFIG.showPlaceholders) { sec.remove(); return; }
+  const summary = document.getElementById('summary'), list = document.getElementById('reviewList');
+  const filtersEl = document.getElementById('filters'), more = document.getElementById('moreReviews');
+  const dist = () => [5, 4, 3, 2, 1].map(n => {
+    const c = reviews.filter(r => r.rating === n).length, pct = reviews.length ? c / reviews.length * 100 : 0;
+    return `<div class="dist-row"><span>${n} sao</span><span class="bar"><i style="width:${pct}%"></i></span><span>${c}</span></div>`;
+  }).join('');
+
+  if (!reviews.length) {
+    markPreview();
+    summary.innerHTML = `<div class="avg">–</div>${stars(0)}<p class="avg-sub">Điểm trung bình tự tính từ đánh giá thật của khách hàng.</p><div class="dist">${dist()}</div>`;
+    list.innerHTML = [1, 2, 3, 4].map(() => `<article class="review is-ph"><span class="ph-badge">Chờ nội dung</span><div class="review-head" style="margin-top:18px"><span class="avatar"></span><div style="flex:1"><div class="sk" style="width:45%;margin:0"></div><div class="sk" style="width:28%"></div></div></div>${stars(0)}<div class="sk" style="margin-top:16px"></div><div class="sk"></div><div class="sk" style="width:65%"></div></article>`).join('');
+    filtersEl.remove(); more.remove();
+    return;
   }
-  const lb = document.getElementById('lightbox'), lbImg = lb.querySelector('img');
-  grid.addEventListener('click', e => {
-    const img = e.target.closest('img'); if (!img) return;
-    lbImg.src = img.src; lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false');
+
+  const avg = reviews.reduce((s, r) => s + r.rating, 0) / reviews.length;
+  const avgTxt = avg.toFixed(1).replace('.', ',');
+  summary.innerHTML = `<div class="avg">${avgTxt}</div>${stars(avg)}<p class="avg-sub">Dựa trên ${reviews.length} đánh giá</p><div class="dist">${dist()}</div>`;
+  const ratingLine = `${stars(avg)}<span><b>${avgTxt}/5</b> · ${reviews.length} đánh giá</span>`;
+  const hero = document.getElementById('heroRating'), form = document.getElementById('formRating');
+  hero.innerHTML = ratingLine; hero.hidden = false;
+  form.innerHTML = ratingLine; form.hidden = false;
+
+  const FILTERS = [
+    ['all', 'Tất cả', () => true],
+    ['img', 'Có hình ảnh', r => r.images.length > 0],
+    ['5', '5 sao', r => r.rating === 5],
+    ['4', '4 sao', r => r.rating === 4]
+  ].map(([k, label, fn]) => ({ k, label, fn, n: reviews.filter(fn).length })).filter(f => f.k === 'all' || f.n > 0);
+  filtersEl.innerHTML = FILTERS.map((f, i) => `<button type="button" class="chip${i ? '' : ' active'}" data-k="${f.k}">${f.label} (${f.n})</button>`).join('');
+
+  const PAGE = 6;
+  let active = FILTERS[0], shown = PAGE;
+  const card = (r, idx) => {
+    const initial = esc(((r.name || 'K').trim().split(/\s+/).pop() || 'K')[0].toUpperCase());
+    return `<article class="review" data-r="${idx}">
+      <div class="review-head"><span class="avatar">${r.avatar ? `<img src="${esc(r.avatar)}" alt="">` : initial}</span>
+      <div><div class="review-name">${esc(r.name || 'Khách hàng')}</div><div class="review-sub">${[r.location, r.date].filter(Boolean).map(esc).join(' · ')}</div></div></div>
+      <div class="review-rate">${stars(r.rating)}${r.verified !== false ? `<span class="verified"><svg class="icon"><use href="#i-check"/></svg>Đã mua hàng</span>` : ''}</div>
+      <p class="review-text">${esc(r.content)}</p>
+      ${r.images.length ? `<div class="review-imgs">${r.images.map((s, j) => `<button type="button" data-img="${j}" aria-label="Xem ảnh"><img src="${esc(s)}" alt="Ảnh từ khách hàng" loading="lazy"></button>`).join('')}</div>` : ''}
+      ${r.tag ? `<span class="review-tag">${esc(r.tag)}</span>` : ''}
+    </article>`;
+  };
+  const render = () => {
+    const items = reviews.map((r, i) => [r, i]).filter(([r]) => active.fn(r));
+    list.innerHTML = items.slice(0, shown).map(([r, i]) => card(r, i)).join('');
+    more.hidden = items.length <= shown;
+  };
+  filtersEl.addEventListener('click', e => {
+    const b = e.target.closest('.chip'); if (!b) return;
+    active = FILTERS.find(f => f.k === b.dataset.k); shown = PAGE;
+    filtersEl.querySelectorAll('.chip').forEach(c => c.classList.toggle('active', c === b));
+    render();
   });
-  lb.addEventListener('click', e => {
-    if (e.target === lbImg) return;
-    lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true');
+  more.addEventListener('click', () => { shown += PAGE; render(); });
+  list.addEventListener('click', e => {
+    const b = e.target.closest('[data-img]'); if (!b) return;
+    LB.open(reviews[+b.closest('.review').dataset.r].images, +b.dataset.img);
   });
+  render();
+})();
+
+/* Feedback screenshots */
+(() => {
+  const sec = document.getElementById('feedback'), grid = document.getElementById('fbGrid');
+  const imgs = CONFIG.feedbackImages.filter(Boolean);
+  if (!imgs.length && !CONFIG.showPlaceholders) { sec.remove(); return; }
+  if (!imgs.length) {
+    markPreview();
+    const ratios = ['3 / 5', '3 / 4', '1 / 1', '3 / 4.4'];
+    grid.innerHTML = Array.from({ length: 8 }, (_, i) => `<div class="ph" style="aspect-ratio:${ratios[i % 4]}"><span class="ph-badge">Chờ nội dung</span>Ảnh feedback ${i + 1}</div>`).join('');
+    return;
+  }
+  grid.innerHTML = imgs.map((s, i) => `<button type="button" data-i="${i}" aria-label="Xem feedback ${i + 1}"><img src="${esc(s)}" alt="Feedback khách hàng ${i + 1}" loading="lazy"></button>`).join('');
+  grid.addEventListener('click', e => { const b = e.target.closest('button'); if (b) LB.open(imgs, +b.dataset.i); });
+})();
+
+/* Trust & certificates */
+(() => {
+  document.getElementById('trustGrid').innerHTML = CONFIG.commitments.map(c => `
+    <div class="trust-item reveal"><svg class="icon"><use href="#${ICONS[c.icon] || 'i-check'}"/></svg><h3>${esc(c.title)}</h3><p>${esc(c.text)}</p></div>`).join('');
+  const certs = document.getElementById('certs'), imgs = CONFIG.certificateImages.filter(Boolean);
+  if (imgs.length) {
+    certs.innerHTML = imgs.map((s, i) => `<button type="button" data-i="${i}" aria-label="Xem chứng nhận ${i + 1}"><img src="${esc(s)}" alt="Giấy công bố / chứng nhận ${i + 1}" loading="lazy"></button>`).join('');
+    certs.addEventListener('click', e => { const b = e.target.closest('button'); if (b) LB.open(imgs, +b.dataset.i); });
+  } else if (CONFIG.showPlaceholders) {
+    markPreview();
+    certs.innerHTML = ['Giấy công bố mỹ phẩm', 'Phiếu kiểm nghiệm', 'Chứng nhận khác'].map(t => `<div class="ph"><span class="ph-badge">Chờ nội dung</span>${t}</div>`).join('');
+  } else certs.remove();
 })();
 
 /* Countdown – flash sale theo ngày */
