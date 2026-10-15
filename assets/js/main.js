@@ -768,16 +768,30 @@ document.addEventListener('wpcf7mailsent', function (event) {
 (function () {
     function initStoryTypewriter() {
         const box = document.getElementById('storyTypewriterBox');
-        const target = document.getElementById('storyTypewriterTarget');
-        if (!box || !target) return;
+        if (!box) return;
 
-        const textSpan = target.querySelector('.typewriter-text');
-        const cursor = target.querySelector('.typewriter-cursor');
-        const fullText = box.getAttribute('data-text') || (textSpan ? textSpan.textContent.trim() : '');
-        if (!fullText) return;
+        const bodyTarget = document.getElementById('storyTypewriterTarget');
+        const highlightTarget = document.getElementById('storyTypewriterHighlight');
+        if (!bodyTarget) return;
+
+        const bodyTextSpan = bodyTarget.querySelector('.typewriter-text');
+        const highlightTextSpan = highlightTarget ? highlightTarget.querySelector('.typewriter-highlight-text') : null;
+        const cursor = box.querySelector('.typewriter-cursor');
+
+        // Hỗ trợ cả data-body/data-highlight mới và fallback data-text cũ
+        const bodyText = box.getAttribute('data-body') || box.getAttribute('data-text') || (bodyTextSpan ? bodyTextSpan.textContent.trim() : '');
+        const highlightText = box.getAttribute('data-highlight') || (highlightTextSpan ? highlightTextSpan.textContent.trim() : '');
+
+        if (!bodyText && !highlightText) return;
 
         // Xóa text ban đầu để chuẩn bị hiệu ứng gõ
-        if (textSpan) textSpan.textContent = '';
+        if (bodyTextSpan) bodyTextSpan.textContent = '';
+        if (highlightTextSpan) highlightTextSpan.textContent = '';
+
+        // Tạm thời gắn con trỏ vào sau body text khi đang gõ body
+        if (cursor && bodyTarget) {
+            bodyTarget.appendChild(cursor);
+        }
 
         let hasStarted = false;
 
@@ -785,28 +799,58 @@ document.addEventListener('wpcf7mailsent', function (event) {
             if (hasStarted) return;
             hasStarted = true;
 
-            let index = 0;
+            let bodyIndex = 0;
+            let highlightIndex = 0;
             const speed = 25; // 25ms mỗi ký tự
 
-            function typeNextChar() {
-                if (index < fullText.length) {
-                    if (textSpan) {
-                        textSpan.textContent += fullText.charAt(index);
+            function typeBody() {
+                if (bodyIndex < bodyText.length) {
+                    if (bodyTextSpan) {
+                        bodyTextSpan.textContent += bodyText.charAt(bodyIndex);
                     }
-                    index++;
-                    // Tạm dừng nhẹ khi gặp dấu câu tạo cảm giác gõ tự nhiên
-                    const char = fullText.charAt(index - 1);
+                    bodyIndex++;
+                    const char = bodyText.charAt(bodyIndex - 1);
                     const delay = (char === '.' || char === ',' || char === '—') ? 70 : speed;
-                    setTimeout(typeNextChar, delay);
-                } else {
-                    // Khi gõ xong, giữ con trỏ nhấp nháy 3 giây rồi làm mờ nhẹ
+                    setTimeout(typeBody, delay);
+                } else if (highlightText && highlightTextSpan) {
+                    // Xong body, tạm dừng 300ms rồi chuyển con trỏ sang dòng highlight
                     setTimeout(() => {
-                        if (cursor) cursor.classList.add('cursor-finished');
-                    }, 3000);
+                        if (cursor && highlightTarget) {
+                            highlightTarget.appendChild(cursor);
+                        }
+                        typeHighlight();
+                    }, 300);
+                } else {
+                    finishTyping();
                 }
             }
 
-            typeNextChar();
+            function typeHighlight() {
+                if (highlightIndex < highlightText.length) {
+                    if (highlightTextSpan) {
+                        highlightTextSpan.textContent += highlightText.charAt(highlightIndex);
+                    }
+                    highlightIndex++;
+                    const char = highlightText.charAt(highlightIndex - 1);
+                    const delay = (char === '-' || char === ',' || char === '.') ? 80 : speed;
+                    setTimeout(typeHighlight, delay);
+                } else {
+                    finishTyping();
+                }
+            }
+
+            function finishTyping() {
+                setTimeout(() => {
+                    if (cursor) cursor.classList.add('cursor-finished');
+                }, 3000);
+            }
+
+            if (bodyText.length > 0) {
+                typeBody();
+            } else if (highlightText.length > 0) {
+                if (cursor && highlightTarget) highlightTarget.appendChild(cursor);
+                typeHighlight();
+            }
         }
 
         // Kích hoạt khi cuộn đến khung

@@ -1007,6 +1007,26 @@ body.is-menu-open {
     text-align: justify;
     word-break: break-word;
 }
+.story-typewriter-highlight {
+    display: block;
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: rgba(76, 192, 211, 0.12);
+    border-left: 4px solid var(--primary-dark);
+    border-radius: 12px;
+    color: var(--primary-deep);
+    font-family: var(--font-heading);
+    font-size: 16px;
+    line-height: 1.6;
+    position: relative;
+    z-index: 2;
+    word-break: break-word;
+}
+.typewriter-highlight-text {
+    font-weight: 800;
+    color: var(--primary-deep);
+    letter-spacing: 0.2px;
+}
 .typewriter-cursor {
     display: inline-block;
     margin-left: 4px;
@@ -1656,6 +1676,12 @@ body.is-lightbox-open {
     .story-typewriter-text {
         font-size: 20px;
         line-height: 1.85;
+    }
+    .story-typewriter-highlight {
+        margin-top: 24px;
+        padding: 16px 24px;
+        font-size: 20px;
+        border-radius: 16px;
     }
     .story-steps { grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
     .story-steps::before { left: 16%; right: 16%; top: 58px; bottom: auto; border-left: 0; border-top: 3px dotted var(--primary-light); }
