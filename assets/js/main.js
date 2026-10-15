@@ -98,9 +98,9 @@ document.documentElement.classList.add('js');
     }
     function fillVideo(box, item, label) {
         const url = (typeof item === 'object' && item !== null) ? (item.src || '') : (item || '');
-        const customThumb = (typeof item === 'object' && item !== null) ? (item.thumb || '') : '';
-        if (!url) { box.appendChild(placeholder(label, '🎬')); return; }
-        const yt = youtubeId(url);
+        const customThumb = (typeof item === 'object' && item !== null) ? (item.thumb || box.dataset.thumb || '') : (box.dataset.thumb || '');
+        if (!url && !customThumb) { box.appendChild(placeholder(label, '🎬')); return; }
+        const yt = url ? youtubeId(url) : null;
         if (yt) {
             const img = document.createElement('img');
             img.src = customThumb || ('https://i.ytimg.com/vi/' + yt + '/hqdefault.jpg');
@@ -115,11 +115,44 @@ document.documentElement.classList.add('js');
                 box.replaceChildren(f);
             });
             box.append(img, play);
-        } else {
-            const v = document.createElement('video');
-            v.src = url; v.controls = true; v.playsInline = true; v.preload = 'metadata';
-            if (customThumb) v.poster = customThumb;
-            box.appendChild(v);
+        } else if (url) {
+            if (customThumb) {
+                const img = document.createElement('img');
+                img.src = customThumb;
+                img.alt = label;
+                img.loading = 'lazy';
+                const play = document.createElement('button');
+                play.type = 'button';
+                play.className = 'video-play';
+                play.setAttribute('aria-label', 'Phát ' + label);
+                play.innerHTML = '<i></i>';
+                play.addEventListener('click', () => {
+                    const v = document.createElement('video');
+                    v.src = url;
+                    v.controls = true;
+                    v.playsInline = true;
+                    v.autoplay = true;
+                    v.poster = customThumb;
+                    box.replaceChildren(v);
+                    v.play();
+                });
+                box.append(img, play);
+            } else {
+                const v = document.createElement('video');
+                v.src = url; v.controls = true; v.playsInline = true; v.preload = 'metadata';
+                box.appendChild(v);
+            }
+        } else if (customThumb) {
+            const img = document.createElement('img');
+            img.src = customThumb;
+            img.alt = label;
+            img.loading = 'lazy';
+            const play = document.createElement('button');
+            play.type = 'button';
+            play.className = 'video-play';
+            play.setAttribute('aria-label', label);
+            play.innerHTML = '<i></i>';
+            box.append(img, play);
         }
     }
     const get = path => path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), M);
@@ -166,7 +199,7 @@ document.documentElement.classList.add('js');
             const s = document.createElement('div');
             s.className = 'slide media ' + wrap.dataset.ratio;
             const label = wrap.dataset.label + (items.length > 1 ? ' ' + (i + 1) : '');
-            if (isVideo) fillVideo(s, it.src, label);
+            if (isVideo) fillVideo(s, it, label);
             else fillImage(s, it.src, it.src ? (it.caption || label) : label);
             if (it.caption) { const c = document.createElement('span'); c.className = 'caption'; c.textContent = it.caption; s.appendChild(c); }
             track.appendChild(s);

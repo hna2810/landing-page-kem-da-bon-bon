@@ -98,8 +98,9 @@ function lx_enqueue_scripts() {
     $mother_baby   = lx_get_image_url('lx_solution_image', '', 'full', 'option');
     $cream_texture = lx_get_image_url('lx_cream_image', '', 'full', 'option');
     $cert_img      = lx_get_image_url('lx_cert_image', '', 'full', 'option');
-    $stamp_img     = lx_get_image_url('lx_stamp_image', '', 'full', 'option');
-    $guide_video   = lx_get_field('lx_guide_video', 'option', '');
+    $stamp_img         = lx_get_image_url('lx_stamp_image', '', 'full', 'option');
+    $guide_video       = lx_get_field('lx_guide_video', 'option', '');
+    $guide_video_thumb = lx_get_image_url('lx_guide_video_thumb', '', 'full', 'option');
 
     // Rash Slides
     $raw_rash = lx_get_field('lx_rash_slides', 'option', array());
@@ -215,7 +216,10 @@ function lx_enqueue_scripts() {
             'feedback'          => $feedback,
             'testimonialVideos' => $testimonial_videos,
             'seminarSlides'     => $seminar_slides,
-            'guideVideo'        => $guide_video,
+            'guideVideo'        => array(
+                'src'   => $guide_video,
+                'thumb' => $guide_video_thumb,
+            ),
             'reviewImages'      => array(array('', ''), array('', '')),
         ),
     );

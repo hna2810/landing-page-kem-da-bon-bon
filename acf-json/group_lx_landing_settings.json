@@ -435,7 +435,18 @@
       "key": "field_lx_guide_video",
       "label": "Link Video hướng dẫn sử dụng",
       "name": "lx_guide_video",
-      "type": "text"
+      "type": "text",
+      "instructions": "Dán đường dẫn video YouTube hoặc file MP4 hướng dẫn sử dụng 3 bước."
+    },
+    {
+      "key": "field_lx_guide_video_thumb",
+      "label": "Ảnh thumbnail cho Video hướng dẫn 3 bước",
+      "name": "lx_guide_video_thumb",
+      "type": "image",
+      "instructions": "Tải lên hoặc chọn ảnh thumbnail đại diện cho video hướng dẫn sử dụng 3 bước (khuyên dùng tỷ lệ 9:16 dọc).",
+      "return_format": "array",
+      "preview_size": "medium",
+      "library": "all"
     },
     {
       "key": "field_lx_spec_brand",

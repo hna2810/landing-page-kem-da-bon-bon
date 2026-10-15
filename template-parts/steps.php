@@ -10,6 +10,7 @@ if (!defined('ABSPATH')) {
 }
 
 $steps_title = lx_get_field('lx_steps_title', 'option', 'Chăm sóc da bé nhẹ nhàng <span class="hl">với 3 bước</span>');
+$guide_video_thumb = lx_get_image_url('lx_guide_video_thumb', '', 'full', 'option');
 
 $raw_steps = lx_get_field('lx_steps', 'option', array());
 $steps = array();
@@ -44,7 +45,7 @@ if (empty($steps)) {
             </ol>
         </div>
         <div class="video-wrap reveal">
-            <div class="media ratio-916" data-video="guideVideo" data-label="Video hướng dẫn sử dụng"></div>
+            <div class="media ratio-916" data-video="guideVideo" data-label="Video hướng dẫn sử dụng"<?php echo !empty($guide_video_thumb) ? ' data-thumb="' . esc_url($guide_video_thumb) . '"' : ''; ?>></div>
         </div>
     </div>
 </section>
