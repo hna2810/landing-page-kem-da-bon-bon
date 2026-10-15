@@ -551,6 +551,15 @@
       "default_value": "YÊU CON -<br><span class=\"hl\">MẸ CHỌN BON BON</span>"
     },
     {
+      "key": "field_lx_story_paragraph",
+      "label": "Đoạn văn Câu chuyện thương hiệu (Khung nền trắng - chữ gõ)",
+      "name": "lx_story_paragraph",
+      "type": "textarea",
+      "instructions": "Đoạn văn hiển thị trong khung trắng với hiệu ứng chữ hiển thị từ từ như đang gõ.",
+      "default_value": "Bon Bon đồng hành cùng mẹ từ những ngày đầu đời của bé, từ tắm bé, massage đến chăm sóc da và rốn tại nhà và trung tâm. Với sự chăm chút nhẹ nhàng và các thành phần được lựa chọn phù hợp, Bon Bon cùng mẹ nâng niu làn da non nớt, chăm sóc bé yêu mỗi ngày. Bon Bon còn đồng hành cùng mẹ tại các hội thảo tiền sản và bệnh viện Sản – Nhi trên khắp ba miền Bắc – Trung – Nam. Bon Bon - Dịu dàng chăm bé, trọn vẹn yêu thương.",
+      "rows": 4
+    },
+    {
       "key": "field_lx_story_tagline",
       "label": "Băng rôn slogan",
       "name": "lx_story_tagline",

@@ -972,7 +972,60 @@ body.is-menu-open {
 .story { background: linear-gradient(180deg, var(--white), var(--primary-soft)); }
 .story-hero { text-align: center; }
 .story-mascot { width: 130px; margin: 0 auto 4px; animation: bob 5s ease-in-out infinite; filter: drop-shadow(0 8px 14px rgba(31,127,144,.15)); }
-.story-hero .sec-head { padding: 0; }
+.story-typewriter-box {
+    max-width: 840px;
+    margin: 24px auto 0;
+    background: var(--white);
+    border-radius: 24px;
+    padding: 24px 20px;
+    border: 2px solid rgba(76, 192, 211, 0.36);
+    box-shadow: 0 16px 40px rgba(31, 127, 144, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04);
+    position: relative;
+    text-align: left;
+    box-sizing: border-box;
+}
+.story-card-decor-quote {
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    font-size: 48px;
+    line-height: 1;
+    font-family: Georgia, serif;
+    color: rgba(76, 192, 211, 0.44);
+    pointer-events: none;
+    user-select: none;
+}
+.story-typewriter-text {
+    color: var(--primary-deep);
+    font-size: 16px;
+    line-height: 1.8;
+    font-weight: 600;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+    text-align: justify;
+    word-break: break-word;
+}
+.typewriter-cursor {
+    display: inline-block;
+    margin-left: 4px;
+    font-weight: 700;
+    color: var(--primary);
+    animation: cursorBlink 0.8s infinite;
+    user-select: none;
+}
+.typewriter-cursor.cursor-finished {
+    animation: cursorBlinkFade 1.6s infinite;
+}
+@keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+@keyframes cursorBlinkFade {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0; }
+}
+
 .story-steps { list-style: none; display: grid; gap: 14px; position: relative; margin-bottom: 22px; }
 /* Đường chấm nối các thẻ như một hành trình */
 .story-steps::before {
@@ -1587,6 +1640,21 @@ body.is-lightbox-open {
 
     .faq-wrap { max-width: 820px; margin: 0 auto; }
     .story-mascot { width: 170px; }
+    .story-typewriter-box {
+        max-width: 880px;
+        padding: 36px 44px;
+        border-radius: 28px;
+        margin-top: 32px;
+    }
+    .story-card-decor-quote {
+        top: -16px;
+        left: 28px;
+        font-size: 64px;
+    }
+    .story-typewriter-text {
+        font-size: 20px;
+        line-height: 1.85;
+    }
     .story-steps { grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
     .story-steps::before { left: 16%; right: 16%; top: 58px; bottom: auto; border-left: 0; border-top: 3px dotted var(--primary-light); }
     .story-steps li { flex-direction: column; align-items: center; text-align: center; padding: 30px 24px 26px; }

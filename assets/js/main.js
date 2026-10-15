@@ -731,3 +731,71 @@ document.addEventListener('wpcf7mailsent', function (event) {
     }
 })();
 
+// ===== Typewriter effect cho phần CÂU CHUYỆN THƯƠNG HIỆU =====
+(function () {
+    function initStoryTypewriter() {
+        const box = document.getElementById('storyTypewriterBox');
+        const target = document.getElementById('storyTypewriterTarget');
+        if (!box || !target) return;
+
+        const textSpan = target.querySelector('.typewriter-text');
+        const cursor = target.querySelector('.typewriter-cursor');
+        const fullText = box.getAttribute('data-text') || (textSpan ? textSpan.textContent.trim() : '');
+        if (!fullText) return;
+
+        // Xóa text ban đầu để chuẩn bị hiệu ứng gõ
+        if (textSpan) textSpan.textContent = '';
+
+        let hasStarted = false;
+
+        function startTyping() {
+            if (hasStarted) return;
+            hasStarted = true;
+
+            let index = 0;
+            const speed = 25; // 25ms mỗi ký tự
+
+            function typeNextChar() {
+                if (index < fullText.length) {
+                    if (textSpan) {
+                        textSpan.textContent += fullText.charAt(index);
+                    }
+                    index++;
+                    // Tạm dừng nhẹ khi gặp dấu câu tạo cảm giác gõ tự nhiên
+                    const char = fullText.charAt(index - 1);
+                    const delay = (char === '.' || char === ',' || char === '—') ? 70 : speed;
+                    setTimeout(typeNextChar, delay);
+                } else {
+                    // Khi gõ xong, giữ con trỏ nhấp nháy 3 giây rồi làm mờ nhẹ
+                    setTimeout(() => {
+                        if (cursor) cursor.classList.add('cursor-finished');
+                    }, 3000);
+                }
+            }
+
+            typeNextChar();
+        }
+
+        // Kích hoạt khi cuộn đến khung
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        startTyping();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            observer.observe(box);
+        } else {
+            startTyping();
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initStoryTypewriter);
+    } else {
+        initStoryTypewriter();
+    }
+})();
+
