@@ -47,7 +47,7 @@ $show_mascot = lx_get_field('lx_hero_show_mascot', 'option', 0);
                     </ul>
                 </div>
                 <div class="ba ba-mobile">
-                    <div class="media hero-img" data-media="heroImage" data-label="Ảnh trước - sau">
+                    <div class="media hero-img ratio-1" data-media="heroImage" data-label="Ảnh trước - sau">
                         <?php if ($hero_img) : ?>
                             <img src="<?php echo $hero_img; ?>" alt="Ảnh trước - sau" loading="lazy">
                         <?php endif; ?>
@@ -63,7 +63,7 @@ $show_mascot = lx_get_field('lx_hero_show_mascot', 'option', 0);
         </div>
         <div class="hero-visual">
             <div class="ba">
-                <div class="media hero-img" data-media="heroImage" data-label="Ảnh trước - sau">
+                <div class="media hero-img ratio-1" data-media="heroImage" data-label="Ảnh trước - sau">
                     <?php if ($hero_img) : ?>
                         <img src="<?php echo $hero_img; ?>" alt="Ảnh trước - sau" loading="lazy">
                     <?php endif; ?>

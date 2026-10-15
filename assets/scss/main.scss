@@ -502,7 +502,7 @@ body.is-menu-open {
 .no-list { display: flex; flex-wrap: wrap; gap: 5px; }
 .no-list span { background: var(--pink-soft); color: var(--pink-deep); font-size: 12.5px; font-weight: 800; padding: 2px 8px; border-radius: 20px; }
 .ba { display: grid; gap: 6px; }
-.hero-img { aspect-ratio: 3 / 4; }
+.hero-img { aspect-ratio: 1 / 1; width: 100%; }
 .ba .media .caption { top: 8px; bottom: auto; left: 8px; font-size: 12px; padding: 3px 10px; }
 .ba .media.after .caption { background: var(--primary); color: #fff; }
 .hero-mascot { position: absolute; width: 72px; right: 10px; top: 14px; animation: bob 5s ease-in-out infinite; filter: drop-shadow(0 6px 10px rgba(31,127,144,0.12)); }
