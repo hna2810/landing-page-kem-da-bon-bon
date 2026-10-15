@@ -54,7 +54,11 @@ document.documentElement.classList.add('js');
 (function () {
     const CFG = window.BONBON_CONFIG || {};
     const M = CFG.media || {};
-    const fmt = n => n.toLocaleString('vi-VN') + 'đ';
+    const fmt = n => {
+        const num = parseInt(n, 10);
+        if (isNaN(num)) return n;
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'đ';
+    };
     const store = {
         get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
         set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
@@ -268,22 +272,39 @@ document.documentElement.classList.add('js');
     })();
 
     // ===== Các gói "Chọn mua" =====
-    const packs = CFG.packages && CFG.packages.length ? CFG.packages : [{ qty: 1, price: CFG.price, listPrice: CFG.listPrice }];
+    const packs = CFG.packages && CFG.packages.length ? CFG.packages : [
+        { name: 'Hũ nhỏ', qty: 1, price: 49000, listPrice: 80000, label: 'Hũ nhỏ 49.000đ (giá gốc 80.000đ) + FREESHIP' },
+        { name: 'Hũ to', qty: 1, price: 140000, listPrice: 140000, label: 'Hũ to 140.000đ + FREESHIP' },
+        { name: 'Combo 299K BIGSIZE', qty: 1, price: 299000, listPrice: 455000, label: 'Combo 299K BIGSIZE tắm gội + Kem bôi (giá gốc 455.000đ)' }
+    ];
     const packsEl = document.getElementById('packs');
-    packs.forEach((p, i) => {
-        const label = document.createElement('label');
-        label.className = 'pack' + (i === 0 ? ' on' : '');
-        const r = document.createElement('input');
-        r.type = 'radio'; r.name = 'pack'; r.value = i; r.checked = i === 0;
-        const name = document.createElement('span'); name.className = 'pack-name'; name.textContent = p.qty + ' hũ';
-        const price = document.createElement('span'); price.className = 'pack-price';
-        const b = document.createElement('b'); b.textContent = fmt(p.price);
-        const s = document.createElement('s'); s.textContent = 'Giá gốc ' + fmt(p.listPrice);
-        price.append(b, s);
-        label.append(r, name, price);
-        packsEl.appendChild(label);
-        r.addEventListener('change', () => packsEl.querySelectorAll('.pack').forEach(l => l.classList.toggle('on', l.querySelector('input').checked)));
-    });
+    if (packsEl) {
+        packs.forEach((p, i) => {
+            const label = document.createElement('label');
+            label.className = 'pack' + (i === 0 ? ' on' : '');
+            const r = document.createElement('input');
+            r.type = 'radio'; r.name = 'pack'; r.value = i; r.checked = i === 0;
+            const name = document.createElement('span'); name.className = 'pack-name';
+            name.textContent = p.name || (p.qty + ' hũ');
+            const price = document.createElement('span'); price.className = 'pack-price';
+            const b = document.createElement('b'); b.textContent = fmt(p.price);
+            price.appendChild(b);
+            if (p.listPrice && p.listPrice > p.price) {
+                const s = document.createElement('s'); s.textContent = 'Giá gốc ' + fmt(p.listPrice);
+                price.appendChild(s);
+            }
+            if (p.label && p.label.includes('FREESHIP')) {
+                const freeTag = document.createElement('small');
+                freeTag.style.color = '#00a86b';
+                freeTag.style.fontWeight = '700';
+                freeTag.textContent = ' + FREESHIP';
+                price.appendChild(freeTag);
+            }
+            label.append(r, name, price);
+            packsEl.appendChild(label);
+            r.addEventListener('change', () => packsEl.querySelectorAll('.pack').forEach(l => l.classList.toggle('on', l.querySelector('input').checked)));
+        });
+    }
 
     // ===== Gửi đơn =====
     const normalizePhone = raw => {
@@ -294,17 +315,22 @@ document.documentElement.classList.add('js');
     };
     function setErr(id, bad) {
         const el = document.getElementById(id);
+        if (!el) return;
         el.classList.toggle('error', bad);
         el.setAttribute('aria-invalid', bad ? 'true' : 'false');
-        document.getElementById(id + 'Err').classList.toggle('show', bad);
+        const err = document.getElementById(id + 'Err');
+        if (err) err.classList.toggle('show', bad);
     }
     document.querySelectorAll('#orderForm .input').forEach(i => i.addEventListener('input', () => {
         i.classList.remove('error');
         const e = document.getElementById(i.id + 'Err'); if (e) e.classList.remove('show');
     }));
-    document.getElementById('orderForm').addEventListener('focusin', () => {
-        if (!checkoutTracked) { checkoutTracked = true; window.bonbonTrack && bonbonTrack('InitiateCheckout', { currency: 'VND', value: CFG.price }); }
-    });
+    const orderFormEl = document.getElementById('orderForm');
+    if (orderFormEl) {
+        orderFormEl.addEventListener('focusin', () => {
+            if (!checkoutTracked) { checkoutTracked = true; window.bonbonTrack && bonbonTrack('InitiateCheckout', { currency: 'VND', value: CFG.price }); }
+        });
+    }
 
     function sendLead(data) {
         let backup = [];
@@ -319,86 +345,147 @@ document.documentElement.classList.add('js');
     }
 
     const form = document.getElementById('orderForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const btnHTML = submitBtn.innerHTML;
-    const alertBox = document.getElementById('formAlert');
-    let sending = false;
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        if (sending) return;
-        alertBox.classList.remove('show');
-        const name = document.getElementById('name').value.trim();
-        const phone = normalizePhone(document.getElementById('phone').value);
-        const bad = { name: name.length < 2, phone: !/^0[1-9]\d{8,9}$/.test(phone) };
-        Object.keys(bad).forEach(k => setErr(k, bad[k]));
-        const first = Object.keys(bad).find(k => bad[k]);
-        if (first) { document.getElementById(first).focus(); return; }
+    if (form) {
+        const submitBtn = document.getElementById('submitBtn');
+        const btnHTML = submitBtn ? submitBtn.innerHTML : '';
+        const alertBox = document.getElementById('formAlert');
+        let sending = false;
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            if (sending) return;
+            if (alertBox) alertBox.classList.remove('show');
+            const nameEl = document.getElementById('name');
+            const phoneEl = document.getElementById('phone');
+            const name = nameEl ? nameEl.value.trim() : '';
+            const phone = phoneEl ? normalizePhone(phoneEl.value) : '';
+            const bad = { name: name.length < 2, phone: !/^0[1-9]\d{8,9}$/.test(phone) };
+            Object.keys(bad).forEach(k => setErr(k, bad[k]));
+            const first = Object.keys(bad).find(k => bad[k]);
+            if (first) { const fEl = document.getElementById(first); if (fEl) fEl.focus(); return; }
 
-        const pack = packs[parseInt(form.querySelector('input[name="pack"]:checked').value, 10)];
-        if (document.getElementById('website').value) { showSuccess(name, phone, pack); return; }
-        const data = Object.assign({
-            time: new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }),
-            name, phone,
-            product: CFG.productName + ' x' + pack.qty,
-            product_code: 'kem-ham-5g-' + pack.qty,
-            quantity: pack.qty,
-            price: pack.price,
-            page: location.href.split('?')[0],
-            user_agent: navigator.userAgent
-        }, attribution);
+            const checkedPack = form.querySelector('input[name="pack"]:checked');
+            const pack = checkedPack ? packs[parseInt(checkedPack.value, 10)] : packs[0];
+            const websiteEl = document.getElementById('website');
+            if (websiteEl && websiteEl.value) { showSuccess(name, phone, pack); return; }
+            const data = Object.assign({
+                time: new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }),
+                name, phone,
+                product: CFG.productName + ' x' + pack.qty,
+                product_code: 'kem-ham-5g-' + pack.qty,
+                quantity: pack.qty,
+                price: pack.price,
+                page: location.href.split('?')[0],
+                user_agent: navigator.userAgent
+            }, attribution);
 
-        sending = true; submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span class="spinner"></span> ĐANG GỬI...';
-        sendLead(data).then(() => {
-            window.bonbonTrack && bonbonTrack('Lead', { content_name: CFG.productName, value: pack.price, currency: 'VND' });
-            showSuccess(name, phone, pack);
-        }).catch(() => {
-            alertBox.textContent = 'Gửi chưa thành công do mạng chập chờn. Mẹ thử lại hoặc ';
-            const a = document.createElement('a'); a.href = 'tel:' + (CFG.hotline || ''); a.textContent = 'gọi ' + (CFG.hotlineDisplay || 'hotline');
-            alertBox.append(a, document.createTextNode(' để đặt nhanh nhé!'));
-            alertBox.classList.add('show');
-        }).finally(() => { sending = false; submitBtn.disabled = false; submitBtn.innerHTML = btnHTML; });
-    });
-
-    function showSuccess(name, phone, pack) {
-        form.style.display = 'none';
-        const sum = document.getElementById('summary'); sum.textContent = '';
-        [['Người nhận', name], ['Số điện thoại', phone], ['Sản phẩm', CFG.productName + ' × ' + pack.qty], ['Tạm tính', fmt(pack.price)]].forEach(([k, v]) => {
-            const row = document.createElement('div'); const b = document.createElement('b'); b.textContent = k + ': ';
-            row.append(b, document.createTextNode(v)); sum.appendChild(row);
+            sending = true; 
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span class="spinner"></span> ĐANG GỬI...';
+            }
+            sendLead(data).then(() => {
+                window.bonbonTrack && bonbonTrack('Lead', { content_name: CFG.productName, value: pack.price, currency: 'VND' });
+                showSuccess(name, phone, pack);
+            }).catch(() => {
+                if (alertBox) {
+                    alertBox.textContent = 'Gửi chưa thành công do mạng chập chờn. Mẹ thử lại hoặc ';
+                    const a = document.createElement('a'); a.href = 'tel:' + (CFG.hotline || ''); a.textContent = 'gọi ' + (CFG.hotlineDisplay || 'hotline');
+                    alertBox.append(a, document.createTextNode(' để đặt nhanh nhé!'));
+                    alertBox.classList.add('show');
+                }
+            }).finally(() => { 
+                sending = false; 
+                if (submitBtn) {
+                    submitBtn.disabled = false; 
+                    submitBtn.innerHTML = btnHTML; 
+                }
+            });
         });
-        document.getElementById('successBox').classList.add('show');
-        document.getElementById('order').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        function showSuccess(name, phone, pack) {
+            form.style.display = 'none';
+            const sum = document.getElementById('summary'); 
+            if (sum) {
+                sum.textContent = '';
+                [['Người nhận', name], ['Số điện thoại', phone], ['Sản phẩm', CFG.productName + ' × ' + pack.qty], ['Tạm tính', fmt(pack.price)]].forEach(([k, v]) => {
+                    const row = document.createElement('div'); const b = document.createElement('b'); b.textContent = k + ': ';
+                    row.append(b, document.createTextNode(v)); sum.appendChild(row);
+                });
+            }
+            const successBox = document.getElementById('successBox');
+            if (successBox) successBox.classList.add('show');
+            const orderEl = document.getElementById('order');
+            if (orderEl) orderEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     }
 
-    // ===== Hiệu ứng thông báo đặt hàng =====
-    const notif = CFG.orderNotifications || {};
-    const people = (notif.enabled && notif.items) || [];
-    const toast = document.getElementById('toast');
-    const toastText = document.getElementById('toastText');
-    let ti = Math.floor(Math.random() * people.length);
-    function showToast() {
-        const [n, c] = people[ti++ % people.length];
-        const r = Math.random();
-        const q = r < 0.6 ? 1 : r < 0.85 ? 2 : 3;
-        const mins = 1 + Math.floor(Math.random() * 9);
-        const b = document.createElement('b'); b.textContent = n + ' (' + c + ')';
-        const sm = document.createElement('small'); sm.textContent = mins + ' phút trước';
-        toastText.replaceChildren(b, document.createTextNode(' vừa đặt ' + q + ' hũ Kem Hăm Bon Bon'), sm);
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 4500);
-    }
-    if (people.length) setTimeout(() => { showToast(); setInterval(showToast, 16000); }, 6000);
+    // ===== Thông báo đặt hàng: Đã tắt theo yêu cầu =====
 })();
+
+// Contact Form 7 validation error translation to Vietnamese
+document.addEventListener('wpcf7invalid', function () {
+    setTimeout(function () {
+        document.querySelectorAll('.wpcf7-not-valid-tip').forEach(function (el) {
+            const text = el.textContent.trim();
+            if (text.includes('Undefined value') || text.includes('submitted through this field')) {
+                el.textContent = 'Mẹ vui lòng chọn gói sản phẩm phù hợp nhé!';
+            } else if (text.includes('Please fill in') || text.includes('required field')) {
+                el.textContent = 'Mẹ vui lòng nhập thông tin vào trường này nhé!';
+            }
+        });
+        const formResponse = document.querySelector('.wpcf7-response-output');
+        if (formResponse) {
+            const rText = formResponse.textContent.trim();
+            if (rText.includes('validation errors') || rText.includes('check and try again')) {
+                formResponse.textContent = '⚠️ Mẹ vui lòng kiểm tra lại thông tin và điền đầy đủ các mục bắt buộc nhé!';
+            }
+        }
+    }, 20);
+});
 
 // Contact Form 7 tracking and success box transition
 document.addEventListener('wpcf7mailsent', function (event) {
+    let selectedPackage = '';
+    let clientName = '';
+    let clientPhone = '';
+    if (event.detail && event.detail.inputs) {
+        event.detail.inputs.forEach(input => {
+            if (input.name === 'package') selectedPackage = input.value;
+            if (input.name === 'your-name' || input.name === 'name') clientName = input.value;
+            if (input.name === 'your-phone' || input.name === 'phone') clientPhone = input.value;
+        });
+    }
+
+    let leadValue = 49000;
+    if (selectedPackage.includes('140.000')) {
+        leadValue = 140000;
+    } else if (selectedPackage.includes('299K') || selectedPackage.includes('299.000')) {
+        leadValue = 299000;
+    }
+
     if (window.bonbonTrack) {
         window.bonbonTrack('Lead', {
-            content_name: (window.BONBON_CONFIG && window.BONBON_CONFIG.productName) || 'Kem Hăm Cho Bé Bon Bon',
-            value: (window.BONBON_CONFIG && window.BONBON_CONFIG.price) || 49000,
+            content_name: selectedPackage || (window.BONBON_CONFIG && window.BONBON_CONFIG.productName) || 'Kem Hăm Cho Bé Bon Bon',
+            value: leadValue,
             currency: 'VND'
         });
+    }
+
+    // Client-side backup gửi Google Sheet nếu có endpoint
+    if (window.BONBON_CONFIG && window.BONBON_CONFIG.sheetEndpoint && clientName && clientPhone) {
+        try {
+            const formData = new URLSearchParams({
+                time: new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }),
+                name: clientName,
+                phone: clientPhone,
+                package: selectedPackage,
+                product: selectedPackage,
+                price: leadValue + 'đ',
+                page: location.href.split('?')[0],
+                user_agent: navigator.userAgent
+            });
+            fetch(window.BONBON_CONFIG.sheetEndpoint, { method: 'POST', mode: 'no-cors', body: formData });
+        } catch (e) {}
     }
 
     const wpcf7Container = document.querySelector('.order-card .wpcf7');
@@ -461,63 +548,93 @@ document.addEventListener('wpcf7mailsent', function (event) {
     });
 })();
 
-// ===== Lightbox xem ảnh feedback & review phóng to =====
+// ===== Lightbox xem ảnh phóng to (Toàn bộ ảnh trên trang) =====
 (function initReviewLightbox() {
-    let modal = document.getElementById('reviewLightbox');
-    if (!modal) {
-        modal = document.createElement('div');
-        modal.id = 'reviewLightbox';
-        modal.className = 'review-lightbox';
-        modal.innerHTML = '<div class="lightbox-backdrop"></div><div class="lightbox-content"><img src="" alt="Ảnh phóng to"><button type="button" class="lightbox-close" aria-label="Đóng">&times;</button></div>';
-        document.body.appendChild(modal);
+    function setupLightbox() {
+        let modal = document.getElementById('reviewLightbox');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'reviewLightbox';
+            modal.className = 'review-lightbox';
+            modal.innerHTML = '<div class="lightbox-backdrop"></div><div class="lightbox-content"><img src="" alt="Ảnh phóng to"><button type="button" class="lightbox-close" aria-label="Đóng">&times;</button></div>';
+            document.body.appendChild(modal);
+        }
 
+        const modalImg = modal.querySelector('img');
         const closeBtn = modal.querySelector('.lightbox-close');
         const backdrop = modal.querySelector('.lightbox-backdrop');
-        const closeModal = () => modal.classList.remove('open');
-        closeBtn.addEventListener('click', closeModal);
-        backdrop.addEventListener('click', closeModal);
+
+        const closeModal = () => {
+            modal.classList.remove('open');
+            document.body.classList.remove('is-lightbox-open');
+        };
+
+        const openModal = (src) => {
+            if (!src || !modalImg) return;
+            modalImg.src = src;
+            modal.classList.add('open');
+            document.body.classList.add('is-lightbox-open');
+        };
+
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        if (backdrop) backdrop.addEventListener('click', closeModal);
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal || e.target === backdrop) closeModal();
+        });
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+        document.addEventListener('click', function (e) {
+            // Không can thiệp nếu bấm vào bên trong modal popup
+            if (e.target.closest('#reviewLightbox')) return;
+
+            // Bỏ qua nếu bấm vào nút điều khiển, mũi tên slider, nút phát video, menu toggle, input form
+            if (e.target.closest('button, .video-play, .slider-arrow, .dots, .menu-toggle, input, textarea, select')) return;
+
+            // Tìm thẻ img được click hoặc nằm trong container được click
+            let img = null;
+            if (e.target.tagName === 'IMG') {
+                img = e.target;
+            } else {
+                const container = e.target.closest('.slide, .media, .trust-img, .review-img-item, .ba, .hero-img, [data-slider], [data-media], [data-zoom], [data-full], .howto-step, .story-img, .product-img-wrap, .offer-product-wrap');
+                if (container) {
+                    img = container.querySelector('img');
+                }
+            }
+
+            if (!img) return;
+
+            // Bỏ qua logo thương hiệu, linh vật mascot hoạt hình, avatar
+            if (img.closest('.brand, .footer-logo-wrap, .footer-logo, .avatar') || 
+                img.classList.contains('brand-logo-img') || 
+                img.classList.contains('footer-logo') || 
+                img.classList.contains('mascot') || 
+                img.classList.contains('hero-mascot') || 
+                img.classList.contains('story-mascot') || 
+                img.classList.contains('hmascot') || 
+                img.classList.contains('info-banner-art') ||
+                (img.src && img.src.includes('mascot-')) ||
+                (img.src && img.src.includes('placeholder'))) {
+                return;
+            }
+
+            // Nếu ảnh nằm trong link, ngăn điều hướng để mở popup
+            if (img.closest('a')) {
+                e.preventDefault();
+            }
+
+            const parentSlide = img.closest('.slide, [data-full], .review-img-item');
+            const src = (parentSlide && parentSlide.dataset.full) || img.dataset.full || img.currentSrc || img.getAttribute('src') || img.src;
+            if (src) {
+                openModal(src);
+            }
+        });
     }
 
-    const modalImg = modal.querySelector('img');
-    document.addEventListener('click', function (e) {
-        // Bỏ qua nếu bấm vào nút điều khiển, mũi tên slider hoặc nút phát video
-        if (e.target.closest('button, a, .video-play, .slider-arrow, .dots, .lightbox-close')) return;
-
-        // 1. Ảnh slide Feedback
-        const feedbackSlide = e.target.closest('#feedback [data-slider="feedback"] .slide');
-        if (feedbackSlide) {
-            const img = feedbackSlide.querySelector('img');
-            const src = feedbackSlide.dataset.full || (img ? img.src : null);
-            if (src && !src.includes('placeholder')) {
-                modalImg.src = src;
-                modal.classList.add('open');
-                return;
-            }
-        }
-
-        // 2. Ảnh Đánh giá của khách hàng (Reviews)
-        const reviewItem = e.target.closest('.review-img-item, .review-imgs img');
-        if (reviewItem) {
-            const src = reviewItem.dataset.full || reviewItem.src || reviewItem.querySelector('img')?.src;
-            if (src) {
-                modalImg.src = src;
-                modal.classList.add('open');
-                return;
-            }
-        }
-
-        // 3. Ảnh Trước - Sau (Before / After), Giấy chứng nhận, Hội thảo
-        const otherImg = e.target.closest('.ba .media img, .trust-img, .duo img, .seminar-slide img, [data-zoom]');
-        if (otherImg) {
-            const src = otherImg.dataset.full || otherImg.src || otherImg.querySelector('img')?.src;
-            if (src && !src.includes('placeholder')) {
-                modalImg.src = src;
-                modal.classList.add('open');
-                return;
-            }
-        }
-    });
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupLightbox);
+    } else {
+        setupLightbox();
+    }
 })();
 
 // ===== Định dạng nhãn gói chọn mua của CF7 (tách giá gốc và gạch ngang) =====
@@ -526,10 +643,26 @@ document.addEventListener('wpcf7mailsent', function (event) {
         document.querySelectorAll('.order-card .wpcf7-list-item-label').forEach(el => {
             if (el.dataset.formatted) return;
             const txt = el.textContent.trim();
-            const m = txt.match(/^(.*?)\s*(\(giá gốc.*?\))$/i);
+            // 1. Trường hợp: Tên gói (giá gốc...) + FREESHIP
+            let m = txt.match(/^(.*?)\s*(\(giá gốc.*?\))\s*(\+\s*FREESHIP)$/i);
             if (m) {
-                el.innerHTML = '<span class="pkg-title">' + m[1] + '</span> <span class="pkg-orig">' + m[2] + '</span>';
+                el.innerHTML = '<span class="pkg-title">' + m[1] + '</span><span class="pkg-right"><span class="pkg-orig">' + m[2] + '</span><span class="pkg-free">+ FREESHIP</span></span>';
                 el.dataset.formatted = 'true';
+                return;
+            }
+            // 2. Trường hợp: Tên gói + FREESHIP (không có giá gốc)
+            m = txt.match(/^(.*?)\s*(\+\s*FREESHIP)$/i);
+            if (m) {
+                el.innerHTML = '<span class="pkg-title">' + m[1] + '</span><span class="pkg-right"><span class="pkg-free">+ FREESHIP</span></span>';
+                el.dataset.formatted = 'true';
+                return;
+            }
+            // 3. Trường hợp: Tên gói (giá gốc...)
+            m = txt.match(/^(.*?)\s*(\(giá gốc.*?\))$/i);
+            if (m) {
+                el.innerHTML = '<span class="pkg-title">' + m[1] + '</span><span class="pkg-right"><span class="pkg-orig">' + m[2] + '</span></span>';
+                el.dataset.formatted = 'true';
+                return;
             }
         });
     }
@@ -540,3 +673,61 @@ document.addEventListener('wpcf7mailsent', function (event) {
     }
     document.addEventListener('wpcf7init', formatCf7Packages);
 })();
+
+// ===== Mobile Menu Toggle =====
+(function () {
+    function initMobileMenu() {
+        const toggle = document.getElementById('menuToggle');
+        const nav = document.getElementById('topnav');
+        const overlay = document.getElementById('menuOverlay');
+        if (!toggle || !nav) return;
+
+        function closeMenu() {
+            toggle.classList.remove('active');
+            toggle.setAttribute('aria-expanded', 'false');
+            nav.classList.remove('open');
+            if (overlay) overlay.classList.remove('open');
+            document.body.classList.remove('is-menu-open');
+        }
+
+        function openMenu() {
+            toggle.classList.add('active');
+            toggle.setAttribute('aria-expanded', 'true');
+            nav.classList.add('open');
+            if (overlay) overlay.classList.add('open');
+            document.body.classList.add('is-menu-open');
+        }
+
+        toggle.addEventListener('click', function (e) {
+            e.stopPropagation();
+            if (nav.classList.contains('open')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        if (overlay) {
+            overlay.addEventListener('click', closeMenu);
+        }
+
+        nav.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', function () {
+                closeMenu();
+            });
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && nav.classList.contains('open')) {
+                closeMenu();
+            }
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMobileMenu);
+    } else {
+        initMobileMenu();
+    }
+})();
+

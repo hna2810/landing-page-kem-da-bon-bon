@@ -40,7 +40,7 @@ $list_price = lx_format_price(lx_get_field('lx_list_price', 'option', 80000));
                 <span class="price-now js-price"><?php echo $price; ?></span>
                 <span class="price-old">Niêm yết <s class="js-list-price"><?php echo $list_price; ?></s></span>
             </div>
-            <a href="#order" class="btn pulse js-buy">🛒 MUA NGAY CHO BÉ</a>
+            <a href="#order" class="btn pulse js-buy">FREESHIP TOÀN QUỐC - MUA NGAY!</a>
         </div>
     </div>
 </section>

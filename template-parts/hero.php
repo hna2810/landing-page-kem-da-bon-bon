@@ -59,7 +59,7 @@ $show_mascot = lx_get_field('lx_hero_show_mascot', 'option', 0);
                 <span class="price-now js-price"><?php echo $price; ?></span>
                 <span class="price-old">Niêm yết <s class="js-list-price"><?php echo $list_price; ?></s></span>
             </div>
-            <a href="#order" class="btn pulse js-buy">🛒 MUA NGAY CHO BÉ</a>
+            <a href="#order" class="btn pulse js-buy">FREESHIP TOÀN QUỐC - MUA NGAY!</a>
         </div>
         <div class="hero-visual">
             <div class="ba">

@@ -58,17 +58,19 @@ function lx_enqueue_scripts() {
     if (!empty($raw_packages) && is_array($raw_packages)) {
         foreach ($raw_packages as $pkg) {
             $packages[] = array(
+                'name'      => $pkg['name'] ?? '',
                 'qty'       => intval($pkg['qty'] ?? 1),
                 'price'     => intval($pkg['price'] ?? 49000),
                 'listPrice' => intval($pkg['list_price'] ?? 80000),
+                'label'     => $pkg['label'] ?? '',
             );
         }
     }
     if (empty($packages)) {
         $packages = array(
-            array('qty' => 1, 'price' => 49000,  'listPrice' => 80000),
-            array('qty' => 2, 'price' => 98000,  'listPrice' => 160000),
-            array('qty' => 3, 'price' => 147000, 'listPrice' => 240000),
+            array('name' => 'Hũ nhỏ', 'qty' => 1, 'price' => 49000,  'listPrice' => 80000,  'label' => 'Hũ nhỏ 49.000đ (giá gốc 80.000đ) + FREESHIP'),
+            array('name' => 'Hũ to',  'qty' => 1, 'price' => 140000, 'listPrice' => 140000, 'label' => 'Hũ to 140.000đ + FREESHIP'),
+            array('name' => 'Combo 299K BIGSIZE', 'qty' => 1, 'price' => 299000, 'listPrice' => 455000, 'label' => 'Combo 299K BIGSIZE tắm gội + Kem bôi (giá gốc 455.000đ)'),
         );
     }
 

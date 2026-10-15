@@ -44,7 +44,10 @@ if (empty($items)) {
                     <li class="reveal"><span><?php echo $item['icon']; ?></span> <?php echo $item['text']; ?></li>
                 <?php endforeach; ?>
             </ul>
-            <p class="alert-line reveal"><?php echo $pain_alert; ?></p>
+            <div class="alert-line reveal">
+                <span class="alert-icon">⚠️</span>
+                <span><?php echo $pain_alert; ?></span>
+            </div>
         </div>
         <div class="slider reveal" data-slider="rashSlides" data-ratio="ratio-43" data-label="Ảnh vị trí bé bị hăm"></div>
     </div>

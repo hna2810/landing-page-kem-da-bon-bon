@@ -50,17 +50,22 @@ $hotline_display = lx_get_field('lx_hotline_display', 'option', '0901.234.567');
                     <span class="brand-dot">B</span> <span class="brand-text"><?php echo esc_html($brand_name); ?></span>
                 <?php endif; ?>
             </a>
-            <nav class="topnav" aria-label="Điều hướng">
+            <nav class="topnav" id="topnav" aria-label="Điều hướng">
                 <a href="#ingredients">Thành phần</a>
                 <a href="#howto">Cách dùng</a>
                 <a href="#reviews">Đánh giá</a>
                 <a href="#faq">Hỏi đáp</a>
+                <a href="#order" class="mobile-menu-cta pulse js-buy">FREESHIP TOÀN QUỐC - MUA NGAY!</a>
             </nav>
             <div class="topbar-actions">
                 <a href="tel:<?php echo $hotline; ?>" class="topbar-call">📞 <span class="js-hotline"><?php echo $hotline_display; ?></span></a>
                 <a href="#order" class="btn topbar-buy pulse js-buy">Mua ngay</a>
+                <button type="button" class="menu-toggle" id="menuToggle" aria-label="Mở menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </div>
+        <div class="mobile-menu-overlay" id="menuOverlay"></div>
     </header>
 
     <main id="top">

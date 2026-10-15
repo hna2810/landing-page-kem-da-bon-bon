@@ -9,10 +9,12 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$ingr_title = lx_get_field('lx_ingr_title', 'option', 'THÀNH PHẦN <span class="hl">DỊU NHẸ</span>');
+$ingr_title = lx_get_field('lx_ingr_title', 'option', '5 ƯU ĐIỂM <span class="hl">VƯỢT TRỘI</span>');
+if ($ingr_title === 'THÀNH PHẦN <span class="hl">DỊU NHẸ</span>' || $ingr_title === 'THÀNH PHẦN DỊU NHẸ' || empty($ingr_title)) {
+    $ingr_title = '5 ƯU ĐIỂM <span class="hl">VƯỢT TRỘI</span>';
+}
 $ingr_sub   = lx_get_field('lx_ingr_sub', 'option', 'Phù hợp với trẻ sơ sinh & trẻ nhỏ Việt');
-$five_no_str = lx_get_field('lx_five_no', 'option', 'Không Corticoid, Không Paraben, Không hương liệu, Không bết rít, Không để lại vệt trên da');
-$five_nos    = array_map('trim', explode(',', $five_no_str));
+$price       = lx_format_price(lx_get_field('lx_price', 'option', 49000));
 $cream_img   = lx_get_image_url('lx_cream_image', '', 'full', 'option');
 
 $default_ingrs = array(
@@ -23,7 +25,7 @@ $default_ingrs = array(
     array('icon' => '✨', 'name' => 'Nano bạc', 'desc' => 'Giảm viêm, xoa dịu vết hăm tã, hăm da'),
 );
 ?>
-<!-- 4. THÀNH PHẦN -->
+<!-- 4. THÀNH PHẦN / 5 ƯU ĐIỂM VƯỢT TRỘI -->
 <section class="sec tint" id="ingredients">
     <div class="container">
         <div class="sec-head reveal">
@@ -43,14 +45,13 @@ $default_ingrs = array(
                             </div>
                         </div>
                     <?php endforeach; ?>
-                </div>
-                <div class="five-no reveal">
-                    <h3>5 KHÔNG</h3>
-                    <div class="five-no-grid">
-                        <?php foreach ($five_nos as $no) : if ($no) : ?>
-                            <span>🚫 <?php echo $no; ?></span>
-                        <?php endif; endforeach; ?>
-                    </div>
+                    <a href="#order" class="ingr-item ingr-cta reveal js-buy">
+                        <span class="ingr-icon">🎁</span>
+                        <div class="ingr-cta-text">
+                            <b>FREESHIP TOÀN QUỐC</b>
+                            <p>Ưu đãi chỉ từ <strong class="js-price"><?php echo $price; ?></strong> — Mua ngay ➔</p>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="media ratio-1 reveal" data-media="creamTexture" data-label="Ảnh cận cảnh chất kem">

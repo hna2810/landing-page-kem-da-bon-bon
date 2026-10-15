@@ -94,12 +94,6 @@
       "default_value": 10.5
     },
     {
-      "key": "field_lx_sheet_endpoint",
-      "label": "Google Sheet Web App URL",
-      "name": "lx_sheet_endpoint",
-      "type": "text"
-    },
-    {
       "key": "field_lx_facebook_pixel_id",
       "label": "Facebook Pixel ID",
       "name": "lx_facebook_pixel_id",
@@ -473,7 +467,7 @@
     },
     {
       "key": "field_tab_order_form",
-      "label": "7. Form Đặt Hàng & CF7",
+      "label": "7. Form Đặt Hàng & Google Sheet",
       "name": "",
       "type": "tab"
     },
@@ -500,6 +494,14 @@
       "name": "lx_cf7_shortcode",
       "type": "text",
       "instructions": "Dán mã shortcode CF7 vào đây (ví dụ: [contact-form-7 id=\"...\"]). Nếu để trống, theme sẽ tự động tạo và dùng form chuẩn."
+    },
+    {
+      "key": "field_lx_sheet_endpoint",
+      "label": "Google Sheet Web App URL (Tự động lưu đơn hàng)",
+      "name": "lx_sheet_endpoint",
+      "type": "text",
+      "instructions": "Dán URL Web App của Google Apps Script (kết thúc bằng /exec) để tự động lưu mọi đơn đặt hàng từ form vào Google Sheet. Xem file hướng dẫn trong thư mục google-apps-script/Code.gs.",
+      "placeholder": "https://script.google.com/macros/s/.../exec"
     },
     {
       "key": "field_lx_packages",
