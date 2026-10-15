@@ -165,18 +165,28 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
 @media (max-width: 860px) { .ing-grid { grid-template-columns: 1fr 1fr; gap: 10px; } .ing { padding: 24px 12px; } .ing-media { width: 96px; height: 96px; } .ing h3 { font-size: 21px; } }
 
 /* Benefits */
-.benefits .container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.benefits { background: radial-gradient(48% 70% at 24% 52%, rgba(255,255,255,.6), transparent 72%), linear-gradient(135deg, #e8f3ec 0%, #d5e8dc 55%, #c2dbcb 100%); overflow: hidden; }
+.benefits .container { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.benefit-visual { display: grid; justify-items: center; gap: 24px; }
+.benefits .packshot { width: min(100%, 480px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 50% 40%, #ffffff 0%, #f5fbf7 46%, #e1efe6 100%); box-shadow: 0 0 0 14px rgba(255,255,255,.35), 0 46px 80px -40px rgba(47,107,79,.6); }
+.benefits .packshot .render { width: 36%; }
+.benefits .packshot .b1 { width: 30%; top: 12%; right: 10%; }
+.benefits .packshot .b2 { width: 28%; top: auto; bottom: 12%; left: 9%; }
+.benefits .packshot .zone-badge { left: 50%; top: auto; bottom: 7%; transform: translateX(-50%); white-space: nowrap; }
 .benefit-list { list-style: none; display: grid; gap: 10px; margin: 28px 0 36px; }
-.benefit-list li { display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: start; padding: 14px 18px; background: var(--paper); border-radius: 18px; font-size: 16px; }
-.benefit-list .icon { width: 30px; height: 30px; padding: 6px; border-radius: 50%; background: var(--herb-tint); color: var(--herb); }
-.zones { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; position: absolute; left: 20px; right: 20px; bottom: 28px; z-index: 3; }
-.zones button { font: inherit; font-size: 13.5px; font-weight: 500; color: var(--ink); border: 0; cursor: pointer; background: rgba(255,255,255,.88); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border-radius: 999px; padding: 8px 16px; transition: background .25s, transform .25s; }
-.zones button:hover { transform: translateY(-2px); }
-.zones button[aria-selected="true"] { background: var(--cta); font-weight: 600; }
-.packshot .zone-badge { left: 50%; top: auto; bottom: 84px; transform: translateX(-50%); white-space: nowrap; }
+.benefit-list li { display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: start; padding: 14px 18px; background: rgba(255,255,255,.66); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border-radius: 18px; font-size: 16px; }
+.benefit-list .icon { width: 30px; height: 30px; padding: 7px; border-radius: 50%; background: var(--herb); color: var(--white); stroke-width: 2.2; }
+.zones { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.zones button { font: inherit; font-size: 14px; font-weight: 500; color: var(--ink); border: 0; cursor: pointer; background: rgba(255,255,255,.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border-radius: 999px; padding: 9px 18px; transition: background .25s, color .25s, transform .25s; }
+.zones button:hover { transform: translateY(-2px); background: var(--white); }
+.zones button[aria-selected="true"] { background: var(--herb); color: var(--white); font-weight: 600; }
+.btn-herb { background: var(--herb); color: var(--white); box-shadow: 0 14px 28px -12px rgba(47,107,79,.75); }
+.btn-herb:hover { background: #24563f; box-shadow: 0 18px 32px -12px rgba(47,107,79,.8); }
+.btn-sep { width: 1px; height: 18px; background: rgba(255,255,255,.45); margin: 0 4px; }
 .packshot .photo { animation: fadeIn .45s ease; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@media (max-width: 900px) { .benefits .container { grid-template-columns: 1fr; gap: 40px; } }
+@media (max-width: 900px) { .benefits .container { grid-template-columns: 1fr; gap: 36px; } .benefits .packshot { width: min(100%, 360px); } }
+@media (max-width: 480px) { .btn-herb { font-size: 15px; padding: 16px 18px; } .btn-sep { margin: 0 2px; } }
 
 /* Steps */
 .steps-sec { background: var(--paper); }
@@ -449,31 +459,41 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
     <symbol id="b-ginger" viewBox="0 0 84 84"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 54c-2-8 4-14 12-12 2-8 10-12 16-8 4-6 14-6 18 0 8-2 14 6 10 14 6 4 4 14-4 16-4 6-12 6-16 2-6 4-14 4-18-2-8 2-16-2-18-10z"/><path d="M24 42c2-6 0-12-4-16M40 34c0-8 2-14 6-18M58 34c2-6 6-10 12-12"/><path d="M26 58c4 1 8 0 10-2M48 56c3 2 8 2 10 0"/></g></symbol>
     <symbol id="b-orange" viewBox="0 0 84 84"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="42" cy="44" r="30"/><circle cx="42" cy="44" r="25"/><path d="M42 44V20M42 44l17 -17M42 44h24M42 44l17 17M42 44v24M42 44L25 61M42 44H18M42 44L25 27"/><circle cx="42" cy="44" r="3"/></g></symbol>
 
-    <!-- Packshot render (thay bằng ảnh thật qua CONFIG.productImage) -->
-    <linearGradient id="g-body" x1="0" x2="1">
-      <stop offset="0" stop-color="#ede6df"/><stop offset=".18" stop-color="#ffffff"/><stop offset=".55" stop-color="#f7f2ed"/><stop offset="1" stop-color="#d9d0c7"/>
+    <!-- Packshot render: chai nâu hổ phách, vòi xịt đen (thay bằng ảnh thật qua CONFIG.productImages) -->
+    <linearGradient id="g-amber" x1="0" x2="1">
+      <stop offset="0" stop-color="#4f2406"/><stop offset=".1" stop-color="#8f4a10"/><stop offset=".28" stop-color="#c7721f"/><stop offset=".5" stop-color="#b8661a"/><stop offset=".82" stop-color="#7c3d0c"/><stop offset="1" stop-color="#4a2205"/>
     </linearGradient>
-    <linearGradient id="g-cap" x1="0" x2="1">
-      <stop offset="0" stop-color="#e3dbd2"/><stop offset=".25" stop-color="#ffffff"/><stop offset="1" stop-color="#cfc5bb"/>
+    <linearGradient id="g-black" x1="0" x2="1">
+      <stop offset="0" stop-color="#050505"/><stop offset=".3" stop-color="#3b3b3b"/><stop offset=".55" stop-color="#151515"/><stop offset="1" stop-color="#000"/>
     </linearGradient>
-    <linearGradient id="g-collar" x1="0" x2="1">
-      <stop offset="0" stop-color="#c9beb3"/><stop offset=".3" stop-color="#f3eee9"/><stop offset="1" stop-color="#b8ac9f"/>
+    <linearGradient id="g-label" x1="0" x2="1">
+      <stop offset="0" stop-color="#eadcc7"/><stop offset=".18" stop-color="#fffaf2"/><stop offset=".72" stop-color="#fbf2e5"/><stop offset="1" stop-color="#e2d0b8"/>
     </linearGradient>
-    <radialGradient id="g-shadow"><stop offset="0" stop-color="#000" stop-opacity=".28"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+    <radialGradient id="g-shadow"><stop offset="0" stop-color="#000" stop-opacity=".3"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
     <symbol id="packshot" viewBox="0 0 240 560">
-      <ellipse cx="120" cy="540" rx="96" ry="14" fill="url(#g-shadow)"/>
-      <rect x="84" y="18" width="72" height="62" rx="10" fill="url(#g-cap)"/>
-      <rect x="150" y="38" width="20" height="10" rx="3" fill="url(#g-cap)"/>
-      <rect x="78" y="78" width="84" height="40" rx="6" fill="url(#g-collar)"/>
-      <path d="M40 150c0-20 14-34 34-34h92c20 0 34 14 34 34v360c0 16-12 28-28 28H68c-16 0-28-12-28-28z" fill="url(#g-body)"/>
-      <rect x="54" y="140" width="10" height="380" rx="5" fill="#fff" opacity=".7"/>
-      <text x="120" y="282" text-anchor="middle" font-family="Lora, Georgia, serif" font-size="34" font-weight="600" fill="#000">Mây Mây</text>
-      <line x1="94" y1="300" x2="146" y2="300" stroke="#000" stroke-width="1"/>
-      <text x="120" y="326" text-anchor="middle" font-family="Be Vietnam Pro, sans-serif" font-size="11" font-weight="600" fill="#000" letter-spacing="2.2">XỊT KHỬ MÙI</text>
-      <text x="120" y="344" text-anchor="middle" font-family="Be Vietnam Pro, sans-serif" font-size="11" font-weight="600" fill="#000" letter-spacing="2.2">CƠ THỂ</text>
-      <rect x="76" y="362" width="88" height="26" rx="13" fill="#ffa059"/>
-      <text x="120" y="379" text-anchor="middle" font-family="Be Vietnam Pro, sans-serif" font-size="11.5" font-weight="600" fill="#000" letter-spacing="1">GỪNG · CAM</text>
-      <text x="120" y="478" text-anchor="middle" font-family="Be Vietnam Pro, sans-serif" font-size="11" fill="rgba(0,0,0,.6)" letter-spacing="1">30 ml</text>
+      <ellipse cx="120" cy="542" rx="98" ry="13" fill="url(#g-shadow)"/>
+      <rect x="98" y="18" width="44" height="48" rx="9" fill="url(#g-black)"/>
+      <rect x="138" y="30" width="14" height="9" rx="3" fill="#1b1b1b"/>
+      <rect x="84" y="62" width="72" height="48" rx="7" fill="url(#g-black)"/>
+      <path d="M94 66v40M104 66v40M114 66v40M124 66v40M134 66v40M144 66v40" stroke="#2c2c2c" stroke-width="1.2"/>
+      <rect x="96" y="106" width="48" height="16" fill="#5a2a07"/>
+      <path d="M40 176c0-32 24-54 56-54h48c32 0 56 22 56 54v334c0 16-12 28-28 28H68c-16 0-28-12-28-28z" fill="url(#g-amber)"/>
+      <rect x="51" y="168" width="9" height="352" rx="4.5" fill="#fff" opacity=".26"/>
+      <rect x="50" y="214" width="140" height="290" rx="4" fill="url(#g-label)"/>
+      <rect x="72" y="230" width="96" height="30" rx="3" fill="#ef8a2a"/>
+      <text x="120" y="250" text-anchor="middle" font-family="Be Vietnam Pro, sans-serif" font-size="12" font-weight="800" fill="#fff" letter-spacing=".4">HOME CARE</text>
+      <text x="120" y="282" text-anchor="middle" font-family="Be Vietnam Pro, sans-serif" font-size="10" font-weight="700" fill="#6b3a12" letter-spacing="1.5">XỊT</text>
+      <text x="120" y="306" text-anchor="middle" font-family="Be Vietnam Pro, sans-serif" font-size="21" font-weight="800" fill="#5b2c0a">KHỬ MÙI</text>
+      <text x="120" y="330" text-anchor="middle" font-family="Be Vietnam Pro, sans-serif" font-size="21" font-weight="800" fill="#e5711a">GỪNG CAM</text>
+      <text x="120" y="351" text-anchor="middle" font-family="Lora, Georgia, serif" font-style="italic" font-size="13" fill="#6b3a12">mây mây</text>
+      <circle cx="98" cy="398" r="17" fill="#f39a2e"/>
+      <circle cx="98" cy="398" r="13" fill="#ffc46b"/>
+      <path d="M98 385v26M85 398h26M89 389l18 18M107 389l-18 18" stroke="#f39a2e" stroke-width="1.4"/>
+      <path d="M124 404c-2-8 4-13 10-11 2-6 9-8 13-4 5-3 11 1 9 7 5 3 3 10-3 11-3 5-10 5-13 1-5 3-12 2-14-3z" fill="#d9a35c"/>
+      <path d="M146 386c2-6 6-9 11-9" stroke="#5e9a4a" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <rect x="50" y="446" width="140" height="20" fill="#3f8a4d"/>
+      <text x="120" y="459.5" text-anchor="middle" font-family="Be Vietnam Pro, sans-serif" font-size="8.2" font-weight="700" fill="#fff" letter-spacing=".8">THẢO MỘC THUẦN CHAY</text>
+      <text x="120" y="490" text-anchor="middle" font-family="Be Vietnam Pro, sans-serif" font-size="10" font-weight="600" fill="#6b3a12">30ml</text>
     </symbol>
   </defs>
 </svg>
@@ -595,11 +615,13 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
 </section>
 
 <!-- BENEFITS -->
-<section class="section benefits" id="cong-dung">
+<section class="section benefits panel" id="cong-dung">
   <div class="container">
-    <div class="packshot reveal" data-visual="usage">
-      <svg class="botanical b1" viewBox="0 0 84 84"><use href="#b-betel"/></svg>
-      <svg class="botanical b2" viewBox="0 0 84 84"><use href="#b-ginger"/></svg>
+    <div class="benefit-visual reveal">
+      <div class="packshot" data-visual="usage">
+        <svg class="botanical b1" viewBox="0 0 84 84"><use href="#b-mint"/></svg>
+        <svg class="botanical b2" viewBox="0 0 84 84"><use href="#b-ginger"/></svg>
+      </div>
       <div class="zones" id="zones" role="tablist" aria-label="Vùng sử dụng">
         <button type="button" role="tab" data-zone="0">Vùng nách</button>
         <button type="button" role="tab" data-zone="1">Vùng chân</button>
@@ -617,7 +639,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.015em; }
         <li><svg class="icon"><use href="#i-check"/></svg>Xịt khử mùi vùng tiểu EVA sau sinh.</li>
         <li><svg class="icon"><use href="#i-check"/></svg>Dễ sử dụng tại nhà hoặc mang theo khi đi làm, đi học, du lịch.</li>
       </ul>
-      <a href="#dat-hang" class="btn btn-lg reveal d3"><svg class="icon"><use href="#i-truck"/></svg>Đang Freeship – Mua ngay! <svg class="icon"><use href="#i-arrow"/></svg></a>
+      <a href="#dat-hang" class="btn btn-lg btn-herb reveal d3">Flash sale 49K + Freeship<span class="btn-sep" aria-hidden="true"></span>Mua ngay <svg class="icon"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
