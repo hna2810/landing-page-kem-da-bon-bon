@@ -28,6 +28,6 @@ File: `tinh-dau-tram/index.html` (độc lập, không cần build).
 
 Cấu hình nằm ở object `CONFIG` đầu thẻ `<script>`:
 - `hotline`, `zalo`: số điện thoại thật.
-- `images`: 13 ô ảnh, mỗi ô có nhãn "📷 ẢNH n" trên trang (kèm nội dung & kích thước gợi ý). Dán URL vào đúng key. `showImageNotes: false` để ẩn các ô chưa có ảnh trước khi chạy ads.
+- `images`: 25 ô ảnh, mỗi ô có nhãn "📷 ẢNH n" trên trang (kèm nội dung & kích thước gợi ý). Dán URL vào đúng key. `showImageNotes: false` để ẩn các ô chưa có ảnh trước khi chạy ads.
 - `orderEndpoint`: URL Google Apps Script / webhook nhận đơn (POST JSON: name, phone, address, quantity, total...). Để trống thì form chỉ hiện thông báo thành công, **không lưu đơn**.
 - Bỏ comment Facebook/TikTok Pixel trong `<head>` để tracking `InitiateCheckout` / `Purchase`.

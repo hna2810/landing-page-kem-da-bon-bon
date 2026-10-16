@@ -106,6 +106,18 @@ header.nav .container{display:flex;align-items:center;justify-content:space-betw
 .hero-visual:has(.ph:not(.filled)) .chip{display:none}
 @media (max-width:600px){.fb-grid{grid-template-columns:1fr 1fr}.fb-grid>div:last-child{grid-column:span 2;width:calc(50% - 7px);justify-self:center}.fb-grid .ph small{font-size:11px}}
 
+/* Thumbnails in cards */
+.ph.thumb{flex:0 0 108px;width:108px;padding:8px;border-radius:20px;gap:2px}
+.ph.card-img{margin:10px 0 14px;border-radius:20px;padding:10px}
+.ph.round{flex:0 0 72px;width:72px;border-radius:50%;padding:4px}
+.ph.thumb b,.ph.card-img b{font-size:12.5px}
+.ph.thumb small,.ph.round small,.ph.round b{display:none}
+.ph .ph-n{white-space:nowrap}
+.ph.thumb .ph-n{font-size:10px;padding:3px 8px}
+.ph.round .ph-n{font-size:9px;padding:2px 6px;letter-spacing:0}
+.ph.round.filled img{border-radius:50%}
+.pain-card{align-items:flex-start}
+
 /* Pain */
 .pain{background:#fff}
 .pain-qs{display:grid;gap:12px;margin:22px auto 28px;max-width:760px}
@@ -189,6 +201,8 @@ header.nav .container{display:flex;align-items:center;justify-content:space-betw
 .offer td.old{text-decoration:line-through;color:var(--muted)}
 .offer td.new{color:var(--red-dark);font-weight:800;font-size:18px}
 .offer ul{list-style:none;padding:18px 20px;display:grid;gap:8px;font-size:15px}
+.offer li{position:relative;padding-left:22px}
+.offer li::before{content:'';position:absolute;left:2px;top:.55em;width:10px;height:10px;border-radius:50%;background:var(--leaf)}
 .stock{padding:0 20px 20px}
 .stock-bar{height:10px;border-radius:99px;background:#f7ece4;overflow:hidden;margin-top:6px}
 .stock-bar i{display:block;height:100%;width:83%;background:linear-gradient(90deg,var(--amber),var(--red));border-radius:99px;transition:width .6s}
@@ -215,7 +229,7 @@ form.card .hint{text-align:center;color:var(--muted);font-size:14px;margin-botto
 form.card .btn{width:100%}
 .form-foot{text-align:center;font-size:13px;color:var(--muted);margin-top:10px}
 .success{display:none;text-align:center;padding:20px 6px}
-.success .big{font-size:60px}
+.success .big{width:72px;height:72px;margin:0 auto;border-radius:50%;background:var(--leaf);color:#fff;font-size:38px;font-weight:800;display:flex;align-items:center;justify-content:center}
 .success h3{font-size:24px;color:var(--leaf);margin:6px 0}
 .success.show{display:block}
 
@@ -235,10 +249,10 @@ footer a{color:var(--leaf-dark);font-weight:700}
 @media (min-width:961px){.sticky{justify-content:center}}
 .float-call{position:fixed;right:14px;bottom:92px;z-index:55;display:grid;gap:10px}
 .float-call a{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;box-shadow:0 6px 16px rgba(0,0,0,.1);border:3px solid #fff}
-.float-call .ph{background:var(--leaf);font-size:22px}.float-call .zl{background:#8fc1e8}
+.float-call .call{background:var(--leaf)}.float-call .zl{background:#8fc1e8}
 .toast{position:fixed;left:14px;bottom:92px;z-index:55;background:#fff;border-radius:22px;box-shadow:0 10px 30px rgba(0,0,0,.15);padding:10px 14px;display:flex;gap:10px;align-items:center;font-size:13px;max-width:290px;transform:translateX(-130%);transition:transform .45s}
 .toast.show{transform:none}
-.toast .t-ico{font-size:24px}
+.toast .t-ico{flex:0 0 10px;height:10px;border-radius:50%;background:var(--leaf);box-shadow:0 0 0 5px var(--leaf-light)}
 .toast b{color:var(--leaf-dark)}
 
 @media (max-width:960px){
@@ -266,7 +280,7 @@ footer a{color:var(--leaf-dark);font-weight:700}
 </head>
 <body>
 
-<div class="topbar">🔥 FLASH SALE chỉ <b>49.000đ</b> (niêm yết 87.000đ) · <b>FREESHIP TOÀN QUỐC</b></div>
+<div class="topbar">FLASH SALE chỉ <b>49.000đ</b> (niêm yết 87.000đ) · <b>FREESHIP TOÀN QUỐC</b></div>
 
 <header class="nav">
   <div class="container">
@@ -296,7 +310,7 @@ footer a{color:var(--leaf-dark);font-weight:700}
         <span class="save">Tiết kiệm 38.000đ</span>
       </div>
 
-      <a href="#dat-hang" class="btn btn-buy" data-cta>🛒 Freeship toàn quốc – Mua ngay!</a>
+      <a href="#dat-hang" class="btn btn-buy" data-cta>Freeship toàn quốc – Mua ngay!</a>
       <p class="hero-note">Được dùng trong các liệu trình chăm sóc mẹ &amp; bé tại nhà của <b>Home Care</b>.</p>
     </div>
 
@@ -305,9 +319,9 @@ footer a{color:var(--leaf-dark);font-weight:700}
       <!-- 📷 ẢNH 1: Ảnh sản phẩm chính – chai tinh dầu tràm 30ml — PNG nền trong suốt hoặc nền sáng · 1000×1000px (1:1). Dán URL vào CONFIG.images.hero -->
 <div class="ph product-img" data-img="hero" style="aspect-ratio:1/1;max-width:400px;background-color:#fff"><span class="ph-n">📷 ẢNH 1</span><b>Ảnh sản phẩm chính – chai tinh dầu tràm 30ml</b><small>PNG nền trong suốt hoặc nền sáng · 1000×1000px (1:1)</small></div>
       <div class="badge-circle"><span>GIẢM</span><b>-44%</b><span>hôm nay</span></div>
-      <div class="chip c1">🌿 Tràm + Bơ + Ô liu + Argan</div>
-      <div class="chip c2">👶 Dịu nhẹ cho da bé</div>
-      <div class="chip c3">💧 Chai 30ml</div>
+      <div class="chip c1">Tràm + Bơ + Ô liu + Argan</div>
+      <div class="chip c2">Dịu nhẹ cho da bé</div>
+      <div class="chip c3">Chai 30ml</div>
     </div>
   </div>
 </section>
@@ -322,14 +336,14 @@ footer a{color:var(--leaf-dark);font-weight:700}
     <p class="lead reveal">Mỗi lần gió lạnh về hay điều kiện thời tiết thay đổi, sức đề kháng còn non nớt của con lại làm mẹ mất ăn mất ngủ:</p>
 
     <div class="pain-grid" style="text-align:left">
-      <div class="pain-card reveal"><div class="pain-ico">😣</div><div><h3>Con khò khè, trằn trọc cả đêm</h3><p>Đêm lạnh khiến đường thở của bé dễ bị nghẹt, con quấy khóc, mẹ thức trắng đêm lo lắng.</p></div></div>
-      <div class="pain-card reveal"><div class="pain-ico">🤧</div><div><h3>Sợ con nhiễm lạnh sau khi tắm</h3><p>Dù đã che chắn kỹ, bé vẫn dễ bị hắt hơi, sổ mũi do hạ nhiệt đột ngột.</p></div></div>
-      <div class="pain-card reveal"><div class="pain-ico">🔥</div><div><h3>Sợ tinh dầu tràm nóng rát</h3><p>Mẹ muốn dùng tinh dầu giữ ấm nhưng lo ngại làn da trẻ sơ sinh mỏng manh bị kích ứng.</p></div></div>
-      <div class="pain-card reveal"><div class="pain-ico">🦟</div><div><h3>Muỗi &amp; côn trùng đốt</h3><p>Vết muỗi cắn làm da bé đỏ ngứa, sưng tấy khiến con khó chịu, mất ngủ.</p></div></div>
+      <div class="pain-card reveal"><!-- 📷 ẢNH 2: Bé khò khè, trằn trọc ban đêm — 600×600px (1:1). Dán URL vào CONFIG.images.pain1 --><div class="ph thumb" data-img="pain1" data-spec="600×600px (1:1)" style="aspect-ratio:1/1"><span class="ph-n">📷 ẢNH 2</span><b>Bé khò khè, trằn trọc ban đêm</b><small>600×600px (1:1)</small></div><div><h3>Con khò khè, trằn trọc cả đêm</h3><p>Đêm lạnh khiến đường thở của bé dễ bị nghẹt, con quấy khóc, mẹ thức trắng đêm lo lắng.</p></div></div>
+      <div class="pain-card reveal"><!-- 📷 ẢNH 3: Bé hắt hơi, sổ mũi sau khi tắm — 600×600px (1:1). Dán URL vào CONFIG.images.pain2 --><div class="ph thumb" data-img="pain2" data-spec="600×600px (1:1)" style="aspect-ratio:1/1"><span class="ph-n">📷 ẢNH 3</span><b>Bé hắt hơi, sổ mũi sau khi tắm</b><small>600×600px (1:1)</small></div><div><h3>Sợ con nhiễm lạnh sau khi tắm</h3><p>Dù đã che chắn kỹ, bé vẫn dễ bị hắt hơi, sổ mũi do hạ nhiệt đột ngột.</p></div></div>
+      <div class="pain-card reveal"><!-- 📷 ẢNH 4: Mẹ ngần ngại khi cầm chai tinh dầu — 600×600px (1:1). Dán URL vào CONFIG.images.pain3 --><div class="ph thumb" data-img="pain3" data-spec="600×600px (1:1)" style="aspect-ratio:1/1"><span class="ph-n">📷 ẢNH 4</span><b>Mẹ ngần ngại khi cầm chai tinh dầu</b><small>600×600px (1:1)</small></div><div><h3>Sợ tinh dầu tràm nóng rát</h3><p>Mẹ muốn dùng tinh dầu giữ ấm nhưng lo ngại làn da trẻ sơ sinh mỏng manh bị kích ứng.</p></div></div>
+      <div class="pain-card reveal"><!-- 📷 ẢNH 5: Vết muỗi đốt đỏ trên da bé — 600×600px (1:1). Dán URL vào CONFIG.images.pain4 --><div class="ph thumb" data-img="pain4" data-spec="600×600px (1:1)" style="aspect-ratio:1/1"><span class="ph-n">📷 ẢNH 5</span><b>Vết muỗi đốt đỏ trên da bé</b><small>600×600px (1:1)</small></div><div><h3>Muỗi &amp; côn trùng đốt</h3><p>Vết muỗi cắn làm da bé đỏ ngứa, sưng tấy khiến con khó chịu, mất ngủ.</p></div></div>
     </div>
-    <div class="img-row reveal"><!-- 📷 ẢNH 2: Ảnh cảm xúc: bé quấy khóc / khò khè ban đêm, mẹ lo lắng bế con — Ảnh ngang 1200×675px (16:9), tông ấm, ánh sáng dịu. Dán URL vào CONFIG.images.pain -->
-<div class="ph " data-img="pain" style="aspect-ratio:16/9;"><span class="ph-n">📷 ẢNH 2</span><b>Ảnh cảm xúc: bé quấy khóc / khò khè ban đêm, mẹ lo lắng bế con</b><small>Ảnh ngang 1200×675px (16:9), tông ấm, ánh sáng dịu</small></div></div>
-    <p class="bridge reveal">Đã có giải pháp dịu nhẹ cho bé yêu<span>👇</span></p>
+    <div class="img-row reveal"><!-- 📷 ẢNH 6: Ảnh cảm xúc: bé quấy khóc / khò khè ban đêm, mẹ lo lắng bế con — Ảnh ngang 1200×675px (16:9), tông ấm, ánh sáng dịu. Dán URL vào CONFIG.images.pain -->
+<div class="ph " data-img="pain" style="aspect-ratio:16/9;"><span class="ph-n">📷 ẢNH 6</span><b>Ảnh cảm xúc: bé quấy khóc / khò khè ban đêm, mẹ lo lắng bế con</b><small>Ảnh ngang 1200×675px (16:9), tông ấm, ánh sáng dịu</small></div></div>
+    <p class="bridge reveal">Đã có giải pháp dịu nhẹ cho bé yêu</p>
   </div>
 </section>
 
@@ -339,14 +353,14 @@ footer a{color:var(--leaf-dark);font-weight:700}
     <h2 class="reveal">Đồng hành cùng mẹ <em>chăm sóc và bảo vệ</em> bé yêu mỗi ngày</h2>
     <p class="lead reveal">Sản phẩm được nghiên cứu công thức phù hợp cho làn da mỏng manh của bé, mang đến 4 công dụng thiết thực:</p>
     <div class="ben-grid" style="text-align:left">
-      <div class="ben-card reveal"><span class="ben-num">01</span><div class="ben-ico">🔥</div><h3>Giữ ấm cơ thể &amp; đẩy khí lạnh</h3><p>Giúp cơ thể bé luôn ấm áp, hỗ trợ đẩy khí hàn, đặc biệt thích hợp dùng khi thời tiết se lạnh, giao mùa hoặc sau khi tắm.</p></div>
-      <div class="ben-card reveal"><span class="ben-num">02</span><div class="ben-ico">🌬️</div><h3>Thông thoáng đường thở</h3><p>Hương thơm tự nhiên dễ chịu giúp thông thoáng cho đường thở, giảm tình trạng khò khè, cho bé ngủ sâu giấc hơn.</p></div>
-      <div class="ben-card reveal"><span class="ben-num">03</span><div class="ben-ico">🦟</div><h3>Xoa dịu vết côn trùng cắn</h3><p>Giảm cảm giác ngứa ngáy, làm dịu vùng da sưng đỏ do muỗi hoặc côn trùng đốt.</p></div>
-      <div class="ben-card reveal"><span class="ben-num">04</span><div class="ben-ico">💧</div><h3>Dưỡng ẩm &amp; bảo vệ da</h3><p>Sự có mặt của dầu bơ, ô liu và argan giúp làm mềm da, giảm độ gay gắt của tinh dầu tràm nguyên chất, phù hợp cho cả làn da trẻ sơ sinh.</p></div>
+      <div class="ben-card reveal"><span class="ben-num">01</span><!-- 📷 ẢNH 7: Bé ấm áp trong khăn sau khi tắm — 800×600px (4:3). Dán URL vào CONFIG.images.ben1 --><div class="ph card-img" data-img="ben1" data-spec="800×600px (4:3)" style="aspect-ratio:4/3"><span class="ph-n">📷 ẢNH 7</span><b>Bé ấm áp trong khăn sau khi tắm</b><small>800×600px (4:3)</small></div><h3>Giữ ấm cơ thể &amp; đẩy khí lạnh</h3><p>Giúp cơ thể bé luôn ấm áp, hỗ trợ đẩy khí hàn, đặc biệt thích hợp dùng khi thời tiết se lạnh, giao mùa hoặc sau khi tắm.</p></div>
+      <div class="ben-card reveal"><span class="ben-num">02</span><!-- 📷 ẢNH 8: Bé ngủ say, thở êm — 800×600px (4:3). Dán URL vào CONFIG.images.ben2 --><div class="ph card-img" data-img="ben2" data-spec="800×600px (4:3)" style="aspect-ratio:4/3"><span class="ph-n">📷 ẢNH 8</span><b>Bé ngủ say, thở êm</b><small>800×600px (4:3)</small></div><h3>Thông thoáng đường thở</h3><p>Hương thơm tự nhiên dễ chịu giúp thông thoáng cho đường thở, giảm tình trạng khò khè, cho bé ngủ sâu giấc hơn.</p></div>
+      <div class="ben-card reveal"><span class="ben-num">03</span><!-- 📷 ẢNH 9: Mẹ thoa dầu lên vết muỗi đốt — 800×600px (4:3). Dán URL vào CONFIG.images.ben3 --><div class="ph card-img" data-img="ben3" data-spec="800×600px (4:3)" style="aspect-ratio:4/3"><span class="ph-n">📷 ẢNH 9</span><b>Mẹ thoa dầu lên vết muỗi đốt</b><small>800×600px (4:3)</small></div><h3>Xoa dịu vết côn trùng cắn</h3><p>Giảm cảm giác ngứa ngáy, làm dịu vùng da sưng đỏ do muỗi hoặc côn trùng đốt.</p></div>
+      <div class="ben-card reveal"><span class="ben-num">04</span><!-- 📷 ẢNH 10: Cận cảnh giọt dầu trên da bé — 800×600px (4:3). Dán URL vào CONFIG.images.ben4 --><div class="ph card-img" data-img="ben4" data-spec="800×600px (4:3)" style="aspect-ratio:4/3"><span class="ph-n">📷 ẢNH 10</span><b>Cận cảnh giọt dầu trên da bé</b><small>800×600px (4:3)</small></div><h3>Dưỡng ẩm &amp; bảo vệ da</h3><p>Sự có mặt của dầu bơ, ô liu và argan giúp làm mềm da, giảm độ gay gắt của tinh dầu tràm nguyên chất, phù hợp cho cả làn da trẻ sơ sinh.</p></div>
     </div>
-    <div class="img-row reveal"><!-- 📷 ẢNH 3: Ảnh mẹ thoa & massage ngực, lưng hoặc lòng bàn chân cho bé — Ảnh ngang 1200×675px (16:9). Dán URL vào CONFIG.images.benefit -->
-<div class="ph " data-img="benefit" style="aspect-ratio:16/9;"><span class="ph-n">📷 ẢNH 3</span><b>Ảnh mẹ thoa & massage ngực, lưng hoặc lòng bàn chân cho bé</b><small>Ảnh ngang 1200×675px (16:9)</small></div></div>
-    <p class="ben-foot reveal">🤲 Thoa và massage nhẹ nhàng giúp bé thư giãn, giảm căng thẳng và ngủ sâu giấc hơn.</p>
+    <div class="img-row reveal"><!-- 📷 ẢNH 11: Ảnh mẹ thoa & massage ngực, lưng hoặc lòng bàn chân cho bé — Ảnh ngang 1200×675px (16:9). Dán URL vào CONFIG.images.benefit -->
+<div class="ph " data-img="benefit" style="aspect-ratio:16/9;"><span class="ph-n">📷 ẢNH 11</span><b>Ảnh mẹ thoa & massage ngực, lưng hoặc lòng bàn chân cho bé</b><small>Ảnh ngang 1200×675px (16:9)</small></div></div>
+    <p class="ben-foot reveal">Thoa và massage nhẹ nhàng giúp bé thư giãn, giảm căng thẳng và ngủ sâu giấc hơn.</p>
   </div>
 </section>
 
@@ -358,13 +372,13 @@ footer a{color:var(--leaf-dark);font-weight:700}
     </div>
     <div class="ingre-wrap">
       <div class="ingre-list">
-        <div class="ingre reveal"><div class="drop" style="background:#d9efe3"><span>🌿</span></div><div><h3>Tinh dầu tràm</h3><div class="latin">Melaleuca Leucadendra Leaf Oil</div><p>Giúp giữ ấm, xua tan khí lạnh và làm sạch không khí xung quanh bé.</p></div></div>
-        <div class="ingre reveal"><div class="drop" style="background:#e7f2d3"><span>🥑</span></div><div><h3>Dầu bơ</h3><div class="latin">Persea Gratissima Oil</div><p>Giàu vitamin và dưỡng chất giúp nuôi dưỡng làn da bé mềm mại.</p></div></div>
-        <div class="ingre reveal"><div class="drop" style="background:#f2efcf"><span>🫒</span></div><div><h3>Dầu ô liu</h3><div class="latin">Olea Europaea Fruit Oil</div><p>Tạo lớp màng bảo vệ, hạn chế tình trạng khô da.</p></div></div>
-        <div class="ingre reveal"><div class="drop" style="background:#fbe6cc"><span>🌰</span></div><div><h3>Dầu Argan</h3><div class="latin">Argania Spinosa Kernel Oil</div><p>Giúp xoa dịu vùng da nhạy cảm, chống kích ứng.</p></div></div>
+        <div class="ingre reveal"><!-- 📷 ẢNH 12: Lá tràm — 400×400px (1:1). Dán URL vào CONFIG.images.ing1 --><div class="ph round" data-img="ing1" data-spec="400×400px (1:1)" style="aspect-ratio:1/1"><span class="ph-n">📷 ẢNH 12</span><b>Lá tràm</b><small>400×400px (1:1)</small></div><div><h3>Tinh dầu tràm</h3><div class="latin">Melaleuca Leucadendra Leaf Oil</div><p>Giúp giữ ấm, xua tan khí lạnh và làm sạch không khí xung quanh bé.</p></div></div>
+        <div class="ingre reveal"><!-- 📷 ẢNH 13: Quả bơ — 400×400px (1:1). Dán URL vào CONFIG.images.ing2 --><div class="ph round" data-img="ing2" data-spec="400×400px (1:1)" style="aspect-ratio:1/1"><span class="ph-n">📷 ẢNH 13</span><b>Quả bơ</b><small>400×400px (1:1)</small></div><div><h3>Dầu bơ</h3><div class="latin">Persea Gratissima Oil</div><p>Giàu vitamin và dưỡng chất giúp nuôi dưỡng làn da bé mềm mại.</p></div></div>
+        <div class="ingre reveal"><!-- 📷 ẢNH 14: Quả ô liu — 400×400px (1:1). Dán URL vào CONFIG.images.ing3 --><div class="ph round" data-img="ing3" data-spec="400×400px (1:1)" style="aspect-ratio:1/1"><span class="ph-n">📷 ẢNH 14</span><b>Quả ô liu</b><small>400×400px (1:1)</small></div><div><h3>Dầu ô liu</h3><div class="latin">Olea Europaea Fruit Oil</div><p>Tạo lớp màng bảo vệ, hạn chế tình trạng khô da.</p></div></div>
+        <div class="ingre reveal"><!-- 📷 ẢNH 15: Hạt argan — 400×400px (1:1). Dán URL vào CONFIG.images.ing4 --><div class="ph round" data-img="ing4" data-spec="400×400px (1:1)" style="aspect-ratio:1/1"><span class="ph-n">📷 ẢNH 15</span><b>Hạt argan</b><small>400×400px (1:1)</small></div><div><h3>Dầu Argan</h3><div class="latin">Argania Spinosa Kernel Oil</div><p>Giúp xoa dịu vùng da nhạy cảm, chống kích ứng.</p></div></div>
       </div>
-      <div class="reveal"><!-- 📷 ẢNH 4: Ảnh chai tinh dầu đặt cạnh nguyên liệu: lá tràm, quả bơ, ô liu, hạt argan — Ảnh vuông 1000×1000px (1:1). Dán URL vào CONFIG.images.ingredients -->
-<div class="ph " data-img="ingredients" style="aspect-ratio:1/1;"><span class="ph-n">📷 ẢNH 4</span><b>Ảnh chai tinh dầu đặt cạnh nguyên liệu: lá tràm, quả bơ, ô liu, hạt argan</b><small>Ảnh vuông 1000×1000px (1:1)</small></div></div>
+      <div class="reveal"><!-- 📷 ẢNH 16: Ảnh chai tinh dầu đặt cạnh nguyên liệu: lá tràm, quả bơ, ô liu, hạt argan — Ảnh vuông 1000×1000px (1:1). Dán URL vào CONFIG.images.ingredients -->
+<div class="ph " data-img="ingredients" style="aspect-ratio:1/1;"><span class="ph-n">📷 ẢNH 16</span><b>Ảnh chai tinh dầu đặt cạnh nguyên liệu: lá tràm, quả bơ, ô liu, hạt argan</b><small>Ảnh vuông 1000×1000px (1:1)</small></div></div>
     </div>
   </div>
 </section>
@@ -373,9 +387,9 @@ footer a{color:var(--leaf-dark);font-weight:700}
 <section class="compact">
   <div class="container">
     <h2 class="reveal">Nhỏ gọn trong tay mẹ, tiện chăm sóc bé mỗi ngày</h2>
-    <div class="img-row reveal" style="margin:0 auto 22px"><!-- 📷 ẢNH 5: Ảnh chai tinh dầu cầm gọn trong lòng bàn tay mẹ — Ảnh ngang 1200×675px (16:9), cho thấy kích thước nhỏ gọn. Dán URL vào CONFIG.images.handheld -->
-<div class="ph " data-img="handheld" style="aspect-ratio:16/9;background-color:rgba(255,255,255,.6)"><span class="ph-n">📷 ẢNH 5</span><b>Ảnh chai tinh dầu cầm gọn trong lòng bàn tay mẹ</b><small>Ảnh ngang 1200×675px (16:9), cho thấy kích thước nhỏ gọn</small></div></div>
-    <div class="row reveal"><span>👜 Bỏ túi mang theo mọi nơi</span><span>💧 Chai 30ml tiện lợi</span><span>👨‍👩‍👧 Dùng tiết kiệm cho cả gia đình</span></div>
+    <div class="img-row reveal" style="margin:0 auto 22px"><!-- 📷 ẢNH 17: Ảnh chai tinh dầu cầm gọn trong lòng bàn tay mẹ — Ảnh ngang 1200×675px (16:9), cho thấy kích thước nhỏ gọn. Dán URL vào CONFIG.images.handheld -->
+<div class="ph " data-img="handheld" style="aspect-ratio:16/9;background-color:rgba(255,255,255,.6)"><span class="ph-n">📷 ẢNH 17</span><b>Ảnh chai tinh dầu cầm gọn trong lòng bàn tay mẹ</b><small>Ảnh ngang 1200×675px (16:9), cho thấy kích thước nhỏ gọn</small></div></div>
+    <div class="row reveal"><span>Bỏ túi mang theo mọi nơi</span><span>Chai 30ml tiện lợi</span><span>Dùng tiết kiệm cho cả gia đình</span></div>
   </div>
 </section>
 
@@ -386,14 +400,14 @@ footer a{color:var(--leaf-dark);font-weight:700}
       <h2 class="reveal">Dễ dàng chăm sóc bé <em>mỗi ngày</em></h2>
     </div>
     <div class="steps">
-      <div class="step reveal"><span class="step-n">1</span><!-- 📷 ẢNH 6: Nhỏ 2–3 giọt vào chậu nước tắm ấm của bé — 800×600px (4:3). Dán URL vào CONFIG.images.step1 -->
-<div class="ph " data-img="step1" style="aspect-ratio:4/3;"><span class="ph-n">📷 ẢNH 6</span><b>Nhỏ 2–3 giọt vào chậu nước tắm ấm của bé</b><small>800×600px (4:3)</small></div><h3>Khi tắm cho bé</h3><p>Nhỏ 2 - 3 giọt vào chậu nước tắm ấm để giữ ấm cơ thể trong suốt quá trình tắm.</p></div>
-      <div class="step reveal"><span class="step-n">2</span><!-- 📷 ẢNH 7: Mẹ xoa ấm tay, massage cổ, ngực, lưng, lòng bàn chân bé — 800×600px (4:3). Dán URL vào CONFIG.images.step2 -->
-<div class="ph " data-img="step2" style="aspect-ratio:4/3;"><span class="ph-n">📷 ẢNH 7</span><b>Mẹ xoa ấm tay, massage cổ, ngực, lưng, lòng bàn chân bé</b><small>800×600px (4:3)</small></div><h3>Trước khi đi ngủ hoặc ra ngoài</h3><p>Nhỏ vài giọt ra lòng bàn tay mẹ, xoa ấm rồi massage nhẹ nhàng lên cổ, ngực, lưng và lòng bàn chân của bé.</p></div>
-      <div class="step reveal"><span class="step-n">3</span><!-- 📷 ẢNH 8: Thoa một lượng nhỏ lên vết muỗi đốt trên da bé — 800×600px (4:3). Dán URL vào CONFIG.images.step3 -->
-<div class="ph " data-img="step3" style="aspect-ratio:4/3;"><span class="ph-n">📷 ẢNH 8</span><b>Thoa một lượng nhỏ lên vết muỗi đốt trên da bé</b><small>800×600px (4:3)</small></div><h3>Khi bị côn trùng đốt</h3><p>Thoa một lượng nhỏ lên vùng da bị cắn để làm dịu ngứa.</p></div>
+      <div class="step reveal"><span class="step-n">1</span><!-- 📷 ẢNH 18: Nhỏ 2–3 giọt vào chậu nước tắm ấm của bé — 800×600px (4:3). Dán URL vào CONFIG.images.step1 -->
+<div class="ph " data-img="step1" style="aspect-ratio:4/3;"><span class="ph-n">📷 ẢNH 18</span><b>Nhỏ 2–3 giọt vào chậu nước tắm ấm của bé</b><small>800×600px (4:3)</small></div><h3>Khi tắm cho bé</h3><p>Nhỏ 2 - 3 giọt vào chậu nước tắm ấm để giữ ấm cơ thể trong suốt quá trình tắm.</p></div>
+      <div class="step reveal"><span class="step-n">2</span><!-- 📷 ẢNH 19: Mẹ xoa ấm tay, massage cổ, ngực, lưng, lòng bàn chân bé — 800×600px (4:3). Dán URL vào CONFIG.images.step2 -->
+<div class="ph " data-img="step2" style="aspect-ratio:4/3;"><span class="ph-n">📷 ẢNH 19</span><b>Mẹ xoa ấm tay, massage cổ, ngực, lưng, lòng bàn chân bé</b><small>800×600px (4:3)</small></div><h3>Trước khi đi ngủ hoặc ra ngoài</h3><p>Nhỏ vài giọt ra lòng bàn tay mẹ, xoa ấm rồi massage nhẹ nhàng lên cổ, ngực, lưng và lòng bàn chân của bé.</p></div>
+      <div class="step reveal"><span class="step-n">3</span><!-- 📷 ẢNH 20: Thoa một lượng nhỏ lên vết muỗi đốt trên da bé — 800×600px (4:3). Dán URL vào CONFIG.images.step3 -->
+<div class="ph " data-img="step3" style="aspect-ratio:4/3;"><span class="ph-n">📷 ẢNH 20</span><b>Thoa một lượng nhỏ lên vết muỗi đốt trên da bé</b><small>800×600px (4:3)</small></div><h3>Khi bị côn trùng đốt</h3><p>Thoa một lượng nhỏ lên vùng da bị cắn để làm dịu ngứa.</p></div>
     </div>
-    <div class="warn reveal">👉 <b>Lưu ý:</b> Nên thử một lượng nhỏ ra tay trước khi dùng cho trẻ sơ sinh. Tránh thoa trực tiếp lên vùng mặt, gần mắt, mũi hoặc vết thương hở.</div>
+    <div class="warn reveal"><b>Lưu ý:</b> Nên thử một lượng nhỏ ra tay trước khi dùng cho trẻ sơ sinh. Tránh thoa trực tiếp lên vùng mặt, gần mắt, mũi hoặc vết thương hở.</div>
   </div>
 </section>
 
@@ -403,7 +417,7 @@ footer a{color:var(--leaf-dark);font-weight:700}
     <div class="center">
       <h2 class="reveal">Hơn <em>50.000+ mẹ bỉm</em> đã tin dùng &amp; đồng hành cùng tinh dầu tràm Home Care</h2>
     </div>
-    <h3 class="center reveal" style="margin-top:28px;font-size:20px">🌟 Đánh giá nhanh từ cộng đồng</h3>
+    <h3 class="center reveal" style="margin-top:28px;font-size:20px">Đánh giá nhanh từ cộng đồng</h3>
     <div class="stats">
       <div class="stat reveal"><b><span data-count="50000">0</span>+</b><span>mẹ bỉm tin dùng</span></div>
       <div class="stat reveal"><b>4.9<small style="font-size:.5em">/5</small></b><span class="stars">★★★★★</span><br><span>sao dựa trên hơn 2.500+ đánh giá thực tế</span></div>
@@ -415,18 +429,18 @@ footer a{color:var(--leaf-dark);font-weight:700}
       <div class="review reveal"><span class="stars">★★★★★</span><p>“Mình biết đến sản phẩm này nhờ sử dụng dịch vụ tắm bé tại nhà của Home Care. Thấy các cô điều dưỡng dùng cho bé thích quá nên mua luôn 2 chai về dùng dần. Mẹ ở cữ xoa vào lòng bàn chân giữ ấm cực kỳ tốt!”</p><div class="who"><span class="avatar" style="background:#e9a3b8">LA</span><div><b>Mẹ Lan Anh</b><small>Thanh Hóa · Bé 5 tháng tuổi</small></div></div></div>
     </div>
     <div class="fb-grid">
-      <div class="reveal"><!-- 📷 ẢNH 9: Ảnh chụp màn hình feedback thật #1 — Tin nhắn Zalo/Messenger · 600×800px (3:4). Dán URL vào CONFIG.images.feedback1 -->
-<div class="ph " data-img="feedback1" style="aspect-ratio:3/4;"><span class="ph-n">📷 ẢNH 9</span><b>Ảnh chụp màn hình feedback thật #1</b><small>Tin nhắn Zalo/Messenger · 600×800px (3:4)</small></div></div>
-      <div class="reveal"><!-- 📷 ẢNH 10: Ảnh chụp màn hình feedback thật #2 — 600×800px (3:4). Dán URL vào CONFIG.images.feedback2 -->
-<div class="ph " data-img="feedback2" style="aspect-ratio:3/4;"><span class="ph-n">📷 ẢNH 10</span><b>Ảnh chụp màn hình feedback thật #2</b><small>600×800px (3:4)</small></div></div>
-      <div class="reveal"><!-- 📷 ẢNH 11: Ảnh chụp màn hình feedback thật #3 — 600×800px (3:4). Dán URL vào CONFIG.images.feedback3 -->
-<div class="ph " data-img="feedback3" style="aspect-ratio:3/4;"><span class="ph-n">📷 ẢNH 11</span><b>Ảnh chụp màn hình feedback thật #3</b><small>600×800px (3:4)</small></div></div>
+      <div class="reveal"><!-- 📷 ẢNH 21: Ảnh chụp màn hình feedback thật #1 — Tin nhắn Zalo/Messenger · 600×800px (3:4). Dán URL vào CONFIG.images.feedback1 -->
+<div class="ph " data-img="feedback1" style="aspect-ratio:3/4;"><span class="ph-n">📷 ẢNH 21</span><b>Ảnh chụp màn hình feedback thật #1</b><small>Tin nhắn Zalo/Messenger · 600×800px (3:4)</small></div></div>
+      <div class="reveal"><!-- 📷 ẢNH 22: Ảnh chụp màn hình feedback thật #2 — 600×800px (3:4). Dán URL vào CONFIG.images.feedback2 -->
+<div class="ph " data-img="feedback2" style="aspect-ratio:3/4;"><span class="ph-n">📷 ẢNH 22</span><b>Ảnh chụp màn hình feedback thật #2</b><small>600×800px (3:4)</small></div></div>
+      <div class="reveal"><!-- 📷 ẢNH 23: Ảnh chụp màn hình feedback thật #3 — 600×800px (3:4). Dán URL vào CONFIG.images.feedback3 -->
+<div class="ph " data-img="feedback3" style="aspect-ratio:3/4;"><span class="ph-n">📷 ẢNH 23</span><b>Ảnh chụp màn hình feedback thật #3</b><small>600×800px (3:4)</small></div></div>
     </div>
-    <div class="img-row reveal"><!-- 📷 ẢNH 12: Ảnh điều dưỡng Home Care tắm bé / massage cho bé tại nhà — Ảnh ngang 1200×675px (16:9). Dán URL vào CONFIG.images.service -->
-<div class="ph " data-img="service" style="aspect-ratio:16/9;"><span class="ph-n">📷 ẢNH 12</span><b>Ảnh điều dưỡng Home Care tắm bé / massage cho bé tại nhà</b><small>Ảnh ngang 1200×675px (16:9)</small></div></div>
+    <div class="img-row reveal"><!-- 📷 ẢNH 24: Ảnh điều dưỡng Home Care tắm bé / massage cho bé tại nhà — Ảnh ngang 1200×675px (16:9). Dán URL vào CONFIG.images.service -->
+<div class="ph " data-img="service" style="aspect-ratio:16/9;"><span class="ph-n">📷 ẢNH 24</span><b>Ảnh điều dưỡng Home Care tắm bé / massage cho bé tại nhà</b><small>Ảnh ngang 1200×675px (16:9)</small></div></div>
     <div class="trust-box">
-      <div class="reveal">👉 <b>Sản phẩm tin dùng trong dịch vụ cao cấp:</b> Tinh dầu tràm Home Care được các chuyên viên chăm sóc mẹ và bé của Home Care sử dụng trực tiếp trong các liệu trình tắm bé và tắm xông hơi cho mẹ tại nhà.</div>
-      <div class="reveal">👉 <b>Phù hợp cho cả gia đình:</b> An toàn cho trẻ sơ sinh, trẻ nhỏ, mẹ bầu và mẹ sau sinh trong thời gian ở cữ.</div>
+      <div class="reveal"><b>Sản phẩm tin dùng trong dịch vụ cao cấp:</b> Tinh dầu tràm Home Care được các chuyên viên chăm sóc mẹ và bé của Home Care sử dụng trực tiếp trong các liệu trình tắm bé và tắm xông hơi cho mẹ tại nhà.</div>
+      <div class="reveal"><b>Phù hợp cho cả gia đình:</b> An toàn cho trẻ sơ sinh, trẻ nhỏ, mẹ bầu và mẹ sau sinh trong thời gian ở cữ.</div>
     </div>
     <div class="center" style="margin-top:30px"><a href="#dat-hang" class="btn btn-buy" data-cta>Đặt mua ngay – chỉ 49.000đ</a></div>
   </div>
@@ -441,20 +455,20 @@ footer a{color:var(--leaf-dark);font-weight:700}
     </div>
     <div class="order-grid">
       <div class="offer reveal">
-        <div class="offer-head">🎁 ƯU ĐÃI CHỈ ÁP DỤNG HÔM NAY</div>
-        <!-- 📷 ẢNH 13: Banner ưu đãi: sản phẩm + giá 49K / 87K — 1200×675px (16:9). Dán URL vào CONFIG.images.offer -->
-<div class="ph " data-img="offer" style="aspect-ratio:16/9;"><span class="ph-n">📷 ẢNH 13</span><b>Banner ưu đãi: sản phẩm + giá 49K / 87K</b><small>1200×675px (16:9)</small></div>
+        <div class="offer-head">ƯU ĐÃI CHỈ ÁP DỤNG HÔM NAY</div>
+        <!-- 📷 ẢNH 25: Banner ưu đãi: sản phẩm + giá 49K / 87K — 1200×675px (16:9). Dán URL vào CONFIG.images.offer -->
+<div class="ph " data-img="offer" style="aspect-ratio:16/9;"><span class="ph-n">📷 ẢNH 25</span><b>Banner ưu đãi: sản phẩm + giá 49K / 87K</b><small>1200×675px (16:9)</small></div>
         <table>
           <thead><tr><th>Tên</th><th>Giá gốc</th><th>Giá ưu đãi</th></tr></thead>
           <tbody><tr><td><b>Tinh dầu tràm giữ ấm cho bé 30ml</b></td><td class="old">87.000đ</td><td class="new">49.000đ</td></tr></tbody>
         </table>
         <ul>
-          <li>👉 Chai 30ml tiện lợi – dùng tiết kiệm cho cả gia đình</li>
-          <li>🚚 Mua 2 chai – miễn phí vận chuyển</li>
-          <li>📦 Kiểm tra hàng trước khi thanh toán</li>
-          <li>📞 Tư vấn miễn phí cách dùng cho bé</li>
+          <li>Chai 30ml tiện lợi – dùng tiết kiệm cho cả gia đình</li>
+          <li>Mua 2 chai – miễn phí vận chuyển</li>
+          <li>Kiểm tra hàng trước khi thanh toán</li>
+          <li>Tư vấn miễn phí cách dùng cho bé</li>
         </ul>
-        <div class="stock"><small>🔥 Chỉ còn <span id="stockLeft">17</span> suất flash sale hôm nay</small><div class="stock-bar"><i id="stockBar"></i></div></div>
+        <div class="stock"><small>Chỉ còn <span id="stockLeft">17</span> suất flash sale hôm nay</small><div class="stock-bar"><i id="stockBar"></i></div></div>
       </div>
 
       <form class="card reveal" id="orderForm" novalidate>
@@ -475,7 +489,7 @@ footer a{color:var(--leaf-dark);font-weight:700}
           <p class="form-foot">(Tư vấn miễn phí &amp; Kiểm tra hàng trước khi thanh toán)</p>
         </div>
         <div class="success" id="formSuccess">
-          <div class="big">🎉</div>
+          <div class="big">✓</div>
           <h3>Đặt hàng thành công!</h3>
           <p>Cảm ơn mẹ <b id="sName"></b>. Home Care sẽ gọi số <b id="sPhone"></b> để xác nhận đơn trong ít phút nữa.</p>
         </div>
@@ -501,8 +515,8 @@ footer a{color:var(--leaf-dark);font-weight:700}
   </div>
 </footer>
 
-<div class="float-call"><a class="zl" id="zaloBtn" href="#" target="_blank" rel="noopener" title="Chat Zalo">Zalo</a><a class="ph" id="callBtn" href="#" title="Gọi ngay">📞</a></div>
-<div class="toast" id="toast"><span class="t-ico">🛍️</span><div id="toastText"></div></div>
+<div class="float-call"><a class="zl" id="zaloBtn" href="#" target="_blank" rel="noopener" title="Chat Zalo">Zalo</a><a class="call" id="callBtn" href="#" title="Gọi ngay"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></a></div>
+<div class="toast" id="toast"><span class="t-ico"></span><div id="toastText"></div></div>
 <div class="sticky" id="sticky"><div class="p"><s>87.000đ</s><b>49.000đ</b></div><a href="#dat-hang" class="btn btn-buy" data-cta>Mua ngay – Freeship</a></div>
 
 <script>
@@ -513,19 +527,31 @@ const CONFIG = {
   logo: 'https://cdn.hstatic.net/themes/200001066686/1001439050/14/logo.png',
   // 📷 ẢNH: dán URL ảnh vào từng ô (số thứ tự khớp với nhãn "ẢNH n" trên trang)
   images: {
-    hero: '',        // ẢNH 1  – sản phẩm chính, 1000×1000 (1:1), PNG nền trong suốt
-    pain: '',        // ẢNH 2  – bé quấy khóc/khò khè ban đêm, 1200×675 (16:9)
-    benefit: '',     // ẢNH 3  – mẹ massage cho bé, 1200×675 (16:9)
-    ingredients: '', // ẢNH 4  – chai + lá tràm, bơ, ô liu, argan, 1000×1000 (1:1)
-    handheld: '',    // ẢNH 5  – chai cầm trong tay mẹ, 1200×675 (16:9)
-    step1: '',       // ẢNH 6  – nhỏ giọt vào chậu tắm, 800×600 (4:3)
-    step2: '',       // ẢNH 7  – massage cổ/ngực/lưng/bàn chân, 800×600 (4:3)
-    step3: '',       // ẢNH 8  – thoa vết muỗi đốt, 800×600 (4:3)
-    feedback1: '',   // ẢNH 9  – screenshot feedback, 600×800 (3:4)
-    feedback2: '',   // ẢNH 10 – screenshot feedback, 600×800 (3:4)
-    feedback3: '',   // ẢNH 11 – screenshot feedback, 600×800 (3:4)
-    service: '',     // ẢNH 12 – điều dưỡng Home Care chăm bé tại nhà, 1200×675 (16:9)
-    offer: ''        // ẢNH 13 – banner ưu đãi, 1200×675 (16:9)
+    hero:         '',  // ẢNH 1 – Ảnh sản phẩm chính – chai tinh dầu tràm 30ml · PNG nền trong suốt hoặc nền sáng · 1000×1000px (1:1)
+    pain1:        '',  // ẢNH 2 – Bé khò khè, trằn trọc ban đêm · 600×600px (1:1)
+    pain2:        '',  // ẢNH 3 – Bé hắt hơi, sổ mũi sau khi tắm · 600×600px (1:1)
+    pain3:        '',  // ẢNH 4 – Mẹ ngần ngại khi cầm chai tinh dầu · 600×600px (1:1)
+    pain4:        '',  // ẢNH 5 – Vết muỗi đốt đỏ trên da bé · 600×600px (1:1)
+    pain:         '',  // ẢNH 6 – Ảnh cảm xúc: bé quấy khóc / khò khè ban đêm, mẹ lo lắng bế con · Ảnh ngang 1200×675px (16:9), tông ấm, ánh sáng dịu
+    ben1:         '',  // ẢNH 7 – Bé ấm áp trong khăn sau khi tắm · 800×600px (4:3)
+    ben2:         '',  // ẢNH 8 – Bé ngủ say, thở êm · 800×600px (4:3)
+    ben3:         '',  // ẢNH 9 – Mẹ thoa dầu lên vết muỗi đốt · 800×600px (4:3)
+    ben4:         '',  // ẢNH 10 – Cận cảnh giọt dầu trên da bé · 800×600px (4:3)
+    benefit:      '',  // ẢNH 11 – Ảnh mẹ thoa & massage ngực, lưng hoặc lòng bàn chân cho bé · Ảnh ngang 1200×675px (16:9)
+    ing1:         '',  // ẢNH 12 – Lá tràm · 400×400px (1:1)
+    ing2:         '',  // ẢNH 13 – Quả bơ · 400×400px (1:1)
+    ing3:         '',  // ẢNH 14 – Quả ô liu · 400×400px (1:1)
+    ing4:         '',  // ẢNH 15 – Hạt argan · 400×400px (1:1)
+    ingredients:  '',  // ẢNH 16 – Ảnh chai tinh dầu đặt cạnh nguyên liệu: lá tràm, quả bơ, ô liu, hạt argan · Ảnh vuông 1000×1000px (1:1)
+    handheld:     '',  // ẢNH 17 – Ảnh chai tinh dầu cầm gọn trong lòng bàn tay mẹ · Ảnh ngang 1200×675px (16:9), cho thấy kích thước nhỏ gọn
+    step1:        '',  // ẢNH 18 – Nhỏ 2–3 giọt vào chậu nước tắm ấm của bé · 800×600px (4:3)
+    step2:        '',  // ẢNH 19 – Mẹ xoa ấm tay, massage cổ, ngực, lưng, lòng bàn chân bé · 800×600px (4:3)
+    step3:        '',  // ẢNH 20 – Thoa một lượng nhỏ lên vết muỗi đốt trên da bé · 800×600px (4:3)
+    feedback1:    '',  // ẢNH 21 – Ảnh chụp màn hình feedback thật #1 · Tin nhắn Zalo/Messenger · 600×800px (3:4)
+    feedback2:    '',  // ẢNH 22 – Ảnh chụp màn hình feedback thật #2 · 600×800px (3:4)
+    feedback3:    '',  // ẢNH 23 – Ảnh chụp màn hình feedback thật #3 · 600×800px (3:4)
+    service:      '',  // ẢNH 24 – Ảnh điều dưỡng Home Care tắm bé / massage cho bé tại nhà · Ảnh ngang 1200×675px (16:9)
+    offer:        ''    // ẢNH 25 – Banner ưu đãi: sản phẩm + giá 49K / 87K · 1200×675px (16:9)
   },
   showImageNotes: true,           // true = hiện khung ghi chú ở ô chưa có ảnh; đổi thành false trước khi chạy ads để ẩn ô trống
   orderEndpoint: '',              // URL Google Apps Script / webhook nhận đơn (POST JSON). Để trống = chỉ hiện thông báo
