@@ -48,7 +48,10 @@ function lx_enqueue_scripts() {
     $offer_minutes   = floatval(lx_get_field('lx_offer_minutes', 'option', 10.5));
 
     $sheet_endpoint  = lx_get_field('lx_sheet_endpoint', 'option', '');
-    $fb_pixel        = lx_get_field('lx_facebook_pixel_id', 'option', '');
+    $fb_pixel        = lx_get_field('lx_facebook_pixel_id', 'option', '1176118477928520');
+    if (empty($fb_pixel)) {
+        $fb_pixel = '1176118477928520';
+    }
     $ga_id           = lx_get_field('lx_google_analytics_id', 'option', 'G-DS38TS5KPW');
     if (empty($ga_id)) {
         $ga_id = 'G-DS38TS5KPW';
@@ -254,3 +257,52 @@ function lx_print_google_analytics() {
     }
 }
 add_action('wp_head', 'lx_print_google_analytics', 1);
+
+/**
+ * Output Meta Pixel Code in head
+ */
+function lx_print_meta_pixel() {
+    $fb_pixel = lx_get_field('lx_facebook_pixel_id', 'option', '1176118477928520');
+    if (empty($fb_pixel)) {
+        $fb_pixel = '1176118477928520';
+    }
+    $fb_pixel = trim(strip_tags($fb_pixel));
+
+    $custom_tracking = lx_get_field('lx_header_tracking_code', 'option', '');
+    $already_in_custom = (!empty($custom_tracking) && (strpos($custom_tracking, 'fbevents.js') !== false || strpos($custom_tracking, $fb_pixel) !== false));
+
+    if (!empty($fb_pixel) && !$already_in_custom) {
+        ?>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '<?php echo $fb_pixel; ?>');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=<?php echo $fb_pixel; ?>&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+        <?php
+    }
+}
+add_action('wp_head', 'lx_print_meta_pixel', 1);
+
+/**
+ * Output Custom Header Tracking Scripts in head
+ */
+function lx_print_header_tracking_code() {
+    $custom_tracking = lx_get_field('lx_header_tracking_code', 'option', '');
+    if (!empty($custom_tracking)) {
+        echo "\n" . trim($custom_tracking) . "\n";
+    }
+}
+add_action('wp_head', 'lx_print_header_tracking_code', 2);
+

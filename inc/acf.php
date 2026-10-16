@@ -53,5 +53,13 @@ function lx_acf_auto_migrate_defaults() {
             update_field('lx_order_title', 'Ưu đãi tặng mẹ', 'option');
         }
     }
+
+    $current_pixel = get_option('options_lx_facebook_pixel_id');
+    if (empty($current_pixel)) {
+        update_option('options_lx_facebook_pixel_id', '1176118477928520');
+        if (function_exists('update_field')) {
+            update_field('lx_facebook_pixel_id', '1176118477928520', 'option');
+        }
+    }
 }
 add_action('init', 'lx_acf_auto_migrate_defaults');

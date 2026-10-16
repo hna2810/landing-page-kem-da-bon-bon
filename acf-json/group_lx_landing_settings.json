@@ -97,7 +97,9 @@
       "key": "field_lx_facebook_pixel_id",
       "label": "Facebook Pixel ID",
       "name": "lx_facebook_pixel_id",
-      "type": "text"
+      "type": "text",
+      "default_value": "1176118477928520",
+      "instructions": "Nhập Facebook Pixel ID (mặc định: 1176118477928520) để tự động xuất mã Meta Pixel vào thẻ <head>."
     },
     {
       "key": "field_lx_google_analytics_id",
@@ -111,6 +113,14 @@
       "label": "TikTok Pixel ID",
       "name": "lx_tiktok_pixel_id",
       "type": "text"
+    },
+    {
+      "key": "field_lx_header_tracking_code",
+      "label": "Mã Tracking Header (<head>)",
+      "name": "lx_header_tracking_code",
+      "type": "textarea",
+      "instructions": "Dán mã tracking tùy chỉnh (Meta Pixel, Google Tag Manager, v.v.) vào đây. Mã sẽ được in trực tiếp vào thẻ <head>.",
+      "rows": 8
     },
     {
       "key": "field_lx_notif_enabled",
