@@ -9,6 +9,10 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+if (function_exists('lx_is_thankyou_page') && lx_is_thankyou_page()) {
+    return;
+}
+
 $hotline = lx_get_field('lx_hotline', 'option', '0901234567');
 $zalo    = lx_get_field('lx_zalo', 'option', '0901234567');
 $price   = lx_format_price(lx_get_field('lx_price', 'option', 49000));

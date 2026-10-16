@@ -15,6 +15,7 @@ $lx_modules = array(
     'assets.php',
     'acf.php',
     'cf7.php',
+    'thankyou.php',
 );
 
 foreach ($lx_modules as $file) {

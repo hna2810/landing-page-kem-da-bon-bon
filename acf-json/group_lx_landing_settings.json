@@ -123,6 +123,29 @@
       "rows": 8
     },
     {
+      "key": "field_lx_thankyou_url",
+      "label": "URL Trang Cảm Ơn (Redirect URL)",
+      "name": "lx_thankyou_url",
+      "type": "text",
+      "default_value": "/cam-on/",
+      "instructions": "Đường dẫn trang cảm ơn sau khi khách gửi form thành công (mặc định: /cam-on/)."
+    },
+    {
+      "key": "field_lx_thankyou_title",
+      "label": "Tiêu đề Trang Cảm Ơn",
+      "name": "lx_thankyou_title",
+      "type": "text",
+      "default_value": "Đặt Hàng Thành Công!"
+    },
+    {
+      "key": "field_lx_thankyou_message",
+      "label": "Lời nhắn Trang Cảm Ơn",
+      "name": "lx_thankyou_message",
+      "type": "textarea",
+      "default_value": "Cảm ơn mẹ đã tin tưởng Bon Bon! Đơn hàng của mẹ đã được ghi nhận. Chuyên viên chăm sóc sẽ liên hệ với mẹ trong thời gian sớm nhất để xác nhận và gửi hàng nhé.",
+      "rows": 3
+    },
+    {
       "key": "field_lx_notif_enabled",
       "label": "Bật thông báo vừa đặt hàng",
       "name": "lx_notif_enabled",

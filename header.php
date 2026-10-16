@@ -40,7 +40,7 @@ $hotline_display = lx_get_field('lx_hotline_display', 'option', '0901.234.567');
     <!-- HEADER -->
     <header class="topbar">
         <div class="topbar-inner">
-            <a href="#top" class="brand">
+            <a href="<?php echo (function_exists('lx_is_thankyou_page') && lx_is_thankyou_page()) ? home_url('/') : '#top'; ?>" class="brand">
                 <?php if ($logo_img) : ?>
                     <img src="<?php echo esc_url($logo_img); ?>" alt="<?php echo esc_attr($brand_name); ?>" class="brand-logo-img" style="height: <?php echo $logo_height; ?>px;">
                     <?php if (!empty($show_brand_text)) : ?>

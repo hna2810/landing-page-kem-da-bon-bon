@@ -57,6 +57,10 @@ function lx_enqueue_scripts() {
         $ga_id = 'G-DS38TS5KPW';
     }
     $tiktok_pixel    = lx_get_field('lx_tiktok_pixel_id', 'option', '');
+    $thankyou_url    = lx_get_field('lx_thankyou_url', 'option', home_url('/cam-on/'));
+    if (empty($thankyou_url)) {
+        $thankyou_url = home_url('/cam-on/');
+    }
 
     // Packages
     $raw_packages = lx_get_field('lx_packages', 'option', array());
@@ -212,6 +216,7 @@ function lx_enqueue_scripts() {
         'facebookPixelId'    => $fb_pixel,
         'googleAnalyticsId'  => $ga_id,
         'tiktokPixelId'      => $tiktok_pixel,
+        'thankyouUrl'        => $thankyou_url,
         'media'              => array(
             'heroImage'         => $hero_img,
             'rashSlides'        => $rash_slides,

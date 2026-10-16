@@ -420,7 +420,30 @@ document.documentElement.classList.add('js');
             }
             sendLead(data).then(() => {
                 window.bonbonTrack && bonbonTrack('Lead', { content_name: CFG.productName, value: pack.price, currency: 'VND' });
-                showSuccess(name, phone, pack);
+                try {
+                    sessionStorage.setItem('bonbon_last_order', JSON.stringify({
+                        name: name,
+                        phone: phone,
+                        package: pack.label || (CFG.productName + ' x' + pack.qty),
+                        value: pack.price,
+                        time: Date.now()
+                    }));
+                } catch (err) {}
+                const thankyouUrl = CFG.thankyouUrl || '/cam-on/';
+                const params = new URLSearchParams({
+                    name: name,
+                    phone: phone,
+                    package: pack.label || (CFG.productName + ' x' + pack.qty),
+                    value: pack.price
+                });
+                const dest = thankyouUrl + (thankyouUrl.includes('?') ? '&' : '?') + params.toString();
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'ĐANG CHUYỂN HƯỚNG...';
+                }
+                setTimeout(function () {
+                    window.location.href = dest;
+                }, 350);
             }).catch(() => {
                 if (alertBox) {
                     alertBox.textContent = 'Gửi chưa thành công do mạng chập chờn. Mẹ thử lại hoặc ';
@@ -506,13 +529,42 @@ document.addEventListener('wpcf7mailsent', function (event) {
         });
     }
 
+    // Lưu thông tin đơn hàng vào sessionStorage
+    try {
+        sessionStorage.setItem('bonbon_last_order', JSON.stringify({
+            name: clientName,
+            phone: clientPhone,
+            package: selectedPackage || (window.BONBON_CONFIG && window.BONBON_CONFIG.productName) || 'Kem Hăm Cho Bé Bon Bon',
+            value: leadValue,
+            time: Date.now()
+        }));
+    } catch (err) {}
+
+    const thankyouUrl = (window.BONBON_CONFIG && window.BONBON_CONFIG.thankyouUrl) || '/cam-on/';
+    const params = new URLSearchParams({
+        name: clientName,
+        phone: clientPhone,
+        package: selectedPackage || (window.BONBON_CONFIG && window.BONBON_CONFIG.productName) || 'Kem Hăm Cho Bé Bon Bon',
+        value: leadValue
+    });
+    const dest = thankyouUrl + (thankyouUrl.includes('?') ? '&' : '?') + params.toString();
+
+    const submitBtn = document.querySelector('.order-card .wpcf7 [type="submit"], .order-card #submitBtn');
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'ĐANG CHUYỂN HƯỚNG...';
+    }
+
     const wpcf7Container = document.querySelector('.order-card .wpcf7');
     const successBox = document.getElementById('successBox');
     if (wpcf7Container && successBox) {
         wpcf7Container.style.display = 'none';
         successBox.classList.add('show');
-        successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
+
+    setTimeout(function () {
+        window.location.href = dest;
+    }, 350);
 }, false);
 
 // Ngăn bấm gửi nhiều lần liên tiếp khi submit Contact Form 7
