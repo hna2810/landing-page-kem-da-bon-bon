@@ -19,3 +19,15 @@ Landing page tối ưu chuyển đổi cao (High Conversion Rate) dành cho chi�
 - HTML5 / CSS3 / Vanilla JavaScript
 - GSAP 3 & ScrollTrigger (CDN)
 - Google Fonts (Quicksand & Nunito)
+
+---
+
+# Landing Page — Tinh Dầu Tràm Giữ Ấm Cho Bé 30ml
+
+File: `tinh-dau-tram/index.html` (độc lập, không cần build).
+
+Cấu hình nằm ở object `CONFIG` đầu thẻ `<script>`:
+- `hotline`, `zalo`: số điện thoại thật.
+- `productImage`: dán URL ảnh sản phẩm (để trống sẽ dùng ảnh chai minh họa SVG).
+- `orderEndpoint`: URL Google Apps Script / webhook nhận đơn (POST JSON: name, phone, address, quantity, total...). Để trống thì form chỉ hiện thông báo thành công, **không lưu đơn**.
+- Bỏ comment Facebook/TikTok Pixel trong `<head>` để tracking `InitiateCheckout` / `Purchase`.
