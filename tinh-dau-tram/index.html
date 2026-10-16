@@ -13,7 +13,7 @@
 <link rel="icon" href="https://cdn.hstatic.net/themes/200001066686/1001439050/14/favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Quicksand:wght@500;600;700&family=Lora:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 
 <!-- Facebook Pixel (bỏ comment & thay YOUR_PIXEL_ID) -->
 <!-- <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');</script> -->
@@ -26,7 +26,7 @@
   --cream:#fffbf6; --red:#f28b82; --red-dark:#e5766d; --pink:#fbe3e1;
   --ink:#3d4a44; --muted:#7a8781; --line:#f0e9e0; --white:#fff;
   --radius:28px; --shadow:0 14px 40px rgba(111,174,143,.14);
-  --font:'Nunito',system-ui,sans-serif; --head:'Quicksand','Nunito',sans-serif; --serif:'Lora',Georgia,serif;
+  --font:'Nunito',system-ui,sans-serif; --head:'Quicksand','Nunito',sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -39,7 +39,7 @@ section{padding:64px 0;position:relative}
 .eyebrow{display:inline-block;font-size:14px;font-weight:700;letter-spacing:.02em;color:var(--amber-dark);background:var(--amber-light);padding:7px 18px;border-radius:99px;margin-bottom:14px}
 h1,h2,h3{line-height:1.3;font-weight:700;font-family:var(--head);letter-spacing:-.005em}
 h2{font-size:clamp(26px,4.4vw,38px);margin-bottom:12px}
-h2 em{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--leaf-dark)}
+h2 em{font-style:normal;color:var(--leaf-dark)}
 .lead{color:var(--muted);font-size:17px;max-width:680px}
 .center{text-align:center}.center .lead{margin:0 auto}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
@@ -66,7 +66,7 @@ header.nav .container{display:flex;align-items:center;justify-content:space-betw
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
 .hero h1{font-size:clamp(32px,5.4vw,52px);font-weight:700}
 .hero h1 span{color:var(--leaf)}
-.hero .sub{font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.6vw,24px);color:var(--amber-dark);margin:10px 0 16px}
+.hero .sub{font-family:var(--head);font-weight:600;font-size:clamp(18px,2.4vw,22px);color:var(--amber-dark);margin:10px 0 16px}
 .hero p.desc{font-size:17px;color:var(--muted);margin-bottom:22px}
 .price-card{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;background:rgba(255,255,255,.85);border:0;box-shadow:var(--shadow);border-radius:var(--radius);padding:14px 18px;margin-bottom:20px}
 .flash{background:var(--pink);color:var(--red-dark);font-weight:800;font-size:13px;padding:6px 12px;border-radius:99px}
@@ -121,7 +121,7 @@ header.nav .container{display:flex;align-items:center;justify-content:space-betw
 /* Pain */
 .pain{background:#fff}
 .pain-qs{display:grid;gap:12px;margin:22px auto 28px;max-width:760px}
-.pain-q{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.6vw,22px);background:var(--amber-light);border-radius:28px;padding:14px 20px;color:var(--amber-dark)}
+.pain-q{font-family:var(--head);font-weight:600;font-size:clamp(17px,2.4vw,20px);background:var(--amber-light);border-radius:28px;padding:14px 20px;color:var(--amber-dark)}
 .pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:28px}
 .pain-card{display:flex;gap:16px;background:var(--cream);border:0;box-shadow:0 8px 24px rgba(0,0,0,.04);border-radius:var(--radius);padding:22px}
 .pain-ico{flex:0 0 54px;height:54px;border-radius:50%;background:var(--pink);display:flex;align-items:center;justify-content:center;font-size:26px}
@@ -136,7 +136,7 @@ header.nav .container{display:flex;align-items:center;justify-content:space-betw
 .ben-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:32px}
 .ben-card{background:#fff;border-radius:var(--radius);padding:26px 20px;box-shadow:var(--shadow);transition:transform .25s}
 .ben-card:hover{transform:translateY(-6px)}
-.ben-num{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--amber-dark)}
+.ben-num{font-family:var(--head);font-weight:700;font-size:14px;color:var(--amber-dark)}
 .ben-ico{width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;margin:8px 0 14px;background:var(--amber-light)}
 .ben-card:nth-child(2) .ben-ico{background:#e8f3fb}.ben-card:nth-child(3) .ben-ico{background:var(--pink)}.ben-card:nth-child(4) .ben-ico{background:var(--leaf-light)}
 .ben-card h3{font-size:18px;margin-bottom:8px}
@@ -298,7 +298,7 @@ body:has(.sticky:not(.show)) .float-call{bottom:16px}
       <p class="sub">Để con yêu không bị cơn ho, khò khè cản trở</p>
       <p class="desc">Tinh dầu tràm kết hợp <b>dầu bơ, ô liu và argan</b> – giải pháp dịu nhẹ giúp bảo vệ đường thở của bé mỗi khi thời tiết chuyển mùa hay đêm lạnh.</p>
 
-      <div class="countdown">⏰ Flash sale kết thúc sau:
+      <div class="countdown">Flash sale kết thúc sau:
         <span class="cd-box"><span id="cd-h">02</span><small>giờ</small></span>
         <span class="cd-box"><span id="cd-m">00</span><small>phút</small></span>
         <span class="cd-box"><span id="cd-s">00</span><small>giây</small></span>
