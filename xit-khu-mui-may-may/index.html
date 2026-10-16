@@ -846,25 +846,23 @@ const CONFIG = {
   showPlaceholders: true,
 
   // Ảnh sản phẩm: ảnh đầu tiên là ảnh chính ở đầu trang, các ảnh sau hiện thành ảnh nhỏ để chuyển.
-  productImages: [
-    // 'https://.../packshot.jpg',
-  ],
+  productImages: ['assets/hero-1.jpg', 'assets/hero-2.jpg', 'assets/hero-3.jpg', 'assets/hero-4.jpg'],
   // Ảnh lifestyle mặc định cho phần "Công dụng" (để trống = dùng ảnh sản phẩm thứ 2 hoặc ảnh render)
   usageImage: '',
   // Ảnh cho từng nút vùng ở phần "Công dụng", theo thứ tự: Vùng nách, Vùng chân, Cơ thể, Vùng tiểu EVA
-  zoneImages: ['', '', '', ''],
+  zoneImages: ['assets/zone-1.jpg', 'assets/zone-2.jpg', 'assets/zone-3.jpg', 'assets/zone-4.jpg'],
 
   // Ảnh 3:4 cho 4 thẻ nỗi lo, theo thứ tự: Hôi nách, Hôi chân, Mùi cơ thể, Bà đẻ sau sinh
-  problemImages: ['', '', '', ''],
+  problemImages: ['assets/problem-1.jpg', 'assets/problem-2.jpg', 'assets/problem-3.jpg', 'assets/problem-4.jpg'],
 
   // Ảnh minh hoạ trong khung tròn thành phần (ảnh vuông), theo thứ tự: Bạc hà, Trầu không, Gừng, Cam
-  ingredientImages: ['', '', '', ''],
+  ingredientImages: ['assets/ing-1.jpg', 'assets/ing-2.jpg', 'assets/ing-3.jpg', 'assets/ing-4.jpg'],
 
   // Ảnh minh hoạ cho 3 bước sử dụng (dọc 4:5), theo thứ tự: Lắc nhẹ, Xịt lên da, Để khô
-  stepImages: ['', '', ''],
+  stepImages: ['assets/step-1.jpg', 'assets/step-2.jpg', 'assets/step-3.jpg'],
 
   // Ảnh sản phẩm cạnh form đặt hàng (ngang 16:10). Để trống = dùng ảnh sản phẩm đầu tiên hoặc ảnh render.
-  orderImage: '',
+  orderImage: 'assets/order.jpg',
 
   // Video review: YouTube (watch / shorts / youtu.be), TikTok (link có /video/123...), hoặc file .mp4
   videos: [
@@ -901,6 +899,21 @@ const CONFIG = {
     { qty: 3, name: '3 chai 30ml' }
   ]
 };
+
+/* Ảnh dùng đường dẫn tương đối (assets/...). Khi xem qua htmlpreview.github.io thì lấy ảnh thẳng từ GitHub. */
+const ASSET_BASE = (() => {
+  if (location.hostname !== 'htmlpreview.github.io') return '';
+  return decodeURIComponent(location.search.slice(1))
+    .replace('//github.com/', '//raw.githubusercontent.com/').replace('/blob/', '/').replace(/[^/]*$/, '');
+})();
+(function resolveAssets(o) {
+  for (const k in o) {
+    const v = o[k];
+    if (typeof v === 'string') {
+      if (ASSET_BASE && /^(?!https?:|data:|\/)\S+\.(jpe?g|png|webp|gif|svg|mp4)$/i.test(v)) o[k] = ASSET_BASE + v;
+    } else if (v && typeof v === 'object') resolveAssets(v);
+  }
+})(CONFIG);
 
 const fmt = n => n.toLocaleString('vi-VN') + 'đ';
 
@@ -1008,7 +1021,7 @@ const VM = (() => {
     box.insertAdjacentHTML('afterbegin', src
       ? `<img class="photo" src="${esc(src)}" alt="Xịt khử mùi Mây Mây – ${esc(label)}">`
       : `<svg class="render" viewBox="0 0 240 560" role="img" aria-label="Xịt khử mùi Gừng Cam Mây Mây 30ml"><use href="#packshot"/></svg>`);
-    box.querySelectorAll('.botanical').forEach(b => b.hidden = !!src);
+    box.querySelectorAll('.botanical').forEach(b => b.toggleAttribute('hidden', !!src));
     if (!own && CONFIG.showPlaceholders) {
       markPreview();
       box.insertAdjacentHTML('beforeend', `<span class="ph-badge zone-badge">Chờ ảnh: ${esc(label)}</span>`);
