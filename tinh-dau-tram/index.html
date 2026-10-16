@@ -181,9 +181,11 @@ header.nav .container{display:flex;align-items:center;justify-content:space-betw
 /* Proof */
 .proof{background:#fff;--wave:#fff}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}
-.stat{background:var(--cream);border-radius:var(--radius);padding:22px;text-align:center}
-.stat b{display:block;font-size:clamp(28px,4vw,40px);color:var(--leaf)}
-.stat span{font-size:14px;color:var(--muted);font-weight:600}
+.stat{background:var(--cream);border-radius:var(--radius);padding:24px 18px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px}
+.stat .num{font-family:var(--head);font-weight:700;font-size:clamp(30px,4vw,42px);line-height:1.1;color:var(--leaf-dark);white-space:nowrap}
+.stat .num small{font-size:.5em;color:var(--muted);font-weight:600}
+.stat .stars{font-size:16px;color:#f5b041;letter-spacing:2px;line-height:1}
+.stat .lbl{font-size:14px;color:var(--muted);font-weight:600;line-height:1.5}
 .stars{color:#f5a623;letter-spacing:2px}
 .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .review{background:var(--cream);border-radius:var(--radius);padding:24px;border:0;display:flex;flex-direction:column}
@@ -271,7 +273,7 @@ body:has(.sticky:not(.show)) .float-call{bottom:16px}
 @media (max-width:600px){
   section{padding:48px 0}
   .pain-grid,.ben-grid,.trust-box{grid-template-columns:1fr}
-  .stats{grid-template-columns:1fr 1fr 1fr;gap:8px}.stat{padding:14px 6px}.stat span{font-size:12px}
+  .stats{grid-template-columns:1fr 1fr 1fr;gap:8px}.stat{padding:16px 6px}.stat .num{font-size:24px}.stat .lbl{font-size:12px}.stat .stars{font-size:12px;letter-spacing:1px}
   .badge-circle{width:84px;height:84px;font-size:11px}.badge-circle b{font-size:21px}
   .chip{font-size:11px;padding:6px 9px}
   .hero-visual{max-width:300px}.product-img{max-width:230px}
@@ -424,9 +426,9 @@ body:has(.sticky:not(.show)) .float-call{bottom:16px}
     </div>
     <h3 class="center reveal" style="margin-top:28px;font-size:20px">Đánh giá nhanh từ cộng đồng</h3>
     <div class="stats">
-      <div class="stat reveal"><b><span data-count="50000">0</span>+</b><span>mẹ bỉm tin dùng</span></div>
-      <div class="stat reveal"><b>4.9<small style="font-size:.5em">/5</small></b><span class="stars">★★★★★</span><br><span>sao dựa trên hơn 2.500+ đánh giá thực tế</span></div>
-      <div class="stat reveal"><b><span data-count="98">0</span>%</b><span>mẹ phản hồi con ngủ ngon hơn và bớt khò khè sau khi được massage giữ ấm</span></div>
+      <div class="stat reveal"><div class="num"><span data-count="50000">0</span>+</div><div class="lbl">mẹ bỉm tin dùng</div></div>
+      <div class="stat reveal"><div class="num">4.9<small>/5</small></div><div class="stars">★★★★★</div><div class="lbl">sao dựa trên hơn 2.500+ đánh giá thực tế</div></div>
+      <div class="stat reveal"><div class="num"><span data-count="98">0</span>%</div><div class="lbl">mẹ phản hồi con ngủ ngon hơn và bớt khò khè sau khi được massage giữ ấm</div></div>
     </div>
     <div class="reviews">
       <div class="review reveal"><span class="stars">★★★★★</span><p>“Trước đây mỗi lần giao mùa là bé nhà mình lại khò khè, đêm quấy khóc suốt vì khó thở. Từ ngày dùng tinh dầu tràm Home Care, tối nào tắm xong mình cũng massage chân và ngực cho con. Mùi thơm nhẹ, không hề bị hắc hay nóng rát da bé. Cu cậu ngủ một mạch đến sáng, mẹ khỏe mà con khỏe!”</p><div class="who"><span class="avatar">TH</span><div><b>Mẹ Thanh Hằng</b><small>Hà Nội · Bé 4 tháng tuổi</small></div></div></div>
