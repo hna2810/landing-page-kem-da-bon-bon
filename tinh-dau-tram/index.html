@@ -224,15 +224,6 @@ form.card .hint{text-align:center;color:var(--muted);font-size:14px;margin-botto
 .field.err input,.field.err textarea{border-color:var(--red)}
 .field .msg{display:none;color:var(--red);font-size:13px;margin-top:4px}
 .field.err .msg{display:block}
-.qty{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.qty label{cursor:pointer;border:2px solid var(--line);border-radius:20px;padding:12px;display:block;position:relative;background:var(--cream)}
-.qty input{position:absolute;opacity:0}
-.qty label:has(input:checked){border-color:var(--leaf);background:var(--leaf-light)}
-.qty b{display:block;font-size:16px}
-.qty small{color:var(--muted);font-size:13px;display:block}
-.qty .tag{position:absolute;top:-10px;right:10px;background:var(--red-dark);color:#fff;font-size:11px;font-weight:800;padding:2px 8px;border-radius:99px}
-.total{display:flex;justify-content:space-between;align-items:center;margin:16px 0;padding:14px 18px;background:var(--amber-light);border-radius:20px;font-weight:700}
-.total b{font-size:22px;color:var(--red-dark)}
 form.card .btn{width:100%}
 .form-foot{text-align:center;font-size:13px;color:var(--muted);margin-top:10px}
 .success{display:none;text-align:center;padding:20px 6px}
@@ -471,7 +462,7 @@ body:has(.sticky:not(.show)) .float-call{bottom:16px}
         </table>
         <ul>
           <li>Chai 30ml tiện lợi – dùng tiết kiệm cho cả gia đình</li>
-          <li>Mua 2 chai – miễn phí vận chuyển</li>
+          <li>Freeship toàn quốc</li>
           <li>Kiểm tra hàng trước khi thanh toán</li>
           <li>Tư vấn miễn phí cách dùng cho bé</li>
         </ul>
@@ -485,13 +476,6 @@ body:has(.sticky:not(.show)) .float-call{bottom:16px}
           <div class="field"><label for="fName">Họ và tên mẹ *</label><input id="fName" name="name" autocomplete="name" placeholder="VD: Nguyễn Thu Hà"><div class="msg">Vui lòng nhập họ tên</div></div>
           <div class="field"><label for="fPhone">Số điện thoại *</label><input id="fPhone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="VD: 0912 345 678"><div class="msg">Số điện thoại chưa đúng (10 số)</div></div>
           <div class="field"><label for="fAddr">Địa chỉ nhận hàng *</label><textarea id="fAddr" name="address" rows="2" autocomplete="street-address" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành"></textarea><div class="msg">Vui lòng nhập địa chỉ nhận hàng</div></div>
-          <div class="field"><label>Số lượng</label>
-            <div class="qty">
-              <label><input type="radio" name="qty" value="1" checked><b>1 chai</b><small>49.000đ</small></label>
-              <label><span class="tag">Phổ biến</span><input type="radio" name="qty" value="2"><b>2 chai</b><small>98.000đ · Miễn phí vận chuyển</small></label>
-            </div>
-          </div>
-          <div class="total"><span>Tổng thanh toán</span><b id="totalPrice">49.000đ</b></div>
           <button type="submit" class="btn btn-buy" id="submitBtn">Đặt mua ngay – Bảo vệ sức khỏe bé</button>
           <p class="form-foot">(Tư vấn miễn phí &amp; Kiểm tra hàng trước khi thanh toán)</p>
         </div>
@@ -568,7 +552,6 @@ const CONFIG = {
 /* ============================================================ */
 
 const $ = s => document.querySelector(s);
-const vnd = n => n.toLocaleString('vi-VN') + 'đ';
 
 // Logo, hotline, zalo
 (() => {
@@ -647,11 +630,6 @@ document.querySelectorAll('[data-count]').forEach(el => countIO.observe(el));
   }).observe(el));
 })();
 
-// Quantity → total
-document.querySelectorAll('input[name="qty"]').forEach(r => r.addEventListener('change', () => {
-  $('#totalPrice').textContent = vnd(CONFIG.unitPrice * +r.value);
-}));
-
 // CTA tracking hook
 document.querySelectorAll('[data-cta]').forEach(a => a.addEventListener('click', () => {
   if (window.fbq) fbq('track', 'InitiateCheckout');
@@ -678,7 +656,7 @@ document.querySelectorAll('[data-cta]').forEach(a => a.addEventListener('click',
     }
     if (!ok) return;
 
-    const qty = +form.qty.value;
+    const qty = 1;
     const order = {
       product: 'Tinh dầu tràm giữ ấm cho bé 30ml',
       name: $('#fName').value.trim(),
@@ -686,7 +664,7 @@ document.querySelectorAll('[data-cta]').forEach(a => a.addEventListener('click',
       address: $('#fAddr').value.trim(),
       quantity: qty,
       total: CONFIG.unitPrice * qty,
-      freeship: qty >= 2,
+      freeship: true,
       source: location.href,
       createdAt: new Date().toISOString()
     };
@@ -718,8 +696,7 @@ document.querySelectorAll('[data-cta]').forEach(a => a.addEventListener('click',
   const pick = a => a[Math.floor(Math.random() * a.length)];
   const toast = $('#toast');
   const show = () => {
-    const q = Math.random() < .55 ? 2 : 1;
-    $('#toastText').innerHTML = `<b>${pick(names)}</b> (${pick(places)}) vừa đặt <b>${q} chai</b> tinh dầu tràm<br><small>${Math.floor(Math.random() * 9) + 1} phút trước</small>`;
+    $('#toastText').innerHTML = `<b>${pick(names)}</b> (${pick(places)}) vừa đặt <b>tinh dầu tràm</b><br><small>${Math.floor(Math.random() * 9) + 1} phút trước</small>`;
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 4500);
     if (left > 4 && Math.random() < .5) { left--; setStock(); }
