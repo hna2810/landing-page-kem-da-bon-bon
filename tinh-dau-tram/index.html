@@ -36,6 +36,11 @@ a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:0}
 .container{max-width:1120px;margin:0 auto;padding:0 16px}
 section{padding:64px 0;position:relative}
+/* Soft wave dividers: each coloured section draws a wave in its own top colour */
+.wave::before{content:'';position:absolute;left:0;right:0;top:-47px;height:48px;background:var(--wave);pointer-events:none;z-index:1;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath d='M0 60V34C180 8 360 0 560 14S940 52 1140 40 1360 14 1440 22V60Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath d='M0 60V34C180 8 360 0 560 14S940 52 1140 40 1360 14 1440 22V60Z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+.wave.flip::before{transform:scaleX(-1)}
+@media (max-width:600px){.wave::before{top:-27px;height:28px}}
 .eyebrow{display:inline-block;font-size:14px;font-weight:700;letter-spacing:.02em;color:var(--amber-dark);background:var(--amber-light);padding:7px 18px;border-radius:99px;margin-bottom:14px}
 h1,h2,h3{line-height:1.3;font-weight:700;font-family:var(--head);letter-spacing:-.005em}
 h2{font-size:clamp(26px,4.4vw,38px);margin-bottom:12px}
@@ -119,7 +124,7 @@ header.nav .container{display:flex;align-items:center;justify-content:space-betw
 .pain-card{align-items:flex-start}
 
 /* Pain */
-.pain{background:#fff}
+.pain{background:#fff;--wave:#fff}
 .pain-qs{display:grid;gap:12px;margin:22px auto 28px;max-width:760px}
 .pain-q{font-family:var(--head);font-weight:600;font-size:clamp(17px,2.4vw,20px);background:var(--amber-light);border-radius:28px;padding:14px 20px;color:var(--amber-dark)}
 .pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:28px}
@@ -132,7 +137,7 @@ header.nav .container{display:flex;align-items:center;justify-content:space-betw
 @keyframes bob{50%{transform:translateY(6px)}}
 
 /* Benefits */
-.benefits{background:linear-gradient(180deg,var(--leaf-light),var(--cream))}
+.benefits{background:linear-gradient(180deg,var(--leaf-light),var(--cream));--wave:var(--leaf-light)}
 .ben-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:32px}
 .ben-card{background:#fff;border-radius:var(--radius);padding:26px 20px;box-shadow:var(--shadow);transition:transform .25s}
 .ben-card:hover{transform:translateY(-6px)}
@@ -160,7 +165,7 @@ header.nav .container{display:flex;align-items:center;justify-content:space-betw
 .oi1{top:-2%;left:calc(50% - 43px)}.oi2{right:-2%;top:calc(50% - 43px)}.oi3{bottom:-2%;left:calc(50% - 43px)}.oi4{left:-2%;top:calc(50% - 43px)}
 
 /* Compact */
-.compact{background:linear-gradient(120deg,var(--mint),#e9f4f8 50%,var(--pink));color:var(--ink);padding:52px 0;text-align:center;overflow:hidden}
+.compact{background:linear-gradient(120deg,var(--mint),#e9f4f8 50%,var(--pink));color:var(--ink);padding:52px 0;text-align:center;--wave:linear-gradient(120deg,var(--mint),#e9f4f8 50%,var(--pink))}
 .compact .row{display:flex;justify-content:center;flex-wrap:wrap;gap:12px 14px;margin-top:16px;font-weight:600;color:var(--leaf-dark)}
 .compact .row span{background:rgba(255,255,255,.75);padding:8px 16px;border-radius:99px}
 
@@ -174,7 +179,7 @@ header.nav .container{display:flex;align-items:center;justify-content:space-betw
 .warn{margin-top:24px;background:var(--amber-light);border:0;border-radius:24px;padding:16px 20px;font-size:15px}
 
 /* Proof */
-.proof{background:#fff}
+.proof{background:#fff;--wave:#fff}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}
 .stat{background:var(--cream);border-radius:var(--radius);padding:22px;text-align:center}
 .stat b{display:block;font-size:clamp(28px,4vw,40px);color:var(--leaf)}
@@ -191,7 +196,7 @@ header.nav .container{display:flex;align-items:center;justify-content:space-betw
 .trust-box b{color:var(--leaf-dark)}
 
 /* Order */
-.order{background:radial-gradient(800px 400px at 50% 0,#ffe9dc,transparent 70%),radial-gradient(600px 400px at 100% 100%,var(--mint),transparent 70%),var(--cream)}
+.order{--wave:var(--cream);background:radial-gradient(800px 400px at 50% 35%,#ffe9dc,transparent 70%),radial-gradient(600px 400px at 100% 100%,var(--mint),transparent 70%),var(--cream)}
 .order-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:32px;align-items:start;margin-top:30px}
 .offer{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
 .offer-head{background:var(--leaf);color:#fff;padding:14px 20px;font-weight:800;text-align:center;letter-spacing:.02em}
@@ -234,9 +239,9 @@ form.card .btn{width:100%}
 .success.show{display:block}
 
 /* Final CTA + footer */
-.final{background:linear-gradient(160deg,var(--leaf-light),#fdeef3);text-align:center}
+.final{background:linear-gradient(180deg,var(--leaf-light),#fdeef3);text-align:center;--wave:var(--leaf-light)}
 .final p{color:var(--muted);max-width:620px;margin:0 auto 22px}
-footer{background:#f5efe7;color:var(--muted);font-size:14px;padding:30px 0;text-align:center}
+footer{position:relative;--wave:#f5efe7;background:#f5efe7;color:var(--muted);font-size:14px;padding:30px 0;text-align:center}
 footer a{color:var(--leaf-dark);font-weight:700}
 
 /* Sticky + floats */
@@ -328,7 +333,7 @@ body:has(.sticky:not(.show)) .float-call{bottom:16px}
 </section>
 
 <!-- PAIN -->
-<section class="pain">
+<section class="pain wave">
   <div class="container center">
     <div class="pain-qs">
       <div class="pain-q reveal">“Mẹ có đang lo lắng mỗi khi đêm xuống hay thời tiết giao mùa?”</div>
@@ -349,7 +354,7 @@ body:has(.sticky:not(.show)) .float-call{bottom:16px}
 </section>
 
 <!-- BENEFITS -->
-<section class="benefits">
+<section class="benefits wave flip">
   <div class="container center">
     <h2 class="reveal">Đồng hành cùng mẹ <em>chăm sóc và bảo vệ</em> bé yêu mỗi ngày</h2>
     <p class="lead reveal">Sản phẩm được nghiên cứu công thức phù hợp cho làn da mỏng manh của bé, mang đến 4 công dụng thiết thực:</p>
@@ -385,7 +390,7 @@ body:has(.sticky:not(.show)) .float-call{bottom:16px}
 </section>
 
 <!-- COMPACT -->
-<section class="compact">
+<section class="compact wave">
   <div class="container">
     <h2 class="reveal">Nhỏ gọn trong tay mẹ, tiện chăm sóc bé mỗi ngày</h2>
     <div class="img-row reveal" style="margin:0 auto 22px"><!-- 📷 ẢNH 17: Ảnh chai tinh dầu cầm gọn trong lòng bàn tay mẹ — Ảnh ngang 1200×675px (16:9), cho thấy kích thước nhỏ gọn. Dán URL vào CONFIG.images.handheld -->
@@ -395,7 +400,7 @@ body:has(.sticky:not(.show)) .float-call{bottom:16px}
 </section>
 
 <!-- USAGE -->
-<section>
+<section class="usage wave flip" style="--wave:var(--cream)">
   <div class="container">
     <div class="center">
       <h2 class="reveal">Dễ dàng chăm sóc bé <em>mỗi ngày</em></h2>
@@ -413,7 +418,7 @@ body:has(.sticky:not(.show)) .float-call{bottom:16px}
 </section>
 
 <!-- PROOF -->
-<section class="proof">
+<section class="proof wave">
   <div class="container">
     <div class="center">
       <h2 class="reveal">Hơn <em>50.000+ mẹ bỉm</em> đã tin dùng &amp; đồng hành cùng tinh dầu tràm Home Care</h2>
@@ -448,7 +453,7 @@ body:has(.sticky:not(.show)) .float-call{bottom:16px}
 </section>
 
 <!-- ORDER -->
-<section class="order" id="dat-hang">
+<section class="order wave" id="dat-hang">
   <div class="container">
     <div class="center">
       <h2 class="reveal">Cho con cơ thể ấm – <em>Cho mẹ giấc ngủ ngon</em></h2>
@@ -500,7 +505,7 @@ body:has(.sticky:not(.show)) .float-call{bottom:16px}
 </section>
 
 <!-- FINAL -->
-<section class="final">
+<section class="final wave flip">
   <div class="container">
     <h2 class="reveal">Đừng để đêm lạnh làm <em>gián đoạn giấc ngủ</em> của con</h2>
     <p class="reveal">Chỉ 49.000đ cho một mùa đông ấm áp – ưu đãi flash sale có thể kết thúc bất cứ lúc nào.</p>
@@ -508,7 +513,7 @@ body:has(.sticky:not(.show)) .float-call{bottom:16px}
   </div>
 </section>
 
-<footer>
+<footer class="wave">
   <div class="container">
     <p>© Home Care Việt Nam · Chăm sóc mẹ &amp; bé tại nhà</p>
     <p>Hotline: <a id="footPhone" href="#">—</a> · <a href="https://homecarevietnam.com/products/tinh-dau-tram-cho-be" target="_blank" rel="noopener">homecarevietnam.com</a></p>
