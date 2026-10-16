@@ -49,7 +49,10 @@ function lx_enqueue_scripts() {
 
     $sheet_endpoint  = lx_get_field('lx_sheet_endpoint', 'option', '');
     $fb_pixel        = lx_get_field('lx_facebook_pixel_id', 'option', '');
-    $ga_id           = lx_get_field('lx_google_analytics_id', 'option', '');
+    $ga_id           = lx_get_field('lx_google_analytics_id', 'option', 'G-DS38TS5KPW');
+    if (empty($ga_id)) {
+        $ga_id = 'G-DS38TS5KPW';
+    }
     $tiktok_pixel    = lx_get_field('lx_tiktok_pixel_id', 'option', '');
 
     // Packages
@@ -227,3 +230,27 @@ function lx_enqueue_scripts() {
     wp_localize_script('lx-landing-main', 'BONBON_CONFIG', $bonbon_config);
 }
 add_action('wp_enqueue_scripts', 'lx_enqueue_scripts');
+
+/**
+ * Output Google Analytics 4 (gtag.js) in head
+ */
+function lx_print_google_analytics() {
+    $ga_id = lx_get_field('lx_google_analytics_id', 'option', 'G-DS38TS5KPW');
+    if (empty($ga_id)) {
+        $ga_id = 'G-DS38TS5KPW';
+    }
+    $ga_id = trim(strip_tags($ga_id));
+    if (!empty($ga_id)) {
+        ?>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $ga_id; ?>"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '<?php echo $ga_id; ?>');
+</script>
+        <?php
+    }
+}
+add_action('wp_head', 'lx_print_google_analytics', 1);

@@ -16,7 +16,7 @@ document.documentElement.classList.add('js');
             fbq('track', 'PageView');
             fbq('track', 'ViewContent', { content_name: cfg.productName, value: cfg.price, currency: 'VND' });
         }
-        if (cfg.googleAnalyticsId) {
+        if (cfg.googleAnalyticsId && !window.gtag) {
             var g = document.createElement('script');
             g.async = true;
             g.src = 'https://www.googletagmanager.com/gtag/js?id=' + cfg.googleAnalyticsId;
