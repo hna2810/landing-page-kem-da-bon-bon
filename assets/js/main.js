@@ -504,29 +504,23 @@ document.addEventListener('wpcf7mailsent', function (event) {
         });
     }
 
-    // Client-side backup gửi Google Sheet nếu có endpoint
-    if (window.BONBON_CONFIG && window.BONBON_CONFIG.sheetEndpoint && clientName && clientPhone) {
-        try {
-            const formData = new URLSearchParams({
-                time: new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }),
-                name: clientName,
-                phone: clientPhone,
-                package: selectedPackage,
-                product: selectedPackage,
-                price: leadValue + 'đ',
-                page: location.href.split('?')[0],
-                user_agent: navigator.userAgent
-            });
-            fetch(window.BONBON_CONFIG.sheetEndpoint, { method: 'POST', mode: 'no-cors', body: formData });
-        } catch (e) {}
-    }
-
     const wpcf7Container = document.querySelector('.order-card .wpcf7');
     const successBox = document.getElementById('successBox');
     if (wpcf7Container && successBox) {
         wpcf7Container.style.display = 'none';
         successBox.classList.add('show');
         successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}, false);
+
+// Ngăn bấm gửi nhiều lần liên tiếp khi submit Contact Form 7
+document.addEventListener('wpcf7submit', function (event) {
+    const btn = event.target ? event.target.querySelector('.wpcf7-submit, [type="submit"]') : null;
+    if (btn) {
+        btn.disabled = true;
+        setTimeout(function () {
+            if (btn) btn.disabled = false;
+        }, 5000);
     }
 }, false);
 
