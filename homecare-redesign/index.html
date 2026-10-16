@@ -7,246 +7,307 @@
 <meta name="description" content="Home Care Việt Nam — Dịch vụ chăm sóc mẹ bầu, mẹ sau sinh, bé sơ sinh và mỹ phẩm thuần Việt.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-/* Bố cục: website thương hiệu thật — nền sáng, xanh lá Home Care, ảnh làm chủ, chữ tiết chế */
+/* Bố cục: mềm mại, ấm áp — khung ảnh bo tròn, hình vòm, chồng lớp nhẹ, sóng chuyển cảnh, chữ viết tay giống banner gốc */
 :root{
-  --paper:#FBFBF8;
-  --mist:#F0F2EC;
-  --green:#3D6B35;
-  --green-dark:#1F3625;
-  --ink:#1C2420;
-  --sub:#5B655E;
-  --line:#DDE2D8;
-  --ph:#E3E7DF;
-  --ph-ink:#7D877F;
-  --head:'Newsreader',Georgia,'Times New Roman',serif;
-  --body:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --paper:#FFFCF7;
+  --cream:#FBF3EA;
+  --peach:#F7E4D7;
+  --sage:#EAF1E3;
+  --sage-2:#D5E4C9;
+  --green:#4E7B3E;
+  --green-dark:#2E4A29;
+  --ink:#2C352E;
+  --sub:#65705F;
+  --line:#EADFD2;
+  --round:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --script:'Dancing Script','Brush Script MT',cursive;
   color-scheme:light;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+body{background:var(--paper);color:var(--ink);font-family:var(--round);font-size:16.5px;line-height:1.7;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 img,svg{display:block}
 button{font:inherit;cursor:pointer}
-.wrap{max-width:1200px;margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
-h1,h2,h3{font-family:var(--head);font-weight:500;color:var(--ink);text-wrap:balance;letter-spacing:-.01em}
-h2{font-size:clamp(28px,3vw,38px);line-height:1.2}
-.sub{color:var(--sub)}
-.sec{padding-block:88px}
-.sec.alt{background:var(--mist)}
-.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:36px;flex-wrap:wrap}
-.sec-head p{margin-top:8px;color:var(--sub);max-width:60ch}
-.more{font-size:15px;font-weight:500;color:var(--green);white-space:nowrap}
-.more:hover{text-decoration:underline;text-underline-offset:4px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 24px;border-radius:4px;font-size:15px;font-weight:500;border:1px solid transparent;transition:background .2s,color .2s,border-color .2s}
-.btn-green{background:var(--green);color:#fff}
-.btn-green:hover{background:var(--green-dark)}
-.btn-outline{border-color:var(--green);color:var(--green);background:transparent}
-.btn-outline:hover{background:var(--green);color:#fff}
-a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.wrap{max-width:1180px;margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--round);font-weight:800;color:var(--green-dark);text-wrap:balance;letter-spacing:-.01em;line-height:1.2}
+h2{font-size:clamp(28px,3.2vw,40px)}
+.script{font-family:var(--script);font-weight:600;color:var(--green);font-size:1.15em;letter-spacing:0}
+.eyebrow{font-family:var(--script);font-size:24px;color:#C27E5F;line-height:1;display:block;margin-bottom:6px}
+.sec{padding-block:96px;position:relative}
+.center{text-align:center}
+.center p.intro{margin-inline:auto}
+p.intro{color:var(--sub);max-width:58ch;margin-top:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 28px;border-radius:999px;font-weight:700;font-size:15.5px;border:2px solid transparent;transition:transform .25s,background .25s,box-shadow .25s}
+.btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+.btn-green{background:var(--green);color:#fff;box-shadow:0 10px 24px -10px rgba(78,123,62,.6)}
+.btn-green:hover{background:var(--green-dark);transform:translateY(-2px)}
+.btn-soft{background:#fff;color:var(--green-dark);border-color:var(--sage-2)}
+.btn-soft:hover{border-color:var(--green);transform:translateY(-2px)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--sage-2);outline-offset:2px}
 
-/* Khung chờ ảnh thật */
-.ph{position:relative;background:var(--ph);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--ph-ink);text-align:center;padding:16px;max-width:100%}
-.ph svg{width:32px;height:32px;stroke:currentColor;fill:none;stroke-width:1.4;opacity:.8}
-.ph span{font-size:12.5px;line-height:1.4}
-.ph b{font-weight:500}
-.r43{aspect-ratio:4/3}.r11{aspect-ratio:1/1}.r169{aspect-ratio:16/9}.r916{aspect-ratio:9/16}.r45{aspect-ratio:4/5}.r32{aspect-ratio:3/2}
+/* Khung ảnh (thay ảnh thật) */
+.ph{position:relative;overflow:hidden;background:radial-gradient(120% 90% at 25% 15%,#fff8 0,transparent 55%),var(--sage);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:18px;color:#7E8C76;max-width:100%}
+.ph.peach{background:radial-gradient(120% 90% at 25% 15%,#fff8 0,transparent 55%),var(--peach);color:#A98470}
+.ph.cream{background:radial-gradient(120% 90% at 25% 15%,#fff8 0,transparent 55%),var(--cream);color:#A6927D}
+.ph svg{width:30px;height:30px;stroke:currentColor;fill:none;stroke-width:1.5;opacity:.75}
+.ph span{font-size:12.5px;line-height:1.45;font-weight:600}
+.r-arch{border-radius:999px 999px 32px 32px}
+.r-xl{border-radius:32px}
+.r-lg{border-radius:24px}
+.r-circle{border-radius:50%}
+.r-blob{border-radius:62% 38% 46% 54% / 48% 56% 44% 52%}
+
+/* Wave dividers */
+.wave{display:block;width:100%;height:60px}
+.wave path{fill:currentColor}
 
 /* Mock notice */
-.mock{background:var(--green-dark);color:#E4EADF;font-size:12.5px;text-align:center;padding:7px 16px}
+.mock{background:var(--green-dark);color:#E6EEDF;font-size:12.5px;text-align:center;padding:7px 16px}
 
-/* Topbar + header */
-.topbar{border-bottom:1px solid var(--line);font-size:13px;color:var(--sub)}
-.topbar .wrap{display:flex;justify-content:space-between;gap:16px;height:38px;align-items:center}
-.topbar .wrap>div{display:flex;gap:24px}
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--line)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:76px;gap:24px}
+/* Header */
+.topbar{background:var(--sage);font-size:13.5px;color:var(--green-dark)}
+.topbar .wrap{display:flex;justify-content:space-between;gap:16px;height:40px;align-items:center}
+.topbar .wrap>div{display:flex;gap:22px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(255,252,247,.94);backdrop-filter:blur(10px)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:80px;gap:24px}
 .logo{display:flex;align-items:center;gap:10px}
-.logo-mark{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--green);display:grid;place-items:center;color:var(--green);font-family:var(--head);font-size:18px;font-weight:600}
-.logo b{display:block;font-family:var(--head);font-size:19px;font-weight:600;color:var(--green-dark);line-height:1.1}
-.logo small{font-size:11px;color:var(--sub);letter-spacing:.08em}
-nav ul{display:flex;gap:28px;list-style:none;font-size:15px}
-nav a{color:#36413A;padding-block:6px;border-bottom:2px solid transparent}
-nav a:hover,nav a.on{color:var(--green);border-color:var(--green)}
-.h-act{display:flex;align-items:center;gap:8px}
-.icon{width:42px;height:42px;display:grid;place-items:center;border-radius:4px;color:var(--ink);background:none;border:none}
-.icon:hover{background:var(--mist)}
-.icon svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.h-act .btn{height:42px;padding:0 18px;margin-left:8px}
+.logo-mark{width:46px;height:46px;border-radius:50%;background:var(--sage);display:grid;place-items:center;color:var(--green)}
+.logo-mark svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.logo b{display:block;font-size:20px;font-weight:800;color:var(--green-dark);line-height:1.05}
+.logo small{font-size:11.5px;color:var(--sub);letter-spacing:.12em;font-weight:700}
+nav ul{display:flex;gap:6px;list-style:none;font-size:15.5px;font-weight:600}
+nav a{color:#46524A;padding:8px 14px;border-radius:999px;transition:background .2s,color .2s}
+nav a:hover{background:var(--sage);color:var(--green-dark)}
+nav a.on{background:var(--green);color:#fff}
+.h-act{display:flex;align-items:center;gap:6px}
+.icon{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;color:var(--ink);background:none;border:none}
+.icon:hover{background:var(--sage)}
+.icon svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.h-act .btn{height:46px;padding:0 22px;margin-left:6px}
 .menu-btn{display:none}
 
 /* Hero */
-.hero{padding-block:56px 72px}
-.hero .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center}
-.hero-label{font-size:14px;font-weight:500;color:var(--green)}
-.hero h1{font-size:clamp(36px,4.4vw,56px);line-height:1.12;margin:14px 0 18px}
-.hero p.lead{font-size:17px;color:var(--sub);max-width:46ch}
-.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px;padding-top:24px;border-top:1px solid var(--line)}
-.facts b{display:block;font-size:14.5px;font-weight:600}
-.facts span{font-size:13.5px;color:var(--sub)}
-.hero .ph{height:100%;min-height:520px}
+.hero{background:linear-gradient(180deg,var(--paper) 0%,var(--cream) 100%);padding-top:40px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding-bottom:40px}
+.hero h1{font-size:clamp(36px,4.6vw,58px);margin:4px 0 18px}
+.hero h1 .script{display:block;font-size:1.12em;line-height:1.1;margin-top:4px}
+.hero p.lead{font-size:18px;color:var(--sub);max-width:44ch}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.trust{display:flex;align-items:center;gap:14px;margin-top:36px}
+.avatars{display:flex}
+.avatars .ph{width:44px;height:44px;border-radius:50%;border:3px solid var(--cream);padding:0;margin-left:-12px}
+.avatars .ph:first-child{margin-left:0}
+.trust b{display:block;font-size:15px;color:var(--green-dark)}
+.trust span{font-size:13.5px;color:var(--sub)}
+.hero-art{position:relative;height:560px}
+.hero-art .main{position:absolute;right:0;top:0;width:78%;height:100%}
+.hero-art .small{position:absolute;left:0;bottom:40px;width:42%;aspect-ratio:1;border:8px solid var(--cream)}
+.hero-art .leaf{position:absolute;left:8%;top:6%;width:120px;height:120px;color:var(--sage-2)}
+.hero-art .leaf svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.2}
+.bubble{position:absolute;background:#fff;border-radius:20px;padding:14px 18px;box-shadow:0 18px 40px -18px rgba(46,74,41,.35);display:flex;gap:12px;align-items:center;z-index:2}
+.bubble .dot{width:42px;height:42px;border-radius:50%;background:var(--peach);display:grid;place-items:center;color:#C27E5F;flex:none}
+.bubble .dot svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8}
+.bubble b{display:block;font-size:14.5px;color:var(--green-dark);line-height:1.3}
+.bubble span{font-size:12.5px;color:var(--sub)}
+.bubble.b1{right:-8px;top:60px}
+.bubble.b2{right:16%;bottom:-14px}
 
-/* Promise strip */
-.promise{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--mist)}
-.promise .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
-.promise .wrap>div{padding:26px 20px;border-left:1px solid var(--line)}
-.promise .wrap>div:first-child{border-left:none;padding-left:0}
-.promise b{display:block;font-size:15px;font-weight:600;color:var(--green-dark)}
-.promise span{font-size:14px;color:var(--sub)}
+/* Promise */
+.promise{background:var(--cream);padding-bottom:20px}
+.promise .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.pcard{background:#fff;border-radius:24px;padding:22px;display:flex;gap:14px;align-items:center;box-shadow:0 10px 30px -22px rgba(46,74,41,.4)}
+.pcard i{width:48px;height:48px;border-radius:16px;background:var(--sage);display:grid;place-items:center;color:var(--green);flex:none}
+.pcard i svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.pcard b{display:block;font-size:15px;color:var(--green-dark);line-height:1.3}
+.pcard span{font-size:13.5px;color:var(--sub)}
 
 /* About */
-.about .wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:56px;align-items:center}
-.about p{color:var(--sub);margin-top:16px;max-width:56ch}
-.about .herbs{margin-top:20px;font-size:14.5px;color:var(--ink)}
-.about .herbs strong{font-weight:600}
-.video{position:relative}
-.play{position:absolute;inset:0;margin:auto;width:68px;height:68px;border-radius:50%;background:#fff;display:grid;place-items:center;border:none;box-shadow:0 2px 12px rgba(0,0,0,.08)}
-.play svg{width:22px;height:22px;fill:var(--green);margin-left:3px}
-.video .ph span{position:absolute;bottom:14px;left:0;right:0}
+.about .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center}
+.about-art{position:relative}
+.about-art .ph{aspect-ratio:16/11;justify-content:flex-end;padding-bottom:16%}
+.about-art .ph svg{display:none}
+.about-art .play{position:absolute;left:50%;top:50%;translate:-50% -50%;width:76px;height:76px;border-radius:50%;background:#fff;border:none;display:grid;place-items:center;box-shadow:0 0 0 12px rgba(255,255,255,.45)}
+.about-art .play svg{width:24px;height:24px;fill:var(--green);margin-left:4px}
+.herbs{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.herbs span{background:var(--sage);color:var(--green-dark);font-weight:700;font-size:14px;padding:7px 14px;border-radius:999px}
+.herbs span:nth-child(even){background:var(--peach);color:#8A5A44}
+.link{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--green);margin-top:24px}
+.link svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .2s}
+.link:hover svg{transform:translateX(4px)}
 
 /* Services */
-.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.svc a{display:flex;flex-direction:column;gap:14px}
-.svc h3{font-size:22px}
-.svc p{font-size:14.5px;color:var(--sub);margin-top:-8px}
-.svc a:hover h3{color:var(--green)}
-.svc-mini{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:40px;padding-top:32px;border-top:1px solid var(--line)}
-.svc-mini a{display:flex;flex-direction:column;gap:10px;font-size:14.5px;font-weight:500}
-.svc-mini a:hover{color:var(--green)}
-.svc-mini .ph span{font-size:11.5px}
+.services{background:var(--sage)}
+.services .head{margin-bottom:48px}
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.svc a{background:#fff;border-radius:32px;padding:14px 14px 26px;transition:transform .3s,box-shadow .3s}
+.svc a:hover{transform:translateY(-6px);box-shadow:0 26px 50px -30px rgba(46,74,41,.5)}
+.svc a:nth-child(2){margin-top:36px}
+.svc .ph{aspect-ratio:4/3.4;border-radius:24px 24px 24px 24px}
+.svc h3{font-size:21px;margin:18px 10px 6px}
+.svc p{font-size:15px;color:var(--sub);margin:0 10px}
+.mini{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:48px}
+.mini a{display:flex;align-items:center;gap:10px;background:#fff;border-radius:999px;padding:8px 18px 8px 8px;font-weight:700;font-size:15px;color:var(--green-dark);transition:background .2s}
+.mini a:hover{background:var(--paper)}
+.mini .ph{width:40px;height:40px;border-radius:50%;padding:0}
 
 /* Products */
-.tabs{display:flex;gap:6px;flex-wrap:wrap}
-.tabs button{height:36px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:14px;color:var(--sub)}
-.tabs button.on{background:var(--green-dark);border-color:var(--green-dark);color:#fff}
-.prods{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.prod{display:flex;flex-direction:column;gap:12px;min-width:0}
-.prod .ph{background:#EEF0EA}
-.prod .badge{position:absolute;top:12px;left:12px;background:var(--green);color:#fff;font-size:12px;font-weight:500;padding:3px 8px;border-radius:3px}
-.prod h3{font-family:var(--body);font-size:15px;font-weight:500;line-height:1.45;min-height:2.9em}
-.prod .rate{font-size:13px;color:var(--sub)}
-.prod .rate i{font-style:normal;color:#C08A2E;letter-spacing:1px}
-.prod .price{font-size:17px;font-weight:600;color:var(--green-dark);font-variant-numeric:tabular-nums}
-.prod .btn{height:42px;margin-top:4px}
+.prod-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tabs button{height:40px;padding:0 18px;border-radius:999px;border:none;background:var(--cream);font-weight:700;font-size:14.5px;color:var(--sub)}
+.tabs button.on{background:var(--green);color:#fff}
+.prods{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.prod{background:#fff;border-radius:28px;padding:12px 12px 20px;border:1px solid var(--line);display:flex;flex-direction:column;gap:8px;min-width:0;transition:transform .3s,box-shadow .3s}
+.prod:hover{transform:translateY(-4px);box-shadow:0 22px 44px -28px rgba(46,74,41,.45)}
+.prod .ph{aspect-ratio:1;border-radius:20px;margin-bottom:6px}
+.prod .badge{position:absolute;top:12px;left:12px;background:#E9896A;color:#fff;font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px}
+.prod h3{font-size:15.5px;font-weight:700;line-height:1.45;color:var(--ink);padding-inline:6px;min-height:2.9em}
+.prod .row{display:flex;justify-content:space-between;align-items:center;padding-inline:6px;margin-top:auto}
+.prod .price{font-size:18px;font-weight:800;color:var(--green-dark)}
+.prod .stars{font-size:12.5px;color:#E0A24A;letter-spacing:1px}
+.prod .add{width:44px;height:44px;border-radius:50%;background:var(--sage);color:var(--green);display:grid;place-items:center;border:none;transition:background .2s,color .2s}
+.prod .add:hover{background:var(--green);color:#fff}
+.prod .add svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 
 /* Factory */
-.factory{background:var(--green-dark);color:#E9EEE6}
-.factory .wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:56px;align-items:center}
-.factory h2{color:#fff}
-.factory p{color:#B9C5B7;margin-top:14px;max-width:50ch}
-.points{list-style:none;margin:28px 0 32px;display:grid;gap:18px}
-.points li{padding-left:18px;border-left:2px solid #6F9A62}
-.points b{display:block;color:#fff;font-weight:500}
-.points span{font-size:14.5px;color:#B9C5B7}
-.factory .btn-outline{border-color:#9DB894;color:#fff}
-.factory .btn-outline:hover{background:#fff;color:var(--green-dark);border-color:#fff}
-.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.fgrid .ph{background:#2C4733;color:#97A894}
-.fgrid .ph:first-child{grid-column:span 2}
+.factory{background:var(--cream)}
+.factory .wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.collage{position:relative;height:500px}
+.collage .a{position:absolute;left:0;top:0;width:64%;height:78%}
+.collage .b{position:absolute;right:0;top:12%;width:42%;aspect-ratio:1}
+.collage .c{position:absolute;right:8%;bottom:0;width:48%;height:40%;border:8px solid var(--cream)}
+.steps{list-style:none;display:grid;gap:14px;margin:28px 0 30px}
+.steps li{display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:20px;padding:16px 18px}
+.steps i{width:40px;height:40px;border-radius:14px;background:var(--sage);color:var(--green);display:grid;place-items:center;flex:none}
+.steps i svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.steps b{display:block;color:var(--green-dark);font-size:15.5px}
+.steps span{font-size:14.5px;color:var(--sub)}
 
 /* Branches */
-.branches .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
-.blist{display:grid;margin-top:28px;border-top:1px solid var(--line)}
-.blist div{display:grid;grid-template-columns:140px 1fr auto;gap:16px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--line)}
-.blist b{font-weight:600;color:var(--green-dark)}
-.blist span{color:var(--sub);font-size:15px}
-.blist a{font-size:14px;color:var(--green);font-weight:500}
+.branches .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.bcards{display:grid;gap:14px;margin-top:28px}
+.bcard{display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px 20px;transition:border-color .2s}
+.bcard:hover{border-color:var(--sage-2)}
+.bcard .pin{width:46px;height:46px;border-radius:50%;background:var(--peach);color:#C27E5F;display:grid;place-items:center;flex:none}
+.bcard .pin svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8}
+.bcard b{display:block;color:var(--green-dark)}
+.bcard span{font-size:14.5px;color:var(--sub)}
+.bcard a{margin-left:auto;font-weight:700;font-size:14px;color:var(--green);white-space:nowrap}
 
 /* Reviews */
-.reviews-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.review{position:relative;display:flex;flex-direction:column;gap:10px}
-.review .play{width:52px;height:52px;top:-40px}
-.review .play svg{width:18px;height:18px}
-.review b{font-size:15px;font-weight:500}
-.review span{font-size:13.5px;color:var(--sub)}
+.reviews{background:var(--peach)}
+.reviews .eyebrow{color:var(--green)}
+.rv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:44px}
+.rv{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:9/14}
+.rv .ph{position:absolute;inset:0;border-radius:0;background:radial-gradient(120% 90% at 25% 15%,#fff8 0,transparent 55%),#F1D3C1;color:#A98470}
+.rv:nth-child(even){margin-top:30px}
+.rv .play{position:absolute;left:50%;top:42%;translate:-50% -50%;width:58px;height:58px;border-radius:50%;background:#fff;display:grid;place-items:center;border:none;z-index:2}
+.rv .play svg{width:18px;height:18px;fill:#C27E5F;margin-left:3px}
+.rv .cap{position:absolute;left:12px;right:12px;bottom:12px;background:#fff;border-radius:18px;padding:12px 14px;z-index:2}
+.rv .cap b{display:block;font-size:14.5px;color:var(--green-dark);line-height:1.35}
+.rv .cap span{font-size:12.5px;color:var(--sub)}
 
-/* Gallery */
-.gallery{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:220px 220px;gap:12px}
-.gallery .ph:first-child{grid-row:span 2}
-.gallery .ph{height:100%}
+/* Community */
+.community .gal{display:grid;grid-template-columns:1.3fr 1fr 1fr;grid-template-rows:200px 200px;gap:16px;margin-top:40px}
+.community .gal .ph:first-child{grid-row:span 2;border-radius:32px}
+.community .gal .ph{border-radius:24px}
+.community .gal .ph:nth-child(3){border-radius:24px 80px 24px 24px}
 
 /* News */
-.news{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-.news a{display:flex;flex-direction:column;gap:12px}
-.news .meta{font-size:13px;color:var(--sub);display:flex;gap:10px}
-.news .meta em{font-style:normal;color:var(--green);font-weight:500}
-.news h3{font-size:21px;line-height:1.3}
-.news a:hover h3{color:var(--green)}
-.news p{font-size:14.5px;color:var(--sub)}
+.news{background:var(--sage)}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:40px}
+.post{background:#fff;border-radius:28px;padding:12px 12px 24px;transition:transform .3s}
+.post:hover{transform:translateY(-4px)}
+.post .ph{aspect-ratio:3/2;border-radius:20px}
+.post .tag{display:inline-block;margin:16px 10px 8px;background:var(--peach);color:#8A5A44;font-size:12.5px;font-weight:800;padding:4px 12px;border-radius:999px}
+.post h3{font-size:18px;line-height:1.4;margin:0 10px 8px}
+.post p{font-size:14.5px;color:var(--sub);margin:0 10px}
 
 /* Partners */
-.partners{padding-block:48px;border-top:1px solid var(--line)}
-.partners .wrap{display:flex;align-items:center;gap:40px;flex-wrap:wrap}
-.partners p{font-size:14px;color:var(--sub);flex:0 0 auto}
-.plogos{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;flex:1;min-width:0}
-.plogos .ph{height:72px;background:var(--mist)}
+.partners{padding-block:56px}
+.partners .wrap{display:flex;align-items:center;gap:32px;flex-wrap:wrap;justify-content:center}
+.partners p{font-weight:700;color:var(--sub)}
+.plogos{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.plogos .ph{width:150px;height:70px;border-radius:999px;background:var(--cream);padding:0}
 
 /* Booking */
-.booking{background:var(--mist);border-top:1px solid var(--line)}
-.booking .wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:56px;align-items:center}
-.booking p{color:var(--sub);margin-top:12px;max-width:44ch}
-.hot{margin-top:24px;font-size:15px}
-.hot b{display:block;font-family:var(--head);font-size:30px;font-weight:500;color:var(--green-dark);font-variant-numeric:tabular-nums}
-form{background:#fff;border:1px solid var(--line);border-radius:6px;padding:32px;display:grid;gap:16px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.booking .box{background:var(--green);border-radius:40px;display:grid;grid-template-columns:1fr 1.1fr;gap:40px;padding:56px;position:relative;overflow:hidden;color:#EAF2E4}
+.booking .box::before{content:"";position:absolute;width:340px;height:340px;border-radius:50%;background:rgba(255,255,255,.07);left:-120px;bottom:-160px}
+.booking .box::after{content:"";position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.06);right:38%;top:-90px}
+.booking h2{color:#fff}
+.booking h2 .script{color:#F6D9C6}
+.booking p{color:#D7E5CF;margin-top:12px;max-width:42ch}
+.perks{list-style:none;display:grid;gap:10px;margin-top:24px}
+.perks li{display:flex;gap:10px;align-items:center;font-weight:600}
+.perks li::before{content:"";width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.18) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center/14px no-repeat;flex:none}
+.hot{margin-top:26px;font-weight:600}
+.hot b{display:block;font-size:30px;font-weight:800;color:#fff}
+form{background:#fff;border-radius:28px;padding:32px;display:grid;gap:14px;position:relative;z-index:1;color:var(--ink)}
+form h3{font-size:22px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .field{display:grid;gap:6px;min-width:0}
-.field label{font-size:13.5px;font-weight:500}
-.field input,.field select{height:48px;border:1px solid var(--line);border-radius:4px;padding:0 14px;font:inherit;font-size:15px;background:#fff;color:var(--ink);width:100%}
-.field input:focus,.field select:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(61,107,53,.15)}
-form .btn{width:100%;height:50px}
+.field label{font-size:14px;font-weight:700;color:var(--green-dark)}
+.field input,.field select{height:50px;border:2px solid var(--cream);background:var(--cream);border-radius:16px;padding:0 16px;font:inherit;font-size:15.5px;color:var(--ink);width:100%}
+.field input:focus,.field select:focus{outline:none;border-color:var(--sage-2);background:#fff}
+form .btn{width:100%}
 .note{font-size:13px;color:var(--sub);text-align:center}
-.ok{display:none;color:var(--green);font-weight:500;text-align:center}
+.ok{display:none;color:var(--green);font-weight:700;text-align:center}
 
 /* Footer */
-footer{background:var(--green-dark);color:#B9C5B7;font-size:14.5px;padding-block:64px 0}
-.fcols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.3fr;gap:40px;padding-bottom:48px}
+footer{background:var(--green-dark);color:#C4D3BC;font-size:15px}
+footer .wave{color:var(--green-dark);background:var(--paper)}
+.fcols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.3fr;gap:40px;padding-block:48px}
 footer .logo b{color:#fff}
-footer .logo small{color:#97A894}
-footer .logo-mark{border-color:#9DB894;color:#fff}
+footer .logo small{color:#A9BBA1}
+footer .logo-mark{background:rgba(255,255,255,.1);color:#fff}
 footer .about-f{margin-top:16px;max-width:30ch}
-footer h4{font-family:var(--body);font-size:14px;font-weight:600;color:#fff;margin-bottom:16px}
-footer ul{list-style:none;display:grid;gap:10px}
+footer h4{font-size:16px;font-weight:800;color:#fff;margin-bottom:14px}
+footer ul{list-style:none;display:grid;gap:9px}
 footer a:hover{color:#fff}
-.fbot{border-top:1px solid #34503B;padding-block:20px;font-size:13px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.fbot{border-top:1px solid rgba(255,255,255,.12);padding-block:20px;font-size:13.5px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
-/* Floating contact */
 .fab{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:grid;gap:10px;z-index:30}
-.fab a{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:600;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.fab a{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:800;box-shadow:0 10px 24px -8px rgba(0,0,0,.3)}
 .fab .z{background:#0068FF}
 .fab .c{background:var(--green)}
-.fab svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.8}
+.fab svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.9}
 
 @media (max-width:1024px){
   nav,.h-act .btn,.topbar .r{display:none}
   .menu-btn{display:grid}
-  .hero .wrap,.about .wrap,.factory .wrap,.branches .wrap,.booking .wrap{grid-template-columns:1fr;gap:36px}
-  .hero .ph{min-height:0;aspect-ratio:4/3}
+  .hero .wrap,.about .wrap,.factory .wrap,.branches .wrap,.booking .box{grid-template-columns:1fr}
+  .hero-art{height:480px}
   .promise .wrap{grid-template-columns:1fr 1fr}
-  .promise .wrap>div{border-left:none;padding-left:0;border-bottom:1px solid var(--line)}
-  .svc-mini{grid-template-columns:repeat(3,1fr)}
-  .prods,.reviews-grid{grid-template-columns:repeat(2,1fr)}
+  .prods,.rv-grid{grid-template-columns:repeat(2,1fr)}
   .fcols{grid-template-columns:1fr 1fr}
 }
 @media (max-width:640px){
-  .sec{padding-block:60px}
+  .sec{padding-block:64px}
   .topbar{display:none}
-  header .wrap{height:64px}
-  .hero{padding-block:32px 48px}
-  .facts{grid-template-columns:1fr;gap:12px}
+  header .wrap{height:66px}
+  .hero{padding-top:20px}
+  .hero-art{height:380px}
+  .bubble.b1{right:0;top:20px}
+  .bubble.b2{right:4%}
+  .hero-art .leaf{display:none}
   .promise .wrap{grid-template-columns:1fr}
   .svc{grid-template-columns:1fr}
-  .svc-mini{grid-template-columns:repeat(2,1fr)}
-  .prods{gap:16px}
+  .svc a:nth-child(2){margin-top:0}
+  .prods{gap:12px}
+  .prod{padding:8px 8px 14px;border-radius:22px}
   .prod h3{font-size:14px}
-  .gallery{grid-template-columns:1fr 1fr;grid-template-rows:200px 140px 140px}
-  .gallery .ph:first-child{grid-column:span 2;grid-row:auto}
-  .news{grid-template-columns:1fr}
-  .blist div{grid-template-columns:1fr auto;}
-  .blist div span{grid-column:1/-1;order:3}
-  .plogos{grid-template-columns:1fr 1fr}
-  .row{grid-template-columns:1fr}
+  .prod .price{font-size:15.5px}
+  .prod .stars{display:none}
+  .prod .add{width:38px;height:38px}
+  .collage{height:380px}
+  .rv-grid{gap:12px}
+  .community .gal{grid-template-columns:1fr 1fr;grid-template-rows:200px 150px 150px}
+  .community .gal .ph:first-child{grid-column:span 2;grid-row:auto}
+  .news-grid{grid-template-columns:1fr}
+  .bcard{flex-wrap:wrap}
+  .booking .box{padding:28px 18px;border-radius:28px}
+  .frow{grid-template-columns:1fr}
   form{padding:22px}
   .fcols{grid-template-columns:1fr}
 }
@@ -256,25 +317,34 @@ footer a:hover{color:#fff}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="img" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="1.5"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="m21 16-5-5-9 9"/></symbol>
+  <symbol id="img" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="4"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="m21 16-5-5-9 9"/></symbol>
   <symbol id="play" viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></symbol>
   <symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
   <symbol id="cart" viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2a1.5 1.5 0 0 0 1.5 1.2h8.6a1.5 1.5 0 0 0 1.5-1.1L21 8H6.2"/><circle cx="9.5" cy="20" r="1.2"/><circle cx="17.5" cy="20" r="1.2"/></symbol>
-  <symbol id="menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></symbol>
   <symbol id="phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></symbol>
+  <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/><path d="M2 21c0-3 1.9-5.4 5.1-6C9.5 14.5 12 13 13 12"/></symbol>
+  <symbol id="heart" viewBox="0 0 24 24"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/></symbol>
+  <symbol id="shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="users" viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2M16 3.1a4 4 0 0 1 0 7.8M22 21v-2a4 4 0 0 0-3-3.9"/></symbol>
+  <symbol id="baby" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 12h.01M15 12h.01M10 15.5c1.2.8 2.8.8 4 0M12 3c1.5 0 2.5 1 2.5 2s-1 1.5-1.8 1.2"/></symbol>
+  <symbol id="factory" viewBox="0 0 24 24"><path d="M2 20V9l6 4V9l6 4V4h6v16z"/><path d="M2 20h20"/></symbol>
+  <symbol id="pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="sprig" viewBox="0 0 100 100"><path d="M50 96V12"/><path d="M50 30c-10-2-18-8-20-16 10 0 18 6 20 16zM50 30c10-2 18-8 20-16-10 0-18 6-20 16zM50 54c-11-2-20-9-22-18 11 0 20 7 22 18zM50 54c11-2 20-9 22-18-11 0-20 7-22 18zM50 78c-12-2-21-9-23-19 12 0 21 8 23 19zM50 78c12-2 21-9 23-19-12 0-21 8-23 19z"/></symbol>
 </svg>
 
 
 <div class="topbar">
   <div class="wrap">
-    <div><span>Hotline: 0973 871 378 · 0862 101 515</span><span class="r">cskh@homecarevietnam.com</span></div>
+    <div><span>Hotline: <b>0973 871 378</b> · 0862 101 515</span><span class="r">cskh@homecarevietnam.com</span></div>
     <div class="r"><span>Ngõ 20 Huy Du, Từ Liêm, Hà Nội</span></div>
   </div>
 </div>
 
 <header>
   <div class="wrap">
-    <a href="#" class="logo"><span class="logo-mark">H</span><span><b>Home Care</b><small>VIỆT NAM</small></span></a>
+    <a href="#" class="logo"><span class="logo-mark"><svg><use href="#leaf"/></svg></span><span><b>Home Care</b><small>VIỆT NAM</small></span></a>
     <nav aria-label="Menu chính">
       <ul>
         <li><a href="#" class="on">Trang chủ</a></li>
@@ -289,7 +359,7 @@ footer a:hover{color:#fff}
     <div class="h-act">
       <button class="icon" aria-label="Tìm kiếm"><svg><use href="#search"/></svg></button>
       <button class="icon" aria-label="Giỏ hàng"><svg><use href="#cart"/></svg></button>
-      <a href="#booking" class="btn btn-green">Đặt lịch tư vấn</a>
+      <a href="#booking" class="btn btn-green">Đặt lịch</a>
       <button class="icon menu-btn" aria-label="Mở menu"><svg><use href="#menu"/></svg></button>
     </div>
   </div>
@@ -298,196 +368,220 @@ footer a:hover{color:#fff}
 <section class="hero">
   <div class="wrap">
     <div>
-      <span class="hero-label">Dịch vụ & sản phẩm mẹ và bé</span>
-      <h1>Mẹ bầu an thai, trọn vẹn từ dịch vụ đến sản phẩm</h1>
-      <p class="lead">Home Care chăm sóc mẹ trước và sau sinh, tắm và chăm sóc bé sơ sinh theo phương pháp chuẩn Y Hoàng Gia, cùng dòng mỹ phẩm thuần Việt từ dược liệu.</p>
+      <span class="eyebrow">Home Care Việt Nam</span>
+      <h1>Mẹ bầu an thai <span class="script">trọn vẹn từ dịch vụ đến sản phẩm</span></h1>
+      <p class="lead">Chăm sóc mẹ trước và sau sinh, tắm bé sơ sinh theo phương pháp chuẩn Y Hoàng Gia, cùng dòng mỹ phẩm thuần Việt dịu nhẹ từ dược liệu.</p>
       <div class="hero-ctas">
-        <a href="#booking" class="btn btn-green">Đặt lịch tư vấn</a>
-        <a href="#services" class="btn btn-outline">Xem dịch vụ</a>
+        <a href="#booking" class="btn btn-green">Đặt lịch tư vấn <svg><use href="#arrow"/></svg></a>
+        <a href="#products" class="btn btn-soft">Xem sản phẩm</a>
       </div>
-      <div class="facts">
-        <div><b>3 trụ sở</b><span>Hà Nội · Nghệ An · TP.HCM</span></div>
-        <div><b>Chuẩn Y Hoàng Gia</b><span>Quy trình chăm sóc</span></div>
-        <div><b>Nhà máy riêng</b><span>Chủ động nguyên liệu</span></div>
+      <div class="trust">
+        <div class="avatars"><div class="ph peach"></div><div class="ph"></div><div class="ph cream"></div></div>
+        <div><b>Đồng hành cùng các mẹ khắp 3 miền</b><span>Hà Nội · Nghệ An · TP. Hồ Chí Minh</span></div>
       </div>
     </div>
-    <div class="ph"><svg><use href="#img"/></svg><span><b>Ảnh hero</b><br>Điều dưỡng chăm sóc mẹ bầu tại trung tâm<br>1200 × 1350 px</span></div>
+    <div class="hero-art">
+      <div class="leaf"><svg viewBox="0 0 100 100"><use href="#sprig"/></svg></div>
+      <div class="ph r-arch main"><svg><use href="#img"/></svg><span>Ảnh chính: điều dưỡng chăm sóc mẹ bầu<br>dọc · 4:5</span></div>
+      <div class="ph peach r-circle small"><svg><use href="#img"/></svg><span>Ảnh bộ sản phẩm<br>1:1</span></div>
+      <div class="bubble b1"><span class="dot"><svg><use href="#heart"/></svg></span><div><b>Điều dưỡng tận tâm</b><span>Được đào tạo bài bản</span></div></div>
+      <div class="bubble b2"><span class="dot" style="background:var(--sage);color:var(--green)"><svg><use href="#leaf"/></svg></span><div><b>Dược liệu thuần Việt</b><span>Dịu nhẹ cho mẹ & bé</span></div></div>
+    </div>
   </div>
 </section>
 
 <div class="promise">
   <div class="wrap">
-    <div><b>Sản phẩm chất lượng</b><span>Nguồn gốc rõ ràng</span></div>
-    <div><b>Dịch vụ uy tín</b><span>Quy trình chuẩn, minh bạch</span></div>
-    <div><b>Đội ngũ chuyên môn</b><span>Điều dưỡng được đào tạo bài bản</span></div>
-    <div><b>Đồng hành trước – sau sinh</b><span>Chăm sóc trọn hành trình</span></div>
+    <div class="pcard"><i><svg><use href="#leaf"/></svg></i><div><b>Sản phẩm chất lượng</b><span>Nguồn gốc rõ ràng</span></div></div>
+    <div class="pcard"><i><svg><use href="#shield"/></svg></i><div><b>Dịch vụ uy tín</b><span>Quy trình chuẩn</span></div></div>
+    <div class="pcard"><i><svg><use href="#users"/></svg></i><div><b>Đội ngũ chuyên môn</b><span>Tận tâm, giàu kinh nghiệm</span></div></div>
+    <div class="pcard"><i><svg><use href="#baby"/></svg></i><div><b>Trước – sau sinh</b><span>Đồng hành trọn hành trình</span></div></div>
   </div>
 </div>
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="color:var(--cream);background:var(--paper)" aria-hidden="true"><path d="M0 0h1440v20c-240 40-480 40-720 20S240 0 0 30z"/></svg>
 
 <section class="sec about" id="about">
   <div class="wrap">
-    <div>
-      <h2>Từ chăm sóc mẹ & bé đến mỹ phẩm thuần Việt</h2>
-      <p>Từ những ngày đầu đồng hành cùng mẹ và bé sau sinh, Home Care thấu hiểu rằng mọi thứ chạm đến cơ thể nhạy cảm cần phải thuần khiết, dịu lành nhất. Suốt những năm qua, chúng tôi miệt mài tìm kiếm và gìn giữ nguồn dược liệu quý của đất mẹ Việt Nam.</p>
-      <p class="herbs"><strong>Dược liệu chính:</strong> gừng, nghệ, bồ kết, kim ngân, lá tía tô, mần tưới.</p>
-      <div style="margin-top:24px"><a href="#" class="more">Về Home Care →</a></div>
-    </div>
-    <div class="video">
-      <div class="ph r169"><svg><use href="#img"/></svg><span>Video giới thiệu · Dịch vụ chăm sóc mẹ và bé tại nhà · 16:9</span></div>
+    <div class="about-art">
+      <div class="ph r-blob"><svg><use href="#img"/></svg><span>Video giới thiệu Home Care</span></div>
       <button class="play" aria-label="Phát video"><svg><use href="#play"/></svg></button>
     </div>
+    <div>
+      <span class="eyebrow">Câu chuyện của chúng tôi</span>
+      <h2>Từ chăm sóc mẹ & bé đến mỹ phẩm thuần Việt</h2>
+      <p class="intro">Từ những ngày đầu đồng hành cùng mẹ và bé sau sinh, Home Care thấu hiểu rằng mọi thứ chạm đến cơ thể nhạy cảm cần phải thuần khiết, dịu lành nhất. Chúng tôi miệt mài tìm kiếm và gìn giữ nguồn dược liệu quý của đất mẹ Việt Nam.</p>
+      <div class="herbs"><span>Gừng</span><span>Nghệ</span><span>Bồ kết</span><span>Kim ngân</span><span>Lá tía tô</span><span>Mần tưới</span></div>
+      <a href="#" class="link">Tìm hiểu về Home Care <svg><use href="#arrow"/></svg></a>
+    </div>
   </div>
 </section>
 
-<section class="sec alt" id="services">
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="color:var(--sage)" aria-hidden="true"><path d="M0 40c240-40 480-40 720-15s480 30 720 0v35H0z"/></svg>
+<section class="sec services" id="services" style="padding-top:56px">
   <div class="wrap">
-    <div class="sec-head">
-      <div><h2>Dịch vụ chăm sóc toàn diện cho mẹ & bé</h2><p>Theo phương pháp chuẩn Y Hoàng Gia TAROSHI.</p></div>
-      <a href="#" class="more">Tất cả dịch vụ →</a>
+    <div class="head center">
+      <span class="eyebrow">Dịch vụ</span>
+      <h2>Chăm sóc toàn diện cho mẹ & bé</h2>
+      <p class="intro">Theo phương pháp chuẩn Y Hoàng Gia TAROSHI, tại nhà hoặc tại trung tâm.</p>
     </div>
     <div class="svc">
-      <a href="#"><div class="ph r43"><svg><use href="#img"/></svg><span>Ảnh: Tắm bé sơ sinh · 4:3</span></div><h3>Tắm bé sơ sinh</h3><p>Tắm thảo dược, massage và chăm sóc rốn cho bé.</p></a>
-      <a href="#"><div class="ph r43"><svg><use href="#img"/></svg><span>Ảnh: Ở cữ tại trung tâm · 4:3</span></div><h3>Ở cữ tại trung tâm</h3><p>Mẹ và bé được chăm sóc 24/7 trong không gian riêng.</p></a>
-      <a href="#"><div class="ph r43"><svg><use href="#img"/></svg><span>Ảnh: Chăm sóc mẹ sau sinh · 4:3</span></div><h3>Chăm sóc mẹ sau sinh</h3><p>Phục hồi sức khỏe và vóc dáng sau sinh.</p></a>
+      <a href="#"><div class="ph peach"><svg><use href="#img"/></svg><span>Ảnh: Tắm bé sơ sinh</span></div><h3>Tắm bé sơ sinh</h3><p>Tắm thảo dược, massage và chăm sóc rốn nhẹ nhàng cho bé.</p></a>
+      <a href="#"><div class="ph"><svg><use href="#img"/></svg><span>Ảnh: Ở cữ tại trung tâm</span></div><h3>Ở cữ tại trung tâm</h3><p>Mẹ và bé được chăm sóc 24/7 trong không gian riêng tư, ấm cúng.</p></a>
+      <a href="#"><div class="ph cream"><svg><use href="#img"/></svg><span>Ảnh: Chăm sóc mẹ sau sinh</span></div><h3>Chăm sóc mẹ sau sinh</h3><p>Phục hồi sức khỏe, vóc dáng và tinh thần cho mẹ.</p></a>
     </div>
-    <div class="svc-mini">
-      <a href="#"><div class="ph r11"><span>Ảnh 1:1</span></div>Chăm sóc da</a>
-      <a href="#"><div class="ph r11"><span>Ảnh 1:1</span></div>Chăm sóc rốn</a>
-      <a href="#"><div class="ph r11"><span>Ảnh 1:1</span></div>Massage bầu</a>
-      <a href="#"><div class="ph r11"><span>Ảnh 1:1</span></div>Thông tắc tia sữa</a>
-      <a href="#"><div class="ph r11"><span>Ảnh 1:1</span></div>Vết khâu, vết mổ</a>
-      <a href="#"><div class="ph r11"><span>Ảnh 1:1</span></div>Giảm eo sau sinh</a>
+    <div class="mini">
+      <a href="#"><span class="ph peach"></span>Chăm sóc da</a>
+      <a href="#"><span class="ph"></span>Chăm sóc rốn</a>
+      <a href="#"><span class="ph cream"></span>Massage bầu</a>
+      <a href="#"><span class="ph peach"></span>Thông tắc tia sữa</a>
+      <a href="#"><span class="ph"></span>Vết khâu, vết mổ</a>
+      <a href="#"><span class="ph cream"></span>Giảm eo sau sinh</a>
     </div>
   </div>
 </section>
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="color:var(--sage)" aria-hidden="true"><path d="M0 0h1440v20c-240 40-480 40-720 20S240 0 0 30z"/></svg>
 
-<section class="sec" id="products">
+<section class="sec" id="products" style="padding-top:56px">
   <div class="wrap">
-    <div class="sec-head">
-      <h2>Sản phẩm nổi bật</h2>
-      <div class="tabs" role="tablist">
-        <button class="on">Bán chạy</button><button>Chăm sóc bé</button><button>Ở cữ</button><button>Chăm sóc bầu</button><button>Gia đình</button>
-      </div>
+    <div class="prod-head">
+      <div><span class="eyebrow">Sản phẩm</span><h2>Sản phẩm nổi bật</h2></div>
+      <div class="tabs"><button class="on">Bán chạy</button><button>Chăm sóc bé</button><button>Ở cữ</button><button>Chăm sóc bầu</button><button>Gia đình</button></div>
     </div>
     <div class="prods">
-      <article class="prod"><div class="ph r11"><svg><use href="#img"/></svg><span>Ảnh sản phẩm<br>nền trắng · 1:1</span></div><h3>Sữa tắm gội toàn thân cho bé Bon Bon dịu nhẹ</h3><div class="rate"><i>★★★★★</i></div><div class="price">315.000đ</div><a href="#" class="btn btn-outline">Thêm vào giỏ</a></article>
-      <article class="prod"><div class="ph r11"><svg><use href="#img"/></svg><span>Ảnh sản phẩm<br>nền trắng · 1:1</span></div><h3>Tinh dầu tràm cho bé giữ ấm cơ thể, đầy hơi</h3><div class="rate"><i>★★★★★</i></div><div class="price">180.000đ</div><a href="#" class="btn btn-outline">Thêm vào giỏ</a></article>
-      <article class="prod"><div class="ph r11"><span class="badge">Giảm giá</span><svg><use href="#img"/></svg><span>Ảnh sản phẩm<br>nền trắng · 1:1</span></div><h3>Kem hăm cho bé Bon Bon Plus, dùng từ 0 tháng</h3><div class="rate"><i>★★★★★</i></div><div class="price">79.000đ</div><a href="#" class="btn btn-outline">Thêm vào giỏ</a></article>
-      <article class="prod"><div class="ph r11"><svg><use href="#img"/></svg><span>Ảnh sản phẩm<br>nền trắng · 1:1</span></div><h3>Kem bôi chàm sữa, mụn cà kê Bon Bon Premium</h3><div class="rate"><i>★★★★★</i></div><div class="price">280.000đ</div><a href="#" class="btn btn-outline">Thêm vào giỏ</a></article>
+      <article class="prod"><div class="ph cream"><svg><use href="#img"/></svg><span>Ảnh sản phẩm 1:1</span></div><h3>Sữa tắm gội toàn thân cho bé Bon Bon dịu nhẹ</h3><div class="row"><div><div class="price">315.000đ</div><div class="stars">★★★★★</div></div><button class="add" aria-label="Thêm vào giỏ"><svg><use href="#cart"/></svg></button></div></article>
+      <article class="prod"><div class="ph"><svg><use href="#img"/></svg><span>Ảnh sản phẩm 1:1</span></div><h3>Tinh dầu tràm cho bé giữ ấm cơ thể, đầy hơi</h3><div class="row"><div><div class="price">180.000đ</div><div class="stars">★★★★★</div></div><button class="add" aria-label="Thêm vào giỏ"><svg><use href="#cart"/></svg></button></div></article>
+      <article class="prod"><div class="ph peach"><span class="badge">Giảm giá</span><svg><use href="#img"/></svg><span>Ảnh sản phẩm 1:1</span></div><h3>Kem hăm cho bé Bon Bon Plus, dùng từ 0 tháng</h3><div class="row"><div><div class="price">79.000đ</div><div class="stars">★★★★★</div></div><button class="add" aria-label="Thêm vào giỏ"><svg><use href="#cart"/></svg></button></div></article>
+      <article class="prod"><div class="ph cream"><svg><use href="#img"/></svg><span>Ảnh sản phẩm 1:1</span></div><h3>Kem bôi chàm sữa, mụn cà kê Bon Bon Premium</h3><div class="row"><div><div class="price">280.000đ</div><div class="stars">★★★★★</div></div><button class="add" aria-label="Thêm vào giỏ"><svg><use href="#cart"/></svg></button></div></article>
     </div>
-    <div style="text-align:center;margin-top:40px"><a href="#" class="btn btn-green">Xem tất cả sản phẩm</a></div>
+    <div class="center" style="margin-top:40px"><a href="#" class="btn btn-soft">Xem tất cả sản phẩm <svg><use href="#arrow"/></svg></a></div>
   </div>
 </section>
 
-<section class="sec factory">
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="color:var(--cream)" aria-hidden="true"><path d="M0 40c240-40 480-40 720-15s480 30 720 0v35H0z"/></svg>
+<section class="sec factory" style="padding-top:56px">
   <div class="wrap">
+    <div class="collage">
+      <div class="ph r-xl a"><svg><use href="#img"/></svg><span>Ảnh: Vùng trồng dược liệu</span></div>
+      <div class="ph peach r-circle b"><span>Ảnh: Dây chuyền</span></div>
+      <div class="ph cream r-lg c"><span>Ảnh: Mặt tiền nhà máy</span></div>
+    </div>
     <div>
+      <span class="eyebrow">Nhà máy sản xuất</span>
       <h2>Chủ động nguồn nguyên liệu và công nghệ hiện đại</h2>
-      <p>Home Care sở hữu nhà máy sản xuất và vùng trồng dược liệu riêng, kiểm soát chất lượng từ nguyên liệu đến thành phẩm.</p>
-      <ul class="points">
-        <li><b>Nguyên liệu sạch, nguồn gốc rõ ràng</b><span>Dược liệu được tuyển chọn từ vùng trồng.</span></li>
-        <li><b>Nhà máy đạt chuẩn</b><span>Quy trình sản xuất hiện đại, kiểm soát chặt chẽ.</span></li>
-        <li><b>Sản phẩm an toàn, thân thiện</b><span>Phù hợp làn da nhạy cảm của mẹ và bé.</span></li>
+      <ul class="steps">
+        <li><i><svg><use href="#leaf"/></svg></i><div><b>Nguyên liệu sạch, nguồn gốc rõ ràng</b><span>Dược liệu được tuyển chọn từ vùng trồng.</span></div></li>
+        <li><i><svg><use href="#factory"/></svg></i><div><b>Nhà máy đạt chuẩn</b><span>Quy trình sản xuất hiện đại, kiểm soát chặt chẽ.</span></div></li>
+        <li><i><svg><use href="#shield"/></svg></i><div><b>Sản phẩm an toàn, thân thiện</b><span>Dịu nhẹ với làn da nhạy cảm của mẹ và bé.</span></div></li>
       </ul>
-      <a href="#" class="btn btn-outline">Tìm hiểu về nhà máy</a>
-    </div>
-    <div class="fgrid">
-      <div class="ph r32"><svg><use href="#img"/></svg><span>Ảnh: Mặt tiền nhà máy · 3:2</span></div>
-      <div class="ph r43"><span>Ảnh: Dây chuyền sản xuất</span></div>
-      <div class="ph r43"><span>Ảnh: Vùng trồng dược liệu</span></div>
+      <a href="#" class="btn btn-green">Tìm hiểu về nhà máy <svg><use href="#arrow"/></svg></a>
     </div>
   </div>
 </section>
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="color:var(--cream)" aria-hidden="true"><path d="M0 0h1440v20c-240 40-480 40-720 20S240 0 0 30z"/></svg>
 
-<section class="sec branches" id="branches">
+<section class="sec branches" id="branches" style="padding-top:56px">
   <div class="wrap">
     <div>
-      <h2>Chi nhánh trải dài 3 miền Bắc – Trung – Nam</h2>
-      <div class="blist">
-        <div><b>Trụ sở miền Bắc</b><span>Nam Từ Liêm, TP. Hà Nội</span><a href="#">Chỉ đường</a></div>
-        <div><b>Trụ sở miền Trung</b><span>TP. Vinh, Tỉnh Nghệ An</span><a href="#">Chỉ đường</a></div>
-        <div><b>Trụ sở miền Nam</b><span>Gò Vấp, TP. Hồ Chí Minh</span><a href="#">Chỉ đường</a></div>
+      <span class="eyebrow">Chi nhánh</span>
+      <h2>Có mặt khắp 3 miền Bắc – Trung – Nam</h2>
+      <div class="bcards">
+        <div class="bcard"><span class="pin"><svg><use href="#pin"/></svg></span><div><b>Trụ sở miền Bắc</b><span>Nam Từ Liêm, TP. Hà Nội</span></div><a href="#">Chỉ đường</a></div>
+        <div class="bcard"><span class="pin"><svg><use href="#pin"/></svg></span><div><b>Trụ sở miền Trung</b><span>TP. Vinh, Tỉnh Nghệ An</span></div><a href="#">Chỉ đường</a></div>
+        <div class="bcard"><span class="pin"><svg><use href="#pin"/></svg></span><div><b>Trụ sở miền Nam</b><span>Gò Vấp, TP. Hồ Chí Minh</span></div><a href="#">Chỉ đường</a></div>
       </div>
     </div>
-    <div class="ph r43"><svg><use href="#img"/></svg><span>Ảnh: Không gian trung tâm Home Care<br>hoặc bản đồ 3 chi nhánh · 4:3</span></div>
+    <div class="ph r-arch" style="aspect-ratio:4/4.4"><svg><use href="#img"/></svg><span>Ảnh: Không gian trung tâm Home Care</span></div>
   </div>
 </section>
 
-<section class="sec alt">
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="color:var(--peach)" aria-hidden="true"><path d="M0 40c240-40 480-40 720-15s480 30 720 0v35H0z"/></svg>
+<section class="sec reviews" style="padding-top:56px">
   <div class="wrap">
-    <div class="sec-head"><div><h2>Khách hàng nói về Home Care</h2><p>Chia sẻ thật từ các mẹ đã sử dụng dịch vụ.</p></div><a href="#" class="more">Xem trên YouTube →</a></div>
-    <div class="reviews-grid">
-      <div class="review"><div class="ph r916"><svg><use href="#img"/></svg><span>Ảnh bìa video 9:16</span></div><b>Feedback khách hàng · Tập 06</b><span>Ở cữ tại trung tâm</span></div>
-      <div class="review"><div class="ph r916"><svg><use href="#img"/></svg><span>Ảnh bìa video 9:16</span></div><b>Feedback khách hàng · Tập 07</b><span>Chăm sóc sau sinh</span></div>
-      <div class="review"><div class="ph r916"><svg><use href="#img"/></svg><span>Ảnh bìa video 9:16</span></div><b>Feedback khách hàng · Tập 10</b><span>Tắm bé sơ sinh</span></div>
-      <div class="review"><div class="ph r916"><svg><use href="#img"/></svg><span>Ảnh bìa video 9:16</span></div><b>Feedback khách hàng</b><span>Xuất viện cùng Home Care</span></div>
+    <div class="center">
+      <span class="eyebrow">Khách hàng chia sẻ</span>
+      <h2>Các mẹ nói gì về Home Care</h2>
+    </div>
+    <div class="rv-grid">
+      <div class="rv"><div class="ph"><span>Ảnh bìa video 9:16</span></div><button class="play" aria-label="Phát video"><svg><use href="#play"/></svg></button><div class="cap"><b>Feedback · Tập 06</b><span>Ở cữ tại trung tâm</span></div></div>
+      <div class="rv"><div class="ph"><span>Ảnh bìa video 9:16</span></div><button class="play" aria-label="Phát video"><svg><use href="#play"/></svg></button><div class="cap"><b>Feedback · Tập 07</b><span>Chăm sóc sau sinh</span></div></div>
+      <div class="rv"><div class="ph"><span>Ảnh bìa video 9:16</span></div><button class="play" aria-label="Phát video"><svg><use href="#play"/></svg></button><div class="cap"><b>Feedback · Tập 10</b><span>Tắm bé sơ sinh</span></div></div>
+      <div class="rv"><div class="ph"><span>Ảnh bìa video 9:16</span></div><button class="play" aria-label="Phát video"><svg><use href="#play"/></svg></button><div class="cap"><b>Xuất viện cùng Home Care</b><span>Chia sẻ của khách hàng</span></div></div>
+    </div>
+  </div>
+</section>
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="color:var(--peach)" aria-hidden="true"><path d="M0 0h1440v20c-240 40-480 40-720 20S240 0 0 30z"/></svg>
+
+<section class="sec community" style="padding-top:56px">
+  <div class="wrap">
+    <div class="prod-head" style="margin-bottom:0">
+      <div><span class="eyebrow">Dấu ấn</span><h2>Home Care & thiện nguyện cộng đồng</h2></div>
+      <a href="#" class="link" style="margin-top:0">Xem thêm hình ảnh <svg><use href="#arrow"/></svg></a>
+    </div>
+    <div class="gal">
+      <div class="ph"><svg><use href="#img"/></svg><span>Ảnh hội thảo tại bệnh viện</span></div>
+      <div class="ph peach"><span>Ảnh sự kiện</span></div>
+      <div class="ph cream"><span>Ảnh sự kiện</span></div>
+      <div class="ph cream"><span>Ảnh thiện nguyện</span></div>
+      <div class="ph peach"><span>Ảnh hội chợ mẹ & bé</span></div>
     </div>
   </div>
 </section>
 
-<section class="sec">
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="color:var(--sage)" aria-hidden="true"><path d="M0 40c240-40 480-40 720-15s480 30 720 0v35H0z"/></svg>
+<section class="sec news" id="news" style="padding-top:56px">
   <div class="wrap">
-    <div class="sec-head"><h2>Dấu ấn Home Care & thiện nguyện cộng đồng</h2><a href="#" class="more">Xem thêm hình ảnh →</a></div>
-    <div class="gallery">
-      <div class="ph"><svg><use href="#img"/></svg><span>Ảnh sự kiện lớn · hội thảo tại bệnh viện</span></div>
-      <div class="ph"><span>Ảnh sự kiện</span></div>
-      <div class="ph"><span>Ảnh sự kiện</span></div>
-      <div class="ph"><span>Ảnh thiện nguyện</span></div>
-      <div class="ph"><span>Ảnh hội chợ mẹ & bé</span></div>
+    <div class="prod-head" style="margin-bottom:0">
+      <div><span class="eyebrow">Góc của mẹ</span><h2>Tin tức mới nhất</h2></div>
+      <a href="#" class="link" style="margin-top:0">Tất cả bài viết <svg><use href="#arrow"/></svg></a>
+    </div>
+    <div class="news-grid">
+      <a href="#" class="post"><div class="ph peach"><svg><use href="#img"/></svg><span>Ảnh bài viết 3:2</span></div><span class="tag">Trung tâm ở cữ</span><h3>Nhật ký của mẹ: Hành trình 1 tuần “đổi đời” tại trung tâm</h3><p>Hành trình đón con chào đời luôn ngập tràn niềm vui nhưng cũng nhiều bỡ ngỡ…</p></a>
+      <a href="#" class="post"><div class="ph"><svg><use href="#img"/></svg><span>Ảnh bài viết 3:2</span></div><span class="tag">Chăm sóc trẻ sơ sinh</span><h3>Công dụng của dầu tràm cho bé: Bí quyết chăm sóc tự nhiên</h3><p>Tinh dầu tràm là sản phẩm quen thuộc của nhiều gia đình Việt…</p></a>
+      <a href="#" class="post"><div class="ph cream"><svg><use href="#img"/></svg><span>Ảnh bài viết 3:2</span></div><span class="tag">Dấu ấn</span><h3>Bùng nổ cùng Home Care tại Festival Mẹ Bầu & Em Bé Kids Plaza</h3><p>Hai ngày sự kiện cùng các gia đình trẻ tại Hà Nội…</p></a>
     </div>
   </div>
 </section>
-
-<section class="sec alt" id="news">
-  <div class="wrap">
-    <div class="sec-head"><h2>Tin tức mới nhất</h2><a href="#" class="more">Tất cả bài viết →</a></div>
-    <div class="news">
-      <a href="#"><div class="ph r32"><svg><use href="#img"/></svg><span>Ảnh bài viết · 3:2</span></div><div class="meta"><em>Trung tâm ở cữ</em></div><h3>Nhật ký của mẹ: Hành trình 1 tuần “đổi đời” tại trung tâm</h3><p>Hành trình đón con chào đời luôn ngập tràn niềm vui nhưng cũng nhiều bỡ ngỡ…</p></a>
-      <a href="#"><div class="ph r32"><svg><use href="#img"/></svg><span>Ảnh bài viết · 3:2</span></div><div class="meta"><em>Chăm sóc trẻ sơ sinh</em></div><h3>Công dụng của dầu tràm cho bé: Bí quyết chăm sóc sức khỏe tự nhiên</h3><p>Tinh dầu tràm là sản phẩm quen thuộc của nhiều gia đình Việt…</p></a>
-      <a href="#"><div class="ph r32"><svg><use href="#img"/></svg><span>Ảnh bài viết · 3:2</span></div><div class="meta"><em>Dấu ấn</em></div><h3>Bùng nổ cùng Home Care tại Festival Mẹ Bầu & Em Bé Kids Plaza</h3><p>Hai ngày sự kiện cùng các gia đình trẻ tại Hà Nội…</p></a>
-    </div>
-  </div>
-</section>
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="color:var(--sage)" aria-hidden="true"><path d="M0 0h1440v20c-240 40-480 40-720 20S240 0 0 30z"/></svg>
 
 <div class="partners">
   <div class="wrap">
     <p>Đồng hành cùng các đơn vị uy tín</p>
-    <div class="plogos">
-      <div class="ph"><span>Logo Công Đoàn</span></div>
-      <div class="ph"><span>Logo đối tác</span></div>
-      <div class="ph"><span>Logo VTV</span></div>
-      <div class="ph"><span>Logo CMW Law</span></div>
-    </div>
+    <div class="plogos"><div class="ph"><span>Logo Công Đoàn</span></div><div class="ph"><span>Logo đối tác</span></div><div class="ph"><span>Logo VTV</span></div><div class="ph"><span>Logo CMW Law</span></div></div>
   </div>
 </div>
 
-<section class="sec booking" id="booking">
+<section class="sec booking" id="booking" style="padding-top:24px">
   <div class="wrap">
-    <div>
-      <h2>Đặt lịch tư vấn miễn phí</h2>
-      <p>Để lại số điện thoại, chuyên viên Home Care sẽ gọi lại tư vấn gói chăm sóc phù hợp cho mẹ và bé.</p>
-      <div class="hot">Hoặc gọi trực tiếp<b>0973 871 378</b></div>
+    <div class="box">
+      <div style="position:relative;z-index:1">
+        <h2>Để Home Care <span class="script">chăm sóc mẹ</span></h2>
+        <p>Để lại số điện thoại, chuyên viên sẽ gọi lại tư vấn gói chăm sóc phù hợp cho mẹ và bé.</p>
+        <ul class="perks"><li>Tư vấn miễn phí cùng điều dưỡng</li><li>Chăm sóc tại nhà hoặc tại trung tâm</li><li>Phục vụ tại Hà Nội, Nghệ An, TP.HCM</li></ul>
+        <div class="hot">Hoặc gọi ngay<b>0973 871 378</b></div>
+      </div>
+      <form id="bookForm" novalidate>
+        <h3>Đặt lịch tư vấn</h3>
+        <div class="frow">
+          <div class="field"><label for="bName">Họ và tên</label><input id="bName" autocomplete="name" placeholder="Nguyễn Thị Lan"></div>
+          <div class="field"><label for="bPhone">Số điện thoại</label><input id="bPhone" type="tel" autocomplete="tel" placeholder="0912 345 678"></div>
+        </div>
+        <div class="field"><label for="bService">Mẹ quan tâm dịch vụ</label>
+          <select id="bService"><option>Ở cữ tại trung tâm</option><option>Tắm bé sơ sinh</option><option>Chăm sóc mẹ sau sinh</option><option>Massage bầu</option><option>Tư vấn sản phẩm</option></select>
+        </div>
+        <button type="submit" class="btn btn-green">Gửi yêu cầu <svg><use href="#arrow"/></svg></button>
+        <p class="note" id="bNote">Thông tin chỉ dùng để Home Care liên hệ tư vấn.</p>
+        <p class="ok" id="bOk">Đã nhận thông tin. Home Care sẽ gọi lại cho mẹ sớm.</p>
+      </form>
     </div>
-    <form id="bookForm" novalidate>
-      <div class="row">
-        <div class="field"><label for="bName">Họ và tên</label><input id="bName" autocomplete="name" placeholder="Nguyễn Thị Lan"></div>
-        <div class="field"><label for="bPhone">Số điện thoại</label><input id="bPhone" type="tel" autocomplete="tel" placeholder="0912 345 678"></div>
-      </div>
-      <div class="field"><label for="bService">Dịch vụ quan tâm</label>
-        <select id="bService"><option>Ở cữ tại trung tâm</option><option>Tắm bé sơ sinh</option><option>Chăm sóc mẹ sau sinh</option><option>Massage bầu</option><option>Tư vấn sản phẩm</option></select>
-      </div>
-      <button type="submit" class="btn btn-green">Gửi yêu cầu</button>
-      <p class="note" id="bNote">Thông tin của bạn chỉ dùng để Home Care liên hệ tư vấn.</p>
-      <p class="ok" id="bOk">Đã nhận thông tin. Home Care sẽ gọi lại cho bạn sớm.</p>
-    </form>
   </div>
 </section>
 
 <footer>
+  <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40c240-40 480-40 720-15s480 30 720 0v35H0z"/></svg>
   <div class="wrap">
     <div class="fcols">
       <div>
-        <a href="#" class="logo"><span class="logo-mark">H</span><span><b>Home Care</b><small>VIỆT NAM</small></span></a>
+        <a href="#" class="logo"><span class="logo-mark"><svg><use href="#leaf"/></svg></span><span><b>Home Care</b><small>VIỆT NAM</small></span></a>
         <p class="about-f">Home Care — Dịch vụ & sản phẩm mẹ bé uy tín.</p>
       </div>
       <div><h4>Dịch vụ</h4><ul><li><a href="#">Ở cữ tại trung tâm</a></li><li><a href="#">Chăm sóc bầu</a></li><li><a href="#">Tắm bé sơ sinh</a></li><li><a href="#">Chăm sóc mẹ sau sinh</a></li><li><a href="#">Bảo mẫu tại gia</a></li><li><a href="#">Thông tắc tia sữa</a></li></ul></div>
