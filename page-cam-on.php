@@ -20,8 +20,20 @@ $thankyou_message = lx_get_field('lx_thankyou_message', 'option', 'Cảm ơn m�
 if (empty($thankyou_message)) {
     $thankyou_message = 'Cảm ơn mẹ đã tin tưởng Bon Bon! Đơn hàng của mẹ đã được chuyển thành công tới hệ thống chăm sóc da bé Bon Bon.';
 }
-$hotline          = lx_get_field('lx_hotline', 'option', '0901234567');
-$hotline_display  = lx_get_field('lx_hotline_display', 'option', '0901.234.567');
+$hotline_display = lx_get_field('lx_hotline_display', 'option', '');
+$hotline         = lx_get_field('lx_hotline', 'option', '');
+if (empty($hotline_display) && !empty($hotline)) {
+    $hotline_display = $hotline;
+}
+if (empty($hotline) && !empty($hotline_display)) {
+    $hotline = preg_replace('/[^0-9]/', '', $hotline_display);
+}
+if (empty($hotline_display)) {
+    $hotline_display = '0934602525';
+}
+if (empty($hotline)) {
+    $hotline = '0934602525';
+}
 $zalo             = lx_get_field('lx_zalo', 'option', '0901234567');
 $product_name     = lx_get_field('lx_product_name', 'option', 'Kem Hăm Cho Bé Bon Bon 5g');
 ?>
@@ -74,12 +86,6 @@ $product_name     = lx_get_field('lx_product_name', 'option', 'Kem Hăm Cho Bé 
             </div>
         </div>
 
-        <!-- Hướng dẫn và cam kết -->
-        <div class="lx_thankyou_notes">
-            <p>📞 <span>Chuyên viên Bon Bon sẽ liên hệ từ hotline <b><?php echo htmlspecialchars(strip_tags($hotline_display), ENT_QUOTES, 'UTF-8'); ?></b> để xác nhận và gửi hàng sớm nhất cho bé. Mẹ chú ý giữ máy nhé!</span></p>
-            <p>📦 <span>Thời gian giao hàng tiêu chuẩn từ <b>1 - 3 ngày</b>. Mẹ được kiểm tra tem niêm phong và sản phẩm trước khi thanh toán.</span></p>
-        </div>
-
         <!-- Các nút liên hệ hành động -->
         <div class="lx_thankyou_actions">
             <?php if (!empty($zalo)) : ?>
@@ -88,9 +94,9 @@ $product_name     = lx_get_field('lx_product_name', 'option', 'Kem Hăm Cho Bé 
                 </a>
             <?php endif; ?>
 
-            <?php if (!empty($hotline)) : ?>
+            <?php if (!empty($hotline_display)) : ?>
                 <a href="tel:<?php echo htmlspecialchars(strip_tags($hotline), ENT_QUOTES, 'UTF-8'); ?>" class="lx_thankyou_btn_call">
-                    📞 Hotline hỗ trợ: <?php echo htmlspecialchars(strip_tags($hotline_display), ENT_QUOTES, 'UTF-8'); ?>
+                    📞 Hotline: <span class="js-hotline"><?php echo htmlspecialchars(strip_tags($hotline_display), ENT_QUOTES, 'UTF-8'); ?></span>
                 </a>
             <?php endif; ?>
 

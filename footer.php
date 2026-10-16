@@ -22,6 +22,14 @@ $footer_title   = lx_get_field('lx_footer_title', 'option', 'Bon Bon - Nâng Niu
 $footer_company = lx_get_field('lx_footer_company', 'option', 'CÔNG TY TNHH CHĂM SÓC MẸ VÀ BÉ TẠI NHÀ HOME CARE');
 $footer_address = lx_get_field('lx_footer_address', 'option', 'Địa chỉ: 20 Huy Du, Phường Từ Liêm, TP Hà Nội, Việt Nam.');
 $footer_tax     = lx_get_field('lx_footer_tax', 'option', 'Mã số doanh nghiệp: 0107375668 do Sở Kế hoạch & Đầu tư TP Hà Nội cấp lần đầu ngày 29/03/2016');
+$hotline         = lx_get_field('lx_hotline', 'option', '0934602525');
+$hotline_display = lx_get_field('lx_hotline_display', 'option', '0934602525');
+if (empty($hotline_display) && !empty($hotline)) {
+    $hotline_display = $hotline;
+}
+if (empty($hotline) && !empty($hotline_display)) {
+    $hotline = preg_replace('/[^0-9]/', '', $hotline_display);
+}
 ?>
     </main>
 
@@ -35,9 +43,11 @@ $footer_tax     = lx_get_field('lx_footer_tax', 'option', 'Mã số doanh nghi�
 
             <h4 class="footer-title"><?php echo esc_html($footer_title); ?></h4>
 
-            <p class="footer-hotline">
-                Hotline: <a href="tel:0973871376">0973.871.376</a> - <a href="tel:0962131515">0962.131.515</a>
-            </p>
+            <?php if (!empty($hotline_display)) : ?>
+                <p class="footer-hotline">
+                    Hotline: <a href="tel:<?php echo htmlspecialchars(strip_tags($hotline), ENT_QUOTES, 'UTF-8'); ?>" class="js-hotline"><?php echo htmlspecialchars(strip_tags($hotline_display), ENT_QUOTES, 'UTF-8'); ?></a>
+                </p>
+            <?php endif; ?>
 
             <p class="footer-company"><?php echo esc_html($footer_company); ?></p>
             <p class="footer-address"><?php echo esc_html($footer_address); ?></p>
