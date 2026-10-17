@@ -19,3 +19,44 @@ Landing page tối ưu chuyển đổi cao (High Conversion Rate) dành cho chi�
 - HTML5 / CSS3 / Vanilla JavaScript
 - GSAP 3 & ScrollTrigger (CDN)
 - Google Fonts (Quicksand & Nunito)
+
+---
+
+# Landing Page — Sữa Tắm Gội Bon Bon (Lead Generation)
+
+File: `sua-tam-goi-bon-bon/index.html`. Đây là trang **Lead Generation dạng long-form**, mục tiêu là khách điền form. Trang dùng để chạy Facebook / TikTok / Google Ads.
+
+## Các section tương tác
+1. **Hero**: bóp bong bóng (có bộ đếm), kéo thả lọ Bon Bon có mặt cười, mắt đi theo chuột, chú vịt bấm vào kêu "quạc".
+2. **Thẻ lật**: các nỗi lo của mẹ, chạm vào để xem giải pháp.
+3. **Slider so sánh**: kéo để so sánh "Sữa tắm thông thường" với "Bon Bon".
+4. **Mini game pha chế**: kéo (hoặc chạm) thành phần vào lọ, lọ đầy dần và hiện công dụng từng thành phần.
+5. **5 lợi ích**: cuộn ngang, ghim màn hình trên desktop; vuốt ngang trên mobile.
+6. **Quiz da bé (4 câu)**: trả kết quả và gợi ý chăm da, đồng thời **tự điền sẵn form** (tuổi bé, vấn đề da).
+7. **Cách dùng 4 bước**: đường nối tự vẽ theo scroll.
+8. **Vòng quay may mắn**: mỗi trình duyệt quay 1 lượt, quà được gắn vào form.
+9. **Feedback**: carousel kéo được.
+10. **FAQ** dạng accordion.
+11. **Form đăng ký**: đếm ngược đến cuối ngày, chip chọn nhanh, validate SĐT Việt Nam, confetti khi gửi thành công.
+
+## Cấu hình (đầu thẻ `<script>`, object `CONFIG`)
+- `hotline`, `zalo`: số điện thoại (hiện đang là số mẫu `0901234567`).
+- `webhookUrl`: URL nhận lead. Ví dụ dùng Google Apps Script để ghi lead vào Google Sheet:
+  ```js
+  function doPost(e) {
+    const d = JSON.parse(e.postData.contents);
+    SpreadsheetApp.getActiveSpreadsheet().getSheets()[0].appendRow([
+      d.time, d.name, d.phone, d.baby_age, d.concern, d.call_time, d.note, d.quiz_result, d.gift, d.source, d.page
+    ]);
+    return ContentService.createTextOutput('ok');
+  }
+  ```
+  Deploy dạng **Web app**, quyền truy cập "Anyone", rồi dán URL vào `webhookUrl`.
+- `gifts`: danh sách quà của vòng quay và tỉ lệ trúng (`weight`).
+- Pixel: bỏ comment và điền ID cho FB Pixel / TikTok Pixel / GA trong `<head>`. Khi gửi form thành công, trang tự bắn sự kiện `Lead` (FB), `SubmitForm` (TikTok), `generate_lead` (GA) và push `lead_submit` vào `dataLayer`.
+- UTM, fbclid, ttclid, gclid được lưu tự động vào trường `source`.
+
+## Cần kiểm tra trước khi chạy ads
+- Thành phần trong mini game (`ING` trong script): đối chiếu với nhãn hoặc hồ sơ công bố sản phẩm.
+- Feedback: thay bằng feedback thật của khách.
+- Quà tặng và ưu đãi: khớp với chương trình khuyến mãi thực tế.

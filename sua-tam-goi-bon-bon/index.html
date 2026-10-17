@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sữa Tắm Gội Bon Bon Cho Bé - Dịu Nhẹ, Không Cay Mắt | Home Care Việt Nam</title>
+    <meta name="description" content="Sữa tắm gội 2in1 Bon Bon cho bé: dịu nhẹ cho làn da nhạy cảm, ít bọt, không cay mắt. Đăng ký nhận tư vấn miễn phí & quà tặng dành cho mẹ.">
+    <meta property="og:title" content="Sữa Tắm Gội Bon Bon - Tắm vui mỗi ngày, da bé mềm mịn">
+    <meta property="og:description" content="Làm quiz 30 giây để biết bé cần chăm da thế nào và nhận quà tặng từ Home Care Việt Nam.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#4cc0d3">
+    <link rel="icon" href="https://cdn.hstatic.net/themes/200001066686/1001439050/14/favicon.png" type="image/png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+
+    <!-- Facebook Pixel (Replace YOUR_PIXEL_ID) -->
+    <!-- <script>!function(f,b,e,v,n,t,s){...}('YOUR_PIXEL_ID');</script> -->
+    <!-- Google Analytics / Google Ads (Replace YOUR_GA_ID) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script> -->
+    <!-- TikTok Pixel (Replace YOUR_TIKTOK_PIXEL_ID) -->
+    <!-- <script>!function(w,d,t){...}('YOUR_TIKTOK_PIXEL_ID');</script> -->
+
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* ===== TOKENS ===== */
+:root {
+    --primary: #4cc0d3;
+    --primary-dark: #2a9fb3;
+    --primary-deep: #1d7f90;
+    --primary-light: #e3f7fa;
+    --pink: #ffb5c8;
+    --pink-soft: #ffe4ec;
+    --yellow: #ffe08a;
+    --yellow-soft: #fff6d6;
+    --mint: #b8f0d8;
+    --mint-soft: #e6fbf2;
+    --lilac: #d9cbff;
+    --cream: #fffaf3;
+    --white: #ffffff;
+    --text: #34495e;
+    --text-soft: #6b7d8f;
+    --danger: #ff6b8a;
+    --radius: 28px;
+    --radius-sm: 16px;
+    --shadow: 0 18px 40px -18px rgba(42, 159, 179, .45);
+    --shadow-soft: 0 10px 30px -12px rgba(52, 73, 94, .18);
+    --font-head: 'Baloo 2', 'Nunito', sans-serif;
+    --font-body: 'Nunito', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: auto; -webkit-text-size-adjust: 100%; }
+body {
+    font-family: var(--font-body);
+    color: var(--text);
+    background: var(--cream);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+img, svg { display: block; max-width: 100%; }
+main, .footer { overflow-x: clip; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+.container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ===== TYPO ===== */
+h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--text); }
+.section { position: relative; padding: 110px 0; }
+.section-head { text-align: center; max-width: 720px; margin: 0 auto 56px; }
+.eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 16px; border-radius: 99px;
+    background: var(--primary-light); color: var(--primary-dark);
+    font-weight: 800; font-size: 14px; letter-spacing: .3px;
+    margin-bottom: 16px;
+}
+.section-title { font-size: clamp(30px, 4.6vw, 50px); font-weight: 800; margin-bottom: 14px; }
+.section-title .hl { color: var(--primary); position: relative; white-space: nowrap; }
+.section-title .hl::after {
+    content: ''; position: absolute; left: -2%; right: -2%; bottom: 4px; height: 14px;
+    background: var(--yellow); border-radius: 99px; z-index: -1; opacity: .8;
+}
+.section-sub { font-size: 18px; color: var(--text-soft); }
+
+/* ===== BUTTONS ===== */
+.btn {
+    position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 16px 30px; border-radius: 99px;
+    font-family: var(--font-head); font-weight: 700; font-size: 18px;
+    transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s;
+    will-change: transform; overflow: hidden; isolation: isolate;
+}
+.btn-primary {
+    color: var(--white);
+    background: linear-gradient(135deg, #6fd3e2 0%, var(--primary) 45%, var(--primary-dark) 100%);
+    box-shadow: 0 10px 0 -2px var(--primary-deep), var(--shadow);
+}
+.btn-primary::before {
+    content: ''; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.45) 50%, transparent 70%);
+    transform: translateX(-120%); animation: shine 3.2s infinite;
+}
+@keyframes shine { 0%, 60% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+.btn-primary:hover { transform: translateY(-3px) scale(1.03); }
+.btn-primary:active { transform: translateY(4px); box-shadow: 0 4px 0 -2px var(--primary-deep), var(--shadow); }
+.btn-ghost { background: var(--white); color: var(--primary-dark); border: 2.5px dashed var(--primary); }
+.btn-ghost:hover { transform: translateY(-3px) rotate(-1deg); background: var(--primary-light); }
+.btn-pink { color: var(--white); background: linear-gradient(135deg, #ffc4d4, #ff8fab); box-shadow: 0 10px 0 -2px #e56b8b, 0 18px 40px -18px rgba(255,107,138,.6); }
+.btn-pink:hover { transform: translateY(-3px) scale(1.03); }
+.btn-block { width: 100%; }
+.btn .wiggle { display: inline-block; animation: wiggle 1.6s ease-in-out infinite; }
+@keyframes wiggle { 0%, 100% { transform: rotate(0); } 20% { transform: rotate(-14deg); } 40% { transform: rotate(12deg); } 60% { transform: rotate(-6deg); } }
+
+/* ===== SCROLL PROGRESS (duck) ===== */
+.progress { position: fixed; top: 0; left: 0; right: 0; height: 5px; z-index: 120; background: rgba(76,192,211,.15); }
+.progress-bar { height: 100%; width: 100%; transform-origin: left; transform: scaleX(0); background: linear-gradient(90deg, var(--pink), var(--primary), var(--mint)); }
+.progress-duck { position: absolute; top: -3px; left: 0; font-size: 22px; transform: translateX(-50%); filter: drop-shadow(0 2px 2px rgba(0,0,0,.15)); }
+
+/* ===== HEADER ===== */
+.header {
+    position: fixed; top: 5px; left: 0; right: 0; z-index: 100;
+    transition: transform .4s, background .3s, box-shadow .3s;
+}
+.header.scrolled { background: rgba(255,250,243,.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 6px 20px -12px rgba(52,73,94,.25); }
+.header.hide { transform: translateY(-110%); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
+.logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-head); font-weight: 800; font-size: 22px; color: var(--primary-dark); }
+.logo img { height: 40px; width: auto; }
+.logo-text small { display: block; font-size: 12px; font-weight: 600; color: var(--text-soft); margin-top: -6px; }
+.nav { display: flex; gap: 6px; }
+.nav a { padding: 8px 14px; border-radius: 99px; font-weight: 700; font-size: 15px; transition: background .2s, color .2s; }
+.nav a:hover { background: var(--primary-light); color: var(--primary-dark); }
+.header-cta { padding: 11px 22px; font-size: 16px; }
+
+/* ===== HERO ===== */
+.hero {
+    position: relative; min-height: 100vh; min-height: 100svh; padding: 140px 0 140px;
+    background:
+        radial-gradient(circle at 12% 20%, var(--pink-soft) 0, transparent 34%),
+        radial-gradient(circle at 88% 18%, var(--mint-soft) 0, transparent 30%),
+        radial-gradient(circle at 70% 85%, var(--yellow-soft) 0, transparent 32%),
+        linear-gradient(180deg, #f2fcfd 0%, var(--cream) 100%);
+    overflow: hidden;
+}
+.hero-bubbles { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+.bubble {
+    position: absolute; border-radius: 50%; pointer-events: auto; cursor: pointer;
+    background: radial-gradient(circle at 30% 28%, rgba(255,255,255,.95) 0 9%, rgba(255,255,255,.25) 10% 38%, rgba(76,192,211,.18) 60%, rgba(255,181,200,.28) 100%);
+    border: 1.5px solid rgba(255,255,255,.85);
+    box-shadow: inset -6px -8px 14px rgba(76,192,211,.25), inset 4px 4px 10px rgba(255,255,255,.6);
+    -webkit-tap-highlight-color: transparent;
+}
+.pop-particle { position: absolute; width: 8px; height: 8px; border-radius: 50%; pointer-events: none; z-index: 5; }
+.hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1.08fr .92fr; gap: 40px; align-items: center; pointer-events: none; }
+.hero-grid > * { pointer-events: auto; }
+.pill {
+    display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 99px;
+    background: var(--white); box-shadow: var(--shadow-soft); font-weight: 800; color: var(--primary-dark); font-size: 15px;
+}
+.pill .dot { width: 9px; height: 9px; border-radius: 50%; background: #4cd38a; box-shadow: 0 0 0 0 rgba(76,211,138,.6); animation: pulse 1.8s infinite; }
+@keyframes pulse { 70% { box-shadow: 0 0 0 10px rgba(76,211,138,0); } 100% { box-shadow: 0 0 0 0 rgba(76,211,138,0); } }
+.hero-title { font-size: clamp(36px, 5vw, 64px); font-weight: 800; margin: 22px 0 18px; letter-spacing: -.5px; }
+.hero-title .line { display: block; overflow: hidden; padding-bottom: 4px; }
+.hero-title .line > span { display: inline-block; }
+.hero-title .hl { color: var(--primary); }
+.hero-title .hl-pink { color: #ff8fab; }
+.hero-desc { font-size: 19px; color: var(--text-soft); max-width: 540px; margin-bottom: 24px; }
+.hero-checks { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 18px; margin-bottom: 32px; max-width: 540px; }
+.hero-checks li { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+.hero-checks li span { flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--mint); font-size: 14px; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 26px; }
+.pop-hint { display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; font-weight: 700; color: var(--text-soft); font-size: 15px; background: rgba(255,255,255,.7); padding: 8px 16px; border-radius: 99px; }
+.pop-hint b { color: var(--primary-dark); font-size: 18px; min-width: 18px; display: inline-block; text-align: center; }
+
+.hero-visual { position: relative; display: grid; place-items: center; min-height: 520px; }
+.hero-blob {
+    position: absolute; width: 440px; height: 440px; max-width: 92%;
+    background: linear-gradient(135deg, var(--primary-light), var(--mint-soft) 60%, var(--pink-soft));
+    border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
+    animation: blob 12s ease-in-out infinite;
+}
+@keyframes blob {
+    0%, 100% { border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%; }
+    33% { border-radius: 63% 37% 38% 62% / 55% 38% 62% 45%; }
+    66% { border-radius: 38% 62% 52% 48% / 36% 61% 39% 64%; }
+}
+.hero-bottle { position: relative; width: 250px; z-index: 2; filter: drop-shadow(0 30px 30px rgba(42,159,179,.35)); cursor: grab; }
+.hero-bottle:active { cursor: grabbing; }
+.hero-badge {
+    position: absolute; z-index: 3; display: flex; align-items: center; gap: 10px;
+    background: var(--white); padding: 12px 16px; border-radius: 20px; box-shadow: var(--shadow-soft);
+    font-weight: 800; font-size: 14px; line-height: 1.25;
+}
+.hero-badge .ico { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; font-size: 20px; flex: none; }
+.hero-badge small { display: block; font-weight: 600; color: var(--text-soft); font-size: 12px; }
+.hb-1 { top: 10%; left: 0; } .hb-1 .ico { background: var(--pink-soft); }
+.hb-2 { top: 42%; right: -4%; } .hb-2 .ico { background: var(--yellow-soft); }
+.hb-3 { bottom: 8%; left: 6%; } .hb-3 .ico { background: var(--mint-soft); }
+.hero-duck { position: absolute; bottom: 12%; right: 10%; font-size: 54px; z-index: 3; cursor: pointer; user-select: none; }
+.hero-star { position: absolute; font-size: 26px; z-index: 1; }
+.wave { position: absolute; left: 0; right: 0; bottom: -1px; z-index: 3; line-height: 0; }
+.wave svg { width: 100%; height: 90px; }
+
+/* ===== MARQUEE ===== */
+.marquee { position: relative; z-index: 4; background: var(--primary); color: var(--white); padding: 18px 0; transform: rotate(-1.5deg); margin: -30px -20px 0; box-shadow: var(--shadow); overflow: hidden; }
+.marquee-track { display: flex; width: max-content; gap: 48px; font-family: var(--font-head); font-size: 22px; font-weight: 700; white-space: nowrap; }
+.marquee-track span { display: inline-flex; align-items: center; gap: 48px; }
+.marquee-track span::after { content: '🫧'; }
+
+/* ===== PAIN (flip cards) ===== */
+.pain { background: var(--cream); }
+.flip-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; }
+.flip-card { perspective: 1200px; height: 300px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.flip-inner { position: relative; width: 100%; height: 100%; transition: transform .8s cubic-bezier(.34,1.4,.64,1); transform-style: preserve-3d; }
+.flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+.flip-face {
+    position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    border-radius: var(--radius); padding: 30px 26px; display: flex; flex-direction: column; justify-content: center; text-align: center;
+    box-shadow: var(--shadow-soft);
+}
+.flip-front { background: var(--white); border: 3px solid var(--pink-soft); }
+.flip-front .emo { font-size: 58px; margin-bottom: 14px; display: inline-block; }
+.flip-front h3 { font-size: 23px; margin-bottom: 8px; }
+.flip-front p { color: var(--text-soft); }
+.flip-front .tap { margin-top: 16px; font-size: 13px; font-weight: 800; color: #ff8fab; letter-spacing: .5px; text-transform: uppercase; }
+.flip-back { transform: rotateY(180deg); background: linear-gradient(150deg, var(--primary), var(--primary-dark)); color: var(--white); }
+.flip-back h3 { color: var(--white); font-size: 22px; margin-bottom: 10px; }
+.flip-back .emo { font-size: 42px; margin-bottom: 8px; }
+.pain-foot { text-align: center; margin-top: 44px; font-size: 18px; font-weight: 700; }
+.pain-foot b { color: var(--primary-dark); }
+
+/* ===== COMPARE SLIDER ===== */
+.compare-sec { background: linear-gradient(180deg, var(--cream), var(--primary-light)); }
+.compare {
+    position: relative; max-width: 940px; margin: 0 auto; height: 440px; border-radius: 36px; overflow: hidden;
+    box-shadow: var(--shadow); user-select: none; -webkit-user-select: none; touch-action: pan-y; background: #fff;
+}
+.cmp-layer { position: absolute; inset: 0; display: flex; padding: 40px; }
+.cmp-normal { background: linear-gradient(135deg, #eef1f4, #dfe5ea); justify-content: flex-start; }
+.cmp-bonbon { background: linear-gradient(135deg, #dff7fb, #c4eef5 60%, #fde3eb); justify-content: flex-end; clip-path: inset(0 0 0 50%); }
+.cmp-col { width: 46%; display: flex; flex-direction: column; justify-content: center; }
+.cmp-col h3 { font-size: 26px; margin-bottom: 18px; }
+.cmp-normal h3 { color: #7a8794; }
+.cmp-bonbon h3 { color: var(--primary-deep); }
+.cmp-col ul { list-style: none; display: grid; gap: 12px; }
+.cmp-col li { display: flex; gap: 10px; align-items: flex-start; font-weight: 700; padding: 10px 14px; border-radius: 14px; background: rgba(255,255,255,.65); }
+.cmp-normal li { color: #6f7b86; }
+.cmp-col li i { font-style: normal; flex: none; }
+.cmp-deco { position: absolute; font-size: 90px; opacity: .14; bottom: 10px; }
+.cmp-normal .cmp-deco { right: 54%; }
+.cmp-bonbon .cmp-deco { left: 54%; opacity: .25; }
+.cmp-handle { position: absolute; top: 0; bottom: 0; left: 0; width: 0; z-index: 5; }
+.cmp-handle::before { content: ''; position: absolute; top: 0; bottom: 0; left: -2px; width: 4px; background: var(--white); box-shadow: 0 0 12px rgba(0,0,0,.15); }
+.cmp-knob {
+    position: absolute; top: 50%; left: 0; width: 66px; height: 66px; transform: translate(-50%, -50%);
+    border-radius: 50%; background: var(--white); box-shadow: 0 8px 24px rgba(42,159,179,.45);
+    display: grid; place-items: center; font-size: 22px; cursor: ew-resize; border: 4px solid var(--primary); touch-action: none;
+}
+.cmp-tag { position: absolute; top: 20px; z-index: 4; padding: 6px 14px; border-radius: 99px; font-weight: 800; font-size: 13px; background: rgba(255,255,255,.85); }
+.cmp-tag.l { left: 20px; color: #7a8794; } .cmp-tag.r { right: 20px; color: var(--primary-dark); }
+.compare-hint { text-align: center; margin-top: 18px; font-weight: 700; color: var(--text-soft); }
+.compare-note { text-align: center; margin-top: 6px; font-size: 13px; color: var(--text-soft); opacity: .8; }
+
+/* ===== INGREDIENTS GAME ===== */
+.ingre { background: var(--primary-light); overflow: hidden; }
+.lab { display: grid; grid-template-columns: 1fr 340px 1fr; gap: 30px; align-items: center; max-width: 1060px; margin: 0 auto; }
+.chips { display: grid; gap: 18px; }
+.chip {
+    position: relative; z-index: 6; display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-radius: 22px;
+    background: var(--white); box-shadow: var(--shadow-soft); font-weight: 800; cursor: grab; touch-action: none;
+    border: 2.5px solid transparent; transition: border-color .2s, opacity .3s;
+}
+.chip:hover { border-color: var(--primary); }
+.chip .ico { width: 46px; height: 46px; border-radius: 15px; display: grid; place-items: center; font-size: 24px; flex: none; }
+.chip small { display: block; font-weight: 600; color: var(--text-soft); font-size: 13px; }
+.chip.used { opacity: .35; pointer-events: none; filter: grayscale(.6); }
+.drop-zone { position: relative; display: grid; place-items: center; padding: 20px 0; }
+.drop-ring { position: absolute; width: 300px; height: 300px; max-width: 100%; border-radius: 50%; border: 3px dashed var(--primary); opacity: .45; animation: spin 24s linear infinite; }
+.drop-zone.over .drop-ring { opacity: 1; border-color: #ff8fab; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.lab-bottle { width: 190px; position: relative; z-index: 2; }
+.lab-meter { margin-top: 18px; text-align: center; font-weight: 800; }
+.lab-meter .bar { width: 220px; height: 14px; border-radius: 99px; background: var(--white); margin: 8px auto 0; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,.06); }
+.lab-meter .bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--pink), var(--primary)); border-radius: 99px; }
+.lab-info {
+    max-width: 640px; margin: 36px auto 0; min-height: 96px; padding: 20px 26px; border-radius: 24px; background: var(--white);
+    box-shadow: var(--shadow-soft); display: flex; gap: 16px; align-items: center;
+}
+.lab-info .ico { font-size: 36px; flex: none; }
+.lab-info h4 { font-size: 20px; color: var(--primary-dark); }
+.lab-info p { color: var(--text-soft); }
+.lab-done { display: none; text-align: center; margin-top: 26px; }
+.lab-done.show { display: block; }
+.lab-note { text-align: center; margin-top: 14px; font-size: 13px; color: var(--text-soft); }
+
+/* ===== HORIZONTAL BENEFITS ===== */
+.benefits { background: var(--cream); padding: 110px 0 60px; overflow: hidden; }
+.h-track { display: flex; gap: 28px; padding: 0 max(20px, calc((100vw - 1180px) / 2 + 20px)); width: max-content; }
+.b-card {
+    position: relative; flex: none; width: min(420px, 82vw); min-height: 420px; padding: 36px 32px; border-radius: 36px;
+    display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; box-shadow: var(--shadow-soft);
+}
+.b-card .num { position: absolute; top: 18px; right: 28px; font-family: var(--font-head); font-size: 120px; font-weight: 800; line-height: 1; opacity: .18; }
+.b-card .big { position: absolute; top: 40px; left: 32px; font-size: 96px; }
+.b-card h3 { font-size: 28px; margin-bottom: 10px; }
+.b-card p { font-size: 17px; }
+.b-card:nth-child(1) { background: var(--pink-soft); }
+.b-card:nth-child(2) { background: var(--mint-soft); }
+.b-card:nth-child(3) { background: var(--yellow-soft); }
+.b-card:nth-child(4) { background: #ece6ff; }
+.b-card:nth-child(5) { background: var(--primary-light); }
+.b-card.cta-card { background: linear-gradient(150deg, var(--primary), var(--primary-dark)); color: var(--white); justify-content: center; text-align: center; align-items: center; }
+.b-card.cta-card h3 { color: var(--white); }
+.b-card.cta-card .btn { margin-top: 20px; }
+
+/* ===== QUIZ ===== */
+.quiz-sec { background: linear-gradient(180deg, var(--cream), var(--pink-soft)); }
+.quiz {
+    position: relative; max-width: 760px; margin: 0 auto; background: var(--white); border-radius: 36px; padding: 44px;
+    box-shadow: var(--shadow); overflow: hidden; min-height: 460px;
+}
+.quiz-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 26px; font-weight: 800; color: var(--text-soft); }
+.quiz-bar { flex: 1; height: 12px; border-radius: 99px; background: var(--primary-light); overflow: hidden; }
+.quiz-bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--primary), #ff8fab); border-radius: 99px; transition: width .5s cubic-bezier(.34,1.56,.64,1); }
+.q-step { display: none; }
+.q-step.active { display: block; }
+.q-step h3 { font-size: clamp(24px, 3.4vw, 32px); margin-bottom: 22px; text-align: center; }
+.q-opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.q-opt {
+    display: flex; align-items: center; gap: 14px; padding: 18px 20px; border-radius: 22px; text-align: left;
+    background: var(--cream); border: 2.5px solid #f0ebe3; font-weight: 800; font-size: 17px;
+    transition: transform .25s cubic-bezier(.34,1.56,.64,1), border-color .2s, background .2s;
+}
+.q-opt .e { font-size: 30px; flex: none; }
+.q-opt:hover { transform: translateY(-3px); border-color: var(--primary); background: var(--primary-light); }
+.q-opt.picked { border-color: var(--primary); background: var(--primary-light); }
+.q-back { margin-top: 20px; font-weight: 700; color: var(--text-soft); }
+.q-back:hover { color: var(--primary-dark); }
+.q-result { display: none; text-align: center; }
+.q-result.active { display: block; }
+.q-result .badge { font-size: 74px; display: inline-block; }
+.q-result h3 { font-size: 30px; margin: 8px 0 10px; }
+.q-result .type { display: inline-block; padding: 6px 16px; border-radius: 99px; background: var(--yellow-soft); color: #b0821a; font-weight: 800; margin-bottom: 14px; }
+.q-tips { text-align: left; display: grid; gap: 10px; margin: 18px 0 26px; }
+.q-tips li { list-style: none; display: flex; gap: 10px; padding: 12px 16px; border-radius: 16px; background: var(--mint-soft); font-weight: 600; }
+.q-loading { display: none; text-align: center; padding: 60px 0; }
+.q-loading.active { display: block; }
+.q-loading .spin { font-size: 60px; display: inline-block; }
+
+/* ===== HOW TO ===== */
+.howto { background: var(--cream); }
+.steps { position: relative; max-width: 980px; margin: 0 auto; }
+.steps-path { position: absolute; top: 60px; left: 8%; right: 8%; height: 80px; z-index: 0; }
+.steps-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.step { text-align: center; }
+.step .circle {
+    width: 120px; height: 120px; margin: 0 auto 18px; border-radius: 50%; background: var(--white); box-shadow: var(--shadow-soft);
+    display: grid; place-items: center; font-size: 50px; position: relative; border: 4px solid var(--primary-light);
+}
+.step .circle b { position: absolute; top: -4px; right: -4px; width: 36px; height: 36px; border-radius: 50%; background: var(--primary); color: #fff; font-family: var(--font-head); display: grid; place-items: center; font-size: 18px; }
+.step h4 { font-size: 21px; margin-bottom: 6px; }
+.step p { color: var(--text-soft); font-size: 16px; }
+
+/* ===== WHEEL ===== */
+.wheel-sec { background: linear-gradient(160deg, var(--primary) 0%, var(--primary-dark) 100%); color: var(--white); overflow: hidden; }
+.wheel-sec .section-title, .wheel-sec h3 { color: var(--white); }
+.wheel-sec .section-sub { color: rgba(255,255,255,.88); }
+.wheel-sec .eyebrow { background: rgba(255,255,255,.2); color: var(--white); }
+.wheel-sec .section-title .hl { color: var(--yellow); }
+.wheel-sec .section-title .hl::after { background: rgba(255,255,255,.22); }
+.wheel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+.wheel-wrap { position: relative; width: min(440px, 100%); aspect-ratio: 1; margin: 0 auto; }
+.wheel-wrap::before { content: ''; position: absolute; inset: -14px; border-radius: 50%; background: repeating-conic-gradient(var(--yellow) 0 10deg, var(--white) 10deg 20deg); opacity: .9; }
+.wheel { position: relative; width: 100%; height: 100%; border-radius: 50%; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,.25); }
+.wheel svg { width: 100%; height: 100%; }
+.wheel-pointer { position: absolute; top: -26px; left: 50%; transform: translateX(-50%); z-index: 3; font-size: 48px; filter: drop-shadow(0 6px 6px rgba(0,0,0,.25)); }
+.wheel-center {
+    position: absolute; inset: 37%; z-index: 2; border-radius: 50%; background: var(--white); color: var(--primary-dark);
+    display: grid; place-items: center; text-align: center; font-family: var(--font-head); font-weight: 800; font-size: 20px; line-height: 1.05;
+    box-shadow: 0 6px 20px rgba(0,0,0,.2), inset 0 -6px 0 var(--primary-light); border: 5px solid var(--yellow);
+}
+.wheel-center:disabled { cursor: not-allowed; }
+.wheel-center:not(:disabled):hover { transform: scale(1.05); }
+.wheel-copy ul { list-style: none; display: grid; gap: 12px; margin: 22px 0 30px; }
+.wheel-copy li { display: flex; gap: 12px; align-items: center; font-weight: 700; font-size: 17px; }
+.wheel-copy li span { width: 34px; height: 34px; border-radius: 12px; background: rgba(255,255,255,.2); display: grid; place-items: center; flex: none; }
+.wheel-result { display: none; padding: 22px; border-radius: 24px; background: var(--white); color: var(--text); margin-bottom: 22px; }
+.wheel-result.show { display: block; }
+.wheel-result b { color: #ff6b8a; font-size: 22px; font-family: var(--font-head); }
+
+/* ===== REVIEWS ===== */
+.reviews { background: var(--cream); overflow: hidden; }
+.rv-viewport { overflow: visible; }
+.rv-track { display: flex; gap: 24px; width: max-content; cursor: grab; padding: 10px 0 20px; }
+.rv-track:active { cursor: grabbing; }
+.rv-card { flex: none; width: min(360px, 80vw); background: var(--white); border-radius: 28px; padding: 28px; box-shadow: var(--shadow-soft); user-select: none; -webkit-user-select: none; }
+.rv-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.rv-ava { width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; font-size: 26px; flex: none; }
+.rv-head h4 { font-size: 18px; }
+.rv-head small { color: var(--text-soft); font-weight: 600; }
+.rv-stars { color: #ffc23d; letter-spacing: 2px; margin-bottom: 8px; }
+.rv-card p { color: var(--text-soft); }
+.rv-controls { display: flex; justify-content: center; align-items: center; gap: 14px; margin-top: 18px; }
+.rv-btn { width: 52px; height: 52px; border-radius: 50%; background: var(--white); box-shadow: var(--shadow-soft); font-size: 20px; transition: transform .2s; }
+.rv-btn:hover { transform: scale(1.1); background: var(--primary-light); }
+.rv-hint { font-weight: 700; color: var(--text-soft); font-size: 14px; }
+
+/* ===== FAQ ===== */
+.faq { background: linear-gradient(180deg, var(--cream), var(--primary-light)); }
+.faq-list { max-width: 820px; margin: 0 auto; display: grid; gap: 14px; }
+.faq-item { background: var(--white); border-radius: 22px; box-shadow: var(--shadow-soft); overflow: hidden; }
+.faq-q { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 26px; text-align: left; font-weight: 800; font-size: 18px; }
+.faq-q .pm { width: 34px; height: 34px; border-radius: 50%; background: var(--primary-light); color: var(--primary-dark); display: grid; place-items: center; font-size: 22px; flex: none; transition: transform .35s, background .3s; }
+.faq-item.open .faq-q .pm { transform: rotate(45deg); background: var(--primary); color: #fff; }
+.faq-a { height: 0; overflow: hidden; }
+.faq-a p { padding: 0 26px 22px; color: var(--text-soft); }
+
+/* ===== FORM ===== */
+.form-sec { background: var(--primary-light); padding-bottom: 140px; }
+.form-wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 44px; align-items: start; }
+.form-side h2 { font-size: clamp(32px, 4.4vw, 48px); margin: 6px 0 14px; }
+.form-side h2 .hl { color: var(--primary); }
+.gift-list { list-style: none; display: grid; gap: 14px; margin: 24px 0; }
+.gift-list li { display: flex; gap: 14px; align-items: center; background: var(--white); padding: 14px 18px; border-radius: 20px; box-shadow: var(--shadow-soft); font-weight: 700; }
+.gift-list li .e { font-size: 30px; flex: none; }
+.gift-list li small { display: block; color: var(--text-soft); font-weight: 600; }
+.countdown { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
+.countdown .lbl { font-weight: 800; width: 100%; margin-bottom: 4px; }
+.cd-box { min-width: 70px; text-align: center; padding: 10px 8px; border-radius: 16px; background: var(--white); box-shadow: var(--shadow-soft); }
+.cd-box b { display: block; font-family: var(--font-head); font-size: 30px; color: #ff6b8a; line-height: 1; }
+.cd-box small { font-size: 12px; font-weight: 700; color: var(--text-soft); }
+
+.form-card { position: relative; background: var(--white); border-radius: 36px; padding: 40px; box-shadow: var(--shadow); }
+.form-card::before { content: '🎀'; position: absolute; top: -28px; left: 50%; transform: translateX(-50%); font-size: 50px; }
+.form-card h3 { text-align: center; font-size: 28px; margin-bottom: 4px; }
+.form-card .sub { text-align: center; color: var(--text-soft); margin-bottom: 26px; }
+.won-banner { display: none; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 16px; background: var(--yellow-soft); border: 2px dashed #f2c24b; font-weight: 700; margin-bottom: 20px; }
+.won-banner.show { display: flex; }
+.field { margin-bottom: 18px; }
+.field > label, .field > .lbl { display: block; font-weight: 800; margin-bottom: 8px; }
+.field > label em, .field > .lbl em { color: var(--danger); font-style: normal; }
+.input {
+    width: 100%; padding: 15px 20px; border-radius: 18px; border: 2.5px solid #eee6da; background: var(--cream);
+    font: inherit; font-size: 17px; color: var(--text); transition: border-color .2s, box-shadow .2s, background .2s; outline: none;
+}
+.input:focus { border-color: var(--primary); background: var(--white); box-shadow: 0 0 0 5px rgba(76,192,211,.18); }
+.input.error { border-color: var(--danger); animation: shake .4s; }
+@keyframes shake { 25% { transform: translateX(-6px); } 50% { transform: translateX(6px); } 75% { transform: translateX(-3px); } }
+textarea.input { resize: vertical; min-height: 90px; }
+.err { display: none; color: var(--danger); font-size: 14px; font-weight: 700; margin-top: 6px; }
+.err.show { display: block; }
+.chip-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.chip-opt { position: relative; }
+.chip-opt input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.chip-opt span {
+    display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; border-radius: 99px; background: var(--cream);
+    border: 2.5px solid #eee6da; font-weight: 700; font-size: 15px; transition: all .2s;
+}
+.chip-opt input:checked + span { background: var(--primary); border-color: var(--primary); color: var(--white); transform: scale(1.04); }
+.chip-opt input:focus-visible + span { box-shadow: 0 0 0 4px rgba(76,192,211,.3); }
+.consent { font-size: 13px; color: var(--text-soft); text-align: center; margin-top: 14px; }
+.form-success { display: none; text-align: center; padding: 20px 0; }
+.form-success.show { display: block; }
+.form-success .big { font-size: 80px; display: inline-block; }
+.form-success h3 { font-size: 30px; margin: 10px 0; }
+.form-success p { color: var(--text-soft); margin-bottom: 22px; }
+.btn[disabled] { opacity: .7; pointer-events: none; }
+
+/* ===== FOOTER ===== */
+.footer { background: #2b3e4f; color: rgba(255,255,255,.8); padding: 60px 0 120px; }
+.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 30px; }
+.footer h4 { color: var(--white); font-size: 20px; margin-bottom: 14px; }
+.footer p, .footer a { font-size: 15px; }
+.footer a:hover { color: var(--primary); }
+.footer-bottom { margin-top: 36px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.12); font-size: 13px; text-align: center; }
+
+/* ===== FLOATING ===== */
+.float-btns { position: fixed; right: 18px; bottom: 26px; z-index: 90; display: grid; gap: 12px; }
+.float-btn { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; font-size: 26px; color: #fff; box-shadow: var(--shadow); transition: transform .25s; }
+.float-btn:hover { transform: scale(1.12) rotate(-8deg); }
+.float-btn.phone { background: #ff8fab; animation: ring 2.4s infinite; }
+.float-btn.zalo { background: #0068ff; font-family: var(--font-head); font-weight: 800; font-size: 15px; }
+@keyframes ring { 0%, 70%, 100% { transform: rotate(0); } 75% { transform: rotate(-14deg); } 80% { transform: rotate(14deg); } 85% { transform: rotate(-10deg); } 90% { transform: rotate(8deg); } }
+.sticky-bar {
+    display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 95; padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(255,255,255,.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 -8px 24px -10px rgba(52,73,94,.25);
+    gap: 10px; transform: translateY(110%); transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.sticky-bar.show { transform: translateY(0); }
+.sticky-bar .btn { padding: 14px 18px; font-size: 16px; }
+.sticky-bar .call { flex: none; width: 54px; padding: 0; background: #ff8fab; color: #fff; }
+.sticky-bar .go { flex: 1; }
+
+.toast {
+    position: fixed; left: 50%; top: 90px; z-index: 130; opacity: 0; pointer-events: none;
+    background: var(--white); padding: 14px 22px; border-radius: 99px; box-shadow: var(--shadow); font-weight: 800; display: flex; gap: 10px; align-items: center;
+    max-width: calc(100vw - 32px);
+}
+.toast a { color: var(--primary-dark); text-decoration: underline; pointer-events: auto; white-space: nowrap; }
+
+.cursor-bubble { position: fixed; z-index: 140; pointer-events: none; border-radius: 50%; border: 1.5px solid rgba(76,192,211,.6); background: radial-gradient(circle at 30% 30%, #fff, rgba(76,192,211,.15)); }
+
+.confetti { position: fixed; top: -20px; z-index: 150; pointer-events: none; }
+
+/* reveal defaults (set by JS so no-JS still shows content) */
+.js [data-reveal] { opacity: 0; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .nav { display: none; }
+    .hero-grid, .wheel-grid, .form-wrap { grid-template-columns: 1fr; }
+    .hero { padding-top: 120px; }
+    .hero-copy { text-align: center; }
+    .hero-desc, .hero-checks { margin-left: auto; margin-right: auto; }
+    .hero-ctas { justify-content: center; }
+    .hero-visual { min-height: 440px; }
+    .lab { grid-template-columns: 1fr 1fr; }
+    .drop-zone { grid-column: 1 / -1; grid-row: 1; }
+    .wheel-copy { text-align: center; }
+    .wheel-copy li { justify-content: center; }
+}
+@media (max-width: 768px) {
+    .section { padding: 80px 0; }
+    .container { padding: 0 16px; }
+    .header-cta { display: none; }
+    .header-inner { height: 62px; }
+    .hero { padding: 100px 0 120px; }
+    .hero-desc { font-size: 17px; }
+    .hero-checks { grid-template-columns: 1fr 1fr; gap: 8px 10px; text-align: left; font-size: 14px; }
+    .hero-ctas .btn { width: 100%; }
+    .hero-visual { min-height: 380px; }
+    .hero-bottle { width: 190px; }
+    .hero-blob { width: 320px; height: 320px; }
+    .hero-badge { padding: 9px 12px; font-size: 12px; }
+    .hero-badge .ico { width: 30px; height: 30px; font-size: 16px; }
+    .hb-2 { right: 0; }
+    .hero-duck { font-size: 42px; right: 4%; }
+    .marquee-track { font-size: 18px; }
+    .flip-grid { grid-template-columns: 1fr; }
+    .flip-card { height: 250px; }
+    .compare { height: 520px; border-radius: 28px; }
+    .cmp-layer { padding: 60px 16px 24px; align-items: flex-start; }
+    .cmp-col { width: 47%; }
+    .cmp-col h3 { font-size: 19px; }
+    .cmp-col li { font-size: 13px; padding: 8px 10px; flex-direction: column; gap: 2px; }
+    .cmp-knob { width: 54px; height: 54px; }
+    .lab { grid-template-columns: 1fr; gap: 16px; }
+    .chips { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .chip { padding: 10px 12px; font-size: 14px; gap: 8px; }
+    .chip .ico { width: 36px; height: 36px; font-size: 18px; }
+    .chip small { font-size: 11px; }
+    .drop-ring { width: 240px; height: 240px; }
+    .lab-bottle { width: 150px; }
+    .lab-info { flex-direction: column; text-align: center; padding: 18px; }
+    .h-track { overflow-x: auto; width: auto; scroll-snap-type: x mandatory; padding-bottom: 20px; -webkit-overflow-scrolling: touch; }
+    .b-card { scroll-snap-align: center; min-height: 360px; }
+    .quiz { padding: 28px 18px; border-radius: 28px; }
+    .q-opts { grid-template-columns: 1fr; }
+    .q-opt { padding: 14px 16px; font-size: 16px; }
+    .steps-path { display: none; }
+    .steps-grid { grid-template-columns: 1fr 1fr; gap: 30px 16px; }
+    .step .circle { width: 96px; height: 96px; font-size: 40px; }
+    .form-card { padding: 34px 18px 26px; border-radius: 28px; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .float-btns { display: none; }
+    .sticky-bar { display: flex; }
+    .cd-box { min-width: 62px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- Scroll progress with duck -->
+<div class="progress" aria-hidden="true">
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="progress-duck" id="progressDuck">🐥</div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="header" id="header">
+    <div class="container header-inner">
+        <a href="#top" class="logo js-scroll">
+            <img src="https://cdn.hstatic.net/themes/200001066686/1001439050/14/logo.png" alt="Home Care Việt Nam" onerror="this.style.display='none'">
+            <span class="logo-text">Bon Bon<small>by Home Care Việt Nam</small></span>
+        </a>
+        <nav class="nav">
+            <a href="#van-de" class="js-scroll">Mẹ lo gì?</a>
+            <a href="#thanh-phan" class="js-scroll">Thành phần</a>
+            <a href="#quiz" class="js-scroll">Quiz da bé</a>
+            <a href="#vong-quay" class="js-scroll">Quà tặng</a>
+            <a href="#hoi-dap" class="js-scroll">Hỏi đáp</a>
+        </nav>
+        <a href="#dang-ky" class="btn btn-primary header-cta js-scroll">🎁 Nhận quà</a>
+    </div>
+</header>
+
+<main>
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+    <div class="hero-bubbles" id="heroBubbles"></div>
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <span class="pill" data-hero><span class="dot"></span> Sữa tắm gội 2in1 dành cho bé</span>
+            <h1 class="hero-title">
+                <span class="line"><span>Tắm vui mỗi ngày,</span></span>
+                <span class="line"><span class="hl">da bé mềm mịn</span></span>
+                <span class="line"><span>không lo <span class="hl-pink">cay mắt</span></span></span>
+            </h1>
+            <p class="hero-desc" data-hero>Sữa tắm gội <b>Bon Bon</b> làm sạch dịu nhẹ, ít bọt, dùng được cho cả tóc và người. Giờ tắm của bé thành giờ chơi, mẹ cũng nhàn hơn.</p>
+            <ul class="hero-checks" data-hero>
+                <li><span>🫧</span> Tắm &amp; gội 2in1</li>
+                <li><span>👀</span> Không cay mắt</li>
+                <li><span>🌿</span> Dịu nhẹ da nhạy cảm</li>
+                <li><span>💧</span> Ít bọt, dễ xả sạch</li>
+            </ul>
+            <div class="hero-ctas" data-hero>
+                <a href="#dang-ky" class="btn btn-primary js-scroll magnetic"><span class="wiggle">🎁</span> Nhận tư vấn &amp; quà miễn phí</a>
+                <a href="#quiz" class="btn btn-ghost js-scroll magnetic">🧸 Quiz da bé 30 giây</a>
+            </div>
+            <div class="pop-hint" data-hero>🫧 Thử chạm vào bong bóng xem! Đã bóp: <b id="popCount">0</b></div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-blob"></div>
+            <span class="hero-star" style="top:6%;right:18%">✨</span>
+            <span class="hero-star" style="bottom:22%;left:-2%">⭐</span>
+            <span class="hero-star" style="top:30%;left:12%">💖</span>
+            <div class="hero-bottle" id="heroBottle" data-bottle="hero" title="Kéo thử lọ Bon Bon nè!"></div>
+            <div class="hero-badge hb-1"><span class="ico">👶</span><div>Dịu nhẹ cho bé<small>Da nhạy cảm vẫn dùng được</small></div></div>
+            <div class="hero-badge hb-2"><span class="ico">😊</span><div>Không cay mắt<small>Gội đầu hết khóc nhè</small></div></div>
+            <div class="hero-badge hb-3"><span class="ico">🌸</span><div>Hương thơm dịu<small>Thơm nhẹ, dễ chịu</small></div></div>
+            <div class="hero-duck" id="heroDuck" title="Bóp thử chú vịt!">🐤</div>
+        </div>
+    </div>
+    <div class="wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path fill="#4cc0d3" d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,40 L1440,90 L0,90 Z"/></svg>
+    </div>
+</section>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="marqueeTrack">
+        <span>Tắm &amp; gội 2in1</span><span>Không cay mắt</span><span>Dịu nhẹ cho da nhạy cảm</span><span>Ít bọt, dễ xả</span><span>Hương thơm dịu nhẹ</span><span>Tư vấn 1-1 miễn phí</span><span>Giao hàng toàn quốc</span>
+    </div>
+</div>
+
+<!-- ===== PAIN POINTS ===== -->
+<section class="section pain" id="van-de">
+    <div class="container">
+        <div class="section-head" data-reveal>
+            <span class="eyebrow">🤔 Mẹ có đang gặp?</span>
+            <h2 class="section-title">Giờ tắm của bé có thành <span class="hl">"cuộc chiến"</span>?</h2>
+            <p class="section-sub">Chạm vào từng thẻ để xem Bon Bon giúp mẹ thế nào nhé 👇</p>
+        </div>
+        <div class="flip-grid">
+            <div class="flip-card" data-reveal tabindex="0" role="button" aria-label="Lật thẻ: Bé khóc khi gội đầu">
+                <div class="flip-inner">
+                    <div class="flip-face flip-front"><div><span class="emo">😭</span></div><h3>Bé khóc thét khi gội đầu</h3><p>Bọt chảy xuống mắt, bé sợ, mẹ cũng hoảng theo.</p><div class="tap">👆 Chạm để lật</div></div>
+                    <div class="flip-face flip-back"><div class="emo">😊</div><h3>Công thức không cay mắt</h3><p>Bon Bon dịu nhẹ, ít bọt, bé ngửa đầu gội mà không khó chịu, giờ tắm thành giờ chơi.</p></div>
+                </div>
+            </div>
+            <div class="flip-card" data-reveal tabindex="0" role="button" aria-label="Lật thẻ: Da bé dễ mẩn đỏ">
+                <div class="flip-inner">
+                    <div class="flip-face flip-front"><div><span class="emo">🥵</span></div><h3>Da dễ mẩn đỏ, rôm sảy</h3><p>Trời nóng, bé ra mồ hôi nhiều, da nổi lấm tấm, bé khó chịu.</p><div class="tap">👆 Chạm để lật</div></div>
+                    <div class="flip-face flip-back"><div class="emo">🌿</div><h3>Làm sạch dịu nhẹ mỗi ngày</h3><p>Làm sạch mồ hôi, bụi bẩn mà không làm khô da, giúp da bé thông thoáng, dễ chịu hơn.</p></div>
+                </div>
+            </div>
+            <div class="flip-card" data-reveal tabindex="0" role="button" aria-label="Lật thẻ: Mẹ phải mua nhiều chai">
+                <div class="flip-inner">
+                    <div class="flip-face flip-front"><div><span class="emo">😩</span></div><h3>Chai tắm, chai gội riêng</h3><p>Lỉnh kỉnh, tốn tiền, mẹ vừa giữ bé vừa đổi chai.</p><div class="tap">👆 Chạm để lật</div></div>
+                    <div class="flip-face flip-back"><div class="emo">🫧</div><h3>Một chai 2in1 là xong</h3><p>Vừa tắm vừa gội trong một lần, mẹ tiết kiệm thời gian và chi phí, bé không phải đợi lâu.</p></div>
+                </div>
+            </div>
+        </div>
+        <p class="pain-foot" data-reveal>Hơn cả sữa tắm, <b>Bon Bon là "người bạn" của giờ tắm</b> 💙</p>
+    </div>
+</section>
+
+<!-- ===== COMPARE ===== -->
+<section class="section compare-sec" id="so-sanh">
+    <div class="container">
+        <div class="section-head" data-reveal>
+            <span class="eyebrow">↔️ Kéo để so sánh</span>
+            <h2 class="section-title">Khác biệt nằm ở <span class="hl">sự dịu nhẹ</span></h2>
+            <p class="section-sub">Kéo nút tròn sang trái/phải để xem sự khác biệt.</p>
+        </div>
+        <div class="compare" id="compare" data-reveal>
+            <div class="cmp-layer cmp-normal">
+                <div class="cmp-col">
+                    <h3>Sữa tắm thông thường</h3>
+                    <ul>
+                        <li><i>🫧</i> Nhiều bọt, khó xả sạch</li>
+                        <li><i>😣</i> Dễ cay mắt khi gội</li>
+                        <li><i>🌵</i> Có thể làm khô da bé</li>
+                        <li><i>🧴</i> Phải mua riêng dầu gội</li>
+                    </ul>
+                </div>
+                <span class="cmp-deco">😣</span>
+            </div>
+            <div class="cmp-layer cmp-bonbon" id="cmpTop">
+                <div class="cmp-col">
+                    <h3>Sữa tắm gội Bon Bon</h3>
+                    <ul>
+                        <li><i>💧</i> Ít bọt, xả sạch nhanh</li>
+                        <li><i>😊</i> Không cay mắt</li>
+                        <li><i>🌸</i> Dịu nhẹ, giữ ẩm cho da</li>
+                        <li><i>✨</i> 2in1: tắm &amp; gội</li>
+                    </ul>
+                </div>
+                <span class="cmp-deco">🥰</span>
+            </div>
+            <span class="cmp-tag l">Thông thường</span>
+            <span class="cmp-tag r">Bon Bon 💙</span>
+            <div class="cmp-handle" id="cmpHandle"><div class="cmp-knob" aria-label="Kéo để so sánh">↔</div></div>
+        </div>
+        <p class="compare-hint" data-reveal>👈 Kéo thử nhé 👉</p>
+        <p class="compare-note">* So sánh mang tính minh họa, trải nghiệm có thể khác nhau tùy làn da mỗi bé.</p>
+    </div>
+</section>
+
+<!-- ===== INGREDIENTS GAME ===== -->
+<section class="section ingre" id="thanh-phan">
+    <div class="container">
+        <div class="section-head" data-reveal>
+            <span class="eyebrow">🧪 Mini game: Pha chế Bon Bon</span>
+            <h2 class="section-title">Kéo thành phần <span class="hl">vào lọ</span> nào!</h2>
+            <p class="section-sub">Kéo (hoặc chạm) từng thành phần vào lọ để khám phá công thức dịu nhẹ cho làn da bé.</p>
+        </div>
+        <!-- TODO: Đối chiếu danh sách thành phần với nhãn sản phẩm / hồ sơ công bố trước khi chạy quảng cáo -->
+        <div class="lab" id="lab">
+            <div class="chips chips-left">
+                <div class="chip" data-ing="0"><span class="ico" style="background:var(--yellow-soft)">🌾</span><div>Yến mạch<small>Làm dịu da</small></div></div>
+                <div class="chip" data-ing="1"><span class="ico" style="background:var(--mint-soft)">🥥</span><div>Dầu dừa<small>Giữ ẩm tự nhiên</small></div></div>
+                <div class="chip" data-ing="2"><span class="ico" style="background:var(--pink-soft)">🌰</span><div>Dầu hạnh nhân<small>Mềm mịn da</small></div></div>
+            </div>
+            <div class="drop-zone" id="dropZone">
+                <div class="drop-ring"></div>
+                <div class="lab-bottle" id="labBottle" data-bottle="lab"></div>
+                <div class="lab-meter">Công thức: <span id="labCount">0</span>/5<div class="bar"><i id="labBar"></i></div></div>
+            </div>
+            <div class="chips chips-right">
+                <div class="chip" data-ing="3"><span class="ico" style="background:#ece6ff">💊</span><div>Vitamin E<small>Nuôi dưỡng da</small></div></div>
+                <div class="chip" data-ing="4"><span class="ico" style="background:var(--primary-light)">💧</span><div>Vitamin B5<small>Phục hồi, giữ ẩm</small></div></div>
+            </div>
+        </div>
+        <div class="lab-info" id="labInfo" data-reveal>
+            <span class="ico">👆</span>
+            <div><h4>Bắt đầu nào!</h4><p>Kéo một thành phần vào lọ Bon Bon để xem công dụng của nó với làn da bé.</p></div>
+        </div>
+        <div class="lab-done" id="labDone">
+            <a href="#dang-ky" class="btn btn-primary js-scroll">🎉 Hoàn thành! Nhận tư vấn &amp; quà ngay</a>
+        </div>
+        <p class="lab-note">* Thông tin thành phần tham khảo, vui lòng xem nhãn sản phẩm để biết thành phần đầy đủ.</p>
+    </div>
+</section>
+
+<!-- ===== HORIZONTAL BENEFITS ===== -->
+<section class="benefits" id="loi-ich">
+    <div class="container">
+        <div class="section-head" data-reveal>
+            <span class="eyebrow">💙 5 lý do mẹ yêu Bon Bon</span>
+            <h2 class="section-title">Cuộn xuống để <span class="hl">khám phá</span></h2>
+        </div>
+    </div>
+    <div class="h-track" id="hTrack">
+        <article class="b-card"><span class="num">01</span><span class="big">🫧</span><h3>2in1 tiện lợi</h3><p>Một chai vừa tắm vừa gội, mẹ không cần chuẩn bị nhiều sản phẩm, giờ tắm gọn gàng hơn.</p></article>
+        <article class="b-card"><span class="num">02</span><span class="big">😊</span><h3>Không cay mắt</h3><p>Bé không còn sợ gội đầu, mẹ không còn phải dỗ dành mỗi tối.</p></article>
+        <article class="b-card"><span class="num">03</span><span class="big">🌿</span><h3>Dịu nhẹ cho da nhạy cảm</h3><p>Làm sạch nhẹ nhàng, không làm khô căng da, phù hợp để tắm cho bé hằng ngày.</p></article>
+        <article class="b-card"><span class="num">04</span><span class="big">💧</span><h3>Ít bọt, dễ xả</h3><p>Xả sạch nhanh, ít tốn nước và thời gian, bé không bị lạnh khi tắm lâu.</p></article>
+        <article class="b-card"><span class="num">05</span><span class="big">🌸</span><h3>Hương thơm dịu nhẹ</h3><p>Mùi thơm nhẹ, dễ chịu, bé thơm tho cả ngày mà không bị hắc.</p></article>
+        <article class="b-card cta-card"><span class="big" style="position:static;font-size:80px">🎁</span><h3>Mẹ muốn thử cho bé?</h3><p>Để lại thông tin, chuyên viên Home Care sẽ tư vấn miễn phí và gửi quà tặng cho mẹ.</p><a href="#dang-ky" class="btn btn-pink js-scroll">Nhận quà ngay</a></article>
+    </div>
+</section>
+
+<!-- ===== QUIZ ===== -->
+<section class="section quiz-sec" id="quiz">
+    <div class="container">
+        <div class="section-head" data-reveal>
+            <span class="eyebrow">🧸 Quiz 30 giây</span>
+            <h2 class="section-title">Da bé nhà mình <span class="hl">cần gì?</span></h2>
+            <p class="section-sub">Trả lời 4 câu hỏi nhỏ để nhận gợi ý chăm da phù hợp cho bé và ưu đãi riêng.</p>
+        </div>
+        <div class="quiz" id="quizBox" data-reveal>
+            <div class="quiz-top"><span id="qLabel">Câu 1/4</span><div class="quiz-bar"><i id="qBar"></i></div><span>🎁</span></div>
+
+            <div class="q-step active" data-q="age">
+                <h3>Bé nhà mẹ bao nhiêu tuổi?</h3>
+                <div class="q-opts">
+                    <button class="q-opt" data-v="0-6 tháng"><span class="e">👶</span>0 - 6 tháng</button>
+                    <button class="q-opt" data-v="6-12 tháng"><span class="e">🍼</span>6 - 12 tháng</button>
+                    <button class="q-opt" data-v="1-3 tuổi"><span class="e">🧸</span>1 - 3 tuổi</button>
+                    <button class="q-opt" data-v="Trên 3 tuổi"><span class="e">🎒</span>Trên 3 tuổi</button>
+                </div>
+            </div>
+            <div class="q-step" data-q="skin">
+                <h3>Da bé hay gặp tình trạng nào nhất?</h3>
+                <div class="q-opts">
+                    <button class="q-opt" data-v="Rôm sảy" data-t="heat"><span class="e">🥵</span>Rôm sảy, mẩn đỏ</button>
+                    <button class="q-opt" data-v="Da khô" data-t="dry"><span class="e">🌵</span>Da khô, sần</button>
+                    <button class="q-opt" data-v="Da nhạy cảm" data-t="sensitive"><span class="e">🥺</span>Dễ kích ứng</button>
+                    <button class="q-opt" data-v="Da bình thường" data-t="normal"><span class="e">😊</span>Bình thường</button>
+                </div>
+            </div>
+            <div class="q-step" data-q="bath">
+                <h3>Khi gội đầu, bé thường...</h3>
+                <div class="q-opts">
+                    <button class="q-opt" data-v="Khóc, sợ cay mắt"><span class="e">😭</span>Khóc vì cay mắt</button>
+                    <button class="q-opt" data-v="Hơi quấy"><span class="e">😕</span>Hơi quấy một chút</button>
+                    <button class="q-opt" data-v="Hợp tác"><span class="e">😄</span>Hợp tác vui vẻ</button>
+                    <button class="q-opt" data-v="Chưa gội thường xuyên"><span class="e">🤷</span>Ít khi gội</button>
+                </div>
+            </div>
+            <div class="q-step" data-q="priority">
+                <h3>Mẹ ưu tiên điều gì nhất ở sữa tắm?</h3>
+                <div class="q-opts">
+                    <button class="q-opt" data-v="An toàn, dịu nhẹ"><span class="e">🛡️</span>An toàn, dịu nhẹ</button>
+                    <button class="q-opt" data-v="Tiện lợi 2in1"><span class="e">⚡</span>Tiện lợi 2in1</button>
+                    <button class="q-opt" data-v="Mùi thơm dễ chịu"><span class="e">🌸</span>Mùi thơm dễ chịu</button>
+                    <button class="q-opt" data-v="Giá hợp lý"><span class="e">💰</span>Giá hợp lý</button>
+                </div>
+            </div>
+
+            <div class="q-loading" id="qLoading"><span class="spin">🫧</span><h3 style="margin-top:14px">Đang phân tích làn da bé...</h3></div>
+
+            <div class="q-result" id="qResult">
+                <span class="badge" id="rEmoji">🌸</span>
+                <h3 id="rTitle">Bé có làn da nhạy cảm</h3>
+                <span class="type" id="rType">Cần làm sạch dịu nhẹ</span>
+                <ul class="q-tips" id="rTips"></ul>
+                <a href="#dang-ky" class="btn btn-primary btn-block js-scroll">🎁 Nhận tư vấn riêng cho bé &amp; quà tặng</a>
+                <button class="q-back" id="qRestart" style="display:block;margin:16px auto 0">↺ Làm lại quiz</button>
+            </div>
+            <button class="q-back" id="qBack" style="display:none">← Quay lại</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== HOW TO ===== -->
+<section class="section howto" id="cach-dung">
+    <div class="container">
+        <div class="section-head" data-reveal>
+            <span class="eyebrow">🛁 Cách dùng</span>
+            <h2 class="section-title">Chỉ <span class="hl">4 bước</span> nhẹ nhàng</h2>
+        </div>
+        <div class="steps">
+            <svg class="steps-path" viewBox="0 0 800 80" preserveAspectRatio="none" aria-hidden="true">
+                <path id="stepsPath" d="M0,40 C100,0 150,80 266,40 C380,0 420,80 533,40 C650,0 700,80 800,40" fill="none" stroke="#4cc0d3" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 12"/>
+            </svg>
+            <div class="steps-grid">
+                <div class="step"><div class="circle">🚿<b>1</b></div><h4>Làm ướt</h4><p>Làm ướt tóc và người bé bằng nước ấm vừa phải.</p></div>
+                <div class="step"><div class="circle">🧴<b>2</b></div><h4>Lấy sữa tắm</h4><p>Lấy một lượng vừa đủ ra tay hoặc khăn mềm.</p></div>
+                <div class="step"><div class="circle">👐<b>3</b></div><h4>Massage nhẹ</h4><p>Xoa đều lên tóc và toàn thân, massage nhẹ nhàng.</p></div>
+                <div class="step"><div class="circle">🧸<b>4</b></div><h4>Xả sạch</h4><p>Xả lại bằng nước sạch, lau khô bằng khăn mềm.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== WHEEL ===== -->
+<section class="section wheel-sec" id="vong-quay">
+    <div class="container wheel-grid">
+        <div class="wheel-copy" data-reveal>
+            <span class="eyebrow">🎡 Vòng quay may mắn</span>
+            <h2 class="section-title">Quay là trúng, <span class="hl">100% có quà!</span></h2>
+            <p class="section-sub">Mỗi mẹ có 1 lượt quay. Phần quà sẽ được giữ cho mẹ khi để lại thông tin nhận tư vấn.</p>
+            <ul>
+                <li><span>🎁</span> Quà được giữ trong 24 giờ</li>
+                <li><span>📞</span> Chuyên viên gọi lại xác nhận quà</li>
+                <li><span>🚚</span> Giao hàng toàn quốc</li>
+            </ul>
+            <div class="wheel-result" id="wheelResult">🎉 Chúc mừng mẹ đã trúng: <b id="wheelPrize"></b><br><small>Điền form bên dưới để nhận quà nhé!</small></div>
+            <a href="#dang-ky" class="btn btn-pink js-scroll" id="wheelCta">🎁 Nhận quà của tôi</a>
+        </div>
+        <div data-reveal>
+            <div class="wheel-wrap">
+                <div class="wheel-pointer">🔻</div>
+                <div class="wheel" id="wheel"></div>
+                <button class="wheel-center" id="wheelSpin">QUAY<br>NGAY</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<!-- TODO: Thay bằng feedback thật của khách hàng (tên, ảnh, nội dung đã được khách đồng ý) trước khi chạy quảng cáo -->
+<section class="section reviews" id="danh-gia">
+    <div class="container">
+        <div class="section-head" data-reveal>
+            <span class="eyebrow">💬 Mẹ nói gì về Bon Bon</span>
+            <h2 class="section-title">Chia sẻ từ <span class="hl">các mẹ</span></h2>
+        </div>
+        <div class="rv-viewport" id="rvViewport">
+            <div class="rv-track" id="rvTrack">
+                <div class="rv-card"><div class="rv-head"><span class="rv-ava" style="background:var(--pink-soft)">👩</span><div><h4>Mẹ Bống</h4><small>Bé 8 tháng</small></div></div><div class="rv-stars">★★★★★</div><p>"Trước bé nhà mình cứ gội đầu là khóc, dùng Bon Bon thấy bé hợp tác hơn hẳn. Chai 2in1 tiện ghê."</p></div>
+                <div class="rv-card"><div class="rv-head"><span class="rv-ava" style="background:var(--mint-soft)">👩‍🍼</span><div><h4>Mẹ Su</h4><small>Bé 1 tuổi</small></div></div><div class="rv-stars">★★★★★</div><p>"Mùi thơm nhẹ, không hắc. Tắm xong da con mềm, không bị khô căng như hồi dùng loại cũ."</p></div>
+                <div class="rv-card"><div class="rv-head"><span class="rv-ava" style="background:var(--yellow-soft)">🧕</span><div><h4>Mẹ Mít</h4><small>Bé 2 tuổi</small></div></div><div class="rv-stars">★★★★★</div><p>"Ít bọt nên xả nhanh, mùa đông tắm cho con không sợ lạnh lâu. Sẽ mua tiếp."</p></div>
+                <div class="rv-card"><div class="rv-head"><span class="rv-ava" style="background:#ece6ff">👩‍🦱</span><div><h4>Mẹ Na</h4><small>Bé 4 tháng</small></div></div><div class="rv-stars">★★★★★</div><p>"Được chuyên viên tư vấn kỹ cách tắm cho bé sơ sinh, rất nhiệt tình. Sản phẩm dịu nhẹ, mình yên tâm."</p></div>
+                <div class="rv-card"><div class="rv-head"><span class="rv-ava" style="background:var(--primary-light)">👱‍♀️</span><div><h4>Mẹ Bin</h4><small>Bé 3 tuổi</small></div></div><div class="rv-stars">★★★★★</div><p>"Con tự đòi tắm vì thích mùi Bon Bon. Mẹ đỡ vất vả hẳn mỗi tối."</p></div>
+            </div>
+        </div>
+        <div class="rv-controls">
+            <button class="rv-btn" id="rvPrev" aria-label="Trước">←</button>
+            <span class="rv-hint">Kéo để xem thêm</span>
+            <button class="rv-btn" id="rvNext" aria-label="Sau">→</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section faq" id="hoi-dap">
+    <div class="container">
+        <div class="section-head" data-reveal>
+            <span class="eyebrow">❓ Hỏi đáp</span>
+            <h2 class="section-title">Mẹ thường <span class="hl">hỏi</span></h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item" data-reveal><button class="faq-q">Bé sơ sinh dùng được không?<span class="pm">+</span></button><div class="faq-a"><p>Bon Bon được thiết kế dịu nhẹ cho làn da bé. Với bé sơ sinh hoặc da đang có vấn đề, mẹ nên để lại thông tin để chuyên viên tư vấn cụ thể theo tình trạng của bé.</p></div></div>
+            <div class="faq-item" data-reveal><button class="faq-q">Có thật sự không cay mắt?<span class="pm">+</span></button><div class="faq-a"><p>Công thức dịu nhẹ, ít bọt giúp hạn chế cảm giác cay mắt khi gội. Mẹ vẫn nên ngửa đầu bé ra sau và xả nước nhẹ nhàng để bé thoải mái nhất.</p></div></div>
+            <div class="faq-item" data-reveal><button class="faq-q">Dùng hằng ngày có bị khô da không?<span class="pm">+</span></button><div class="faq-a"><p>Sản phẩm làm sạch nhẹ nhàng, phù hợp để tắm cho bé hằng ngày. Mẹ dùng lượng vừa đủ và tắm bằng nước ấm vừa phải để giữ ẩm tốt nhất cho da.</p></div></div>
+            <div class="faq-item" data-reveal><button class="faq-q">Để lại thông tin có mất phí gì không?<span class="pm">+</span></button><div class="faq-a"><p>Hoàn toàn miễn phí. Chuyên viên Home Care sẽ gọi điện tư vấn và xác nhận quà tặng, mẹ chỉ quyết định mua khi thấy phù hợp.</p></div></div>
+            <div class="faq-item" data-reveal><button class="faq-q">Bao lâu thì được gọi lại?<span class="pm">+</span></button><div class="faq-a"><p>Thông thường trong giờ hành chính, chuyên viên sẽ liên hệ lại sớm nhất có thể. Mẹ có thể chọn khung giờ thuận tiện trong form.</p></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FORM ===== -->
+<section class="section form-sec" id="dang-ky">
+    <div class="container form-wrap">
+        <div class="form-side" data-reveal>
+            <span class="eyebrow">🎀 Ưu đãi dành riêng cho mẹ</span>
+            <h2>Đăng ký nhận <span class="hl">tư vấn &amp; quà</span> miễn phí</h2>
+            <p class="section-sub">Chỉ mất 20 giây. Chuyên viên Home Care sẽ gọi lại tư vấn cách chăm da phù hợp cho bé.</p>
+            <ul class="gift-list">
+                <li><span class="e">👩‍⚕️</span><div>Tư vấn 1-1 miễn phí<small>Chăm sóc da theo độ tuổi của bé</small></div></li>
+                <li><span class="e">🎁</span><div>Quà tặng kèm hấp dẫn<small>Kèm phần quà từ vòng quay may mắn</small></div></li>
+                <li><span class="e">🚚</span><div>Giao hàng toàn quốc<small>Kiểm tra hàng trước khi thanh toán</small></div></li>
+            </ul>
+            <div class="countdown" id="countdown">
+                <span class="lbl">⏰ Ưu đãi hôm nay kết thúc sau:</span>
+                <div class="cd-box"><b id="cdH">00</b><small>Giờ</small></div>
+                <div class="cd-box"><b id="cdM">00</b><small>Phút</small></div>
+                <div class="cd-box"><b id="cdS">00</b><small>Giây</small></div>
+            </div>
+        </div>
+
+        <div class="form-card" data-reveal>
+            <div id="formContent">
+                <h3>Nhận quà cho bé 🎁</h3>
+                <p class="sub">Điền thông tin, Home Care gọi lại ngay!</p>
+                <div class="won-banner" id="wonBanner">🎉 <span>Quà của mẹ: <b id="wonText"></b></span></div>
+                <form id="leadForm" novalidate>
+                    <div class="field">
+                        <label for="fName">Họ tên mẹ <em>*</em></label>
+                        <input class="input" id="fName" name="name" type="text" autocomplete="name" placeholder="VD: Nguyễn Thu Hà">
+                        <div class="err" id="eName">Mẹ ơi, cho Bon Bon xin tên nhé!</div>
+                    </div>
+                    <div class="field">
+                        <label for="fPhone">Số điện thoại <em>*</em></label>
+                        <input class="input" id="fPhone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="VD: 0901 234 567">
+                        <div class="err" id="ePhone">Số điện thoại chưa đúng (10 số, bắt đầu bằng 0).</div>
+                    </div>
+                    <div class="field">
+                        <span class="lbl">Bé nhà mẹ bao nhiêu tuổi?</span>
+                        <div class="chip-row" id="ageRow">
+                            <label class="chip-opt"><input type="radio" name="baby_age" value="0-6 tháng"><span>👶 0-6 tháng</span></label>
+                            <label class="chip-opt"><input type="radio" name="baby_age" value="6-12 tháng"><span>🍼 6-12 tháng</span></label>
+                            <label class="chip-opt"><input type="radio" name="baby_age" value="1-3 tuổi"><span>🧸 1-3 tuổi</span></label>
+                            <label class="chip-opt"><input type="radio" name="baby_age" value="Trên 3 tuổi"><span>🎒 Trên 3 tuổi</span></label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <span class="lbl">Mẹ đang quan tâm điều gì? <small style="font-weight:600;color:var(--text-soft)">(chọn nhiều)</small></span>
+                        <div class="chip-row" id="concernRow">
+                            <label class="chip-opt"><input type="checkbox" name="concern" value="Rôm sảy"><span>🥵 Rôm sảy</span></label>
+                            <label class="chip-opt"><input type="checkbox" name="concern" value="Da khô"><span>🌵 Da khô</span></label>
+                            <label class="chip-opt"><input type="checkbox" name="concern" value="Da nhạy cảm"><span>🥺 Da nhạy cảm</span></label>
+                            <label class="chip-opt"><input type="checkbox" name="concern" value="Cay mắt khi gội"><span>😭 Cay mắt khi gội</span></label>
+                            <label class="chip-opt"><input type="checkbox" name="concern" value="Tìm sữa tắm 2in1"><span>🫧 Tìm loại 2in1</span></label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="fTime">Thời gian thuận tiện để gọi</label>
+                        <select class="input" id="fTime" name="call_time">
+                            <option value="Bất kỳ lúc nào">Bất kỳ lúc nào</option>
+                            <option value="Sáng (8h-11h)">Sáng (8h - 11h)</option>
+                            <option value="Trưa (11h-14h)">Trưa (11h - 14h)</option>
+                            <option value="Chiều (14h-18h)">Chiều (14h - 18h)</option>
+                            <option value="Tối (18h-21h)">Tối (18h - 21h)</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="fNote">Mẹ muốn hỏi thêm gì không?</label>
+                        <textarea class="input" id="fNote" name="note" placeholder="VD: Bé hay bị rôm sảy ở lưng..."></textarea>
+                    </div>
+                    <input type="hidden" name="quiz_result" id="hQuiz">
+                    <input type="hidden" name="gift" id="hGift">
+                    <input type="hidden" name="source" id="hSource">
+                    <button type="submit" class="btn btn-primary btn-block" id="submitBtn"><span class="wiggle">🎁</span> NHẬN TƯ VẤN &amp; QUÀ NGAY</button>
+                    <p class="consent">🔒 Thông tin của mẹ được bảo mật và chỉ dùng để tư vấn sản phẩm.</p>
+                </form>
+            </div>
+            <div class="form-success" id="formSuccess">
+                <span class="big">🥳</span>
+                <h3>Đăng ký thành công!</h3>
+                <p>Cảm ơn mẹ <b id="sName"></b>. Chuyên viên Home Care sẽ gọi lại số <b id="sPhone"></b> sớm nhất để tư vấn và xác nhận quà cho bé nhé!</p>
+                <a href="#" class="btn btn-primary" data-zalo target="_blank" rel="noopener">💬 Chat Zalo để được tư vấn ngay</a>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="container footer-grid">
+        <div>
+            <h4>Home Care Việt Nam</h4>
+            <p>Sản phẩm chăm sóc mẹ &amp; bé dịu nhẹ, an toàn. Đồng hành cùng mẹ trong từng khoảnh khắc chăm con.</p>
+        </div>
+        <div>
+            <h4>Liên hệ</h4>
+            <p>📞 Hotline: <a href="#" data-tel data-tel-text>0901.234.567</a></p>
+            <p>🌐 <a href="https://homecarevietnam.com" target="_blank" rel="noopener">homecarevietnam.com</a></p>
+        </div>
+        <div>
+            <h4>Khám phá</h4>
+            <p><a href="#quiz" class="js-scroll">Quiz da bé</a></p>
+            <p><a href="#vong-quay" class="js-scroll">Vòng quay quà tặng</a></p>
+            <p><a href="#dang-ky" class="js-scroll">Đăng ký tư vấn</a></p>
+        </div>
+    </div>
+    <div class="container footer-bottom">© <span id="year"></span> Home Care Việt Nam. Sản phẩm này không phải là thuốc và không có tác dụng thay thế thuốc chữa bệnh.</div>
+</footer>
+
+<!-- Floating -->
+<div class="float-btns">
+    <a href="#" class="float-btn phone" data-tel title="Gọi ngay">📞</a>
+    <a href="#" class="float-btn zalo" data-zalo target="_blank" rel="noopener" title="Chat Zalo">Zalo</a>
+</div>
+<div class="sticky-bar" id="stickyBar">
+    <a href="#" class="btn call" data-tel aria-label="Gọi hotline">📞</a>
+    <a href="#dang-ky" class="btn btn-primary go js-scroll"><span class="wiggle">🎁</span> Nhận tư vấn &amp; quà</a>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===================================================================
+   CẤU HÌNH — chỉnh tại đây
+   =================================================================== */
+const CONFIG = {
+    // Hotline & Zalo (chỉ số, không dấu chấm)
+    hotline: '0901234567',
+    zalo: '0901234567',
+    // URL nhận lead: Google Apps Script Web App (ghi vào Google Sheet), webhook Pancake/CRM...
+    // Để trống thì form vẫn chạy nhưng chỉ log ra console.
+    webhookUrl: '',
+    // Phần quà vòng quay (weight = tỉ lệ trúng tương đối)
+    gifts: [
+        { label: 'Giảm 20%',        color: '#ffb5c8', weight: 2 },
+        { label: 'Khăn tắm xinh',   color: '#fff6d6', weight: 3 },
+        { label: 'Freeship',        color: '#b8f0d8', weight: 3 },
+        { label: 'Giảm 30%',        color: '#d9cbff', weight: 1 },
+        { label: 'Vịt tắm cute',    color: '#e3f7fa', weight: 3 },
+        { label: 'Mua 2 tặng 1',    color: '#ffe08a', weight: 1 }
+    ]
+};
+
+if (!window.gsap) { document.documentElement.classList.remove('js'); throw new Error('GSAP failed to load'); }
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, Draggable);
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const finePointer = window.matchMedia('(pointer: fine)').matches;
+const $ = (s, c = document) => c.querySelector(s);
+const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+};
+
+/* ===== CONTACT LINKS ===== */
+$$('[data-tel]').forEach(a => { a.href = 'tel:' + CONFIG.hotline; });
+$$('[data-tel-text]').forEach(a => { a.textContent = CONFIG.hotline.replace(/(\d{4})(\d{3})(\d+)/, '$1.$2.$3'); });
+$$('[data-zalo]').forEach(a => { a.href = 'https://zalo.me/' + CONFIG.zalo; });
+$('#year').textContent = new Date().getFullYear();
+
+/* ===== BOTTLE SVG ===== */
+let bottleUid = 0;
+function bottleSVG(withFill) {
+    const id = 'b' + (++bottleUid);
+    return `
+    <svg viewBox="0 0 200 320" xmlns="http://www.w3.org/2000/svg" aria-label="Lọ sữa tắm gội Bon Bon">
+        <defs>
+            <linearGradient id="${id}g" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#7fdbe8"/><stop offset=".5" stop-color="#4cc0d3"/><stop offset="1" stop-color="#2a9fb3"/>
+            </linearGradient>
+            <clipPath id="${id}c"><rect x="30" y="66" width="140" height="240" rx="50"/></clipPath>
+        </defs>
+        <g class="pump">
+            <rect x="100" y="12" width="52" height="13" rx="6.5" fill="#fff" stroke="#cfeff4" stroke-width="2"/>
+            <rect x="88" y="10" width="24" height="42" rx="7" fill="#fff" stroke="#cfeff4" stroke-width="2"/>
+        </g>
+        <rect x="76" y="48" width="48" height="24" rx="9" fill="#ffb5c8"/>
+        <rect x="30" y="66" width="140" height="240" rx="50" fill="url(#${id}g)"/>
+        ${withFill ? `<g clip-path="url(#${id}c)"><rect class="liquid" x="20" y="306" width="160" height="260" fill="#ffffff" opacity=".35"/></g>` : ''}
+        <rect x="46" y="92" width="14" height="110" rx="7" fill="#fff" opacity=".35"/>
+        <g class="face">
+            <g class="eyes">
+                <ellipse cx="80" cy="116" rx="7" ry="8.5" fill="#2b3a4a"/><circle cx="82.5" cy="113" r="2.4" fill="#fff"/>
+                <ellipse cx="120" cy="116" rx="7" ry="8.5" fill="#2b3a4a"/><circle cx="122.5" cy="113" r="2.4" fill="#fff"/>
+            </g>
+            <ellipse cx="64" cy="132" rx="9" ry="5.5" fill="#ffb5c8" opacity=".9"/>
+            <ellipse cx="136" cy="132" rx="9" ry="5.5" fill="#ffb5c8" opacity=".9"/>
+            <path class="mouth" d="M90 128 Q100 141 110 128" fill="none" stroke="#2b3a4a" stroke-width="4" stroke-linecap="round"/>
+        </g>
+        <rect x="50" y="152" width="100" height="112" rx="26" fill="#fff"/>
+        <text x="100" y="196" text-anchor="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="30" fill="#2a9fb3" textLength="86" lengthAdjust="spacingAndGlyphs">Bon Bon</text>
+        <text x="100" y="220" text-anchor="middle" font-family="Nunito, sans-serif" font-weight="800" font-size="14" fill="#34495e">Sữa tắm gội</text>
+        <text x="100" y="242" text-anchor="middle" font-family="Nunito, sans-serif" font-weight="700" font-size="12" fill="#ff8fab">2in1 • cho bé</text>
+        <circle cx="152" cy="282" r="6" fill="#fff" opacity=".5"/><circle cx="140" cy="292" r="3.5" fill="#fff" opacity=".5"/>
+    </svg>`;
+}
+$$('[data-bottle]').forEach(el => { el.innerHTML = bottleSVG(el.dataset.bottle === 'lab'); });
+
+// Blink all bottles
+if (!reduceMotion) {
+    $$('[data-bottle] .eyes').forEach(eyes => {
+        gsap.set(eyes, { transformOrigin: '50% 50%', transformBox: 'fill-box' });
+        gsap.timeline({ repeat: -1, repeatDelay: 2.6, delay: Math.random() * 2 })
+            .to(eyes, { scaleY: .1, duration: .09 }).to(eyes, { scaleY: 1, duration: .12 });
+    });
+}
+
+/* ===== TOAST ===== */
+gsap.set('#toast', { xPercent: -50, y: -30 });
+function toast(html, ms = 3200) {
+    const t = $('#toast');
+    t.innerHTML = html;
+    gsap.killTweensOf(t);
+    gsap.timeline()
+        .to(t, { opacity: 1, y: 0, duration: .45, ease: 'back.out(2)' })
+        .to(t, { opacity: 0, y: -30, duration: .35, delay: ms / 1000 });
+}
+
+/* ===== SMOOTH ANCHOR SCROLL ===== */
+$$('.js-scroll').forEach(a => a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (!href || !href.startsWith('#')) return;
+    const target = $(href);
+    if (!target) return;
+    e.preventDefault();
+    gsap.to(window, { scrollTo: { y: target, offsetY: href === '#top' ? 0 : 70 }, duration: 1.1, ease: 'power3.inOut' });
+}));
+
+/* ===== HEADER & PROGRESS ===== */
+const header = $('#header');
+let lastY = 0;
+ScrollTrigger.create({
+    start: 0, end: 'max',
+    onUpdate(self) {
+        const y = self.scroll();
+        header.classList.toggle('scrolled', y > 40);
+        header.classList.toggle('hide', y > 500 && y > lastY);
+        lastY = y;
+        gsap.set('#progressBar', { scaleX: self.progress });
+        gsap.set('#progressDuck', { left: (self.progress * 100) + '%' });
+        $('#stickyBar').classList.toggle('show', y > window.innerHeight * .6);
+    }
+});
+
+/* ===== HERO INTRO ===== */
+const heroTl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+heroTl
+    .from('.hero-title .line > span', { yPercent: 110, rotate: 4, duration: 1, stagger: .12 })
+    .from('[data-hero]', { y: 30, opacity: 0, duration: .8, stagger: .08 }, '-=.6')
+    .from('.hero-blob', { scale: .4, opacity: 0, duration: 1.2, ease: 'elastic.out(1, .6)' }, 0.1)
+    .from('#heroBottle', { y: 200, rotate: -20, opacity: 0, duration: 1.3, ease: 'elastic.out(1, .55)' }, .3)
+    .from('.hero-badge', { scale: 0, opacity: 0, duration: .7, stagger: .15, ease: 'back.out(2.2)' }, .9)
+    .from('#heroDuck', { x: 120, rotate: 40, opacity: 0, duration: 1, ease: 'back.out(2)' }, 1.1)
+    .from('.hero-star', { scale: 0, duration: .6, stagger: .1, ease: 'back.out(3)' }, 1.2);
+
+if (!reduceMotion) {
+    gsap.to('.hero-badge', { y: '+=14', duration: 2.4, ease: 'sine.inOut', yoyo: true, repeat: -1, stagger: { each: .6 } });
+    gsap.to('.hero-star', { rotate: 20, scale: 1.2, duration: 1.6, ease: 'sine.inOut', yoyo: true, repeat: -1, stagger: .4 });
+    gsap.to('#heroDuck', { rotate: 8, y: -8, duration: 1.3, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+}
+
+// Hero bottle: draggable, springs back + floating idle + parallax tilt
+const heroBottle = $('#heroBottle');
+const bottleIdle = reduceMotion ? null : gsap.to(heroBottle.querySelector('svg'), { y: -16, rotate: 2, duration: 2.2, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+Draggable.create(heroBottle, {
+    type: 'x,y',
+    onPress() { bottleIdle && bottleIdle.pause(); gsap.to(heroBottle.querySelector('.mouth'), { attr: { d: 'M88 126 Q100 146 112 126' }, duration: .2 }); },
+    onDrag() { gsap.to(heroBottle, { rotate: gsap.utils.clamp(-25, 25, this.deltaX * 2), duration: .3 }); },
+    onRelease() {
+        gsap.to(heroBottle, { x: 0, y: 0, rotate: 0, duration: 1.2, ease: 'elastic.out(1, .4)' });
+        gsap.to(heroBottle.querySelector('.mouth'), { attr: { d: 'M90 128 Q100 141 110 128' }, duration: .3 });
+        bottleIdle && bottleIdle.resume();
+        squirtBubbles(heroBottle);
+    }
+});
+function squirtBubbles(el) {
+    const r = el.getBoundingClientRect();
+    for (let i = 0; i < 8; i++) {
+        spawnCursorBubble(r.left + r.width * .75, r.top + r.height * .06, true);
+    }
+}
+if (finePointer && !reduceMotion) {
+    const hv = $('.hero-visual');
+    hv.addEventListener('mousemove', e => {
+        const r = hv.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
+        gsap.to('.hero-blob', { x: px * -30, y: py * -30, duration: 1 });
+        gsap.to('.hero-badge', { x: px * 24, duration: 1 });
+        gsap.to(heroBottle.querySelector('.eyes'), { x: px * 8, y: py * 6, duration: .4 });
+    });
+}
+
+// Duck squeak
+$('#heroDuck').addEventListener('click', () => {
+    gsap.fromTo('#heroDuck', { scaleX: 1.3, scaleY: .7 }, { scaleX: 1, scaleY: 1, duration: .8, ease: 'elastic.out(1.2, .3)' });
+    toast('🐤 Quạc quạc! Giờ tắm vui quá mẹ ơi!', 1800);
+});
+
+/* ===== HERO BUBBLES (click to pop) ===== */
+const bubbleBox = $('#heroBubbles');
+let pops = 0;
+function makeBubble(initial) {
+    const b = document.createElement('div');
+    b.className = 'bubble';
+    const size = gsap.utils.random(26, 86);
+    const W = bubbleBox.clientWidth, H = bubbleBox.clientHeight;
+    gsap.set(b, { width: size, height: size, left: gsap.utils.random(0, W - size), top: initial ? gsap.utils.random(H * .2, H) : H + 20 });
+    bubbleBox.appendChild(b);
+    const dur = gsap.utils.random(9, 18);
+    const rise = gsap.to(b, { y: -(H + 160), duration: initial ? dur * .7 : dur, ease: 'none', onComplete: () => { b.remove(); makeBubble(false); } });
+    gsap.to(b, { x: '+=' + gsap.utils.random(-40, 40), duration: gsap.utils.random(2, 4), ease: 'sine.inOut', yoyo: true, repeat: -1 });
+    b.addEventListener('pointerdown', e => {
+        e.stopPropagation();
+        rise.kill(); gsap.killTweensOf(b);
+        const r = b.getBoundingClientRect(), br = bubbleBox.getBoundingClientRect();
+        popBurst(r.left - br.left + r.width / 2, r.top - br.top + r.height / 2);
+        gsap.to(b, { scale: 1.5, opacity: 0, duration: .22, ease: 'power2.out', onComplete: () => { b.remove(); makeBubble(false); } });
+        pops++;
+        const pc = $('#popCount');
+        pc.textContent = pops;
+        gsap.fromTo(pc, { scale: 1.8 }, { scale: 1, duration: .5, ease: 'back.out(3)' });
+        if (pops === 5) toast('🫧 Mẹ bóp bong bóng giỏi quá! Thử <a href="#quiz" class="js-scroll-inline">quiz da bé</a> nhé', 3500);
+        if (pops === 12) toast('🎁 Phần thưởng cho mẹ chăm chỉ: <a href="#vong-quay" class="js-scroll-inline">quay quà ngay</a>', 4000);
+    });
+}
+const bubbleCount = reduceMotion ? 0 : (window.innerWidth < 768 ? 6 : 14);
+for (let i = 0; i < bubbleCount; i++) makeBubble(true);
+function popBurst(x, y) {
+    const colors = ['#4cc0d3', '#ffb5c8', '#ffe08a', '#b8f0d8'];
+    for (let i = 0; i < 10; i++) {
+        const p = document.createElement('span');
+        p.className = 'pop-particle';
+        p.style.background = colors[i % 4];
+        p.style.left = x + 'px'; p.style.top = y + 'px';
+        bubbleBox.appendChild(p);
+        const a = (Math.PI * 2 / 10) * i, d = gsap.utils.random(30, 70);
+        gsap.to(p, { x: Math.cos(a) * d, y: Math.sin(a) * d, scale: 0, duration: .6, ease: 'power3.out', onComplete: () => p.remove() });
+    }
+}
+document.addEventListener('click', e => {
+    const a = e.target.closest('.js-scroll-inline');
+    if (!a) return;
+    e.preventDefault();
+    gsap.to(window, { scrollTo: { y: a.getAttribute('href'), offsetY: 70 }, duration: 1.1, ease: 'power3.inOut' });
+});
+
+/* ===== CURSOR BUBBLE TRAIL ===== */
+function spawnCursorBubble(x, y, burst) {
+    const s = document.createElement('span');
+    s.className = 'cursor-bubble';
+    const size = gsap.utils.random(6, burst ? 22 : 14);
+    gsap.set(s, { width: size, height: size, left: x - size / 2, top: y - size / 2 });
+    document.body.appendChild(s);
+    gsap.to(s, {
+        x: gsap.utils.random(burst ? 10 : -20, burst ? 90 : 20), y: gsap.utils.random(burst ? -80 : -50, burst ? 20 : -20),
+        opacity: 0, scale: burst ? 1.4 : .4, duration: gsap.utils.random(.7, 1.3), ease: 'power2.out', onComplete: () => s.remove()
+    });
+}
+if (finePointer && !reduceMotion) {
+    let lastT = 0;
+    window.addEventListener('mousemove', e => {
+        const now = performance.now();
+        if (now - lastT < 70) return;
+        lastT = now;
+        spawnCursorBubble(e.clientX, e.clientY, false);
+    }, { passive: true });
+
+    // Magnetic buttons
+    $$('.magnetic').forEach(btn => {
+        btn.addEventListener('mousemove', e => {
+            const r = btn.getBoundingClientRect();
+            gsap.to(btn, { x: (e.clientX - r.left - r.width / 2) * .25, y: (e.clientY - r.top - r.height / 2) * .35, duration: .4 });
+        });
+        btn.addEventListener('mouseleave', () => gsap.to(btn, { x: 0, y: 0, duration: .7, ease: 'elastic.out(1, .4)' }));
+    });
+}
+
+/* ===== MARQUEE ===== */
+const mq = $('#marqueeTrack');
+mq.innerHTML += mq.innerHTML;
+const mqTween = gsap.to(mq, { xPercent: -50, duration: 26, ease: 'none', repeat: -1 });
+ScrollTrigger.create({
+    onUpdate(self) { gsap.to(mqTween, { timeScale: self.direction * (1 + Math.min(Math.abs(self.getVelocity()) / 600, 3)), duration: .3, overwrite: true }); }
+});
+
+/* ===== GENERIC REVEAL ===== */
+ScrollTrigger.batch('[data-reveal]', {
+    start: 'top 88%',
+    onEnter: batch => gsap.fromTo(batch, { opacity: 0, y: 50, scale: .96 }, { opacity: 1, y: 0, scale: 1, duration: .9, stagger: .12, ease: 'power3.out', overwrite: true }),
+    once: true
+});
+$$('.section-title').forEach(t => {
+    const hl = t.querySelector('.hl');
+    if (!hl) return;
+    gsap.from(hl, { scrollTrigger: { trigger: t, start: 'top 85%' }, color: '#34495e', duration: .8, delay: .3 });
+});
+
+/* ===== PAIN FLIP CARDS ===== */
+$$('.flip-card').forEach(card => {
+    const flip = () => {
+        card.classList.toggle('flipped');
+        if (card.classList.contains('flipped')) gsap.fromTo(card, { scale: .95 }, { scale: 1, duration: .6, ease: 'back.out(3)' });
+    };
+    card.addEventListener('click', flip);
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
+    if (!reduceMotion) gsap.to(card.querySelector('.flip-front .emo'), { rotate: 10, y: -6, duration: 1.2, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: Math.random() });
+});
+
+/* ===== COMPARE SLIDER ===== */
+(function () {
+    const box = $('#compare'), handle = $('#cmpHandle'), top = $('#cmpTop');
+    const setPos = x => {
+        const w = box.clientWidth;
+        x = gsap.utils.clamp(0, w, x);
+        gsap.set(handle, { x });
+        top.style.clipPath = `inset(0 0 0 ${x}px)`;
+    };
+    const drag = Draggable.create(handle, {
+        type: 'x', bounds: box, trigger: handle.querySelector('.cmp-knob'),
+        onDrag() { setPos(this.x); }
+    })[0];
+    const center = () => { setPos(box.clientWidth / 2); drag.update(); };
+    center();
+    window.addEventListener('resize', center);
+    box.addEventListener('click', e => {
+        if (e.target.closest('.cmp-knob')) return;
+        const x = e.clientX - box.getBoundingClientRect().left;
+        const o = { v: gsap.getProperty(handle, 'x') };
+        gsap.to(o, { v: x, duration: .6, ease: 'power3.out', onUpdate: () => { setPos(o.v); drag.update(); } });
+    });
+    // Auto-demo when visible
+    ScrollTrigger.create({
+        trigger: box, start: 'top 70%', once: true,
+        onEnter() {
+            const w = box.clientWidth, o = { v: w / 2 };
+            gsap.timeline({ onUpdate: () => { setPos(o.v); drag.update(); } })
+                .to(o, { v: w * .2, duration: .8, ease: 'power2.inOut' })
+                .to(o, { v: w * .8, duration: 1, ease: 'power2.inOut' })
+                .to(o, { v: w * .5, duration: .8, ease: 'power2.inOut' });
+        }
+    });
+})();
+
+/* ===== INGREDIENTS GAME ===== */
+(function () {
+    // TODO: Cập nhật theo thành phần thực tế in trên nhãn sản phẩm
+    const ING = [
+        { ico: '🌾', name: 'Chiết xuất yến mạch', text: 'Giúp làm dịu làn da nhạy cảm, hạn chế cảm giác khó chịu sau khi tắm.' },
+        { ico: '🥥', name: 'Dầu dừa', text: 'Bổ sung độ ẩm tự nhiên, giúp da bé mềm mại, không khô căng.' },
+        { ico: '🌰', name: 'Dầu hạnh nhân', text: 'Nuôi dưỡng làn da mịn màng và mái tóc mềm mượt cho bé.' },
+        { ico: '💊', name: 'Vitamin E', text: 'Hỗ trợ nuôi dưỡng, bảo vệ làn da non nớt của bé mỗi ngày.' },
+        { ico: '💧', name: 'Vitamin B5 (Panthenol)', text: 'Giúp giữ ẩm và hỗ trợ phục hồi làn da sau khi tắm.' }
+    ];
+    const zone = $('#dropZone'), bottle = $('#labBottle'), info = $('#labInfo');
+    const liquid = bottle.querySelector('.liquid');
+    let done = 0;
+
+    function showInfo(i) {
+        const d = ING[i];
+        info.innerHTML = `<span class="ico">${d.ico}</span><div><h4>${d.name}</h4><p>${d.text}</p></div>`;
+        gsap.fromTo(info, { y: 20, opacity: 0, scale: .95 }, { y: 0, opacity: 1, scale: 1, duration: .5, ease: 'back.out(2)' });
+    }
+    function accept(chip, dragInst) {
+        if (chip.classList.contains('used')) return;
+        const i = +chip.dataset.ing;
+        const ico = chip.querySelector('.ico');
+        const ir = ico.getBoundingClientRect(), br = bottle.getBoundingClientRect();
+        const ghost = ico.cloneNode(true);
+        gsap.set(ghost, { position: 'fixed', left: ir.left, top: ir.top, width: ir.width, height: ir.height, zIndex: 50, margin: 0 });
+        document.body.appendChild(ghost);
+        gsap.to(ghost, {
+            x: br.left + br.width / 2 - (ir.left + ir.width / 2), y: br.top + br.height * .35 - (ir.top + ir.height / 2),
+            scale: .3, rotate: 360, duration: .7, ease: 'power3.in', onComplete: () => ghost.remove()
+        });
+        chip.classList.add('used');
+        dragInst && dragInst.disable();
+        gsap.to(chip, { x: 0, y: 0, duration: .5 });
+        done++;
+        setTimeout(() => {
+            gsap.fromTo(bottle, { scaleX: 1.12, scaleY: .9 }, { scaleX: 1, scaleY: 1, duration: .9, ease: 'elastic.out(1.2, .35)' });
+            gsap.to(liquid, { attr: { y: 306 - (240 * done / ING.length) }, duration: .8, ease: 'power2.out' });
+            gsap.to('#labBar', { width: (done / ING.length * 100) + '%', duration: .6, ease: 'back.out(2)' });
+            $('#labCount').textContent = done;
+            squirtBubbles(bottle);
+            showInfo(i);
+            if (done === ING.length) {
+                $('#labDone').classList.add('show');
+                gsap.from('#labDone .btn', { scale: 0, duration: .8, ease: 'elastic.out(1, .4)' });
+                confetti(40);
+                toast('🎉 Công thức Bon Bon hoàn chỉnh!');
+            }
+        }, 650);
+    }
+    $$('.chip').forEach(chip => {
+        Draggable.create(chip, {
+            type: 'x,y', zIndexBoost: true,
+            onDrag() { zone.classList.toggle('over', this.hitTest(bottle, '20%')); },
+            onRelease() {
+                zone.classList.remove('over');
+                if (this.hitTest(bottle, '20%')) accept(chip, this);
+                else gsap.to(chip, { x: 0, y: 0, duration: .8, ease: 'elastic.out(1, .5)' });
+            },
+            onClick() { accept(chip, this); }
+        });
+    });
+    gsap.fromTo('.chips-left .chip', { x: -80, autoAlpha: 0 }, { scrollTrigger: { trigger: '#lab', start: 'top 80%' }, x: 0, autoAlpha: 1, duration: .8, stagger: .12, ease: 'back.out(2)', clearProps: 'opacity,visibility' });
+    gsap.fromTo('.chips-right .chip', { x: 80, autoAlpha: 0 }, { scrollTrigger: { trigger: '#lab', start: 'top 80%' }, x: 0, autoAlpha: 1, duration: .8, stagger: .12, ease: 'back.out(2)', clearProps: 'opacity,visibility' });
+    gsap.from(bottle, { scrollTrigger: { trigger: '#lab', start: 'top 80%' }, y: 80, scale: .6, opacity: 0, duration: 1.1, ease: 'elastic.out(1, .5)' });
+    // Nudge first chip to hint dragging
+    if (!reduceMotion) {
+        ScrollTrigger.create({
+            trigger: '#lab', start: 'top 60%', once: true,
+            onEnter() { gsap.to('.chip[data-ing="0"]', { x: 26, duration: .35, yoyo: true, repeat: 3, ease: 'sine.inOut', delay: 1.2 }); }
+        });
+    }
+})();
+
+/* ===== HORIZONTAL BENEFITS (desktop pin) ===== */
+const mm = gsap.matchMedia();
+mm.add('(min-width: 769px)', () => {
+    const track = $('#hTrack');
+    const dist = () => track.scrollWidth - window.innerWidth;
+    const tween = gsap.to(track, {
+        x: () => -dist(), ease: 'none',
+        scrollTrigger: { trigger: '#loi-ich', start: 'top top', end: () => '+=' + dist(), pin: true, scrub: 1, invalidateOnRefresh: true, refreshPriority: 1 }
+    });
+    $$('.b-card').forEach(card => {
+        gsap.from(card.querySelector('.big'), {
+            scale: 0, rotate: -30, ease: 'back.out(2)',
+            scrollTrigger: { trigger: card, containerAnimation: tween, start: 'left 90%', end: 'left 60%', scrub: true }
+        });
+    });
+});
+mm.add('(max-width: 768px)', () => {
+    gsap.from('.b-card', { scrollTrigger: { trigger: '#hTrack', start: 'top 85%' }, x: 60, opacity: 0, duration: .8, stagger: .1, ease: 'power3.out' });
+});
+
+/* ===== QUIZ ===== */
+(function () {
+    const steps = $$('.q-step'), total = steps.length;
+    const answers = {};
+    let cur = 0, busy = false;
+    const RESULTS = {
+        heat: { e: '🥵', title: 'Da bé dễ bị "nóng"', type: 'Cần làm sạch mồ hôi thông thoáng', tips: ['Tắm cho bé hằng ngày bằng nước ấm, đặc biệt vào ngày nóng.', 'Ưu tiên sữa tắm dịu nhẹ, ít bọt, dễ xả sạch như Bon Bon.', 'Mặc đồ cotton thoáng mát, tránh ủ bé quá kỹ.'] },
+        dry: { e: '🌵', title: 'Da bé hơi thiếu ẩm', type: 'Cần làm sạch & giữ ẩm', tips: ['Không tắm nước quá nóng và không tắm quá lâu (5-10 phút).', 'Chọn sữa tắm có thành phần dưỡng ẩm, không làm khô căng da.', 'Thoa dưỡng ẩm ngay sau khi lau khô người bé.'] },
+        sensitive: { e: '🥺', title: 'Bé có làn da nhạy cảm', type: 'Cần sản phẩm thật dịu nhẹ', tips: ['Chọn sữa tắm dịu nhẹ, hương thơm nhẹ, dùng lượng vừa đủ.', 'Thử trước trên một vùng da nhỏ khi đổi sản phẩm mới.', 'Để chuyên viên tư vấn chi tiết theo tình trạng của bé.'] },
+        normal: { e: '🌸', title: 'Da bé khỏe mạnh', type: 'Duy trì làm sạch dịu nhẹ', tips: ['Duy trì thói quen tắm gội đều đặn với sản phẩm dịu nhẹ.', 'Dùng sữa tắm gội 2in1 để giờ tắm nhanh gọn, bé vui hơn.', 'Biến giờ tắm thành giờ chơi với đồ chơi nhà tắm.'] }
+    };
+    let skinType = 'normal';
+    const update = () => {
+        $('#qLabel').textContent = cur < total ? `Câu ${cur + 1}/${total}` : 'Kết quả';
+        $('#qBar').style.width = (Math.min(cur, total) / total * 100) + '%';
+        $('#qBack').style.display = cur > 0 && cur < total ? 'inline-block' : 'none';
+    };
+    const show = (idx, dir = 1) => {
+        const from = steps[cur], to = steps[idx];
+        busy = true;
+        gsap.to(from, {
+            x: -60 * dir, opacity: 0, duration: .25, ease: 'power2.in', onComplete: () => {
+                from.classList.remove('active'); gsap.set(from, { x: 0, opacity: 1 });
+                to.classList.add('active');
+                gsap.fromTo(to, { x: 60 * dir, opacity: 0 }, { x: 0, opacity: 1, duration: .4, ease: 'power3.out' });
+                gsap.from(to.querySelectorAll('.q-opt'), { y: 20, opacity: 0, stagger: .06, duration: .4, ease: 'back.out(2)' });
+                cur = idx; update(); busy = false;
+            }
+        });
+    };
+    const finish = () => {
+        const last = steps[cur];
+        cur = total; update();
+        gsap.to(last, { opacity: 0, duration: .25, onComplete: () => {
+            last.classList.remove('active'); gsap.set(last, { opacity: 1 });
+            const ld = $('#qLoading'); ld.classList.add('active');
+            gsap.to(ld.querySelector('.spin'), { rotate: 360, scale: 1.3, duration: .6, repeat: 2, yoyo: true });
+            setTimeout(() => {
+                ld.classList.remove('active');
+                const r = RESULTS[skinType];
+                $('#rEmoji').textContent = r.e; $('#rTitle').textContent = r.title; $('#rType').textContent = r.type;
+                $('#rTips').innerHTML = r.tips.map(t => `<li>✅ <span>${t}</span></li>`).join('');
+                const box = $('#qResult'); box.classList.add('active');
+                gsap.from(box.children, { y: 30, opacity: 0, stagger: .08, duration: .5, ease: 'back.out(2)' });
+                gsap.from('#rEmoji', { scale: 0, rotate: -180, duration: .9, ease: 'elastic.out(1, .5)' });
+                confetti(30);
+                // Prefill form
+                $('#hQuiz').value = `${r.title} | Tuổi: ${answers.age} | Da: ${answers.skin} | Gội: ${answers.bath} | Ưu tiên: ${answers.priority}`;
+                const ageInput = $(`#ageRow input[value="${answers.age}"]`); if (ageInput) ageInput.checked = true;
+                const cMap = { 'Rôm sảy': 'Rôm sảy', 'Da khô': 'Da khô', 'Da nhạy cảm': 'Da nhạy cảm' };
+                if (cMap[answers.skin]) { const c = $(`#concernRow input[value="${cMap[answers.skin]}"]`); if (c) c.checked = true; }
+                if (answers.bath === 'Khóc, sợ cay mắt') { const c = $('#concernRow input[value="Cay mắt khi gội"]'); if (c) c.checked = true; }
+                if (answers.priority === 'Tiện lợi 2in1') { const c = $('#concernRow input[value="Tìm sữa tắm 2in1"]'); if (c) c.checked = true; }
+            }, 1400);
+        } });
+    };
+    steps.forEach((step, i) => {
+        step.querySelectorAll('.q-opt').forEach(btn => btn.addEventListener('click', () => {
+            if (busy) return;
+            busy = true;
+            step.querySelectorAll('.q-opt').forEach(b => b.classList.remove('picked'));
+            btn.classList.add('picked');
+            gsap.fromTo(btn, { scale: .94 }, { scale: 1, duration: .5, ease: 'elastic.out(1.2, .4)' });
+            answers[step.dataset.q] = btn.dataset.v;
+            if (btn.dataset.t) skinType = btn.dataset.t;
+            setTimeout(() => { busy = false; i < total - 1 ? show(i + 1) : finish(); }, 280);
+        }));
+    });
+    $('#qBack').addEventListener('click', () => { if (cur > 0 && !busy) show(cur - 1, -1); });
+    $('#qRestart').addEventListener('click', () => {
+        $('#qResult').classList.remove('active');
+        steps.forEach(s => { s.classList.remove('active'); s.querySelectorAll('.q-opt').forEach(b => b.classList.remove('picked')); });
+        cur = 0; steps[0].classList.add('active'); update();
+        gsap.from(steps[0].querySelectorAll('.q-opt'), { y: 20, opacity: 0, stagger: .06, duration: .4 });
+    });
+    update();
+})();
+
+/* ===== HOW TO (path draw + steps) ===== */
+(function () {
+    const path = $('#stepsPath');
+    const len = path.getTotalLength();
+    path.style.strokeDasharray = `${len}`;
+    path.style.strokeDashoffset = len;
+    gsap.to(path, { strokeDashoffset: 0, ease: 'none', scrollTrigger: { trigger: '.steps', start: 'top 75%', end: 'bottom 60%', scrub: 1 } });
+    gsap.from('.step', { scrollTrigger: { trigger: '.steps', start: 'top 78%' }, y: 60, opacity: 0, stagger: .18, duration: .8, ease: 'back.out(1.8)' });
+    gsap.from('.step .circle b', { scrollTrigger: { trigger: '.steps', start: 'top 70%' }, scale: 0, stagger: .18, duration: .6, delay: .5, ease: 'back.out(3)' });
+    $$('.step .circle').forEach(c => c.addEventListener('mouseenter', () => gsap.fromTo(c, { rotate: -10 }, { rotate: 0, duration: .8, ease: 'elastic.out(1.2, .3)' })));
+})();
+
+/* ===== LUCKY WHEEL ===== */
+(function () {
+    const gifts = CONFIG.gifts, n = gifts.length, seg = 360 / n;
+    const R = 200, C = 200;
+    const pt = (deg, r) => { const a = (deg - 90) * Math.PI / 180; return [C + r * Math.cos(a), C + r * Math.sin(a)]; };
+    let svg = `<svg viewBox="0 0 400 400">`;
+    gifts.forEach((g, i) => {
+        const [x1, y1] = pt(i * seg, R), [x2, y2] = pt((i + 1) * seg, R);
+        svg += `<path d="M${C},${C} L${x1},${y1} A${R},${R} 0 0,1 ${x2},${y2} Z" fill="${g.color}" stroke="#fff" stroke-width="3"/>`;
+        const mid = i * seg + seg / 2, [tx, ty] = pt(mid, R * .66);
+        svg += `<text x="${tx}" y="${ty}" transform="rotate(${mid} ${tx} ${ty})" text-anchor="middle" dominant-baseline="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="19" fill="#34495e">${g.label}</text>`;
+        const [ex, ey] = pt(mid, R * .9);
+        svg += `<circle cx="${ex}" cy="${ey}" r="5" fill="#fff"/>`;
+    });
+    svg += `</svg>`;
+    const wheel = $('#wheel');
+    wheel.innerHTML = svg;
+    const btn = $('#wheelSpin');
+    const pickWeighted = () => {
+        const sum = gifts.reduce((s, g) => s + g.weight, 0);
+        let r = Math.random() * sum;
+        for (let i = 0; i < n; i++) { r -= gifts[i].weight; if (r <= 0) return i; }
+        return n - 1;
+    };
+    const applyPrize = (label, animate) => {
+        $('#wheelPrize').textContent = label;
+        $('#wheelResult').classList.add('show');
+        $('#wonText').textContent = label;
+        $('#wonBanner').classList.add('show');
+        $('#hGift').value = label;
+        btn.disabled = true;
+        btn.innerHTML = 'ĐÃ<br>QUAY';
+        if (animate) {
+            gsap.from('#wheelResult', { scale: .6, opacity: 0, duration: .7, ease: 'back.out(2.5)' });
+            gsap.fromTo('#wheelCta', { scale: 1 }, { scale: 1.1, duration: .4, yoyo: true, repeat: 5 });
+        }
+    };
+    const saved = store.get('bonbon_gift');
+    if (saved !== null && gifts[+saved]) {
+        gsap.set(wheel, { rotate: 360 - (+saved * seg + seg / 2) });
+        applyPrize(gifts[+saved].label, false);
+    }
+    if (!reduceMotion && saved === null) gsap.to(wheel, { rotate: '+=360', duration: 40, ease: 'none', repeat: -1, id: 'wheelIdle' });
+    btn.addEventListener('click', () => {
+        if (btn.disabled) return;
+        btn.disabled = true;
+        const idle = gsap.getById('wheelIdle'); idle && idle.kill();
+        const i = pickWeighted();
+        const current = gsap.getProperty(wheel, 'rotate') % 360;
+        const target = 360 * 6 + (360 - (i * seg + seg / 2)) + gsap.utils.random(-seg * .3, seg * .3);
+        gsap.fromTo(wheel, { rotate: current }, {
+            rotate: target, duration: 5, ease: 'power4.out',
+            onComplete: () => { store.set('bonbon_gift', i); applyPrize(gifts[i].label, true); confetti(70); }
+        });
+        gsap.to('.wheel-pointer', { rotate: 18, duration: .08, yoyo: true, repeat: 40, ease: 'none', onComplete: () => gsap.set('.wheel-pointer', { rotate: 0 }) });
+    });
+    gsap.from('.wheel-wrap', { scrollTrigger: { trigger: '#vong-quay', start: 'top 70%' }, scale: .5, rotate: -90, opacity: 0, duration: 1.2, ease: 'back.out(1.6)' });
+})();
+
+/* ===== REVIEWS CAROUSEL ===== */
+(function () {
+    const track = $('#rvTrack'), vp = $('#rvViewport');
+    const d = Draggable.create(track, { type: 'x', bounds: { minX: 0, maxX: 0 }, edgeResistance: .85, dragClickables: true })[0];
+    const setBounds = () => {
+        const minX = Math.min(0, vp.clientWidth - track.scrollWidth);
+        d.applyBounds({ minX, maxX: 0 });
+    };
+    setBounds();
+    window.addEventListener('resize', setBounds);
+    const step = dir => {
+        const card = track.querySelector('.rv-card').offsetWidth + 24;
+        const minX = Math.min(0, vp.clientWidth - track.scrollWidth);
+        const x = gsap.utils.clamp(minX, 0, gsap.getProperty(track, 'x') - dir * card);
+        gsap.to(track, { x, duration: .6, ease: 'power3.out', onUpdate: () => d.update() });
+    };
+    $('#rvPrev').addEventListener('click', () => step(-1));
+    $('#rvNext').addEventListener('click', () => step(1));
+    gsap.from('.rv-card', { scrollTrigger: { trigger: track, start: 'top 85%' }, y: 60, rotate: () => gsap.utils.random(-6, 6), opacity: 0, stagger: .1, duration: .8, ease: 'back.out(1.6)' });
+})();
+
+/* ===== FAQ ===== */
+$$('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q'), a = item.querySelector('.faq-a');
+    q.setAttribute('aria-expanded', 'false');
+    q.addEventListener('click', () => {
+        const open = item.classList.contains('open');
+        $$('.faq-item.open').forEach(o => { if (o !== item) { o.classList.remove('open'); o.querySelector('.faq-q').setAttribute('aria-expanded', 'false'); gsap.to(o.querySelector('.faq-a'), { height: 0, duration: .4, ease: 'power2.inOut' }); } });
+        item.classList.toggle('open', !open);
+        q.setAttribute('aria-expanded', String(!open));
+        gsap.to(a, { height: open ? 0 : 'auto', duration: .45, ease: 'power2.inOut' });
+    });
+});
+
+/* ===== COUNTDOWN (end of day) ===== */
+(function () {
+    const pad = v => String(v).padStart(2, '0');
+    const tick = () => {
+        const now = new Date(), end = new Date(now); end.setHours(23, 59, 59, 999);
+        const s = Math.max(0, Math.floor((end - now) / 1000));
+        $('#cdH').textContent = pad(Math.floor(s / 3600));
+        $('#cdM').textContent = pad(Math.floor(s % 3600 / 60));
+        $('#cdS').textContent = pad(s % 60);
+    };
+    tick(); setInterval(tick, 1000);
+})();
+
+/* ===== LEAD FORM ===== */
+(function () {
+    const params = new URLSearchParams(location.search);
+    const source = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'ttclid', 'gclid']
+        .filter(k => params.get(k)).map(k => `${k}=${params.get(k)}`).join('&');
+    $('#hSource').value = source || document.referrer || 'direct';
+
+    const form = $('#leadForm');
+    const name = $('#fName'), phone = $('#fPhone');
+    const phoneRe = /^0(3|5|7|8|9)\d{8}$/;
+    const setErr = (input, errEl, bad) => { input.classList.toggle('error', bad); $(errEl).classList.toggle('show', bad); };
+    phone.addEventListener('input', () => { phone.value = phone.value.replace(/[^\d\s]/g, ''); });
+    [name, phone].forEach(i => i.addEventListener('input', () => { i.classList.remove('error'); i.closest('.field').querySelector('.err').classList.remove('show'); }));
+
+    form.addEventListener('submit', async e => {
+        e.preventDefault();
+        const ph = phone.value.replace(/\s/g, '');
+        const badName = name.value.trim().length < 2, badPhone = !phoneRe.test(ph);
+        setErr(name, '#eName', badName);
+        setErr(phone, '#ePhone', badPhone);
+        if (badName || badPhone) { (badName ? name : phone).focus(); return; }
+
+        const fd = new FormData(form);
+        const data = {
+            name: name.value.trim(), phone: ph,
+            baby_age: fd.get('baby_age') || '',
+            concern: fd.getAll('concern').join(', '),
+            call_time: fd.get('call_time') || '',
+            note: fd.get('note') || '',
+            quiz_result: fd.get('quiz_result') || '',
+            gift: fd.get('gift') || '',
+            source: fd.get('source') || '',
+            page: location.href.split('?')[0],
+            product: 'Sữa tắm gội Bon Bon',
+            time: new Date().toLocaleString('vi-VN')
+        };
+        const btn = $('#submitBtn');
+        btn.disabled = true; btn.innerHTML = '🫧 Đang gửi...';
+        try {
+            if (CONFIG.webhookUrl) {
+                await fetch(CONFIG.webhookUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(data) });
+            } else {
+                console.log('[Bon Bon lead]', data);
+            }
+        } catch (err) {
+            console.error(err);
+        }
+        // Conversion tracking
+        try { window.fbq && fbq('track', 'Lead', { content_name: data.product }); } catch (e) {}
+        try { window.ttq && ttq.track('SubmitForm'); } catch (e) {}
+        try { window.gtag && gtag('event', 'generate_lead', { item_name: data.product }); } catch (e) {}
+        try { (window.dataLayer = window.dataLayer || []).push({ event: 'lead_submit', ...data }); } catch (e) {}
+
+        $('#sName').textContent = data.name;
+        $('#sPhone').textContent = data.phone;
+        gsap.to('#formContent', { opacity: 0, y: -20, duration: .3, onComplete: () => {
+            $('#formContent').style.display = 'none';
+            const s = $('#formSuccess'); s.classList.add('show');
+            gsap.from(s.children, { y: 30, opacity: 0, stagger: .1, duration: .6, ease: 'back.out(2)' });
+            gsap.from('#formSuccess .big', { scale: 0, rotate: -90, duration: 1, ease: 'elastic.out(1, .4)' });
+        } });
+        confetti(120);
+        gsap.to(window, { scrollTo: { y: '#dang-ky', offsetY: 70 }, duration: .8 });
+    });
+})();
+
+/* ===== CONFETTI ===== */
+function confetti(count) {
+    if (reduceMotion) return;
+    const colors = ['#4cc0d3', '#ffb5c8', '#ffe08a', '#b8f0d8', '#d9cbff', '#ff8fab'];
+    const shapes = ['🫧', '⭐', '💖', ''];
+    for (let i = 0; i < count; i++) {
+        const c = document.createElement('div');
+        c.className = 'confetti';
+        const shape = shapes[Math.floor(Math.random() * shapes.length)];
+        if (shape) { c.textContent = shape; c.style.fontSize = gsap.utils.random(14, 26) + 'px'; }
+        else { gsap.set(c, { width: gsap.utils.random(8, 14), height: gsap.utils.random(6, 10), background: colors[i % colors.length], borderRadius: 3 }); }
+        c.style.left = Math.random() * 100 + 'vw';
+        document.body.appendChild(c);
+        gsap.to(c, {
+            y: window.innerHeight + 60, x: gsap.utils.random(-120, 120), rotate: gsap.utils.random(-720, 720),
+            duration: gsap.utils.random(2, 3.6), delay: Math.random() * .5, ease: 'power1.in', onComplete: () => c.remove()
+        });
+    }
+}
+
+ScrollTrigger.sort();
+window.addEventListener('load', () => { ScrollTrigger.sort(); ScrollTrigger.refresh(); });
+</script>
+</body>
+</html>
