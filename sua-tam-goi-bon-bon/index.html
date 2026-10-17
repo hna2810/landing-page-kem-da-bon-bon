@@ -155,9 +155,13 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 .hero-bubbles { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
 .bubble {
     position: absolute; border-radius: 50%; pointer-events: auto; cursor: pointer;
-    background: radial-gradient(circle at 30% 28%, rgba(255,255,255,.95) 0 9%, rgba(255,255,255,.25) 10% 38%, rgba(76,192,211,.18) 60%, rgba(255,181,200,.28) 100%);
-    border: 1.5px solid rgba(255,255,255,.85);
-    box-shadow: inset -6px -8px 14px rgba(76,192,211,.25), inset 4px 4px 10px rgba(255,255,255,.6);
+    background:
+        radial-gradient(circle at 30% 26%, #fff 0 8%, rgba(255,255,255,.55) 10% 20%, transparent 34%),
+        radial-gradient(circle at 70% 78%, rgba(255,255,255,.7) 0 5%, transparent 12%),
+        conic-gradient(from 200deg, rgba(124,214,228,.55), rgba(255,170,200,.55), rgba(255,230,140,.5), rgba(184,240,216,.55), rgba(124,214,228,.55));
+    border: 2px solid rgba(76,192,211,.55);
+    box-shadow: inset 0 0 18px rgba(255,255,255,.75), 0 6px 18px -6px rgba(42,159,179,.45);
+    opacity: .9;
     -webkit-tap-highlight-color: transparent;
 }
 .pop-particle { position: absolute; width: 8px; height: 8px; border-radius: 50%; pointer-events: none; z-index: 5; }
@@ -215,7 +219,11 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 .marquee { position: relative; z-index: 4; background: var(--primary); color: var(--white); padding: 18px 0; transform: rotate(-1.5deg); margin: -30px -20px 0; box-shadow: var(--shadow); overflow: hidden; }
 .marquee-track { display: flex; width: max-content; gap: 48px; font-family: var(--font-head); font-size: 22px; font-weight: 700; white-space: nowrap; }
 .marquee-track span { display: inline-flex; align-items: center; gap: 48px; }
-.marquee-track span::after { content: '🫧'; }
+.marquee-track span::after { content: ''; width: 22px; height: 22px; border-radius: 50%; flex: none; background: radial-gradient(circle at 32% 30%, #fff 0 14%, rgba(255,255,255,.35) 16% 45%, rgba(255,255,255,.12) 70%); border: 2px solid rgba(255,255,255,.9); }
+/* CSS bubble icon (thay emoji 🫧 vì Windows chưa hiển thị được) */
+.bb { display: inline-block; width: 1em; height: 1em; border-radius: 50%; vertical-align: -.12em; flex: none; font-style: normal;
+    background: radial-gradient(circle at 32% 30%, #fff 0 13%, rgba(255,255,255,.4) 15% 32%, rgba(124,214,228,.55) 62%, rgba(255,160,190,.6) 100%);
+    border: .07em solid #4cc0d3; box-shadow: inset -.08em -.1em .15em rgba(42,159,179,.35); }
 
 /* ===== PAIN (flip cards) ===== */
 .pain { background: var(--cream); }
@@ -641,7 +649,7 @@ textarea.input { resize: vertical; min-height: 90px; }
             </h1>
             <p class="hero-desc" data-hero>Lần đầu làm mẹ, ai cũng muốn dành điều dịu ngọt nhất cho con. <b>Sữa tắm gội Bon Bon</b> là "trợ lý đắc lực" giúp giờ tắm bé thật nhẹ nhàng: vừa tắm vừa gội, không cay mắt, không Paraben.</p>
             <ul class="hero-checks" data-hero>
-                <li><span>🫧</span> Tắm &amp; gội 2in1</li>
+                <li><span><i class="bb"></i></span> Tắm &amp; gội 2in1</li>
                 <li><span>👀</span> Không cay mắt</li>
                 <li><span>🚫</span> Không Paraben</li>
                 <li><span>⚖️</span> Độ pH cân bằng</li>
@@ -650,7 +658,7 @@ textarea.input { resize: vertical; min-height: 90px; }
                 <a href="#dang-ky" class="btn btn-primary js-scroll magnetic"><span class="wiggle">🎁</span> Nhận tư vấn &amp; quà miễn phí</a>
                 <a href="#quiz" class="btn btn-ghost js-scroll magnetic">🧸 Quiz da bé 30 giây</a>
             </div>
-            <div class="pop-hint" data-hero>🫧 Thử chạm vào bong bóng xem! Đã bóp: <b id="popCount">0</b></div>
+            <div class="pop-hint" data-hero><i class="bb"></i> Thử chạm vào bong bóng xem! Đã bóp: <b id="popCount">0</b></div>
         </div>
         <div class="hero-visual">
             <div class="hero-blob"></div>
@@ -704,7 +712,7 @@ textarea.input { resize: vertical; min-height: 90px; }
             <div class="flip-card" data-reveal tabindex="0" role="button" aria-label="Lật thẻ: Mẹ phải mua nhiều chai">
                 <div class="flip-inner">
                     <div class="flip-face flip-front"><div><span class="emo">😩</span></div><h3>Chai tắm, chai gội riêng</h3><p>Lỉnh kỉnh, tốn tiền, mẹ vừa giữ bé vừa đổi chai.</p><div class="tap">👆 Chạm để lật</div></div>
-                    <div class="flip-face flip-back"><div class="emo">🫧</div><h3>Một chai 2in1 là xong</h3><p>Vừa tắm vừa gội chỉ trong một bước, rút ngắn thời gian tắm để bé không bị nhiễm lạnh.</p></div>
+                    <div class="flip-face flip-back"><div class="emo"><i class="bb"></i></div><h3>Một chai 2in1 là xong</h3><p>Vừa tắm vừa gội chỉ trong một bước, rút ngắn thời gian tắm để bé không bị nhiễm lạnh.</p></div>
                 </div>
             </div>
         </div>
@@ -725,7 +733,7 @@ textarea.input { resize: vertical; min-height: 90px; }
                 <div class="cmp-col">
                     <h3>Sữa tắm thông thường</h3>
                     <ul>
-                        <li><i>🫧</i> Nhiều bọt, khó xả sạch</li>
+                        <li><i class="bb"></i> Nhiều bọt, khó xả sạch</li>
                         <li><i>😣</i> Dễ cay mắt khi gội</li>
                         <li><i>🌵</i> Da dễ khô ráp sau tắm</li>
                         <li><i>🧴</i> Phải mua riêng dầu gội</li>
@@ -797,7 +805,7 @@ textarea.input { resize: vertical; min-height: 90px; }
         </div>
     </div>
     <div class="h-track" id="hTrack">
-        <article class="b-card"><span class="num">01</span><span class="big">🫧</span><h3>2 trong 1 tiện lợi</h3><p>Vừa tắm vừa gội toàn thân chỉ trong một bước, rút ngắn thời gian tắm để bé không bị nhiễm lạnh.</p></article>
+        <article class="b-card"><span class="num">01</span><span class="big"><i class="bb"></i></span><h3>2 trong 1 tiện lợi</h3><p>Vừa tắm vừa gội toàn thân chỉ trong một bước, rút ngắn thời gian tắm để bé không bị nhiễm lạnh.</p></article>
         <article class="b-card"><span class="num">02</span><span class="big">😊</span><h3>Không cay mắt</h3><p>Ít bọt, nhẹ dịu và không chứa Paraben, bé thoải mái, thư giãn khi gội đầu.</p></article>
         <article class="b-card"><span class="num">03</span><span class="big">⚖️</span><h3>Độ pH cân bằng</h3><p>Nuôi dưỡng màng ẩm tự nhiên, da con mềm mại, không khô ráp sau khi tắm.</p></article>
         <article class="b-card"><span class="num">04</span><span class="big">🌿</span><h3>Làm sạch từ gốc</h3><p>Nhẹ nhàng hỗ trợ làm sạch vết viêm da tiết bã (cứt trâu) và màng ối bám trên da bé.</p></article>
@@ -854,7 +862,7 @@ textarea.input { resize: vertical; min-height: 90px; }
                 </div>
             </div>
 
-            <div class="q-loading" id="qLoading"><span class="spin">🫧</span><h3 style="margin-top:14px">Đang phân tích làn da bé...</h3></div>
+            <div class="q-loading" id="qLoading"><span class="spin"><i class="bb"></i></span><h3 style="margin-top:14px">Đang phân tích làn da bé...</h3></div>
 
             <div class="q-result" id="qResult">
                 <span class="badge" id="rEmoji">🌸</span>
@@ -1032,7 +1040,7 @@ textarea.input { resize: vertical; min-height: 90px; }
                             <label class="chip-opt"><input type="checkbox" name="concern" value="Da khô"><span>🌵 Da khô</span></label>
                             <label class="chip-opt"><input type="checkbox" name="concern" value="Da nhạy cảm"><span>🥺 Da nhạy cảm</span></label>
                             <label class="chip-opt"><input type="checkbox" name="concern" value="Cay mắt khi gội"><span>😭 Cay mắt khi gội</span></label>
-                            <label class="chip-opt"><input type="checkbox" name="concern" value="Tìm sữa tắm 2in1"><span>🫧 Tìm loại 2in1</span></label>
+                            <label class="chip-opt"><input type="checkbox" name="concern" value="Tìm sữa tắm 2in1"><span><i class="bb"></i> Tìm loại 2in1</span></label>
                         </div>
                     </div>
                     <div class="field">
@@ -1301,7 +1309,7 @@ function makeBubble(initial) {
         const pc = $('#popCount');
         pc.textContent = pops;
         gsap.fromTo(pc, { scale: 1.8 }, { scale: 1, duration: .5, ease: 'back.out(3)' });
-        if (pops === 5) toast('🫧 Mẹ bóp bong bóng giỏi quá! Thử <a href="#quiz" class="js-scroll-inline">quiz da bé</a> nhé', 3500);
+        if (pops === 5) toast('<i class="bb"></i> Mẹ bóp bong bóng giỏi quá! Thử <a href="#quiz" class="js-scroll-inline">quiz da bé</a> nhé', 3500);
         if (pops === 12) toast('🎁 Phần thưởng cho mẹ chăm chỉ: <a href="#vong-quay" class="js-scroll-inline">quay quà ngay</a>', 4000);
     });
 }
@@ -1759,7 +1767,7 @@ $$('.faq-item').forEach(item => {
             time: new Date().toLocaleString('vi-VN')
         };
         const btn = $('#submitBtn');
-        btn.disabled = true; btn.innerHTML = '🫧 Đang gửi...';
+        btn.disabled = true; btn.innerHTML = '<i class="bb"></i> Đang gửi...';
         try {
             if (CONFIG.webhookUrl) {
                 await fetch(CONFIG.webhookUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(data) });
@@ -1792,7 +1800,7 @@ $$('.faq-item').forEach(item => {
 function confetti(count) {
     if (reduceMotion) return;
     const colors = ['#4cc0d3', '#ffb5c8', '#ffe08a', '#b8f0d8', '#d9cbff', '#ff8fab'];
-    const shapes = ['🫧', '⭐', '💖', ''];
+    const shapes = ['💧', '⭐', '💖', ''];
     for (let i = 0; i < count; i++) {
         const c = document.createElement('div');
         c.className = 'confetti';
