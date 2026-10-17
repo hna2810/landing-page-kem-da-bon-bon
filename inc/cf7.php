@@ -227,6 +227,23 @@ function lx_cf7_save_to_google_sheet($contact_form) {
             $price = '299.000đ';
         }
 
+        // Phân tích referer URL để trích xuất tham số tracking và làm sạch link trang
+        $raw_referer  = wp_get_referer() ?: home_url('/');
+        $clean_page   = home_url('/');
+        $query_params = array();
+
+        if (!empty($raw_referer)) {
+            $parsed_url = parse_url($raw_referer);
+            if (!empty($parsed_url['host'])) {
+                $scheme     = !empty($parsed_url['scheme']) ? $parsed_url['scheme'] : 'https';
+                $path       = !empty($parsed_url['path']) ? $parsed_url['path'] : '/';
+                $clean_page = $scheme . '://' . $parsed_url['host'] . $path;
+            }
+            if (!empty($parsed_url['query'])) {
+                parse_str($parsed_url['query'], $query_params);
+            }
+        }
+
         $payload = array(
             'time'       => current_time('d/m/Y H:i:s'),
             'name'       => $name,
@@ -236,17 +253,23 @@ function lx_cf7_save_to_google_sheet($contact_form) {
             'product'    => $package,
             'price'      => $price,
             'quantity'   => 1,
-            'page'       => wp_get_referer() ?: home_url(),
+            'page'       => $clean_page,
             'user_agent' => sanitize_text_field($_SERVER['HTTP_USER_AGENT'] ?? ''),
         );
 
-        // Đính kèm các trường UTM Tracking nếu có
+        // Đính kèm các trường UTM Tracking & Ads Click IDs (ưu tiên: form post > URL query param > Cookie > GET)
         $tracking_keys = array('utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid', 'ttclid');
         foreach ($tracking_keys as $key) {
-            if (!empty($_COOKIE[$key])) {
+            if (!empty($posted_data[$key])) {
+                $payload[$key] = sanitize_text_field($posted_data[$key]);
+            } elseif (!empty($query_params[$key])) {
+                $payload[$key] = sanitize_text_field($query_params[$key]);
+            } elseif (!empty($_COOKIE[$key])) {
                 $payload[$key] = sanitize_text_field($_COOKIE[$key]);
             } elseif (!empty($_GET[$key])) {
                 $payload[$key] = sanitize_text_field($_GET[$key]);
+            } else {
+                $payload[$key] = '';
             }
         }
 

@@ -264,12 +264,20 @@ document.documentElement.classList.add('js');
         document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
     }
 
-    // ===== Nguồn quảng cáo (UTM) =====
+    // ===== Nguồn quảng cáo (UTM & Ads Click ID) =====
     const attribution = (() => {
         let saved = {};
         try { saved = JSON.parse(sessionStorage.getItem('bonbon_attr') || '{}'); } catch (e) {}
         const q = new URLSearchParams(location.search);
-        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid', 'ttclid'].forEach(k => { if (q.get(k)) saved[k] = q.get(k); });
+        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid', 'ttclid'].forEach(k => {
+            const v = q.get(k);
+            if (v) {
+                saved[k] = v;
+                try {
+                    document.cookie = k + '=' + encodeURIComponent(v) + '; path=/; max-age=2592000; SameSite=Lax';
+                } catch (err) {}
+            }
+        });
         if (!saved.referrer && document.referrer) saved.referrer = document.referrer;
         try { sessionStorage.setItem('bonbon_attr', JSON.stringify(saved)); } catch (e) {}
         return saved;

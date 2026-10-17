@@ -65,6 +65,21 @@ function doPost(e) {
       p.package = p.product;
     }
 
+    // Tự động làm sạch link trang đặt hàng và trích xuất tracking nếu chưa có
+    if (p.page && p.page.indexOf('?') !== -1) {
+      var parts = p.page.split('?');
+      p.page = parts[0];
+      var queryString = parts.slice(1).join('?');
+      queryString.split('&').forEach(function (pair) {
+        var kv = pair.split('=');
+        var k = decodeURIComponent(kv[0] || '');
+        var v = decodeURIComponent(kv.slice(1).join('=') || '');
+        if (k && v && !p[k]) {
+          p[k] = v;
+        }
+      });
+    }
+
     var sheet = getSheet();
     var row = COLUMNS.map(function (c) {
       var v = String(p[c[0]] || '').slice(0, 1000);
