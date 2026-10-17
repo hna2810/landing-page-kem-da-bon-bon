@@ -31,6 +31,10 @@ function lx_ensure_cf7_form() {
         . '    [tel* your-phone id:phone class:input autocomplete:tel placeholder "VD: 0901 234 567"]' . "\n"
         . '</div>' . "\n"
         . '<div class="field">' . "\n"
+        . '    <label for="your-address">Địa chỉ nhận hàng <span style="font-weight:400; font-size:13px; color:#6b7280">(không bắt buộc)</span></label>' . "\n"
+        . '    [text your-address id:address class:input autocomplete:street-address placeholder "VD: Số 123, đường ABC, Hà Nội"]' . "\n"
+        . '</div>' . "\n"
+        . '<div class="field">' . "\n"
         . '    <span class="field-label">Chọn mua <i style="color:#e5484d; font-style:normal">*</i></span>' . "\n"
         . '    <div class="packs-wrap">[radio package use_label_element default:1 "Hũ nhỏ 49.000đ (giá gốc 80.000đ) + FREESHIP" "Hũ to 140.000đ + FREESHIP" "Combo 299K BIGSIZE tắm gội + Kem bôi (giá gốc 455.000đ)"]</div>' . "\n"
         . '</div>' . "\n"
@@ -111,6 +115,7 @@ function lx_ensure_cf7_form() {
             'body'      => "Thông tin đơn hàng mới từ Landing Page:\n\n"
                          . "Họ tên: [your-name]\n"
                          . "Số điện thoại: [your-phone]\n"
+                         . "Địa chỉ: [your-address]\n"
                          . "Gói chọn mua: [package]\n"
                          . "Thời gian: [_date] [_time]\n"
                          . "Trang gửi: [_url]\n",
@@ -196,6 +201,7 @@ function lx_cf7_save_to_google_sheet($contact_form) {
     $posted_data = $submission->get_posted_data();
     $name    = sanitize_text_field($posted_data['your-name'] ?? $posted_data['name'] ?? '');
     $phone   = sanitize_text_field($posted_data['your-phone'] ?? $posted_data['phone'] ?? '');
+    $address = sanitize_text_field($posted_data['your-address'] ?? $posted_data['address'] ?? '');
     $package = is_array($posted_data['package'] ?? '') ? implode(', ', $posted_data['package']) : ($posted_data['package'] ?? '');
 
     // Bỏ qua nếu thiếu dữ liệu cơ bản
@@ -225,6 +231,7 @@ function lx_cf7_save_to_google_sheet($contact_form) {
             'time'       => current_time('d/m/Y H:i:s'),
             'name'       => $name,
             'phone'      => $phone,
+            'address'    => $address,
             'package'    => $package,
             'product'    => $package,
             'price'      => $price,
@@ -287,6 +294,10 @@ function lx_render_order_form() {
             <label for="phone">Số điện thoại <i>*</i></label>
             <input class="input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="16" placeholder="VD: 0901 234 567">
             <div class="err" id="phoneErr">Số điện thoại chưa đúng</div>
+        </div>
+        <div class="field">
+            <label for="address">Địa chỉ nhận hàng <span style="font-weight:400; font-size:13px; color:#6b7280">(không bắt buộc)</span></label>
+            <input class="input" id="address" name="address" autocomplete="street-address" maxlength="200" placeholder="VD: Số 123, đường ABC, Hà Nội">
         </div>
         <div class="field">
             <span class="field-label">Chọn mua <i style="color:#e5484d; font-style:normal">*</i></span>

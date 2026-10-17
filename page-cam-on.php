@@ -68,6 +68,10 @@ $product_name     = lx_get_field('lx_product_name', 'option', 'Kem Hăm Cho Bé 
                 <span class="row_label">Số điện thoại:</span>
                 <span class="row_val" id="tyCustomerPhone">Đang cập nhật</span>
             </div>
+            <div class="lx_thankyou_row" id="tyAddressRow" style="display:none">
+                <span class="row_label">Địa chỉ nhận:</span>
+                <span class="row_val" id="tyCustomerAddress"></span>
+            </div>
             <div class="lx_thankyou_row">
                 <span class="row_label">Sản phẩm:</span>
                 <span class="row_val" id="tyPackageName" style="color:#d64d86"><?php echo htmlspecialchars(strip_tags($product_name), ENT_QUOTES, 'UTF-8'); ?></span>
@@ -115,6 +119,7 @@ $product_name     = lx_get_field('lx_product_name', 'option', 'Kem Hăm Cho Bé 
     var packageName = defaultProductName;
     var customerName = '';
     var customerPhone = '';
+    var customerAddress = '';
 
     // 1. Đọc dữ liệu từ URL Query Parameters
     var params = new URLSearchParams(window.location.search);
@@ -125,6 +130,7 @@ $product_name     = lx_get_field('lx_product_name', 'option', 'Kem Hăm Cho Bé 
     if (params.get('package')) packageName = params.get('package');
     if (params.get('name')) customerName = params.get('name');
     if (params.get('phone')) customerPhone = params.get('phone');
+    if (params.get('address')) customerAddress = params.get('address');
 
     // 2. Dự phòng đọc từ sessionStorage
     try {
@@ -135,6 +141,7 @@ $product_name     = lx_get_field('lx_product_name', 'option', 'Kem Hăm Cho Bé 
             if (!params.get('package') && data.package) packageName = data.package;
             if (!customerName && data.name) customerName = data.name;
             if (!customerPhone && data.phone) customerPhone = data.phone;
+            if (!customerAddress && data.address) customerAddress = data.address;
         }
     } catch (e) {}
 
@@ -152,6 +159,14 @@ $product_name     = lx_get_field('lx_product_name', 'option', 'Kem Hăm Cho Bé 
     if (customerPhone) {
         var elPhone = document.getElementById('tyCustomerPhone');
         if (elPhone) elPhone.textContent = customerPhone;
+    }
+    if (customerAddress) {
+        var elAddrRow = document.getElementById('tyAddressRow');
+        var elAddr = document.getElementById('tyCustomerAddress');
+        if (elAddrRow && elAddr) {
+            elAddr.textContent = customerAddress;
+            elAddrRow.style.display = 'flex';
+        }
     }
     if (packageName) {
         var elPackage = document.getElementById('tyPackageName');

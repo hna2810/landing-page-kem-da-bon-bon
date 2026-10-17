@@ -391,8 +391,10 @@ document.documentElement.classList.add('js');
             if (alertBox) alertBox.classList.remove('show');
             const nameEl = document.getElementById('name');
             const phoneEl = document.getElementById('phone');
+            const addrEl = document.getElementById('address');
             const name = nameEl ? nameEl.value.trim() : '';
             const phone = phoneEl ? normalizePhone(phoneEl.value) : '';
+            const address = addrEl ? addrEl.value.trim() : '';
             const bad = { name: name.length < 2, phone: !/^0[1-9]\d{8,9}$/.test(phone) };
             Object.keys(bad).forEach(k => setErr(k, bad[k]));
             const first = Object.keys(bad).find(k => bad[k]);
@@ -404,7 +406,7 @@ document.documentElement.classList.add('js');
             if (websiteEl && websiteEl.value) { showSuccess(name, phone, pack); return; }
             const data = Object.assign({
                 time: new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }),
-                name, phone,
+                name, phone, address,
                 product: CFG.productName + ' x' + pack.qty,
                 product_code: 'kem-ham-5g-' + pack.qty,
                 quantity: pack.qty,
@@ -424,6 +426,7 @@ document.documentElement.classList.add('js');
                     sessionStorage.setItem('bonbon_last_order', JSON.stringify({
                         name: name,
                         phone: phone,
+                        address: address,
                         package: pack.label || (CFG.productName + ' x' + pack.qty),
                         value: pack.price,
                         time: Date.now()
@@ -433,6 +436,7 @@ document.documentElement.classList.add('js');
                 const params = new URLSearchParams({
                     name: name,
                     phone: phone,
+                    address: address,
                     package: pack.label || (CFG.productName + ' x' + pack.qty),
                     value: pack.price
                 });
@@ -506,11 +510,13 @@ document.addEventListener('wpcf7mailsent', function (event) {
     let selectedPackage = '';
     let clientName = '';
     let clientPhone = '';
+    let clientAddress = '';
     if (event.detail && event.detail.inputs) {
         event.detail.inputs.forEach(input => {
             if (input.name === 'package') selectedPackage = input.value;
             if (input.name === 'your-name' || input.name === 'name') clientName = input.value;
             if (input.name === 'your-phone' || input.name === 'phone') clientPhone = input.value;
+            if (input.name === 'your-address' || input.name === 'address') clientAddress = input.value;
         });
     }
 
@@ -534,6 +540,7 @@ document.addEventListener('wpcf7mailsent', function (event) {
         sessionStorage.setItem('bonbon_last_order', JSON.stringify({
             name: clientName,
             phone: clientPhone,
+            address: clientAddress,
             package: selectedPackage || (window.BONBON_CONFIG && window.BONBON_CONFIG.productName) || 'Kem Hăm Cho Bé Bon Bon',
             value: leadValue,
             time: Date.now()
@@ -544,6 +551,7 @@ document.addEventListener('wpcf7mailsent', function (event) {
     const params = new URLSearchParams({
         name: clientName,
         phone: clientPhone,
+        address: clientAddress,
         package: selectedPackage || (window.BONBON_CONFIG && window.BONBON_CONFIG.productName) || 'Kem Hăm Cho Bé Bon Bon',
         value: leadValue
     });
