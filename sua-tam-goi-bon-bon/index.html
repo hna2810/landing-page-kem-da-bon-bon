@@ -174,11 +174,11 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 .pill .dot { width: 9px; height: 9px; border-radius: 50%; background: #4cd38a; box-shadow: 0 0 0 0 rgba(76,211,138,.6); animation: pulse 1.8s infinite; }
 @keyframes pulse { 70% { box-shadow: 0 0 0 10px rgba(76,211,138,0); } 100% { box-shadow: 0 0 0 0 rgba(76,211,138,0); } }
 .hero-title { font-size: clamp(36px, 5vw, 64px); font-weight: 800; margin: 22px 0 18px; letter-spacing: -.5px; }
-.hero-title .line { display: block; overflow: hidden; padding-bottom: 4px; }
+.hero-title .line { display: block; overflow: hidden; padding: .14em 0 4px; }
 .hero-title .line > span { display: inline-block; }
 .hero-title .hl { color: var(--primary); }
 .hero-title .hl-pink { color: #ff8fab; }
-.hero-desc { font-size: 19px; color: var(--text-soft); max-width: 540px; margin-bottom: 30px; }
+.hero-desc { font-size: 21px; font-weight: 700; color: var(--text-soft); max-width: 540px; margin-bottom: 30px; }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 26px; }
 .pop-hint { display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; font-weight: 700; color: var(--text-soft); font-size: 15px; background: rgba(255,255,255,.7); padding: 8px 16px; border-radius: 99px; }
 .pop-hint b { color: var(--primary-dark); font-size: 18px; min-width: 18px; display: inline-block; text-align: center; }
@@ -624,15 +624,14 @@ textarea.input { resize: vertical; min-height: 90px; }
     <div class="hero-bubbles" id="heroBubbles"></div>
     <div class="container hero-grid">
         <div class="hero-copy">
-            <span class="pill" data-hero><span class="dot"></span> Sữa tắm gội 2in1 cho bé từ sơ sinh</span>
+            <span class="pill" data-hero><span class="dot"></span> Sữa tắm gội cho bé Bon Bon</span>
             <h1 class="hero-title">
-                <span class="line"><span>Nâng niu làn da bé</span></span>
-                <span class="line"><span class="hl">từ những ngày</span></span>
-                <span class="line"><span><span class="hl-pink">đầu đời</span></span></span>
+                <span class="line"><span>ÍT BỌT DỊU ÊM,</span></span>
+                <span class="line"><span class="hl">MỀM MỊN <span class="hl-pink">DA BÉ</span></span></span>
             </h1>
-            <p class="hero-desc" data-hero>Lần đầu làm mẹ, ai cũng muốn dành điều dịu ngọt nhất cho con. <b>Sữa tắm gội Bon Bon</b> là "trợ lý đắc lực" giúp giờ tắm bé thật nhẹ nhàng: vừa tắm vừa gội, không cay mắt, không Paraben.</p>
+            <p class="hero-desc" data-hero>Ngừa da hăm, viêm da, chàm sữa.</p>
             <div class="hero-ctas" data-hero>
-                <a href="#dang-ky" class="btn btn-primary js-scroll magnetic"><span class="wiggle">🎁</span> Nhận tư vấn &amp; quà miễn phí</a>
+                <a href="#dang-ky" class="btn btn-primary js-scroll magnetic"><span class="wiggle">👶</span> Chạm để cảm nhận da bé!</a>
             </div>
             <div class="pop-hint" data-hero><i class="bb"></i> Thử chạm vào bong bóng xem! Đã bóp: <b id="popCount">0</b></div>
         </div>
