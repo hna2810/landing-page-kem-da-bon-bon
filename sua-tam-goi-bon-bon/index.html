@@ -300,11 +300,13 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 .chip small { display: block; font-weight: 600; color: var(--text-soft); font-size: 13px; }
 .chip.used { opacity: .35; pointer-events: none; filter: grayscale(.6); }
 .drop-zone { position: relative; display: grid; place-items: center; padding: 20px 0; }
-.drop-ring { position: absolute; width: 300px; height: 300px; max-width: 100%; border-radius: 50%; border: 3px dashed var(--primary); opacity: .45; animation: spin 24s linear infinite; }
+.drop-ring { position: absolute; width: 350px; height: 350px; max-width: 100%; border-radius: 50%; border: 3px dashed var(--primary); opacity: .45; animation: spin 24s linear infinite; }
 .drop-zone.over .drop-ring { opacity: 1; border-color: #ff8fab; }
 @keyframes spin { to { transform: rotate(360deg); } }
-.lab-bottle { width: 190px; position: relative; z-index: 2; }
-.lab-meter { margin-top: 18px; text-align: center; font-weight: 800; }
+.lab-bottle { width: 115px; position: relative; z-index: 2; filter: drop-shadow(0 18px 20px rgba(42,159,179,.3)); transition: filter .4s; }
+.lab-bottle img { width: 100%; height: auto; pointer-events: none; -webkit-user-drag: none; }
+.lab-bottle.glow { filter: drop-shadow(0 0 22px rgba(76,192,211,.85)) drop-shadow(0 18px 20px rgba(42,159,179,.3)); }
+.lab-meter { margin-top: 34px; text-align: center; font-weight: 800; }
 .lab-meter .bar { width: 220px; height: 14px; border-radius: 99px; background: var(--white); margin: 8px auto 0; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,.06); }
 .lab-meter .bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--pink), var(--primary)); border-radius: 99px; }
 .lab-info {
@@ -588,8 +590,8 @@ textarea.input { resize: vertical; min-height: 90px; }
     .chip { padding: 10px 12px; font-size: 14px; gap: 8px; }
     .chip .ico { width: 36px; height: 36px; font-size: 18px; }
     .chip small { font-size: 11px; }
-    .drop-ring { width: 240px; height: 240px; }
-    .lab-bottle { width: 150px; }
+    .drop-ring { width: 290px; height: 290px; }
+    .lab-bottle { width: 105px; }
     .lab-info { flex-direction: column; text-align: center; padding: 18px; }
     .h-track { overflow-x: auto; width: auto; scroll-snap-type: x mandatory; padding-bottom: 20px; -webkit-overflow-scrolling: touch; }
     .b-card { scroll-snap-align: center; min-height: 360px; }
@@ -764,7 +766,7 @@ textarea.input { resize: vertical; min-height: 90px; }
             </div>
             <div class="drop-zone" id="dropZone">
                 <div class="drop-ring"></div>
-                <div class="lab-bottle" id="labBottle" data-bottle="lab"></div>
+                <div class="lab-bottle" id="labBottle"><img src="img/sua-tam-goi-bon-bon-500ml.webp" alt="Sữa tắm gội Bon Bon 500ml" width="827" height="2000" draggable="false" loading="lazy"></div>
                 <div class="lab-meter">Công thức: <span id="labCount">0</span>/3<div class="bar"><i id="labBar"></i></div></div>
             </div>
             <div class="chips chips-right">
@@ -1135,53 +1137,6 @@ $$('[data-tel-text]').forEach(a => { a.textContent = CONFIG.hotline.replace(/(\d
 $$('[data-zalo]').forEach(a => { a.href = 'https://zalo.me/' + CONFIG.zalo; });
 $('#year').textContent = new Date().getFullYear();
 
-/* ===== BOTTLE SVG ===== */
-let bottleUid = 0;
-function bottleSVG(withFill) {
-    const id = 'b' + (++bottleUid);
-    return `
-    <svg viewBox="0 0 200 320" xmlns="http://www.w3.org/2000/svg" aria-label="Lọ sữa tắm gội Bon Bon">
-        <defs>
-            <linearGradient id="${id}g" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#7fdbe8"/><stop offset=".5" stop-color="#4cc0d3"/><stop offset="1" stop-color="#2a9fb3"/>
-            </linearGradient>
-            <clipPath id="${id}c"><rect x="30" y="66" width="140" height="240" rx="50"/></clipPath>
-        </defs>
-        <g class="pump">
-            <rect x="100" y="12" width="52" height="13" rx="6.5" fill="#fff" stroke="#cfeff4" stroke-width="2"/>
-            <rect x="88" y="10" width="24" height="42" rx="7" fill="#fff" stroke="#cfeff4" stroke-width="2"/>
-        </g>
-        <rect x="76" y="48" width="48" height="24" rx="9" fill="#ffb5c8"/>
-        <rect x="30" y="66" width="140" height="240" rx="50" fill="url(#${id}g)"/>
-        ${withFill ? `<g clip-path="url(#${id}c)"><rect class="liquid" x="20" y="306" width="160" height="260" fill="#ffffff" opacity=".35"/></g>` : ''}
-        <rect x="46" y="92" width="14" height="110" rx="7" fill="#fff" opacity=".35"/>
-        <g class="face">
-            <g class="eyes">
-                <ellipse cx="80" cy="116" rx="7" ry="8.5" fill="#2b3a4a"/><circle cx="82.5" cy="113" r="2.4" fill="#fff"/>
-                <ellipse cx="120" cy="116" rx="7" ry="8.5" fill="#2b3a4a"/><circle cx="122.5" cy="113" r="2.4" fill="#fff"/>
-            </g>
-            <ellipse cx="64" cy="132" rx="9" ry="5.5" fill="#ffb5c8" opacity=".9"/>
-            <ellipse cx="136" cy="132" rx="9" ry="5.5" fill="#ffb5c8" opacity=".9"/>
-            <path class="mouth" d="M90 128 Q100 141 110 128" fill="none" stroke="#2b3a4a" stroke-width="4" stroke-linecap="round"/>
-        </g>
-        <rect x="50" y="152" width="100" height="112" rx="26" fill="#fff"/>
-        <text x="100" y="196" text-anchor="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="30" fill="#2a9fb3" textLength="86" lengthAdjust="spacingAndGlyphs">Bon Bon</text>
-        <text x="100" y="220" text-anchor="middle" font-family="Nunito, sans-serif" font-weight="800" font-size="14" fill="#34495e">Sữa tắm gội</text>
-        <text x="100" y="242" text-anchor="middle" font-family="Nunito, sans-serif" font-weight="700" font-size="12" fill="#ff8fab">2in1 • cho bé</text>
-        <circle cx="152" cy="282" r="6" fill="#fff" opacity=".5"/><circle cx="140" cy="292" r="3.5" fill="#fff" opacity=".5"/>
-    </svg>`;
-}
-$$('[data-bottle]').forEach(el => { el.innerHTML = bottleSVG(el.dataset.bottle === 'lab'); });
-
-// Blink all bottles
-if (!reduceMotion) {
-    $$('[data-bottle] .eyes').forEach(eyes => {
-        gsap.set(eyes, { transformOrigin: '50% 50%', transformBox: 'fill-box' });
-        gsap.timeline({ repeat: -1, repeatDelay: 2.6, delay: Math.random() * 2 })
-            .to(eyes, { scaleY: .1, duration: .09 }).to(eyes, { scaleY: 1, duration: .12 });
-    });
-}
-
 /* ===== TOAST ===== */
 gsap.set('#toast', { xPercent: -50, y: -30 });
 function toast(html, ms = 3200) {
@@ -1431,7 +1386,6 @@ $$('.wish-card').forEach(card => {
     ];
     const BAD = { ico: '🙅', name: 'Không chứa Paraben!', text: 'Bon Bon nói "không" với Paraben để làn da non nớt của bé luôn được nâng niu dịu nhẹ nhất.' };
     const zone = $('#dropZone'), bottle = $('#labBottle'), info = $('#labInfo');
-    const liquid = bottle.querySelector('.liquid');
     let done = 0;
 
     function showInfo(i) {
@@ -1443,7 +1397,6 @@ $$('.wish-card').forEach(card => {
         dragInst && dragInst.disable();
         chip.classList.add('rejected');
         gsap.timeline().to(bottle, { rotate: -8, duration: .08, yoyo: true, repeat: 5, ease: 'none' }).set(bottle, { rotate: 0 });
-        gsap.to(bottle.querySelector('.mouth'), { attr: { d: 'M90 136 Q100 126 110 136' }, duration: .2, yoyo: true, repeat: 1, repeatDelay: 1 });
         gsap.to(chip, { x: 0, y: 0, duration: .8, ease: 'elastic.out(1, .5)' });
         info.innerHTML = `<span class="ico">${BAD.ico}</span><div><h4>${BAD.name}</h4><p>${BAD.text}</p></div>`;
         gsap.fromTo(info, { x: -12 }, { x: 0, duration: .5, ease: 'elastic.out(1.2, .3)' });
@@ -1468,7 +1421,7 @@ $$('.wish-card').forEach(card => {
         done++;
         setTimeout(() => {
             gsap.fromTo(bottle, { scaleX: 1.12, scaleY: .9 }, { scaleX: 1, scaleY: 1, duration: .9, ease: 'elastic.out(1.2, .35)' });
-            gsap.to(liquid, { attr: { y: 306 - (240 * done / ING.length) }, duration: .8, ease: 'power2.out' });
+            bottle.classList.add('glow'); setTimeout(() => bottle.classList.remove('glow'), 700);
             gsap.to('#labBar', { width: (done / ING.length * 100) + '%', duration: .6, ease: 'back.out(2)' });
             $('#labCount').textContent = done;
             squirtBubbles(bottle);
