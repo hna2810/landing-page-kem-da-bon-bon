@@ -18,7 +18,7 @@
 var SHEET_NAME = 'Đơn hàng';
 
 // (Tuỳ chọn) Điền email nhận thông báo mỗi khi có khách đặt đơn mới. Để trống nếu không cần.
-var NOTIFY_EMAIL = '';
+var NOTIFY_EMAIL = 'lyhrhomecare@gmail.com';
 
 // Danh sách các cột lưu thông tin
 var COLUMNS = [
