@@ -31,7 +31,7 @@ function lx_ensure_cf7_form() {
         . '    [tel* your-phone id:phone class:input autocomplete:tel placeholder "VD: 0901 234 567"]' . "\n"
         . '</div>' . "\n"
         . '<div class="field">' . "\n"
-        . '    <label for="your-address">Địa chỉ nhận hàng <span style="font-weight:400; font-size:13px; color:#6b7280">(không bắt buộc)</span></label>' . "\n"
+        . '    <label for="your-address">Địa chỉ nhận hàng</label>' . "\n"
         . '    [text your-address id:address class:input autocomplete:street-address placeholder "VD: Số 123, đường ABC, Hà Nội"]' . "\n"
         . '</div>' . "\n"
         . '<div class="field">' . "\n"
@@ -296,7 +296,7 @@ function lx_render_order_form() {
             <div class="err" id="phoneErr">Số điện thoại chưa đúng</div>
         </div>
         <div class="field">
-            <label for="address">Địa chỉ nhận hàng <span style="font-weight:400; font-size:13px; color:#6b7280">(không bắt buộc)</span></label>
+            <label for="address">Địa chỉ nhận hàng</label>
             <input class="input" id="address" name="address" autocomplete="street-address" maxlength="200" placeholder="VD: Số 123, đường ABC, Hà Nội">
         </div>
         <div class="field">
