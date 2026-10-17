@@ -1131,7 +1131,7 @@ const CONFIG = {
     ]
 };
 
-if (!window.gsap) { document.documentElement.classList.remove('js'); throw new Error('GSAP failed to load'); }
+function bootBonBon() {
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, Draggable);
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(pointer: fine)').matches;
@@ -1817,7 +1817,42 @@ function confetti(count) {
 }
 
 ScrollTrigger.sort();
-window.addEventListener('load', () => { ScrollTrigger.sort(); ScrollTrigger.refresh(); });
+const refreshAll = () => { ScrollTrigger.sort(); ScrollTrigger.refresh(); };
+if (document.readyState === 'complete') refreshAll(); else window.addEventListener('load', refreshAll);
+}
+
+/* ===== GSAP LOADER =====
+   Một số trình xem (htmlpreview.github.io, in-app browser...) chạy script inline
+   trước khi thư viện từ CDN tải xong hoặc bỏ qua thẻ <script src>. Đảm bảo đủ
+   thư viện (cdnjs, dự phòng jsDelivr) rồi mới khởi chạy trang. */
+(function () {
+    const V = '3.12.5';
+    const libs = [['gsap', 'gsap.min.js'], ['ScrollTrigger', 'ScrollTrigger.min.js'], ['ScrollToPlugin', 'ScrollToPlugin.min.js'], ['Draggable', 'Draggable.min.js']];
+    const hosts = [f => `https://cdnjs.cloudflare.com/ajax/libs/gsap/${V}/${f}`, f => `https://cdn.jsdelivr.net/npm/gsap@${V}/dist/${f}`];
+    const load = src => new Promise((ok, fail) => {
+        const el = document.createElement('script');
+        el.src = src; el.onload = ok; el.onerror = fail;
+        document.head.appendChild(el);
+    });
+    const ensure = async ([name, file]) => {
+        if (window[name]) return;
+        for (const h of hosts) {
+            try { await load(h(file)); } catch (e) { continue; }
+            if (window[name]) return;
+        }
+        throw new Error('Không tải được thư viện ' + name);
+    };
+    (async () => {
+        try {
+            for (const lib of libs) await ensure(lib);
+        } catch (e) {
+            console.error(e);
+            document.documentElement.classList.remove('js');
+            return;
+        }
+        bootBonBon();
+    })();
+})();
 </script>
 </body>
 </html>
