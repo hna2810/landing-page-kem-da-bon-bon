@@ -288,7 +288,7 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 
 /* ===== INGREDIENTS GAME ===== */
 .ingre { background: var(--primary-light); overflow: hidden; }
-.lab { display: grid; grid-template-columns: 1fr 340px 1fr; gap: 30px; align-items: center; max-width: 1060px; margin: 0 auto; }
+.lab { display: grid; grid-template-columns: 1fr 430px 1fr; gap: 30px; align-items: center; max-width: 1060px; margin: 0 auto; }
 .chips { display: grid; gap: 18px; }
 .chip {
     position: relative; z-index: 6; display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-radius: 22px;
@@ -300,10 +300,10 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 .chip small { display: block; font-weight: 600; color: var(--text-soft); font-size: 13px; }
 .chip.used { opacity: .35; pointer-events: none; filter: grayscale(.6); }
 .drop-zone { position: relative; display: grid; place-items: center; padding: 20px 0; }
-.drop-ring { position: absolute; width: 350px; height: 350px; max-width: 100%; border-radius: 50%; border: 3px dashed var(--primary); opacity: .45; animation: spin 24s linear infinite; }
+.drop-ring { position: absolute; width: 430px; height: 430px; max-width: 100%; border-radius: 50%; border: 3px dashed var(--primary); opacity: .45; animation: spin 24s linear infinite; }
 .drop-zone.over .drop-ring { opacity: 1; border-color: #ff8fab; }
 @keyframes spin { to { transform: rotate(360deg); } }
-.lab-bottle { width: 115px; position: relative; z-index: 2; filter: drop-shadow(0 18px 20px rgba(42,159,179,.3)); transition: filter .4s; }
+.lab-bottle { width: 165px; position: relative; z-index: 2; filter: drop-shadow(0 18px 20px rgba(42,159,179,.3)); transition: filter .4s; }
 .lab-bottle img { width: 100%; height: auto; pointer-events: none; -webkit-user-drag: none; }
 .lab-bottle.glow { filter: drop-shadow(0 0 22px rgba(76,192,211,.85)) drop-shadow(0 18px 20px rgba(42,159,179,.3)); }
 .lab-meter { margin-top: 34px; text-align: center; font-weight: 800; }
@@ -590,8 +590,8 @@ textarea.input { resize: vertical; min-height: 90px; }
     .chip { padding: 10px 12px; font-size: 14px; gap: 8px; }
     .chip .ico { width: 36px; height: 36px; font-size: 18px; }
     .chip small { font-size: 11px; }
-    .drop-ring { width: 290px; height: 290px; }
-    .lab-bottle { width: 105px; }
+    .drop-ring { width: 340px; height: 340px; }
+    .lab-bottle { width: 140px; }
     .lab-info { flex-direction: column; text-align: center; padding: 18px; }
     .h-track { overflow-x: auto; width: auto; scroll-snap-type: x mandatory; padding-bottom: 20px; -webkit-overflow-scrolling: touch; }
     .b-card { scroll-snap-align: center; min-height: 360px; }
