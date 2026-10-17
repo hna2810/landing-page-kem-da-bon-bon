@@ -195,7 +195,8 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
     33% { border-radius: 63% 37% 38% 62% / 55% 38% 62% 45%; }
     66% { border-radius: 38% 62% 52% 48% / 36% 61% 39% 64%; }
 }
-.hero-bottle { position: relative; width: 250px; z-index: 2; filter: drop-shadow(0 30px 30px rgba(42,159,179,.35)); cursor: grab; }
+.hero-bottle { position: relative; width: 200px; z-index: 2; filter: drop-shadow(0 30px 30px rgba(42,159,179,.35)); cursor: grab; touch-action: none; }
+.hero-bottle img, .pinfo-bottle img { width: 100%; height: auto; user-select: none; -webkit-user-drag: none; pointer-events: none; }
 .hero-bottle:active { cursor: grabbing; }
 .hero-duck { position: absolute; bottom: 12%; right: 10%; font-size: 54px; z-index: 3; cursor: pointer; user-select: none; }
 .hero-star { position: absolute; font-size: 26px; z-index: 1; }
@@ -407,7 +408,7 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 .pinfo-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 50px; align-items: center; max-width: 1040px; margin: 0 auto; }
 .pinfo-visual { position: relative; display: grid; place-items: center; min-height: 380px; }
 .pinfo-visual .hero-blob { width: 340px; height: 340px; }
-.pinfo-bottle { width: 200px; position: relative; z-index: 2; }
+.pinfo-bottle { width: 150px; position: relative; z-index: 2; filter: drop-shadow(0 24px 24px rgba(42,159,179,.3)); }
 .vol-tag { position: absolute; z-index: 3; top: 14%; right: 12%; width: 96px; height: 96px; border-radius: 50%; background: var(--yellow); display: grid; place-items: center; align-content: center; text-align: center; font-family: var(--font-head); font-weight: 800; font-size: 30px; line-height: 1; color: #8a6300; box-shadow: var(--shadow-soft); }
 .vol-tag small { display: block; font-size: 14px; font-family: var(--font-body); }
 .tabs { display: flex; gap: 8px; padding: 6px; border-radius: 99px; background: var(--white); box-shadow: var(--shadow-soft); margin-bottom: 22px; width: max-content; max-width: 100%; position: relative; }
@@ -545,7 +546,7 @@ textarea.input { resize: vertical; min-height: 90px; }
     .hero-desc { font-size: 17px; }
     .hero-ctas .btn { width: 100%; }
     .hero-visual { min-height: 380px; }
-    .hero-bottle { width: 190px; }
+    .hero-bottle { width: 140px; }
     .hero-blob { width: 320px; height: 320px; }
     .hero-duck { font-size: 42px; right: 4%; }
     .marquee-track { font-size: 18px; }
@@ -574,7 +575,7 @@ textarea.input { resize: vertical; min-height: 90px; }
     .steps-grid { grid-template-columns: 1fr; gap: 30px; }
     .pinfo-grid { grid-template-columns: 1fr; gap: 20px; }
     .pinfo-visual { min-height: 300px; }
-    .pinfo-bottle { width: 160px; }
+    .pinfo-bottle { width: 120px; }
     .pinfo-visual .hero-blob { width: 260px; height: 260px; }
     .tabs { width: 100%; }
     .tab { flex: 1; padding: 10px 8px; font-size: 14px; }
@@ -640,7 +641,7 @@ textarea.input { resize: vertical; min-height: 90px; }
             <span class="hero-star" style="top:6%;right:18%">✨</span>
             <span class="hero-star" style="bottom:22%;left:-2%">⭐</span>
             <span class="hero-star" style="top:30%;left:12%">💖</span>
-            <div class="hero-bottle" id="heroBottle" data-bottle="hero" title="Kéo thử lọ Bon Bon nè!"></div>
+            <div class="hero-bottle" id="heroBottle" title="Kéo thử lọ Bon Bon nè!"><img src="img/sua-tam-goi-bon-bon-500ml.webp" alt="Sữa tắm gội Bon Bon 500ml" width="827" height="2000" draggable="false"></div>
             <div class="hero-duck" id="heroDuck" title="Bóp thử chú vịt!">🐤</div>
         </div>
     </div>
@@ -905,7 +906,7 @@ textarea.input { resize: vertical; min-height: 90px; }
         <div class="pinfo-grid">
             <div class="pinfo-visual" data-reveal>
                 <div class="hero-blob"></div>
-                <div class="pinfo-bottle" data-bottle="info"></div>
+                <div class="pinfo-bottle"><img src="img/sua-tam-goi-bon-bon-500ml.webp" alt="Sữa tắm gội Bon Bon 500ml" width="827" height="2000" draggable="false" loading="lazy"></div>
                 <div class="vol-tag">500<small>ml</small></div>
             </div>
             <div data-reveal>
@@ -1221,14 +1222,13 @@ if (!reduceMotion) {
 
 // Hero bottle: draggable, springs back + floating idle + parallax tilt
 const heroBottle = $('#heroBottle');
-const bottleIdle = reduceMotion ? null : gsap.to(heroBottle.querySelector('svg'), { y: -16, rotate: 2, duration: 2.2, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+const bottleIdle = reduceMotion ? null : gsap.to(heroBottle.querySelector('img'), { y: -16, rotate: 2, duration: 2.2, ease: 'sine.inOut', yoyo: true, repeat: -1 });
 Draggable.create(heroBottle, {
     type: 'x,y',
-    onPress() { bottleIdle && bottleIdle.pause(); gsap.to(heroBottle.querySelector('.mouth'), { attr: { d: 'M88 126 Q100 146 112 126' }, duration: .2 }); },
+    onPress() { bottleIdle && bottleIdle.pause(); gsap.to(heroBottle, { scale: 1.05, duration: .2 }); },
     onDrag() { gsap.to(heroBottle, { rotate: gsap.utils.clamp(-25, 25, this.deltaX * 2), duration: .3 }); },
     onRelease() {
-        gsap.to(heroBottle, { x: 0, y: 0, rotate: 0, duration: 1.2, ease: 'elastic.out(1, .4)' });
-        gsap.to(heroBottle.querySelector('.mouth'), { attr: { d: 'M90 128 Q100 141 110 128' }, duration: .3 });
+        gsap.to(heroBottle, { x: 0, y: 0, rotate: 0, scale: 1, duration: 1.2, ease: 'elastic.out(1, .4)' });
         bottleIdle && bottleIdle.resume();
         squirtBubbles(heroBottle);
     }
@@ -1245,7 +1245,7 @@ if (finePointer && !reduceMotion) {
         const r = hv.getBoundingClientRect();
         const px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
         gsap.to('.hero-blob', { x: px * -30, y: py * -30, duration: 1 });
-        gsap.to(heroBottle.querySelector('.eyes'), { x: px * 8, y: py * 6, duration: .4 });
+        gsap.to(heroBottle.querySelector('img'), { rotationY: px * 16, rotationX: py * -10, transformPerspective: 800, duration: .6 });
     });
 }
 
