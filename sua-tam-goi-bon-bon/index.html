@@ -237,6 +237,22 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 .pain-foot { text-align: center; margin-top: 44px; font-size: 18px; font-weight: 700; }
 .pain-foot b { color: var(--primary-dark); }
 
+/* ===== USES (3 trong 1) ===== */
+.uses { background: var(--cream); }
+.uses .section-head { margin-bottom: 44px; }
+.uses-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: center; max-width: 1060px; margin: 0 auto; }
+.uses-photo { border-radius: 36px; overflow: hidden; box-shadow: var(--shadow); aspect-ratio: 1; background: var(--primary-light); }
+.uses-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s; }
+.uses-photo:hover img { transform: scale(1.04); }
+.uses-list { display: grid; gap: 14px; min-width: 0; }
+.uses-lead { padding: 14px 20px; border-radius: 18px; border: 2.5px solid var(--primary); background: var(--white); font-weight: 800; font-size: 18px; color: var(--primary-deep); }
+.use-item { display: flex; gap: 16px; align-items: flex-start; text-align: left; padding: 18px 20px; border-radius: 22px; background: var(--white); box-shadow: var(--shadow-soft); border: 2.5px solid transparent; transition: transform .3s cubic-bezier(.34,1.56,.64,1), border-color .3s; font-size: 16.5px; line-height: 1.55; }
+.use-item:hover, .use-item.active { transform: translateX(6px); border-color: var(--primary); }
+.use-num { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--primary); color: #fff; font-family: var(--font-head); font-weight: 800; font-size: 20px; }
+.use-item:nth-of-type(2) .use-num { background: #ff8fab; }
+.use-item:nth-of-type(3) .use-num { background: #f2b33d; }
+.uses-cta { text-align: center; margin-top: 44px; }
+
 /* ===== WISH ===== */
 .wish { background: var(--cream); }
 .wish .section-head { margin-bottom: 44px; }
@@ -572,6 +588,9 @@ textarea.input { resize: vertical; min-height: 90px; }
     .hero-duck { width: 130px; right: 0; bottom: 4%; }
     .marquee-track { font-size: 18px; }
     .flip-grid { grid-template-columns: 1fr; }
+    .uses-grid { grid-template-columns: 1fr; gap: 24px; }
+    .uses-photo { max-width: 360px; width: 100%; margin: 0 auto; border-radius: 28px; }
+    .use-item { font-size: 15.5px; padding: 14px 16px; }
     .wish-grid { grid-template-columns: 1fr; gap: 20px; max-width: 360px; margin: 0 auto; }
     .wish-img { aspect-ratio: 4 / 3; }
     .wish-ph { font-size: 76px; }
@@ -637,7 +656,7 @@ textarea.input { resize: vertical; min-height: 90px; }
         </a>
         <nav class="nav">
             <a href="#thanh-phan" class="js-scroll">Thành phần</a>
-            <a href="#loi-ich" class="js-scroll">Công dụng</a>
+            <a href="#cong-dung" class="js-scroll">Công dụng</a>
             <a href="#cach-dung" class="js-scroll">Cách dùng</a>
             <a href="#hoi-dap" class="js-scroll">Đánh giá</a>
             <a href="#vong-quay" class="js-scroll nav-strong">Quay trúng thưởng</a>
@@ -782,6 +801,38 @@ textarea.input { resize: vertical; min-height: 90px; }
             <a href="#dang-ky" class="btn btn-primary js-scroll">🎉 Hoàn thành! Nhận tư vấn &amp; quà ngay</a>
         </div>
         <p class="lab-note">* Thành phần nổi bật, xem nhãn sản phẩm để biết bảng thành phần đầy đủ.</p>
+    </div>
+</section>
+
+<!-- ===== CÔNG DỤNG 3 TRONG 1 (section 5) ===== -->
+<section class="section uses" id="cong-dung">
+    <div class="container">
+        <div class="section-head" data-reveal>
+            <h2 class="section-title">Công dụng <span class="hl">3 trong 1</span></h2>
+        </div>
+        <div class="uses-grid">
+            <div class="uses-photo" data-reveal>
+                <img src="img/me-tam-be.webp" alt="Mẹ tắm cho bé bằng sữa tắm gội Bon Bon" width="504" height="504" loading="lazy">
+            </div>
+            <div class="uses-list">
+                <p class="uses-lead" data-reveal>Dùng để tắm, gội toàn thân hằng ngày.</p>
+                <button class="use-item" type="button" data-reveal>
+                    <span class="use-num">1</span>
+                    <span class="use-text">Làm sạch dịu nhẹ, chăm sóc và bảo vệ da bé, ngăn ngừa và cải thiện tình trạng: rôm sảy, mẩn ngứa, mụn kê, hăm da, chàm sữa, viêm da ở trẻ sơ sinh và trẻ nhỏ.</span>
+                </button>
+                <button class="use-item" type="button" data-reveal>
+                    <span class="use-num">2</span>
+                    <span class="use-text">Loại bỏ bụi bẩn, mồ hôi mà không gây kích ứng.</span>
+                </button>
+                <button class="use-item" type="button" data-reveal>
+                    <span class="use-num">3</span>
+                    <span class="use-text">Dưỡng ẩm, cho da bé mềm mại, mịn màng, thơm dịu. Đem lại cảm giác thoải mái, sạch thoáng cho bé sau khi tắm, gội.</span>
+                </button>
+            </div>
+        </div>
+        <div class="uses-cta" data-reveal>
+            <a href="#dang-ky" class="btn btn-primary js-scroll magnetic">Mẹ muốn thử cho bé?</a>
+        </div>
     </div>
 </section>
 
@@ -1457,6 +1508,13 @@ $$('.wish-card').forEach(card => {
         });
     }
 })();
+
+/* ===== USES ITEMS ===== */
+$$('.use-item').forEach(item => item.addEventListener('click', () => {
+    $$('.use-item').forEach(x => x.classList.toggle('active', x === item));
+    gsap.fromTo(item.querySelector('.use-num'), { scale: .6, rotate: -90 }, { scale: 1, rotate: 0, duration: .7, ease: 'elastic.out(1.2, .4)' });
+}));
+gsap.fromTo('.uses-photo img', { scale: 1.15 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '.uses-photo', start: 'top bottom', end: 'bottom top', scrub: true } });
 
 /* ===== HORIZONTAL BENEFITS (desktop pin) ===== */
 const mm = gsap.matchMedia();
