@@ -30,12 +30,12 @@ File: `sua-tam-goi-bon-bon/index.html`. Đây là trang **Lead Generation dạng
 1. **Hero**: bóp bong bóng (có bộ đếm), kéo thả lọ Bon Bon có mặt cười, mắt đi theo chuột, chú vịt bấm vào kêu "quạc".
 2. **Thẻ lật**: các nỗi lo của mẹ, chạm vào để xem giải pháp.
 3. **Slider so sánh**: kéo để so sánh "Sữa tắm thông thường" với "Bon Bon".
-4. **Mini game pha chế**: kéo (hoặc chạm) thành phần vào lọ, lọ đầy dần và hiện công dụng từng thành phần.
+4. **Mini game pha chế**: kéo (hoặc chạm) 3 thành phần chính (dầu hạnh nhân, vitamin E, Aqua & SLES dịu nhẹ) vào lọ. Nếu kéo "Paraben" vào, lọ sẽ lắc đầu từ chối.
 5. **5 lợi ích**: cuộn ngang, ghim màn hình trên desktop; vuốt ngang trên mobile.
 6. **Quiz da bé (4 câu)**: trả kết quả và gợi ý chăm da, đồng thời **tự điền sẵn form** (tuổi bé, vấn đề da).
-7. **Cách dùng 4 bước**: đường nối tự vẽ theo scroll.
+7. **Cách tắm bé 3 bước**: đường nối tự vẽ theo scroll.
 8. **Vòng quay may mắn**: mỗi trình duyệt quay 1 lượt, quà được gắn vào form.
-9. **Feedback**: carousel kéo được.
+9. **Thông tin sản phẩm**: tab Thông tin / Bảo quản / Lưu ý (500ml, HSD 24 tháng, số công bố 64/26/CBMP-NB).
 10. **FAQ** dạng accordion.
 11. **Form đăng ký**: đếm ngược đến cuối ngày, chip chọn nhanh, validate SĐT Việt Nam, confetti khi gửi thành công.
 
@@ -57,6 +57,5 @@ File: `sua-tam-goi-bon-bon/index.html`. Đây là trang **Lead Generation dạng
 - UTM, fbclid, ttclid, gclid được lưu tự động vào trường `source`.
 
 ## Cần kiểm tra trước khi chạy ads
-- Thành phần trong mini game (`ING` trong script): đối chiếu với nhãn hoặc hồ sơ công bố sản phẩm.
-- Feedback: thay bằng feedback thật của khách.
+- Có thể bổ sung section feedback thật của khách (ảnh chụp hoặc lời chia sẻ đã được khách đồng ý).
 - Quà tặng và ưu đãi: khớp với chương trình khuyến mãi thực tế.

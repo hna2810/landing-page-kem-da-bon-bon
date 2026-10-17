@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sữa Tắm Gội Bon Bon Cho Bé - Dịu Nhẹ, Không Cay Mắt | Home Care Việt Nam</title>
-    <meta name="description" content="Sữa tắm gội 2in1 Bon Bon cho bé: dịu nhẹ cho làn da nhạy cảm, ít bọt, không cay mắt. Đăng ký nhận tư vấn miễn phí & quà tặng dành cho mẹ.">
-    <meta property="og:title" content="Sữa Tắm Gội Bon Bon - Tắm vui mỗi ngày, da bé mềm mịn">
+    <meta name="description" content="Sữa tắm gội 2in1 Bon Bon cho bé: không cay mắt, không Paraben, pH cân bằng, dùng được cho trẻ sơ sinh. Đăng ký nhận tư vấn miễn phí & quà tặng dành cho mẹ.">
+    <meta property="og:title" content="Sữa Tắm Gội Bon Bon - Nâng niu làn da bé từ những ngày đầu đời">
     <meta property="og:description" content="Làm quiz 30 giây để biết bé cần chăm da thế nào và nhận quà tặng từ Home Care Việt Nam.">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#4cc0d3">
@@ -361,7 +361,7 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 .howto { background: var(--cream); }
 .steps { position: relative; max-width: 980px; margin: 0 auto; }
 .steps-path { position: absolute; top: 60px; left: 8%; right: 8%; height: 80px; z-index: 0; }
-.steps-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.steps-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
 .step { text-align: center; }
 .step .circle {
     width: 120px; height: 120px; margin: 0 auto 18px; border-radius: 50%; background: var(--white); box-shadow: var(--shadow-soft);
@@ -398,24 +398,36 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 .wheel-result.show { display: block; }
 .wheel-result b { color: #ff6b8a; font-size: 22px; font-family: var(--font-head); }
 
-/* ===== REVIEWS ===== */
-.reviews { background: var(--cream); overflow: hidden; }
-.rv-viewport { overflow: visible; }
-.rv-track { display: flex; gap: 24px; width: max-content; cursor: grab; padding: 10px 0 20px; }
-.rv-track:active { cursor: grabbing; }
-.rv-card { flex: none; width: min(360px, 80vw); background: var(--white); border-radius: 28px; padding: 28px; box-shadow: var(--shadow-soft); user-select: none; -webkit-user-select: none; }
-.rv-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
-.rv-ava { width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; font-size: 26px; flex: none; }
-.rv-head h4 { font-size: 18px; }
-.rv-head small { color: var(--text-soft); font-weight: 600; }
-.rv-stars { color: #ffc23d; letter-spacing: 2px; margin-bottom: 8px; }
-.rv-card p { color: var(--text-soft); }
-.rv-controls { display: flex; justify-content: center; align-items: center; gap: 14px; margin-top: 18px; }
-.rv-btn { width: 52px; height: 52px; border-radius: 50%; background: var(--white); box-shadow: var(--shadow-soft); font-size: 20px; transition: transform .2s; }
-.rv-btn:hover { transform: scale(1.1); background: var(--primary-light); }
-.rv-hint { font-weight: 700; color: var(--text-soft); font-size: 14px; }
+/* ===== FACT ===== */
+.fact { display: flex; align-items: center; gap: 22px; max-width: 760px; margin: 0 auto 50px; padding: 22px 28px; border-radius: 28px; background: var(--white); box-shadow: var(--shadow-soft); border: 3px dashed var(--pink); }
+.fact .num { font-family: var(--font-head); font-weight: 800; font-size: 64px; line-height: 1; color: #ff8fab; flex: none; }
+.fact p { font-size: 17px; font-weight: 600; }
+.fact b { color: var(--primary-dark); }
+.chip.bad .ico { background: #ffe1e1 !important; }
+.chip.bad { border-style: dashed; border-color: #ffc9c9; }
+.chip.rejected { opacity: .5; text-decoration: line-through; pointer-events: none; }
 
-/* ===== FAQ ===== */
+/* ===== PRODUCT INFO ===== */
+.pinfo { background: var(--cream); }
+.pinfo-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 50px; align-items: center; max-width: 1040px; margin: 0 auto; }
+.pinfo-visual { position: relative; display: grid; place-items: center; min-height: 380px; }
+.pinfo-visual .hero-blob { width: 340px; height: 340px; }
+.pinfo-bottle { width: 200px; position: relative; z-index: 2; }
+.vol-tag { position: absolute; z-index: 3; top: 14%; right: 12%; width: 96px; height: 96px; border-radius: 50%; background: var(--yellow); display: grid; place-items: center; align-content: center; text-align: center; font-family: var(--font-head); font-weight: 800; font-size: 30px; line-height: 1; color: #8a6300; box-shadow: var(--shadow-soft); }
+.vol-tag small { display: block; font-size: 14px; font-family: var(--font-body); }
+.tabs { display: flex; gap: 8px; padding: 6px; border-radius: 99px; background: var(--white); box-shadow: var(--shadow-soft); margin-bottom: 22px; width: max-content; max-width: 100%; position: relative; }
+.tab { position: relative; z-index: 1; padding: 10px 20px; border-radius: 99px; font-weight: 800; color: var(--text-soft); transition: color .3s; }
+.tab.active { color: var(--white); }
+.tab-pill { position: absolute; top: 6px; bottom: 6px; left: 0; border-radius: 99px; background: var(--primary); z-index: 0; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+.spec { list-style: none; display: grid; gap: 12px; }
+.spec li { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-radius: 18px; background: var(--white); box-shadow: var(--shadow-soft); font-weight: 600; }
+.spec li .e { width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; background: var(--primary-light); font-size: 20px; flex: none; }
+.spec li span:not(.e) { color: var(--text-soft); min-width: 110px; }
+.spec li b { color: var(--text); }
+
+/* ===== FAQ STYLES ===== */
 .faq { background: linear-gradient(180deg, var(--cream), var(--primary-light)); }
 .faq-list { max-width: 820px; margin: 0 auto; display: grid; gap: 14px; }
 .faq-item { background: var(--white); border-radius: 22px; box-shadow: var(--shadow-soft); overflow: hidden; }
@@ -568,7 +580,15 @@ textarea.input { resize: vertical; min-height: 90px; }
     .q-opts { grid-template-columns: 1fr; }
     .q-opt { padding: 14px 16px; font-size: 16px; }
     .steps-path { display: none; }
-    .steps-grid { grid-template-columns: 1fr 1fr; gap: 30px 16px; }
+    .steps-grid { grid-template-columns: 1fr; gap: 30px; }
+    .pinfo-grid { grid-template-columns: 1fr; gap: 20px; }
+    .pinfo-visual { min-height: 300px; }
+    .pinfo-bottle { width: 160px; }
+    .pinfo-visual .hero-blob { width: 260px; height: 260px; }
+    .tabs { width: 100%; }
+    .tab { flex: 1; padding: 10px 8px; font-size: 14px; }
+    .spec li span:not(.e) { min-width: 84px; font-size: 14px; }
+    .fact { flex-direction: column; text-align: center; gap: 8px; padding: 20px 18px; }
     .step .circle { width: 96px; height: 96px; font-size: 40px; }
     .form-card { padding: 34px 18px 26px; border-radius: 28px; }
     .footer-grid { grid-template-columns: 1fr; }
@@ -613,18 +633,18 @@ textarea.input { resize: vertical; min-height: 90px; }
     <div class="hero-bubbles" id="heroBubbles"></div>
     <div class="container hero-grid">
         <div class="hero-copy">
-            <span class="pill" data-hero><span class="dot"></span> Sữa tắm gội 2in1 dành cho bé</span>
+            <span class="pill" data-hero><span class="dot"></span> Sữa tắm gội 2in1 cho bé từ sơ sinh</span>
             <h1 class="hero-title">
-                <span class="line"><span>Tắm vui mỗi ngày,</span></span>
-                <span class="line"><span class="hl">da bé mềm mịn</span></span>
-                <span class="line"><span>không lo <span class="hl-pink">cay mắt</span></span></span>
+                <span class="line"><span>Nâng niu làn da bé</span></span>
+                <span class="line"><span class="hl">từ những ngày</span></span>
+                <span class="line"><span><span class="hl-pink">đầu đời</span> 💙</span></span>
             </h1>
-            <p class="hero-desc" data-hero>Sữa tắm gội <b>Bon Bon</b> làm sạch dịu nhẹ, ít bọt, dùng được cho cả tóc và người. Giờ tắm của bé thành giờ chơi, mẹ cũng nhàn hơn.</p>
+            <p class="hero-desc" data-hero>Lần đầu làm mẹ, ai cũng muốn dành điều dịu ngọt nhất cho con. <b>Sữa tắm gội Bon Bon</b> là "trợ lý đắc lực" giúp giờ tắm bé thật nhẹ nhàng: vừa tắm vừa gội, không cay mắt, không Paraben.</p>
             <ul class="hero-checks" data-hero>
                 <li><span>🫧</span> Tắm &amp; gội 2in1</li>
                 <li><span>👀</span> Không cay mắt</li>
-                <li><span>🌿</span> Dịu nhẹ da nhạy cảm</li>
-                <li><span>💧</span> Ít bọt, dễ xả sạch</li>
+                <li><span>🚫</span> Không Paraben</li>
+                <li><span>⚖️</span> Độ pH cân bằng</li>
             </ul>
             <div class="hero-ctas" data-hero>
                 <a href="#dang-ky" class="btn btn-primary js-scroll magnetic"><span class="wiggle">🎁</span> Nhận tư vấn &amp; quà miễn phí</a>
@@ -638,9 +658,9 @@ textarea.input { resize: vertical; min-height: 90px; }
             <span class="hero-star" style="bottom:22%;left:-2%">⭐</span>
             <span class="hero-star" style="top:30%;left:12%">💖</span>
             <div class="hero-bottle" id="heroBottle" data-bottle="hero" title="Kéo thử lọ Bon Bon nè!"></div>
-            <div class="hero-badge hb-1"><span class="ico">👶</span><div>Dịu nhẹ cho bé<small>Da nhạy cảm vẫn dùng được</small></div></div>
+            <div class="hero-badge hb-1"><span class="ico">👶</span><div>Dùng cho trẻ sơ sinh<small>Công thức dịu nhẹ</small></div></div>
             <div class="hero-badge hb-2"><span class="ico">😊</span><div>Không cay mắt<small>Gội đầu hết khóc nhè</small></div></div>
-            <div class="hero-badge hb-3"><span class="ico">🌸</span><div>Hương thơm dịu<small>Thơm nhẹ, dễ chịu</small></div></div>
+            <div class="hero-badge hb-3"><span class="ico">🌰</span><div>Dầu hạnh nhân &amp; Vitamin E<small>Nuôi dưỡng da mềm mại</small></div></div>
             <div class="hero-duck" id="heroDuck" title="Bóp thử chú vịt!">🐤</div>
         </div>
     </div>
@@ -652,7 +672,7 @@ textarea.input { resize: vertical; min-height: 90px; }
 <!-- ===== MARQUEE ===== -->
 <div class="marquee" aria-hidden="true">
     <div class="marquee-track" id="marqueeTrack">
-        <span>Tắm &amp; gội 2in1</span><span>Không cay mắt</span><span>Dịu nhẹ cho da nhạy cảm</span><span>Ít bọt, dễ xả</span><span>Hương thơm dịu nhẹ</span><span>Tư vấn 1-1 miễn phí</span><span>Giao hàng toàn quốc</span>
+        <span>Tắm &amp; gội 2in1</span><span>Không cay mắt</span><span>Không Paraben</span><span>Độ pH cân bằng</span><span>Dùng được cho trẻ sơ sinh</span><span>Số công bố 64/26/CBMP-NB</span><span>Sản xuất tại Việt Nam</span><span>Tư vấn 1-1 miễn phí</span>
     </div>
 </div>
 
@@ -664,23 +684,27 @@ textarea.input { resize: vertical; min-height: 90px; }
             <h2 class="section-title">Giờ tắm của bé có thành <span class="hl">"cuộc chiến"</span>?</h2>
             <p class="section-sub">Chạm vào từng thẻ để xem Bon Bon giúp mẹ thế nào nhé 👇</p>
         </div>
+        <div class="fact" data-reveal>
+            <span class="num"><span id="factNum">0</span>%</span>
+            <p>Làn da của trẻ nhỏ <b>mỏng hơn da người lớn đến 30%</b> và cực kỳ nhạy cảm. Vì vậy chọn sữa tắm phù hợp cho con luôn là ưu tiên hàng đầu của mẹ.</p>
+        </div>
         <div class="flip-grid">
             <div class="flip-card" data-reveal tabindex="0" role="button" aria-label="Lật thẻ: Bé khóc khi gội đầu">
                 <div class="flip-inner">
                     <div class="flip-face flip-front"><div><span class="emo">😭</span></div><h3>Bé khóc thét khi gội đầu</h3><p>Bọt chảy xuống mắt, bé sợ, mẹ cũng hoảng theo.</p><div class="tap">👆 Chạm để lật</div></div>
-                    <div class="flip-face flip-back"><div class="emo">😊</div><h3>Công thức không cay mắt</h3><p>Bon Bon dịu nhẹ, ít bọt, bé ngửa đầu gội mà không khó chịu, giờ tắm thành giờ chơi.</p></div>
+                    <div class="flip-face flip-back"><div class="emo">😊</div><h3>Công thức không cay mắt</h3><p>Ít bọt, nhẹ dịu và không chứa Paraben, bé gội đầu thoải mái, giờ tắm thành giờ chơi.</p></div>
                 </div>
             </div>
-            <div class="flip-card" data-reveal tabindex="0" role="button" aria-label="Lật thẻ: Da bé dễ mẩn đỏ">
+            <div class="flip-card" data-reveal tabindex="0" role="button" aria-label="Lật thẻ: Bé bị cứt trâu">
                 <div class="flip-inner">
-                    <div class="flip-face flip-front"><div><span class="emo">🥵</span></div><h3>Da dễ mẩn đỏ, rôm sảy</h3><p>Trời nóng, bé ra mồ hôi nhiều, da nổi lấm tấm, bé khó chịu.</p><div class="tap">👆 Chạm để lật</div></div>
-                    <div class="flip-face flip-back"><div class="emo">🌿</div><h3>Làm sạch dịu nhẹ mỗi ngày</h3><p>Làm sạch mồ hôi, bụi bẩn mà không làm khô da, giúp da bé thông thoáng, dễ chịu hơn.</p></div>
+                    <div class="flip-face flip-front"><div><span class="emo">🥺</span></div><h3>Cứt trâu, màng ối bám da</h3><p>Mảng vàng trên đầu, da bé sần sùi, mẹ không dám kỳ cọ mạnh.</p><div class="tap">👆 Chạm để lật</div></div>
+                    <div class="flip-face flip-back"><div class="emo">🌿</div><h3>Làm sạch nhẹ nhàng từ gốc</h3><p>Dầu hạnh nhân giúp làm mềm và hỗ trợ làm sạch mảng viêm da tiết bã, màng ối một cách tự nhiên mỗi ngày.</p></div>
                 </div>
             </div>
             <div class="flip-card" data-reveal tabindex="0" role="button" aria-label="Lật thẻ: Mẹ phải mua nhiều chai">
                 <div class="flip-inner">
                     <div class="flip-face flip-front"><div><span class="emo">😩</span></div><h3>Chai tắm, chai gội riêng</h3><p>Lỉnh kỉnh, tốn tiền, mẹ vừa giữ bé vừa đổi chai.</p><div class="tap">👆 Chạm để lật</div></div>
-                    <div class="flip-face flip-back"><div class="emo">🫧</div><h3>Một chai 2in1 là xong</h3><p>Vừa tắm vừa gội trong một lần, mẹ tiết kiệm thời gian và chi phí, bé không phải đợi lâu.</p></div>
+                    <div class="flip-face flip-back"><div class="emo">🫧</div><h3>Một chai 2in1 là xong</h3><p>Vừa tắm vừa gội chỉ trong một bước, rút ngắn thời gian tắm để bé không bị nhiễm lạnh.</p></div>
                 </div>
             </div>
         </div>
@@ -703,7 +727,7 @@ textarea.input { resize: vertical; min-height: 90px; }
                     <ul>
                         <li><i>🫧</i> Nhiều bọt, khó xả sạch</li>
                         <li><i>😣</i> Dễ cay mắt khi gội</li>
-                        <li><i>🌵</i> Có thể làm khô da bé</li>
+                        <li><i>🌵</i> Da dễ khô ráp sau tắm</li>
                         <li><i>🧴</i> Phải mua riêng dầu gội</li>
                     </ul>
                 </div>
@@ -713,9 +737,9 @@ textarea.input { resize: vertical; min-height: 90px; }
                 <div class="cmp-col">
                     <h3>Sữa tắm gội Bon Bon</h3>
                     <ul>
-                        <li><i>💧</i> Ít bọt, xả sạch nhanh</li>
-                        <li><i>😊</i> Không cay mắt</li>
-                        <li><i>🌸</i> Dịu nhẹ, giữ ẩm cho da</li>
+                        <li><i>😊</i> Ít bọt, không cay mắt</li>
+                        <li><i>🚫</i> Không chứa Paraben</li>
+                        <li><i>⚖️</i> pH cân bằng, giữ ẩm da</li>
                         <li><i>✨</i> 2in1: tắm &amp; gội</li>
                     </ul>
                 </div>
@@ -736,23 +760,21 @@ textarea.input { resize: vertical; min-height: 90px; }
         <div class="section-head" data-reveal>
             <span class="eyebrow">🧪 Mini game: Pha chế Bon Bon</span>
             <h2 class="section-title">Kéo thành phần <span class="hl">vào lọ</span> nào!</h2>
-            <p class="section-sub">Kéo (hoặc chạm) từng thành phần vào lọ để khám phá công thức dịu nhẹ cho làn da bé.</p>
+            <p class="section-sub">Kéo (hoặc chạm) từng thành phần vào lọ để khám phá công thức. Cẩn thận, có một "kẻ lạ mặt" mà Bon Bon không chào đón đâu nhé 😉</p>
         </div>
-        <!-- TODO: Đối chiếu danh sách thành phần với nhãn sản phẩm / hồ sơ công bố trước khi chạy quảng cáo -->
         <div class="lab" id="lab">
             <div class="chips chips-left">
-                <div class="chip" data-ing="0"><span class="ico" style="background:var(--yellow-soft)">🌾</span><div>Yến mạch<small>Làm dịu da</small></div></div>
-                <div class="chip" data-ing="1"><span class="ico" style="background:var(--mint-soft)">🥥</span><div>Dầu dừa<small>Giữ ẩm tự nhiên</small></div></div>
-                <div class="chip" data-ing="2"><span class="ico" style="background:var(--pink-soft)">🌰</span><div>Dầu hạnh nhân<small>Mềm mịn da</small></div></div>
+                <div class="chip" data-ing="0"><span class="ico" style="background:var(--pink-soft)">🌰</span><div>Dầu hạnh nhân<small>Nuôi dưỡng sâu</small></div></div>
+                <div class="chip bad" data-ing="3"><span class="ico">🧪</span><div>Paraben<small>Chất bảo quản</small></div></div>
             </div>
             <div class="drop-zone" id="dropZone">
                 <div class="drop-ring"></div>
                 <div class="lab-bottle" id="labBottle" data-bottle="lab"></div>
-                <div class="lab-meter">Công thức: <span id="labCount">0</span>/5<div class="bar"><i id="labBar"></i></div></div>
+                <div class="lab-meter">Công thức: <span id="labCount">0</span>/3<div class="bar"><i id="labBar"></i></div></div>
             </div>
             <div class="chips chips-right">
-                <div class="chip" data-ing="3"><span class="ico" style="background:#ece6ff">💊</span><div>Vitamin E<small>Nuôi dưỡng da</small></div></div>
-                <div class="chip" data-ing="4"><span class="ico" style="background:var(--primary-light)">💧</span><div>Vitamin B5<small>Phục hồi, giữ ẩm</small></div></div>
+                <div class="chip" data-ing="1"><span class="ico" style="background:#ece6ff">💊</span><div>Vitamin E<small>Chống oxy hóa</small></div></div>
+                <div class="chip" data-ing="2"><span class="ico" style="background:var(--primary-light)">💧</span><div>Aqua &amp; SLES dịu nhẹ<small>Làm sạch nhẹ nhàng</small></div></div>
             </div>
         </div>
         <div class="lab-info" id="labInfo" data-reveal>
@@ -762,7 +784,7 @@ textarea.input { resize: vertical; min-height: 90px; }
         <div class="lab-done" id="labDone">
             <a href="#dang-ky" class="btn btn-primary js-scroll">🎉 Hoàn thành! Nhận tư vấn &amp; quà ngay</a>
         </div>
-        <p class="lab-note">* Thông tin thành phần tham khảo, vui lòng xem nhãn sản phẩm để biết thành phần đầy đủ.</p>
+        <p class="lab-note">* Thành phần nổi bật, xem nhãn sản phẩm để biết bảng thành phần đầy đủ.</p>
     </div>
 </section>
 
@@ -775,11 +797,11 @@ textarea.input { resize: vertical; min-height: 90px; }
         </div>
     </div>
     <div class="h-track" id="hTrack">
-        <article class="b-card"><span class="num">01</span><span class="big">🫧</span><h3>2in1 tiện lợi</h3><p>Một chai vừa tắm vừa gội, mẹ không cần chuẩn bị nhiều sản phẩm, giờ tắm gọn gàng hơn.</p></article>
-        <article class="b-card"><span class="num">02</span><span class="big">😊</span><h3>Không cay mắt</h3><p>Bé không còn sợ gội đầu, mẹ không còn phải dỗ dành mỗi tối.</p></article>
-        <article class="b-card"><span class="num">03</span><span class="big">🌿</span><h3>Dịu nhẹ cho da nhạy cảm</h3><p>Làm sạch nhẹ nhàng, không làm khô căng da, phù hợp để tắm cho bé hằng ngày.</p></article>
-        <article class="b-card"><span class="num">04</span><span class="big">💧</span><h3>Ít bọt, dễ xả</h3><p>Xả sạch nhanh, ít tốn nước và thời gian, bé không bị lạnh khi tắm lâu.</p></article>
-        <article class="b-card"><span class="num">05</span><span class="big">🌸</span><h3>Hương thơm dịu nhẹ</h3><p>Mùi thơm nhẹ, dễ chịu, bé thơm tho cả ngày mà không bị hắc.</p></article>
+        <article class="b-card"><span class="num">01</span><span class="big">🫧</span><h3>2 trong 1 tiện lợi</h3><p>Vừa tắm vừa gội toàn thân chỉ trong một bước, rút ngắn thời gian tắm để bé không bị nhiễm lạnh.</p></article>
+        <article class="b-card"><span class="num">02</span><span class="big">😊</span><h3>Không cay mắt</h3><p>Ít bọt, nhẹ dịu và không chứa Paraben, bé thoải mái, thư giãn khi gội đầu.</p></article>
+        <article class="b-card"><span class="num">03</span><span class="big">⚖️</span><h3>Độ pH cân bằng</h3><p>Nuôi dưỡng màng ẩm tự nhiên, da con mềm mại, không khô ráp sau khi tắm.</p></article>
+        <article class="b-card"><span class="num">04</span><span class="big">🌿</span><h3>Làm sạch từ gốc</h3><p>Nhẹ nhàng hỗ trợ làm sạch vết viêm da tiết bã (cứt trâu) và màng ối bám trên da bé.</p></article>
+        <article class="b-card"><span class="num">05</span><span class="big">🌰</span><h3>Dầu hạnh nhân &amp; Vitamin E</h3><p>Giàu axit béo tự nhiên, giúp giảm khô rát, bong tróc và củng cố hàng rào bảo vệ da bé.</p></article>
         <article class="b-card cta-card"><span class="big" style="position:static;font-size:80px">🎁</span><h3>Mẹ muốn thử cho bé?</h3><p>Để lại thông tin, chuyên viên Home Care sẽ tư vấn miễn phí và gửi quà tặng cho mẹ.</p><a href="#dang-ky" class="btn btn-pink js-scroll">Nhận quà ngay</a></article>
     </div>
 </section>
@@ -807,7 +829,7 @@ textarea.input { resize: vertical; min-height: 90px; }
             <div class="q-step" data-q="skin">
                 <h3>Da bé hay gặp tình trạng nào nhất?</h3>
                 <div class="q-opts">
-                    <button class="q-opt" data-v="Rôm sảy" data-t="heat"><span class="e">🥵</span>Rôm sảy, mẩn đỏ</button>
+                    <button class="q-opt" data-v="Cứt trâu" data-t="cradle"><span class="e">👶</span>Cứt trâu, màng ối</button>
                     <button class="q-opt" data-v="Da khô" data-t="dry"><span class="e">🌵</span>Da khô, sần</button>
                     <button class="q-opt" data-v="Da nhạy cảm" data-t="sensitive"><span class="e">🥺</span>Dễ kích ứng</button>
                     <button class="q-opt" data-v="Da bình thường" data-t="normal"><span class="e">😊</span>Bình thường</button>
@@ -852,17 +874,16 @@ textarea.input { resize: vertical; min-height: 90px; }
     <div class="container">
         <div class="section-head" data-reveal>
             <span class="eyebrow">🛁 Cách dùng</span>
-            <h2 class="section-title">Chỉ <span class="hl">4 bước</span> nhẹ nhàng</h2>
+            <h2 class="section-title">Tắm bé đúng cách chỉ <span class="hl">3 bước</span></h2>
         </div>
         <div class="steps">
             <svg class="steps-path" viewBox="0 0 800 80" preserveAspectRatio="none" aria-hidden="true">
-                <path id="stepsPath" d="M0,40 C100,0 150,80 266,40 C380,0 420,80 533,40 C650,0 700,80 800,40" fill="none" stroke="#4cc0d3" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 12"/>
+                <path id="stepsPath" d="M0,40 C130,0 270,80 400,40 C530,0 670,80 800,40" fill="none" stroke="#4cc0d3" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 12"/>
             </svg>
             <div class="steps-grid">
-                <div class="step"><div class="circle">🚿<b>1</b></div><h4>Làm ướt</h4><p>Làm ướt tóc và người bé bằng nước ấm vừa phải.</p></div>
-                <div class="step"><div class="circle">🧴<b>2</b></div><h4>Lấy sữa tắm</h4><p>Lấy một lượng vừa đủ ra tay hoặc khăn mềm.</p></div>
-                <div class="step"><div class="circle">👐<b>3</b></div><h4>Massage nhẹ</h4><p>Xoa đều lên tóc và toàn thân, massage nhẹ nhàng.</p></div>
-                <div class="step"><div class="circle">🧸<b>4</b></div><h4>Xả sạch</h4><p>Xả lại bằng nước sạch, lau khô bằng khăn mềm.</p></div>
+                <div class="step"><div class="circle">🚿<b>1</b></div><h4>Tráng nước ấm</h4><p>Tráng người bé bằng nước ấm sạch để cơ thể con làm quen với nhiệt độ.</p></div>
+                <div class="step"><div class="circle">🧴<b>2</b></div><h4>Gội đầu</h4><p>Lấy một lượng vừa đủ Bon Bon, nhẹ nhàng gội đầu cho con rồi xả sạch với nước.</p></div>
+                <div class="step"><div class="circle">👐<b>3</b></div><h4>Tắm toàn thân</h4><p>Thoa thêm một lượng vừa phải, massage nhẹ khắp người bé rồi tắm lại bằng nước sạch.</p></div>
             </div>
         </div>
     </div>
@@ -894,26 +915,48 @@ textarea.input { resize: vertical; min-height: 90px; }
 </section>
 
 <!-- ===== REVIEWS ===== -->
-<!-- TODO: Thay bằng feedback thật của khách hàng (tên, ảnh, nội dung đã được khách đồng ý) trước khi chạy quảng cáo -->
-<section class="section reviews" id="danh-gia">
+<!-- ===== PRODUCT INFO ===== -->
+<section class="section pinfo" id="thong-tin">
     <div class="container">
         <div class="section-head" data-reveal>
-            <span class="eyebrow">💬 Mẹ nói gì về Bon Bon</span>
-            <h2 class="section-title">Chia sẻ từ <span class="hl">các mẹ</span></h2>
+            <span class="eyebrow">📋 Thông tin sản phẩm</span>
+            <h2 class="section-title">Minh bạch để <span class="hl">mẹ yên tâm</span></h2>
         </div>
-        <div class="rv-viewport" id="rvViewport">
-            <div class="rv-track" id="rvTrack">
-                <div class="rv-card"><div class="rv-head"><span class="rv-ava" style="background:var(--pink-soft)">👩</span><div><h4>Mẹ Bống</h4><small>Bé 8 tháng</small></div></div><div class="rv-stars">★★★★★</div><p>"Trước bé nhà mình cứ gội đầu là khóc, dùng Bon Bon thấy bé hợp tác hơn hẳn. Chai 2in1 tiện ghê."</p></div>
-                <div class="rv-card"><div class="rv-head"><span class="rv-ava" style="background:var(--mint-soft)">👩‍🍼</span><div><h4>Mẹ Su</h4><small>Bé 1 tuổi</small></div></div><div class="rv-stars">★★★★★</div><p>"Mùi thơm nhẹ, không hắc. Tắm xong da con mềm, không bị khô căng như hồi dùng loại cũ."</p></div>
-                <div class="rv-card"><div class="rv-head"><span class="rv-ava" style="background:var(--yellow-soft)">🧕</span><div><h4>Mẹ Mít</h4><small>Bé 2 tuổi</small></div></div><div class="rv-stars">★★★★★</div><p>"Ít bọt nên xả nhanh, mùa đông tắm cho con không sợ lạnh lâu. Sẽ mua tiếp."</p></div>
-                <div class="rv-card"><div class="rv-head"><span class="rv-ava" style="background:#ece6ff">👩‍🦱</span><div><h4>Mẹ Na</h4><small>Bé 4 tháng</small></div></div><div class="rv-stars">★★★★★</div><p>"Được chuyên viên tư vấn kỹ cách tắm cho bé sơ sinh, rất nhiệt tình. Sản phẩm dịu nhẹ, mình yên tâm."</p></div>
-                <div class="rv-card"><div class="rv-head"><span class="rv-ava" style="background:var(--primary-light)">👱‍♀️</span><div><h4>Mẹ Bin</h4><small>Bé 3 tuổi</small></div></div><div class="rv-stars">★★★★★</div><p>"Con tự đòi tắm vì thích mùi Bon Bon. Mẹ đỡ vất vả hẳn mỗi tối."</p></div>
+        <div class="pinfo-grid">
+            <div class="pinfo-visual" data-reveal>
+                <div class="hero-blob"></div>
+                <div class="pinfo-bottle" data-bottle="info"></div>
+                <div class="vol-tag">500<small>ml</small></div>
             </div>
-        </div>
-        <div class="rv-controls">
-            <button class="rv-btn" id="rvPrev" aria-label="Trước">←</button>
-            <span class="rv-hint">Kéo để xem thêm</span>
-            <button class="rv-btn" id="rvNext" aria-label="Sau">→</button>
+            <div data-reveal>
+                <div class="tabs" role="tablist">
+                    <span class="tab-pill" id="tabPill"></span>
+                    <button class="tab active" role="tab">📦 Thông tin</button>
+                    <button class="tab" role="tab">🌤️ Bảo quản</button>
+                    <button class="tab" role="tab">⚠️ Lưu ý</button>
+                </div>
+                <div class="tab-panel active">
+                    <ul class="spec">
+                        <li><span class="e">🏷️</span><span>Thương hiệu</span><b>Home Care</b></li>
+                        <li><span class="e">🇻🇳</span><span>Xuất xứ</span><b>Việt Nam</b></li>
+                        <li><span class="e">🧴</span><span>Dung tích</span><b>500 ml</b></li>
+                        <li><span class="e">📅</span><span>Hạn sử dụng</span><b>24 tháng</b></li>
+                        <li><span class="e">📜</span><span>Số công bố</span><b>64/26/CBMP-NB</b></li>
+                    </ul>
+                </div>
+                <div class="tab-panel">
+                    <ul class="spec">
+                        <li><span class="e">🏠</span><b>Để sản phẩm ở nơi khô ráo, thoáng mát.</b></li>
+                        <li><span class="e">☀️</span><b>Tránh ánh nắng mặt trời chiếu trực tiếp.</b></li>
+                    </ul>
+                </div>
+                <div class="tab-panel">
+                    <ul class="spec">
+                        <li><span class="e">🧼</span><b>Sản phẩm chỉ dùng ngoài da.</b></li>
+                        <li><span class="e">🙅</span><b>Để xa tầm tay của trẻ em.</b></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -926,9 +969,10 @@ textarea.input { resize: vertical; min-height: 90px; }
             <h2 class="section-title">Mẹ thường <span class="hl">hỏi</span></h2>
         </div>
         <div class="faq-list">
-            <div class="faq-item" data-reveal><button class="faq-q">Bé sơ sinh dùng được không?<span class="pm">+</span></button><div class="faq-a"><p>Bon Bon được thiết kế dịu nhẹ cho làn da bé. Với bé sơ sinh hoặc da đang có vấn đề, mẹ nên để lại thông tin để chuyên viên tư vấn cụ thể theo tình trạng của bé.</p></div></div>
-            <div class="faq-item" data-reveal><button class="faq-q">Có thật sự không cay mắt?<span class="pm">+</span></button><div class="faq-a"><p>Công thức dịu nhẹ, ít bọt giúp hạn chế cảm giác cay mắt khi gội. Mẹ vẫn nên ngửa đầu bé ra sau và xả nước nhẹ nhàng để bé thoải mái nhất.</p></div></div>
-            <div class="faq-item" data-reveal><button class="faq-q">Dùng hằng ngày có bị khô da không?<span class="pm">+</span></button><div class="faq-a"><p>Sản phẩm làm sạch nhẹ nhàng, phù hợp để tắm cho bé hằng ngày. Mẹ dùng lượng vừa đủ và tắm bằng nước ấm vừa phải để giữ ẩm tốt nhất cho da.</p></div></div>
+            <div class="faq-item" data-reveal><button class="faq-q">Sữa tắm Bon Bon có dùng được cho trẻ sơ sinh không?<span class="pm">+</span></button><div class="faq-a"><p>Có. Bon Bon có công thức dịu nhẹ, cân bằng độ pH, không chứa Paraben, phù hợp cho cả làn da nhạy cảm của trẻ sơ sinh và trẻ nhỏ.</p></div></div>
+            <div class="faq-item" data-reveal><button class="faq-q">Sữa tắm gội này có làm cay mắt bé không?<span class="pm">+</span></button><div class="faq-a"><p>Không. Bon Bon dùng công thức ít bọt, dịu nhẹ, không gây cay mắt, giúp bé luôn thoải mái, thư giãn khi tắm.</p></div></div>
+            <div class="faq-item" data-reveal><button class="faq-q">Có hỗ trợ làm sạch cứt trâu không?<span class="pm">+</span></button><div class="faq-a"><p>Có. Nhờ dầu hạnh nhân và các dưỡng chất, sản phẩm giúp làm mềm và làm sạch nhẹ nhàng các mảng viêm da tiết bã (cứt trâu) và màng ối trên da bé hằng ngày.</p></div></div>
+            <div class="faq-item" data-reveal><button class="faq-q">Dùng hằng ngày có bị khô da không?<span class="pm">+</span></button><div class="faq-a"><p>Không. Độ pH cân bằng cùng dầu hạnh nhân và Vitamin E giúp nuôi dưỡng màng ẩm tự nhiên, da bé mềm mại, không khô ráp sau khi tắm.</p></div></div>
             <div class="faq-item" data-reveal><button class="faq-q">Để lại thông tin có mất phí gì không?<span class="pm">+</span></button><div class="faq-a"><p>Hoàn toàn miễn phí. Chuyên viên Home Care sẽ gọi điện tư vấn và xác nhận quà tặng, mẹ chỉ quyết định mua khi thấy phù hợp.</p></div></div>
             <div class="faq-item" data-reveal><button class="faq-q">Bao lâu thì được gọi lại?<span class="pm">+</span></button><div class="faq-a"><p>Thông thường trong giờ hành chính, chuyên viên sẽ liên hệ lại sớm nhất có thể. Mẹ có thể chọn khung giờ thuận tiện trong form.</p></div></div>
         </div>
@@ -983,6 +1027,7 @@ textarea.input { resize: vertical; min-height: 90px; }
                     <div class="field">
                         <span class="lbl">Mẹ đang quan tâm điều gì? <small style="font-weight:600;color:var(--text-soft)">(chọn nhiều)</small></span>
                         <div class="chip-row" id="concernRow">
+                            <label class="chip-opt"><input type="checkbox" name="concern" value="Cứt trâu"><span>👶 Cứt trâu</span></label>
                             <label class="chip-opt"><input type="checkbox" name="concern" value="Rôm sảy"><span>🥵 Rôm sảy</span></label>
                             <label class="chip-opt"><input type="checkbox" name="concern" value="Da khô"><span>🌵 Da khô</span></label>
                             <label class="chip-opt"><input type="checkbox" name="concern" value="Da nhạy cảm"><span>🥺 Da nhạy cảm</span></label>
@@ -1028,6 +1073,7 @@ textarea.input { resize: vertical; min-height: 90px; }
         <div>
             <h4>Home Care Việt Nam</h4>
             <p>Sản phẩm chăm sóc mẹ &amp; bé dịu nhẹ, an toàn. Đồng hành cùng mẹ trong từng khoảnh khắc chăm con.</p>
+            <p style="margin-top:10px">Sữa tắm gội Bon Bon 500ml · Số công bố: 64/26/CBMP-NB</p>
         </div>
         <div>
             <h4>Liên hệ</h4>
@@ -1379,14 +1425,12 @@ $$('.flip-card').forEach(card => {
 
 /* ===== INGREDIENTS GAME ===== */
 (function () {
-    // TODO: Cập nhật theo thành phần thực tế in trên nhãn sản phẩm
     const ING = [
-        { ico: '🌾', name: 'Chiết xuất yến mạch', text: 'Giúp làm dịu làn da nhạy cảm, hạn chế cảm giác khó chịu sau khi tắm.' },
-        { ico: '🥥', name: 'Dầu dừa', text: 'Bổ sung độ ẩm tự nhiên, giúp da bé mềm mại, không khô căng.' },
-        { ico: '🌰', name: 'Dầu hạnh nhân', text: 'Nuôi dưỡng làn da mịn màng và mái tóc mềm mượt cho bé.' },
-        { ico: '💊', name: 'Vitamin E', text: 'Hỗ trợ nuôi dưỡng, bảo vệ làn da non nớt của bé mỗi ngày.' },
-        { ico: '💧', name: 'Vitamin B5 (Panthenol)', text: 'Giúp giữ ẩm và hỗ trợ phục hồi làn da sau khi tắm.' }
+        { ico: '🌰', name: 'Dầu Hạnh Nhân (Prunus Amygdalus Dulcis Oil)', text: 'Giàu Vitamin E và axit béo tự nhiên, nuôi dưỡng sâu, giảm khô rát, bong tróc và củng cố hàng rào bảo vệ da bé.' },
+        { ico: '💊', name: 'Vitamin E (Tocopherol)', text: 'Chống oxy hóa, hỗ trợ bảo vệ da trước tác nhân môi trường và giúp da bé mịn màng.' },
+        { ico: '💧', name: 'Aqua & Sodium Laureth Sulfate dịu nhẹ', text: 'Lấy đi bụi bẩn và mồ hôi hằng ngày một cách nhẹ nhàng mà không làm bít tắc lỗ chân lông.' }
     ];
+    const BAD = { ico: '🙅', name: 'Không chứa Paraben!', text: 'Bon Bon nói "không" với Paraben để làn da non nớt của bé luôn được nâng niu dịu nhẹ nhất.' };
     const zone = $('#dropZone'), bottle = $('#labBottle'), info = $('#labInfo');
     const liquid = bottle.querySelector('.liquid');
     let done = 0;
@@ -1396,8 +1440,19 @@ $$('.flip-card').forEach(card => {
         info.innerHTML = `<span class="ico">${d.ico}</span><div><h4>${d.name}</h4><p>${d.text}</p></div>`;
         gsap.fromTo(info, { y: 20, opacity: 0, scale: .95 }, { y: 0, opacity: 1, scale: 1, duration: .5, ease: 'back.out(2)' });
     }
+    function reject(chip, dragInst) {
+        dragInst && dragInst.disable();
+        chip.classList.add('rejected');
+        gsap.timeline().to(bottle, { rotate: -8, duration: .08, yoyo: true, repeat: 5, ease: 'none' }).set(bottle, { rotate: 0 });
+        gsap.to(bottle.querySelector('.mouth'), { attr: { d: 'M90 136 Q100 126 110 136' }, duration: .2, yoyo: true, repeat: 1, repeatDelay: 1 });
+        gsap.to(chip, { x: 0, y: 0, duration: .8, ease: 'elastic.out(1, .5)' });
+        info.innerHTML = `<span class="ico">${BAD.ico}</span><div><h4>${BAD.name}</h4><p>${BAD.text}</p></div>`;
+        gsap.fromTo(info, { x: -12 }, { x: 0, duration: .5, ease: 'elastic.out(1.2, .3)' });
+        toast('🙅 Bon Bon không chứa Paraben đâu mẹ ơi!');
+    }
     function accept(chip, dragInst) {
         if (chip.classList.contains('used')) return;
+        if (chip.classList.contains('bad')) return reject(chip, dragInst);
         const i = +chip.dataset.ing;
         const ico = chip.querySelector('.ico');
         const ir = ico.getBoundingClientRect(), br = bottle.getBoundingClientRect();
@@ -1477,7 +1532,7 @@ mm.add('(max-width: 768px)', () => {
     const answers = {};
     let cur = 0, busy = false;
     const RESULTS = {
-        heat: { e: '🥵', title: 'Da bé dễ bị "nóng"', type: 'Cần làm sạch mồ hôi thông thoáng', tips: ['Tắm cho bé hằng ngày bằng nước ấm, đặc biệt vào ngày nóng.', 'Ưu tiên sữa tắm dịu nhẹ, ít bọt, dễ xả sạch như Bon Bon.', 'Mặc đồ cotton thoáng mát, tránh ủ bé quá kỹ.'] },
+        cradle: { e: '👶', title: 'Bé cần làm sạch cứt trâu', type: 'Cần làm mềm & làm sạch nhẹ nhàng', tips: ['Không cạy, gãi mảng cứt trâu để tránh làm tổn thương da đầu bé.', 'Gội hằng ngày với sữa tắm gội dịu nhẹ có dầu hạnh nhân như Bon Bon để làm mềm và làm sạch dần.', 'Xả thật sạch và lau khô tóc bé bằng khăn mềm sau khi gội.'] },
         dry: { e: '🌵', title: 'Da bé hơi thiếu ẩm', type: 'Cần làm sạch & giữ ẩm', tips: ['Không tắm nước quá nóng và không tắm quá lâu (5-10 phút).', 'Chọn sữa tắm có thành phần dưỡng ẩm, không làm khô căng da.', 'Thoa dưỡng ẩm ngay sau khi lau khô người bé.'] },
         sensitive: { e: '🥺', title: 'Bé có làn da nhạy cảm', type: 'Cần sản phẩm thật dịu nhẹ', tips: ['Chọn sữa tắm dịu nhẹ, hương thơm nhẹ, dùng lượng vừa đủ.', 'Thử trước trên một vùng da nhỏ khi đổi sản phẩm mới.', 'Để chuyên viên tư vấn chi tiết theo tình trạng của bé.'] },
         normal: { e: '🌸', title: 'Da bé khỏe mạnh', type: 'Duy trì làm sạch dịu nhẹ', tips: ['Duy trì thói quen tắm gội đều đặn với sản phẩm dịu nhẹ.', 'Dùng sữa tắm gội 2in1 để giờ tắm nhanh gọn, bé vui hơn.', 'Biến giờ tắm thành giờ chơi với đồ chơi nhà tắm.'] }
@@ -1520,7 +1575,7 @@ mm.add('(max-width: 768px)', () => {
                 // Prefill form
                 $('#hQuiz').value = `${r.title} | Tuổi: ${answers.age} | Da: ${answers.skin} | Gội: ${answers.bath} | Ưu tiên: ${answers.priority}`;
                 const ageInput = $(`#ageRow input[value="${answers.age}"]`); if (ageInput) ageInput.checked = true;
-                const cMap = { 'Rôm sảy': 'Rôm sảy', 'Da khô': 'Da khô', 'Da nhạy cảm': 'Da nhạy cảm' };
+                const cMap = { 'Cứt trâu': 'Cứt trâu', 'Da khô': 'Da khô', 'Da nhạy cảm': 'Da nhạy cảm' };
                 if (cMap[answers.skin]) { const c = $(`#concernRow input[value="${cMap[answers.skin]}"]`); if (c) c.checked = true; }
                 if (answers.bath === 'Khóc, sợ cay mắt') { const c = $('#concernRow input[value="Cay mắt khi gội"]'); if (c) c.checked = true; }
                 if (answers.priority === 'Tiện lợi 2in1') { const c = $('#concernRow input[value="Tìm sữa tắm 2in1"]'); if (c) c.checked = true; }
@@ -1620,25 +1675,25 @@ mm.add('(max-width: 768px)', () => {
     gsap.from('.wheel-wrap', { scrollTrigger: { trigger: '#vong-quay', start: 'top 70%' }, scale: .5, rotate: -90, opacity: 0, duration: 1.2, ease: 'back.out(1.6)' });
 })();
 
-/* ===== REVIEWS CAROUSEL ===== */
+/* ===== FACT COUNTER ===== */
 (function () {
-    const track = $('#rvTrack'), vp = $('#rvViewport');
-    const d = Draggable.create(track, { type: 'x', bounds: { minX: 0, maxX: 0 }, edgeResistance: .85, dragClickables: true })[0];
-    const setBounds = () => {
-        const minX = Math.min(0, vp.clientWidth - track.scrollWidth);
-        d.applyBounds({ minX, maxX: 0 });
-    };
-    setBounds();
-    window.addEventListener('resize', setBounds);
-    const step = dir => {
-        const card = track.querySelector('.rv-card').offsetWidth + 24;
-        const minX = Math.min(0, vp.clientWidth - track.scrollWidth);
-        const x = gsap.utils.clamp(minX, 0, gsap.getProperty(track, 'x') - dir * card);
-        gsap.to(track, { x, duration: .6, ease: 'power3.out', onUpdate: () => d.update() });
-    };
-    $('#rvPrev').addEventListener('click', () => step(-1));
-    $('#rvNext').addEventListener('click', () => step(1));
-    gsap.from('.rv-card', { scrollTrigger: { trigger: track, start: 'top 85%' }, y: 60, rotate: () => gsap.utils.random(-6, 6), opacity: 0, stagger: .1, duration: .8, ease: 'back.out(1.6)' });
+    const o = { v: 0 };
+    gsap.to(o, { v: 30, duration: 1.6, ease: 'power2.out', scrollTrigger: { trigger: '.fact', start: 'top 85%' }, onUpdate: () => { $('#factNum').textContent = Math.round(o.v); } });
+})();
+
+/* ===== PRODUCT INFO TABS ===== */
+(function () {
+    const tabs = $$('.tab'), panels = $$('.tab-panel'), pill = $('#tabPill');
+    const movePill = (t, instant) => gsap.to(pill, { x: t.offsetLeft, width: t.offsetWidth, duration: instant ? 0 : .45, ease: 'back.out(1.6)' });
+    tabs.forEach((t, i) => t.addEventListener('click', () => {
+        tabs.forEach(x => x.classList.toggle('active', x === t));
+        panels.forEach((p, k) => p.classList.toggle('active', k === i));
+        movePill(t);
+        gsap.fromTo(panels[i].querySelectorAll('li'), { x: 30, opacity: 0 }, { x: 0, opacity: 1, stagger: .07, duration: .45, ease: 'back.out(2)' });
+    }));
+    movePill(tabs[0], true);
+    window.addEventListener('resize', () => movePill($('.tab.active'), true));
+    gsap.fromTo('.vol-tag', { scale: 0, rotate: -120 }, { scrollTrigger: { trigger: '#thong-tin', start: 'top 70%' }, scale: 1, rotate: 0, duration: 1, delay: .3, ease: 'elastic.out(1, .5)' });
 })();
 
 /* ===== FAQ ===== */
