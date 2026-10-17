@@ -184,9 +184,9 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 .pop-hint { display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; font-weight: 700; color: var(--text-soft); font-size: 15px; background: rgba(255,255,255,.7); padding: 8px 16px; border-radius: 99px; }
 .pop-hint b { color: var(--primary-dark); font-size: 18px; min-width: 18px; display: inline-block; text-align: center; }
 
-.hero-visual { position: relative; display: grid; place-items: center; min-height: 750px; }
+.hero-visual { position: relative; display: grid; place-items: center; min-height: 660px; }
 .hero-blob {
-    position: absolute; width: 580px; height: 580px; max-width: 100%;
+    position: absolute; width: 520px; height: 520px; max-width: 100%;
     background: linear-gradient(135deg, var(--primary-light), var(--mint-soft) 60%, var(--pink-soft));
     border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
     animation: blob 12s ease-in-out infinite;
@@ -196,10 +196,10 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
     33% { border-radius: 63% 37% 38% 62% / 55% 38% 62% 45%; }
     66% { border-radius: 38% 62% 52% 48% / 36% 61% 39% 64%; }
 }
-.hero-bottle { position: relative; width: 310px; z-index: 2; filter: drop-shadow(0 30px 30px rgba(42,159,179,.35)); cursor: grab; touch-action: none; }
+.hero-bottle { position: relative; width: 270px; z-index: 2; filter: drop-shadow(0 30px 30px rgba(42,159,179,.35)); cursor: grab; touch-action: none; }
 .hero-bottle img, .pinfo-bottle img { width: 100%; height: auto; user-select: none; -webkit-user-drag: none; pointer-events: none; }
 .hero-bottle:active { cursor: grabbing; }
-.hero-duck { position: absolute; bottom: 2%; right: 2%; width: 230px; z-index: 3; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
+.hero-duck { position: absolute; bottom: 4%; right: 4%; width: 195px; z-index: 3; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
 .hero-duck img { width: 100%; height: auto; pointer-events: none; -webkit-user-drag: none; filter: drop-shadow(0 12px 14px rgba(255,140,40,.25)); }
 .hero-star { position: absolute; font-size: 26px; z-index: 1; }
 .wave { position: absolute; left: 0; right: 0; bottom: -1px; z-index: 3; line-height: 0; }
@@ -256,11 +256,11 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 /* ===== COMPARE SLIDER ===== */
 .compare-sec { background: linear-gradient(180deg, var(--cream), var(--primary-light)); }
 .compare {
-    position: relative; max-width: 940px; margin: 0 auto; height: 540px; border-radius: 36px; overflow: hidden;
+    position: relative; max-width: 940px; margin: 0 auto; border-radius: 36px; overflow: hidden;
     box-shadow: var(--shadow); user-select: none; -webkit-user-select: none; touch-action: pan-y; background: #fff;
 }
-.cmp-layer { position: absolute; inset: 0; display: flex; padding: 40px; }
-.cmp-normal { background: linear-gradient(135deg, #eef1f4, #dfe5ea); justify-content: flex-start; }
+.cmp-layer { position: absolute; inset: 0; display: flex; padding: 76px 40px 40px; }
+.cmp-normal { position: relative; background: linear-gradient(135deg, #eef1f4, #dfe5ea); justify-content: flex-start; }
 .cmp-bonbon { background: linear-gradient(135deg, #dff7fb, #c4eef5 60%, #fde3eb); justify-content: flex-end; clip-path: inset(0 0 0 50%); }
 .cmp-col { width: 46%; display: flex; flex-direction: column; justify-content: center; }
 .cmp-col h3 { font-size: 26px; margin-bottom: 18px; }
@@ -271,7 +271,7 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 .cmp-normal li { color: #6f7b86; }
 .cmp-col li i { font-style: normal; flex: none; }
 /* Ô ảnh: thêm <img src="img/..." alt="..."> vào trong .cmp-photo (thay cho chữ "Ảnh") */
-.cmp-photo { margin-top: 16px; height: 140px; border-radius: 18px; overflow: hidden; display: grid; place-items: center; background: rgba(255,255,255,.55); border: 2px dashed rgba(52,73,94,.18); color: var(--text-soft); font-weight: 700; font-size: 14px; }
+.cmp-photo { margin-top: 16px; aspect-ratio: 4 / 3; max-width: 100%; border-radius: 18px; overflow: hidden; display: grid; place-items: center; background: rgba(255,255,255,.55); border: 2px dashed rgba(52,73,94,.18); color: var(--text-soft); font-weight: 700; font-size: 14px; }
 .cmp-bonbon .cmp-photo { border-color: rgba(42,159,179,.35); }
 .cmp-photo img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 .cmp-handle { position: absolute; top: 0; bottom: 0; left: 0; width: 0; z-index: 5; }
@@ -550,7 +550,7 @@ textarea.input { resize: vertical; min-height: 90px; }
     .hero-copy { text-align: center; }
     .hero-desc { margin-left: auto; margin-right: auto; }
     .hero-ctas { justify-content: center; }
-    .hero-visual { min-height: 690px; }
+    .hero-visual { min-height: 610px; }
     .lab { grid-template-columns: 1fr 1fr; }
     .drop-zone { grid-column: 1 / -1; grid-row: 1; }
     .wheel-copy { text-align: center; }
@@ -564,10 +564,10 @@ textarea.input { resize: vertical; min-height: 90px; }
     .hero { padding: 100px 0 120px; }
     .hero-desc { font-size: 17px; }
     .hero-ctas .btn { width: 100%; }
-    .hero-visual { min-height: 520px; }
-    .hero-bottle { width: 205px; }
-    .hero-blob { width: 340px; height: 340px; }
-    .hero-duck { width: 150px; right: 0; bottom: 2%; }
+    .hero-visual { min-height: 470px; }
+    .hero-bottle { width: 180px; }
+    .hero-blob { width: 320px; height: 320px; }
+    .hero-duck { width: 130px; right: 0; bottom: 4%; }
     .marquee-track { font-size: 18px; }
     .flip-grid { grid-template-columns: 1fr; }
     .wish-grid { grid-template-columns: 1fr; gap: 20px; max-width: 360px; margin: 0 auto; }
@@ -576,8 +576,8 @@ textarea.input { resize: vertical; min-height: 90px; }
     .wish-label { font-size: 21px; padding: 14px; }
     .wish-foot { font-size: 17px; margin-top: 32px; }
     .flip-card { height: 250px; }
-    .compare { height: 640px; border-radius: 28px; }
-    .cmp-photo { height: 110px; margin-top: 12px; }
+    .compare { border-radius: 28px; }
+    .cmp-photo { margin-top: 12px; }
     .cmp-layer { padding: 60px 16px 24px; align-items: flex-start; }
     .cmp-col { width: 47%; }
     .cmp-col h3 { font-size: 19px; }
