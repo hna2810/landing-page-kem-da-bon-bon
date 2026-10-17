@@ -184,9 +184,9 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 .pop-hint { display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; font-weight: 700; color: var(--text-soft); font-size: 15px; background: rgba(255,255,255,.7); padding: 8px 16px; border-radius: 99px; }
 .pop-hint b { color: var(--primary-dark); font-size: 18px; min-width: 18px; display: inline-block; text-align: center; }
 
-.hero-visual { position: relative; display: grid; place-items: center; min-height: 680px; }
+.hero-visual { position: relative; display: grid; place-items: center; min-height: 860px; }
 .hero-blob {
-    position: absolute; width: 540px; height: 540px; max-width: 100%;
+    position: absolute; width: 640px; height: 640px; max-width: 100%;
     background: linear-gradient(135deg, var(--primary-light), var(--mint-soft) 60%, var(--pink-soft));
     border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
     animation: blob 12s ease-in-out infinite;
@@ -196,10 +196,10 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
     33% { border-radius: 63% 37% 38% 62% / 55% 38% 62% 45%; }
     66% { border-radius: 38% 62% 52% 48% / 36% 61% 39% 64%; }
 }
-.hero-bottle { position: relative; width: 280px; z-index: 2; filter: drop-shadow(0 30px 30px rgba(42,159,179,.35)); cursor: grab; touch-action: none; }
+.hero-bottle { position: relative; width: 360px; z-index: 2; filter: drop-shadow(0 30px 30px rgba(42,159,179,.35)); cursor: grab; touch-action: none; }
 .hero-bottle img, .pinfo-bottle img { width: 100%; height: auto; user-select: none; -webkit-user-drag: none; pointer-events: none; }
 .hero-bottle:active { cursor: grabbing; }
-.hero-duck { position: absolute; bottom: 2%; right: 3%; width: 210px; z-index: 3; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
+.hero-duck { position: absolute; bottom: 1%; right: 0; width: 270px; z-index: 3; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
 .hero-duck img { width: 100%; height: auto; pointer-events: none; -webkit-user-drag: none; filter: drop-shadow(0 12px 14px rgba(255,140,40,.25)); }
 .hero-star { position: absolute; font-size: 26px; z-index: 1; }
 .wave { position: absolute; left: 0; right: 0; bottom: -1px; z-index: 3; line-height: 0; }
@@ -236,6 +236,22 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 .flip-back .emo { font-size: 42px; margin-bottom: 8px; }
 .pain-foot { text-align: center; margin-top: 44px; font-size: 18px; font-weight: 700; }
 .pain-foot b { color: var(--primary-dark); }
+
+/* ===== WISH ===== */
+.wish { background: var(--cream); }
+.wish .section-head { margin-bottom: 44px; }
+.wish-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.wish-card { position: relative; display: flex; flex-direction: column; border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow-soft); overflow: hidden; text-align: center; transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s; -webkit-tap-highlight-color: transparent; }
+.wish-card:hover { transform: translateY(-8px) rotate(-1deg); box-shadow: var(--shadow); }
+.wish-card:nth-child(2):hover { transform: translateY(-8px) rotate(1deg); }
+.wish-card:focus-visible { outline: 3px solid var(--primary); outline-offset: 4px; }
+.wish-img { position: relative; display: grid; place-items: center; aspect-ratio: 4 / 4.2; background: radial-gradient(circle at 30% 25%, var(--c1), var(--c2)); overflow: hidden; }
+.wish-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+.wish-card:hover .wish-img img { transform: scale(1.06); }
+.wish-ph { font-size: 96px; filter: drop-shadow(0 10px 14px rgba(52,73,94,.15)); }
+.wish-label { display: block; padding: 18px 16px 20px; font-family: var(--font-head); font-weight: 800; font-size: 24px; color: var(--primary-dark); }
+.wish-foot { text-align: center; margin-top: 44px; font-size: 19px; font-weight: 800; }
+.wish-heart { position: absolute; pointer-events: none; font-size: 22px; z-index: 5; }
 
 /* ===== COMPARE SLIDER ===== */
 .compare-sec { background: linear-gradient(180deg, var(--cream), var(--primary-light)); }
@@ -533,7 +549,7 @@ textarea.input { resize: vertical; min-height: 90px; }
     .hero-copy { text-align: center; }
     .hero-desc { margin-left: auto; margin-right: auto; }
     .hero-ctas { justify-content: center; }
-    .hero-visual { min-height: 620px; }
+    .hero-visual { min-height: 780px; }
     .lab { grid-template-columns: 1fr 1fr; }
     .drop-zone { grid-column: 1 / -1; grid-row: 1; }
     .wheel-copy { text-align: center; }
@@ -547,12 +563,17 @@ textarea.input { resize: vertical; min-height: 90px; }
     .hero { padding: 100px 0 120px; }
     .hero-desc { font-size: 17px; }
     .hero-ctas .btn { width: 100%; }
-    .hero-visual { min-height: 480px; }
-    .hero-bottle { width: 190px; }
-    .hero-blob { width: 320px; height: 320px; }
-    .hero-duck { width: 140px; right: 0; bottom: 2%; }
+    .hero-visual { min-height: 580px; }
+    .hero-bottle { width: 230px; }
+    .hero-blob { width: 360px; height: 360px; }
+    .hero-duck { width: 170px; right: -4px; bottom: 1%; }
     .marquee-track { font-size: 18px; }
     .flip-grid { grid-template-columns: 1fr; }
+    .wish-grid { grid-template-columns: 1fr; gap: 20px; max-width: 360px; margin: 0 auto; }
+    .wish-img { aspect-ratio: 4 / 3; }
+    .wish-ph { font-size: 76px; }
+    .wish-label { font-size: 21px; padding: 14px; }
+    .wish-foot { font-size: 17px; margin-top: 32px; }
     .flip-card { height: 250px; }
     .compare { height: 520px; border-radius: 28px; }
     .cmp-layer { padding: 60px 16px 24px; align-items: flex-start; }
@@ -659,39 +680,28 @@ textarea.input { resize: vertical; min-height: 90px; }
     </div>
 </div>
 
-<!-- ===== PAIN POINTS ===== -->
-<section class="section pain" id="van-de">
+<!-- ===== WISH (section 2) ===== -->
+<!-- Thay ảnh: đặt file vào img/ rồi thêm <img src="img/ten-anh.webp" alt="..."> vào trong .wish-img (thay cho .wish-ph) -->
+<section class="section wish" id="van-de">
     <div class="container">
         <div class="section-head" data-reveal>
-            <span class="eyebrow">🤔 Mẹ có đang gặp?</span>
-            <h2 class="section-title">Giờ tắm của bé có thành <span class="hl">"cuộc chiến"</span>?</h2>
-            <p class="section-sub">Chạm vào từng thẻ để xem Bon Bon giúp mẹ thế nào nhé 👇</p>
+            <h2 class="section-title">Mẹ muốn da con yêu <span class="hl">thế nào?</span></h2>
         </div>
-        <div class="fact" data-reveal>
-            <span class="num"><span id="factNum">0</span>%</span>
-            <p>Làn da của trẻ nhỏ <b>mỏng hơn da người lớn đến 30%</b> và cực kỳ nhạy cảm. Vì vậy chọn sữa tắm phù hợp cho con luôn là ưu tiên hàng đầu của mẹ.</p>
+        <div class="wish-grid">
+            <button class="wish-card" data-reveal type="button">
+                <span class="wish-img" style="--c1:#e3f7fa;--c2:#b8ecf3"><span class="wish-ph">🛁</span></span>
+                <span class="wish-label">Sạch da</span>
+            </button>
+            <button class="wish-card" data-reveal type="button">
+                <span class="wish-img" style="--c1:#ffe4ec;--c2:#ffc9d8"><span class="wish-ph">☁️</span></span>
+                <span class="wish-label">Mềm da</span>
+            </button>
+            <button class="wish-card" data-reveal type="button">
+                <span class="wish-img" style="--c1:#fff6d6;--c2:#ffe7a3"><span class="wish-ph">🌸</span></span>
+                <span class="wish-label">Thơm ngọt ngào</span>
+            </button>
         </div>
-        <div class="flip-grid">
-            <div class="flip-card" data-reveal tabindex="0" role="button" aria-label="Lật thẻ: Bé khóc khi gội đầu">
-                <div class="flip-inner">
-                    <div class="flip-face flip-front"><div><span class="emo">😭</span></div><h3>Bé khóc thét khi gội đầu</h3><p>Bọt chảy xuống mắt, bé sợ, mẹ cũng hoảng theo.</p><div class="tap">👆 Chạm để lật</div></div>
-                    <div class="flip-face flip-back"><div class="emo">😊</div><h3>Công thức không cay mắt</h3><p>Ít bọt, nhẹ dịu và không chứa Paraben, bé gội đầu thoải mái, giờ tắm thành giờ chơi.</p></div>
-                </div>
-            </div>
-            <div class="flip-card" data-reveal tabindex="0" role="button" aria-label="Lật thẻ: Bé bị cứt trâu">
-                <div class="flip-inner">
-                    <div class="flip-face flip-front"><div><span class="emo">🥺</span></div><h3>Cứt trâu, màng ối bám da</h3><p>Mảng vàng trên đầu, da bé sần sùi, mẹ không dám kỳ cọ mạnh.</p><div class="tap">👆 Chạm để lật</div></div>
-                    <div class="flip-face flip-back"><div class="emo">🌿</div><h3>Làm sạch nhẹ nhàng từ gốc</h3><p>Dầu hạnh nhân giúp làm mềm và hỗ trợ làm sạch mảng viêm da tiết bã, màng ối một cách tự nhiên mỗi ngày.</p></div>
-                </div>
-            </div>
-            <div class="flip-card" data-reveal tabindex="0" role="button" aria-label="Lật thẻ: Mẹ phải mua nhiều chai">
-                <div class="flip-inner">
-                    <div class="flip-face flip-front"><div><span class="emo">😩</span></div><h3>Chai tắm, chai gội riêng</h3><p>Lỉnh kỉnh, tốn tiền, mẹ vừa giữ bé vừa đổi chai.</p><div class="tap">👆 Chạm để lật</div></div>
-                    <div class="flip-face flip-back"><div class="emo"><i class="bb"></i></div><h3>Một chai 2in1 là xong</h3><p>Vừa tắm vừa gội chỉ trong một bước, rút ngắn thời gian tắm để bé không bị nhiễm lạnh.</p></div>
-                </div>
-            </div>
-        </div>
-        <p class="pain-foot" data-reveal>Hơn cả sữa tắm, <b>Bon Bon là "người bạn" của giờ tắm</b> 💙</p>
+        <p class="wish-foot" data-reveal>Hơn cả sữa tắm, Bon Bon là "người bạn thân" để bé thật vui trong mỗi giờ tắm 💙</p>
     </div>
 </section>
 
@@ -1356,15 +1366,23 @@ $$('.section-title').forEach(t => {
     gsap.from(hl, { scrollTrigger: { trigger: t, start: 'top 85%' }, color: '#34495e', duration: .8, delay: .3 });
 });
 
-/* ===== PAIN FLIP CARDS ===== */
-$$('.flip-card').forEach(card => {
-    const flip = () => {
-        card.classList.toggle('flipped');
-        if (card.classList.contains('flipped')) gsap.fromTo(card, { scale: .95 }, { scale: 1, duration: .6, ease: 'back.out(3)' });
-    };
-    card.addEventListener('click', flip);
-    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
-    if (!reduceMotion) gsap.to(card.querySelector('.flip-front .emo'), { rotate: 10, y: -6, duration: 1.2, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: Math.random() });
+/* ===== WISH CARDS ===== */
+$$('.wish-card').forEach(card => {
+    card.addEventListener('click', e => {
+        gsap.fromTo(card, { scale: .94 }, { scale: 1, duration: .7, ease: 'elastic.out(1.2, .4)' });
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX || r.left + r.width / 2) - r.left, y = (e.clientY || r.top + r.height / 2) - r.top;
+        ['💖', '✨', '💙', '🌸', '⭐'].forEach((h, i) => {
+            const el = document.createElement('span');
+            el.className = 'wish-heart'; el.textContent = h;
+            gsap.set(el, { left: x, top: y, xPercent: -50, yPercent: -50 });
+            card.appendChild(el);
+            const a = -Math.PI / 2 + (i - 2) * .55;
+            gsap.to(el, { x: Math.cos(a) * 90, y: Math.sin(a) * 90, scale: 1.4, opacity: 0, duration: .9, ease: 'power2.out', onComplete: () => el.remove() });
+        });
+    });
+    const ph = card.querySelector('.wish-ph');
+    if (ph && !reduceMotion) gsap.to(ph, { y: -10, rotate: 6, duration: 1.6, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: Math.random() });
 });
 
 /* ===== COMPARE SLIDER ===== */
@@ -1652,12 +1670,6 @@ mm.add('(max-width: 768px)', () => {
         gsap.to('.wheel-pointer', { rotate: 18, duration: .08, yoyo: true, repeat: 40, ease: 'none', onComplete: () => gsap.set('.wheel-pointer', { rotate: 0 }) });
     });
     gsap.from('.wheel-wrap', { scrollTrigger: { trigger: '#vong-quay', start: 'top 70%' }, scale: .5, rotate: -90, opacity: 0, duration: 1.2, ease: 'back.out(1.6)' });
-})();
-
-/* ===== FACT COUNTER ===== */
-(function () {
-    const o = { v: 0 };
-    gsap.to(o, { v: 30, duration: 1.6, ease: 'power2.out', scrollTrigger: { trigger: '.fact', start: 'top 85%' }, onUpdate: () => { $('#factNum').textContent = Math.round(o.v); } });
 })();
 
 /* ===== PRODUCT INFO TABS ===== */
