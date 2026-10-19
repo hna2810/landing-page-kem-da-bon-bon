@@ -6,7 +6,7 @@
     <title>Sữa Tắm Gội Bon Bon Cho Bé - Dịu Nhẹ, Không Cay Mắt | Home Care Việt Nam</title>
     <meta name="description" content="Sữa tắm gội 2in1 Bon Bon cho bé: không cay mắt, không Paraben, pH cân bằng, dùng được cho trẻ sơ sinh. Đăng ký nhận tư vấn miễn phí & quà tặng dành cho mẹ.">
     <meta property="og:title" content="Sữa Tắm Gội Bon Bon - Nâng niu làn da bé từ những ngày đầu đời">
-    <meta property="og:description" content="Làm quiz 30 giây để biết bé cần chăm da thế nào và nhận quà tặng từ Home Care Việt Nam.">
+    <meta property="og:description" content="Sữa tắm gội 2in1 cho bé: ít bọt dịu êm, mềm mịn da bé. Quay trúng thưởng và nhận tư vấn miễn phí từ Home Care Việt Nam.">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#4cc0d3">
     <link rel="icon" href="https://cdn.hstatic.net/themes/200001066686/1001439050/14/favicon.png" type="image/png">
@@ -382,40 +382,6 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 .b-card.cta-card h3 { color: var(--white); }
 .b-card.cta-card .btn { margin-top: 20px; }
 
-/* ===== QUIZ ===== */
-.quiz-sec { background: linear-gradient(180deg, var(--cream), var(--pink-soft)); }
-.quiz {
-    position: relative; max-width: 760px; margin: 0 auto; background: var(--white); border-radius: 36px; padding: 44px;
-    box-shadow: var(--shadow); overflow: hidden; min-height: 460px;
-}
-.quiz-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 26px; font-weight: 800; color: var(--text-soft); }
-.quiz-bar { flex: 1; height: 12px; border-radius: 99px; background: var(--primary-light); overflow: hidden; }
-.quiz-bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--primary), #ff8fab); border-radius: 99px; transition: width .5s cubic-bezier(.34,1.56,.64,1); }
-.q-step { display: none; }
-.q-step.active { display: block; }
-.q-step h3 { font-size: clamp(24px, 3.4vw, 32px); margin-bottom: 22px; text-align: center; }
-.q-opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-.q-opt {
-    display: flex; align-items: center; gap: 14px; padding: 18px 20px; border-radius: 22px; text-align: left;
-    background: var(--cream); border: 2.5px solid #f0ebe3; font-weight: 800; font-size: 17px;
-    transition: transform .25s cubic-bezier(.34,1.56,.64,1), border-color .2s, background .2s;
-}
-.q-opt .e { font-size: 30px; flex: none; }
-.q-opt:hover { transform: translateY(-3px); border-color: var(--primary); background: var(--primary-light); }
-.q-opt.picked { border-color: var(--primary); background: var(--primary-light); }
-.q-back { margin-top: 20px; font-weight: 700; color: var(--text-soft); }
-.q-back:hover { color: var(--primary-dark); }
-.q-result { display: none; text-align: center; }
-.q-result.active { display: block; }
-.q-result .badge { font-size: 74px; display: inline-block; }
-.q-result h3 { font-size: 30px; margin: 8px 0 10px; }
-.q-result .type { display: inline-block; padding: 6px 16px; border-radius: 99px; background: var(--yellow-soft); color: #b0821a; font-weight: 800; margin-bottom: 14px; }
-.q-tips { text-align: left; display: grid; gap: 10px; margin: 18px 0 26px; }
-.q-tips li { list-style: none; display: flex; gap: 10px; padding: 12px 16px; border-radius: 16px; background: var(--mint-soft); font-weight: 600; }
-.q-loading { display: none; text-align: center; padding: 60px 0; }
-.q-loading.active { display: block; }
-.q-loading .spin { font-size: 60px; display: inline-block; }
-
 /* ===== HOW TO (section 7) ===== */
 .howto { background: linear-gradient(180deg, var(--cream), var(--primary-light)); }
 .howto-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 60px; align-items: center; max-width: 1040px; margin: 0 auto; }
@@ -671,9 +637,6 @@ textarea.input { resize: vertical; min-height: 90px; }
     .lab-info { flex-direction: column; text-align: center; padding: 18px; }
     .h-track { overflow-x: auto; width: auto; scroll-snap-type: x mandatory; padding-bottom: 20px; -webkit-overflow-scrolling: touch; }
     .b-card { scroll-snap-align: center; min-height: 360px; }
-    .quiz { padding: 28px 18px; border-radius: 28px; }
-    .q-opts { grid-template-columns: 1fr; }
-    .q-opt { padding: 14px 16px; font-size: 16px; }
     .howto-grid { grid-template-columns: 1fr; gap: 36px; }
     .hstep { padding: 16px; gap: 14px; font-size: 15.5px; }
     .hstep.active { transform: none; }
@@ -995,69 +958,6 @@ textarea.input { resize: vertical; min-height: 90px; }
     </div>
 </section>
 
-<!-- ===== QUIZ ===== -->
-<section class="section quiz-sec" id="quiz">
-    <div class="container">
-        <div class="section-head" data-reveal>
-            <span class="eyebrow">🧸 Quiz 30 giây</span>
-            <h2 class="section-title">Da bé nhà mình <span class="hl">cần gì?</span></h2>
-            <p class="section-sub">Trả lời 4 câu hỏi nhỏ để nhận gợi ý chăm da phù hợp cho bé và ưu đãi riêng.</p>
-        </div>
-        <div class="quiz" id="quizBox" data-reveal>
-            <div class="quiz-top"><span id="qLabel">Câu 1/4</span><div class="quiz-bar"><i id="qBar"></i></div><span>🎁</span></div>
-
-            <div class="q-step active" data-q="age">
-                <h3>Bé nhà mẹ bao nhiêu tuổi?</h3>
-                <div class="q-opts">
-                    <button class="q-opt" data-v="0-6 tháng"><span class="e">👶</span>0 - 6 tháng</button>
-                    <button class="q-opt" data-v="6-12 tháng"><span class="e">🍼</span>6 - 12 tháng</button>
-                    <button class="q-opt" data-v="1-3 tuổi"><span class="e">🧸</span>1 - 3 tuổi</button>
-                    <button class="q-opt" data-v="Trên 3 tuổi"><span class="e">🎒</span>Trên 3 tuổi</button>
-                </div>
-            </div>
-            <div class="q-step" data-q="skin">
-                <h3>Da bé hay gặp tình trạng nào nhất?</h3>
-                <div class="q-opts">
-                    <button class="q-opt" data-v="Cứt trâu" data-t="cradle"><span class="e">👶</span>Cứt trâu, màng ối</button>
-                    <button class="q-opt" data-v="Da khô" data-t="dry"><span class="e">🌵</span>Da khô, sần</button>
-                    <button class="q-opt" data-v="Da nhạy cảm" data-t="sensitive"><span class="e">🥺</span>Dễ kích ứng</button>
-                    <button class="q-opt" data-v="Da bình thường" data-t="normal"><span class="e">😊</span>Bình thường</button>
-                </div>
-            </div>
-            <div class="q-step" data-q="bath">
-                <h3>Khi gội đầu, bé thường...</h3>
-                <div class="q-opts">
-                    <button class="q-opt" data-v="Khóc, sợ cay mắt"><span class="e">😭</span>Khóc vì cay mắt</button>
-                    <button class="q-opt" data-v="Hơi quấy"><span class="e">😕</span>Hơi quấy một chút</button>
-                    <button class="q-opt" data-v="Hợp tác"><span class="e">😄</span>Hợp tác vui vẻ</button>
-                    <button class="q-opt" data-v="Chưa gội thường xuyên"><span class="e">🤷</span>Ít khi gội</button>
-                </div>
-            </div>
-            <div class="q-step" data-q="priority">
-                <h3>Mẹ ưu tiên điều gì nhất ở sữa tắm?</h3>
-                <div class="q-opts">
-                    <button class="q-opt" data-v="An toàn, dịu nhẹ"><span class="e">🛡️</span>An toàn, dịu nhẹ</button>
-                    <button class="q-opt" data-v="Tiện lợi 2in1"><span class="e">⚡</span>Tiện lợi 2in1</button>
-                    <button class="q-opt" data-v="Mùi thơm dễ chịu"><span class="e">🌸</span>Mùi thơm dễ chịu</button>
-                    <button class="q-opt" data-v="Giá hợp lý"><span class="e">💰</span>Giá hợp lý</button>
-                </div>
-            </div>
-
-            <div class="q-loading" id="qLoading"><span class="spin"><i class="bb"></i></span><h3 style="margin-top:14px">Đang phân tích làn da bé...</h3></div>
-
-            <div class="q-result" id="qResult">
-                <span class="badge" id="rEmoji">🌸</span>
-                <h3 id="rTitle">Bé có làn da nhạy cảm</h3>
-                <span class="type" id="rType">Cần làm sạch dịu nhẹ</span>
-                <ul class="q-tips" id="rTips"></ul>
-                <a href="#dang-ky" class="btn btn-primary btn-block js-scroll">🎁 Nhận tư vấn riêng cho bé &amp; quà tặng</a>
-                <button class="q-back" id="qRestart" style="display:block;margin:16px auto 0">↺ Làm lại quiz</button>
-            </div>
-            <button class="q-back" id="qBack" style="display:none">← Quay lại</button>
-        </div>
-    </div>
-</section>
-
 <!-- ===== WHEEL ===== -->
 <section class="section wheel-sec" id="vong-quay">
     <div class="container wheel-grid">
@@ -1218,7 +1118,6 @@ textarea.input { resize: vertical; min-height: 90px; }
                         <label for="fNote">Mẹ muốn hỏi thêm gì không?</label>
                         <textarea class="input" id="fNote" name="note" placeholder="VD: Bé hay bị rôm sảy ở lưng..."></textarea>
                     </div>
-                    <input type="hidden" name="quiz_result" id="hQuiz">
                     <input type="hidden" name="gift" id="hGift">
                     <input type="hidden" name="source" id="hSource">
                     <button type="submit" class="btn btn-primary btn-block" id="submitBtn"><span class="wiggle">🎁</span> NHẬN TƯ VẤN &amp; QUÀ NGAY</button>
@@ -1251,7 +1150,7 @@ textarea.input { resize: vertical; min-height: 90px; }
         </div>
         <div>
             <h4>Khám phá</h4>
-            <p><a href="#quiz" class="js-scroll">Quiz da bé</a></p>
+            <p><a href="#cong-dung" class="js-scroll">Công dụng 3 trong 1</a></p>
             <p><a href="#vong-quay" class="js-scroll">Vòng quay quà tặng</a></p>
             <p><a href="#dang-ky" class="js-scroll">Đăng ký tư vấn</a></p>
         </div>
@@ -1419,7 +1318,7 @@ function makeBubble(initial) {
         const pc = $('#popCount');
         pc.textContent = pops;
         gsap.fromTo(pc, { scale: 1.8 }, { scale: 1, duration: .5, ease: 'back.out(3)' });
-        if (pops === 5) toast('<i class="bb"></i> Mẹ bóp bong bóng giỏi quá! Thử <a href="#quiz" class="js-scroll-inline">quiz da bé</a> nhé', 3500);
+        if (pops === 5) toast('<i class="bb"></i> Mẹ bóp bong bóng giỏi quá! Xem <a href="#cong-dung" class="js-scroll-inline">công dụng 3 trong 1</a> nhé', 3500);
         if (pops === 12) toast('🎁 Phần thưởng cho mẹ chăm chỉ: <a href="#vong-quay" class="js-scroll-inline">quay quà ngay</a>', 4000);
     });
 }
@@ -1678,84 +1577,6 @@ mm.add('(max-width: 768px)', () => {
     gsap.from('.b-card', { scrollTrigger: { trigger: '#hTrack', start: 'top 85%' }, x: 60, opacity: 0, duration: .8, stagger: .1, ease: 'power3.out' });
 });
 
-/* ===== QUIZ ===== */
-(function () {
-    const steps = $$('.q-step'), total = steps.length;
-    const answers = {};
-    let cur = 0, busy = false;
-    const RESULTS = {
-        cradle: { e: '👶', title: 'Bé cần làm sạch cứt trâu', type: 'Cần làm mềm & làm sạch nhẹ nhàng', tips: ['Không cạy, gãi mảng cứt trâu để tránh làm tổn thương da đầu bé.', 'Gội hằng ngày với sữa tắm gội dịu nhẹ có dầu hạnh nhân như Bon Bon để làm mềm và làm sạch dần.', 'Xả thật sạch và lau khô tóc bé bằng khăn mềm sau khi gội.'] },
-        dry: { e: '🌵', title: 'Da bé hơi thiếu ẩm', type: 'Cần làm sạch & giữ ẩm', tips: ['Không tắm nước quá nóng và không tắm quá lâu (5-10 phút).', 'Chọn sữa tắm có thành phần dưỡng ẩm, không làm khô căng da.', 'Thoa dưỡng ẩm ngay sau khi lau khô người bé.'] },
-        sensitive: { e: '🥺', title: 'Bé có làn da nhạy cảm', type: 'Cần sản phẩm thật dịu nhẹ', tips: ['Chọn sữa tắm dịu nhẹ, hương thơm nhẹ, dùng lượng vừa đủ.', 'Thử trước trên một vùng da nhỏ khi đổi sản phẩm mới.', 'Để chuyên viên tư vấn chi tiết theo tình trạng của bé.'] },
-        normal: { e: '🌸', title: 'Da bé khỏe mạnh', type: 'Duy trì làm sạch dịu nhẹ', tips: ['Duy trì thói quen tắm gội đều đặn với sản phẩm dịu nhẹ.', 'Dùng sữa tắm gội 2in1 để giờ tắm nhanh gọn, bé vui hơn.', 'Biến giờ tắm thành giờ chơi với đồ chơi nhà tắm.'] }
-    };
-    let skinType = 'normal';
-    const update = () => {
-        $('#qLabel').textContent = cur < total ? `Câu ${cur + 1}/${total}` : 'Kết quả';
-        $('#qBar').style.width = (Math.min(cur, total) / total * 100) + '%';
-        $('#qBack').style.display = cur > 0 && cur < total ? 'inline-block' : 'none';
-    };
-    const show = (idx, dir = 1) => {
-        const from = steps[cur], to = steps[idx];
-        busy = true;
-        gsap.to(from, {
-            x: -60 * dir, opacity: 0, duration: .25, ease: 'power2.in', onComplete: () => {
-                from.classList.remove('active'); gsap.set(from, { x: 0, opacity: 1 });
-                to.classList.add('active');
-                gsap.fromTo(to, { x: 60 * dir, opacity: 0 }, { x: 0, opacity: 1, duration: .4, ease: 'power3.out' });
-                gsap.from(to.querySelectorAll('.q-opt'), { y: 20, opacity: 0, stagger: .06, duration: .4, ease: 'back.out(2)' });
-                cur = idx; update(); busy = false;
-            }
-        });
-    };
-    const finish = () => {
-        const last = steps[cur];
-        cur = total; update();
-        gsap.to(last, { opacity: 0, duration: .25, onComplete: () => {
-            last.classList.remove('active'); gsap.set(last, { opacity: 1 });
-            const ld = $('#qLoading'); ld.classList.add('active');
-            gsap.to(ld.querySelector('.spin'), { rotate: 360, scale: 1.3, duration: .6, repeat: 2, yoyo: true });
-            setTimeout(() => {
-                ld.classList.remove('active');
-                const r = RESULTS[skinType];
-                $('#rEmoji').textContent = r.e; $('#rTitle').textContent = r.title; $('#rType').textContent = r.type;
-                $('#rTips').innerHTML = r.tips.map(t => `<li>✅ <span>${t}</span></li>`).join('');
-                const box = $('#qResult'); box.classList.add('active');
-                gsap.from(box.children, { y: 30, opacity: 0, stagger: .08, duration: .5, ease: 'back.out(2)' });
-                gsap.from('#rEmoji', { scale: 0, rotate: -180, duration: .9, ease: 'elastic.out(1, .5)' });
-                confetti(30);
-                // Prefill form
-                $('#hQuiz').value = `${r.title} | Tuổi: ${answers.age} | Da: ${answers.skin} | Gội: ${answers.bath} | Ưu tiên: ${answers.priority}`;
-                const ageInput = $(`#ageRow input[value="${answers.age}"]`); if (ageInput) ageInput.checked = true;
-                const cMap = { 'Cứt trâu': 'Cứt trâu', 'Da khô': 'Da khô', 'Da nhạy cảm': 'Da nhạy cảm' };
-                if (cMap[answers.skin]) { const c = $(`#concernRow input[value="${cMap[answers.skin]}"]`); if (c) c.checked = true; }
-                if (answers.bath === 'Khóc, sợ cay mắt') { const c = $('#concernRow input[value="Cay mắt khi gội"]'); if (c) c.checked = true; }
-                if (answers.priority === 'Tiện lợi 2in1') { const c = $('#concernRow input[value="Tìm sữa tắm 2in1"]'); if (c) c.checked = true; }
-            }, 1400);
-        } });
-    };
-    steps.forEach((step, i) => {
-        step.querySelectorAll('.q-opt').forEach(btn => btn.addEventListener('click', () => {
-            if (busy) return;
-            busy = true;
-            step.querySelectorAll('.q-opt').forEach(b => b.classList.remove('picked'));
-            btn.classList.add('picked');
-            gsap.fromTo(btn, { scale: .94 }, { scale: 1, duration: .5, ease: 'elastic.out(1.2, .4)' });
-            answers[step.dataset.q] = btn.dataset.v;
-            if (btn.dataset.t) skinType = btn.dataset.t;
-            setTimeout(() => { busy = false; i < total - 1 ? show(i + 1) : finish(); }, 280);
-        }));
-    });
-    $('#qBack').addEventListener('click', () => { if (cur > 0 && !busy) show(cur - 1, -1); });
-    $('#qRestart').addEventListener('click', () => {
-        $('#qResult').classList.remove('active');
-        steps.forEach(s => { s.classList.remove('active'); s.querySelectorAll('.q-opt').forEach(b => b.classList.remove('picked')); });
-        cur = 0; steps[0].classList.add('active'); update();
-        gsap.from(steps[0].querySelectorAll('.q-opt'), { y: 20, opacity: 0, stagger: .06, duration: .4 });
-    });
-    update();
-})();
-
 /* ===== HOW TO STEPS (section 7) ===== */
 (function () {
     const steps = $$('.hstep');
@@ -1902,7 +1723,6 @@ $$('.faq-item').forEach(item => {
             concern: fd.getAll('concern').join(', '),
             call_time: fd.get('call_time') || '',
             note: fd.get('note') || '',
-            quiz_result: fd.get('quiz_result') || '',
             gift: fd.get('gift') || '',
             source: fd.get('source') || '',
             page: location.href.split('?')[0],

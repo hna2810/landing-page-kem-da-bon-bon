@@ -32,7 +32,6 @@ File: `sua-tam-goi-bon-bon/index.html`. Đây là trang **Lead Generation dạng
 3. **Slider so sánh**: kéo để so sánh "Sữa tắm thông thường" với "Bon Bon".
 4. **Mini game pha chế**: kéo (hoặc chạm) 3 thành phần chính (dầu hạnh nhân, vitamin E, Aqua & SLES dịu nhẹ) vào lọ. Nếu kéo "Paraben" vào, lọ sẽ lắc đầu từ chối.
 5. **5 lợi ích**: cuộn ngang, ghim màn hình trên desktop; vuốt ngang trên mobile.
-6. **Quiz da bé (4 câu)**: trả kết quả và gợi ý chăm da, đồng thời **tự điền sẵn form** (tuổi bé, vấn đề da).
 7. **Cách tắm bé 3 bước**: đường nối tự vẽ theo scroll.
 8. **Vòng quay may mắn**: mỗi trình duyệt quay 1 lượt, quà được gắn vào form.
 9. **Thông tin sản phẩm**: tab Thông tin / Bảo quản / Lưu ý (500ml, HSD 24 tháng, số công bố 64/26/CBMP-NB).
@@ -46,7 +45,7 @@ File: `sua-tam-goi-bon-bon/index.html`. Đây là trang **Lead Generation dạng
   function doPost(e) {
     const d = JSON.parse(e.postData.contents);
     SpreadsheetApp.getActiveSpreadsheet().getSheets()[0].appendRow([
-      d.time, d.name, d.phone, d.baby_age, d.concern, d.call_time, d.note, d.quiz_result, d.gift, d.source, d.page
+      d.time, d.name, d.phone, d.baby_age, d.concern, d.call_time, d.note, d.gift, d.source, d.page
     ]);
     return ContentService.createTextOutput('ok');
   }
