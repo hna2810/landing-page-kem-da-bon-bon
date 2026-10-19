@@ -417,6 +417,34 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 .ugc-tile:hover { transform: scale(1.04) rotate(-1deg); }
 .ugc-tile img { width: 100%; height: 100%; object-fit: cover; }
 
+/* ===== MOMS VIDEOS (section 9) ===== */
+.moms { background: var(--cream); }
+.mom-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; align-items: start; }
+.mom-card { padding: 8px; border-radius: 30px; background: linear-gradient(160deg, #fff, #eaf7f9); box-shadow: var(--shadow-soft); transition: transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .3s; cursor: pointer; }
+.mom-card:nth-child(even) { margin-top: 36px; }
+.mom-card:hover { transform: translateY(-10px) rotate(-1.5deg); box-shadow: var(--shadow); }
+.mom-video { position: relative; aspect-ratio: 9 / 16; border-radius: 24px; overflow: hidden; background: radial-gradient(circle at 30% 20%, #fff, var(--pink-soft) 55%, #cdeff5); }
+.mom-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mom-ph { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 12px; font-weight: 800; color: var(--text-soft); font-size: 14px; }
+.mom-ph .howto-play { width: 60px; height: 60px; font-size: 22px; }
+
+/* ===== STORES SLIDER (section 10) ===== */
+.stores { background: linear-gradient(180deg, var(--cream), var(--mint-soft)); }
+.store-slider { position: relative; }
+.store-track { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 3 * 20px) / 4); gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; padding: 6px 2px 14px; }
+.store-track::-webkit-scrollbar { display: none; }
+.store-slide { scroll-snap-align: start; aspect-ratio: 4 / 3; border-radius: 24px; overflow: hidden; display: grid; place-items: center; background: linear-gradient(160deg, #fff, var(--primary-light)); box-shadow: var(--shadow-soft); color: var(--text-soft); font-weight: 800; font-size: 14px; }
+.store-slide:nth-child(3n+2) { background: linear-gradient(160deg, #fff, var(--pink-soft)); }
+.store-slide:nth-child(3n) { background: linear-gradient(160deg, #fff, var(--yellow-soft)); }
+.store-slide img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+.store-slide:hover img { transform: scale(1.06); }
+.store-nav { position: absolute; top: calc(50% - 10px); transform: translateY(-50%); z-index: 2; width: 50px; height: 50px; border-radius: 50%; background: #fff; box-shadow: var(--shadow); color: var(--primary-dark); font-size: 20px; font-weight: 800; transition: transform .25s, background .25s; }
+.store-nav:hover { background: var(--primary); color: #fff; transform: translateY(-50%) scale(1.1); }
+.store-nav.prev { left: -22px; } .store-nav.next { right: -22px; }
+.store-dots { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
+.store-dots button { width: 10px; height: 10px; border-radius: 99px; background: rgba(76,192,211,.3); transition: width .3s, background .3s; }
+.store-dots button.on { width: 28px; background: var(--primary); }
+
 /* ===== WHEEL ===== */
 .wheel-sec { background: linear-gradient(160deg, var(--primary) 0%, var(--primary-dark) 100%); color: var(--white); overflow: hidden; }
 .wheel-sec .section-title, .wheel-sec h3 { color: var(--white); }
@@ -638,6 +666,13 @@ textarea.input { resize: vertical; min-height: 90px; }
     .h-track { overflow-x: auto; width: auto; scroll-snap-type: x mandatory; padding-bottom: 20px; -webkit-overflow-scrolling: touch; }
     .b-card { scroll-snap-align: center; min-height: 360px; }
     .howto-grid { grid-template-columns: 1fr; gap: 36px; }
+    .mom-row { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px; margin: 0 -16px; padding: 4px 16px 20px; scrollbar-width: none; }
+    .mom-row::-webkit-scrollbar { display: none; }
+    .mom-card { flex: none; width: 62%; scroll-snap-align: center; }
+    .mom-card:nth-child(even) { margin-top: 0; }
+    .store-track { grid-auto-columns: 78%; gap: 14px; }
+    .store-nav { width: 42px; height: 42px; font-size: 17px; }
+    .store-nav.prev { left: -8px; } .store-nav.next { right: -8px; }
     .hstep { padding: 16px; gap: 14px; font-size: 15.5px; }
     .hstep.active { transform: none; }
     .hstep-num { width: 44px; height: 44px; font-size: 22px; }
@@ -955,6 +990,55 @@ textarea.input { resize: vertical; min-height: 90px; }
             <div class="ugc-col"><div class="ugc-track"><div class="ugc-tile" style="--h:1.4"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.3"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.25"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.4"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.3"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.25"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1"><span>Ảnh</span></div></div></div>
             <div class="ugc-col rev"><div class="ugc-track"><div class="ugc-tile" style="--h:1.1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.3"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.25"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.4"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.3"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.25"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.4"><span>Ảnh</span></div></div></div>
         </div>
+    </div>
+</section>
+
+<!-- ===== SECTION 9: CẢM NHẬN CỦA CÁC MOM ===== -->
+<!-- Thêm video: thay <span class="mom-ph">…</span> bằng <video src="img/mom-1.mp4" poster="img/mom-1.webp" playsinline preload="metadata"></video> -->
+<section class="section moms" id="cam-nhan">
+    <div class="container">
+        <div class="section-head" data-reveal>
+            <h2 class="section-title">Cảm nhận của <span class="hl">các Mom</span></h2>
+        </div>
+        <div class="mom-row">
+                <div class="mom-card" data-reveal>
+                    <div class="mom-video"><span class="mom-ph"><span class="howto-play">▶</span>Video 9:16</span></div>
+                </div>
+                <div class="mom-card" data-reveal>
+                    <div class="mom-video"><span class="mom-ph"><span class="howto-play">▶</span>Video 9:16</span></div>
+                </div>
+                <div class="mom-card" data-reveal>
+                    <div class="mom-video"><span class="mom-ph"><span class="howto-play">▶</span>Video 9:16</span></div>
+                </div>
+                <div class="mom-card" data-reveal>
+                    <div class="mom-video"><span class="mom-ph"><span class="howto-play">▶</span>Video 9:16</span></div>
+                </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SECTION 10: HIỆN DIỆN TẠI CÁC ĐIỂM BÁN ===== -->
+<!-- Thay ảnh: thay <span>Ảnh slider …</span> bằng <img src="img/diem-ban-1.webp" alt="..."> -->
+<section class="section stores" id="diem-ban">
+    <div class="container">
+        <div class="section-head" data-reveal>
+            <h2 class="section-title">Hiện diện tại các bệnh viện, nhà thuốc, <span class="hl">cửa hàng mẹ bé</span></h2>
+        </div>
+        <div class="store-slider" data-reveal>
+            <button class="store-nav prev" type="button" aria-label="Ảnh trước">←</button>
+            <div class="store-track" id="storeTrack">
+                <div class="store-slide"><span>Ảnh slider 1</span></div>
+                <div class="store-slide"><span>Ảnh slider 2</span></div>
+                <div class="store-slide"><span>Ảnh slider 3</span></div>
+                <div class="store-slide"><span>Ảnh slider 4</span></div>
+                <div class="store-slide"><span>Ảnh slider 5</span></div>
+                <div class="store-slide"><span>Ảnh slider 6</span></div>
+                <div class="store-slide"><span>Ảnh slider 7</span></div>
+                <div class="store-slide"><span>Ảnh slider 8</span></div>
+            </div>
+            <button class="store-nav next" type="button" aria-label="Ảnh sau">→</button>
+        </div>
+        <div class="store-dots" id="storeDots"></div>
     </div>
 </section>
 
@@ -1394,6 +1478,8 @@ const revealStragglers = () => $$('[data-reveal]').forEach(el => {
         gsap.to(el, { opacity: 1, y: 0, scale: 1, duration: .6, ease: 'power3.out' });
 });
 ScrollTrigger.addEventListener('scrollEnd', revealStragglers);
+let stragglerT = null;
+window.addEventListener('scroll', () => { clearTimeout(stragglerT); stragglerT = setTimeout(revealStragglers, 250); }, { passive: true });
 $$('.section-title').forEach(t => {
     const hl = t.querySelector('.hl');
     if (!hl) return;
@@ -1592,6 +1678,50 @@ mm.add('(max-width: 768px)', () => {
         onToggle: self => { clearInterval(auto); if (self.isActive && !reduceMotion) auto = setInterval(() => activate((idx + 1) % steps.length), 2600); }
     });
     gsap.fromTo('.howto-phone', { rotate: 8, y: 60 }, { rotate: -3, y: 0, ease: 'none', scrollTrigger: { trigger: '.howto-grid', start: 'top bottom', end: 'bottom 40%', scrub: true } });
+})();
+
+/* ===== MOM VIDEOS (section 9) ===== */
+$$('.mom-card').forEach(card => card.addEventListener('click', () => {
+    const v = card.querySelector('video');
+    if (!v) { gsap.fromTo(card, { scale: .96 }, { scale: 1, duration: .6, ease: 'elastic.out(1.2, .4)' }); return; }
+    $$('.mom-card video').forEach(o => { if (o !== v) o.pause(); });
+    v.paused ? v.play() : v.pause();
+}));
+
+/* ===== STORES SLIDER (section 10) ===== */
+(function () {
+    const track = $('#storeTrack'), dots = $('#storeDots');
+    const slides = $$('.store-slide', track);
+    const stepW = () => slides[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 20);
+    const pages = () => Math.max(1, Math.round((track.scrollWidth - track.clientWidth) / stepW()) + 1);
+    const renderDots = () => {
+        dots.innerHTML = '';
+        for (let i = 0; i < pages(); i++) {
+            const d = document.createElement('button');
+            d.type = 'button'; d.setAttribute('aria-label', 'Ảnh ' + (i + 1));
+            d.addEventListener('click', () => { track.scrollTo({ left: i * stepW() }); restart(); });
+            dots.appendChild(d);
+        }
+        mark();
+    };
+    const cur = () => Math.round(track.scrollLeft / stepW());
+    const mark = () => [...dots.children].forEach((d, i) => d.classList.toggle('on', i === cur()));
+    const go = dir => {
+        const max = track.scrollWidth - track.clientWidth - 2;
+        if (dir > 0 && track.scrollLeft >= max) track.scrollTo({ left: 0 });
+        else if (dir < 0 && track.scrollLeft <= 2) track.scrollTo({ left: track.scrollWidth });
+        else track.scrollBy({ left: dir * stepW() });
+    };
+    let timer = null;
+    const restart = () => { clearInterval(timer); if (!reduceMotion) timer = setInterval(() => go(1), 3200); };
+    $('.store-nav.prev').addEventListener('click', () => { go(-1); restart(); });
+    $('.store-nav.next').addEventListener('click', () => { go(1); restart(); });
+    track.addEventListener('scroll', () => requestAnimationFrame(mark), { passive: true });
+    track.addEventListener('pointerenter', () => clearInterval(timer));
+    track.addEventListener('pointerleave', restart);
+    window.addEventListener('resize', renderDots);
+    renderDots();
+    ScrollTrigger.create({ trigger: track, start: 'top bottom', end: 'bottom top', onToggle: self => self.isActive ? restart() : clearInterval(timer) });
 })();
 
 /* ===== LUCKY WHEEL ===== */
