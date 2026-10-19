@@ -197,7 +197,7 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
     66% { border-radius: 38% 62% 52% 48% / 36% 61% 39% 64%; }
 }
 .hero-bottle { position: relative; width: 225px; z-index: 2; filter: drop-shadow(0 30px 30px rgba(42,159,179,.35)); cursor: grab; touch-action: none; }
-.hero-bottle img, .pinfo-bottle img { width: 100%; height: auto; user-select: none; -webkit-user-drag: none; pointer-events: none; }
+.hero-bottle img { width: 100%; height: auto; user-select: none; -webkit-user-drag: none; pointer-events: none; }
 .hero-bottle:active { cursor: grabbing; }
 .hero-duck { position: absolute; bottom: 4%; right: 4%; width: 195px; z-index: 3; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
 .hero-duck img { width: 100%; height: auto; pointer-events: none; -webkit-user-drag: none; filter: drop-shadow(0 12px 14px rgba(255,140,40,.25)); }
@@ -481,14 +481,23 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 .chip.bad { border-style: dashed; border-color: #ffc9c9; }
 .chip.rejected { opacity: .5; text-decoration: line-through; pointer-events: none; }
 
-/* ===== PRODUCT INFO ===== */
+/* ===== PRODUCT INFO (section 11) ===== */
+.pinfo-docs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.doc-card { display: flex; flex-direction: column; gap: 12px; padding: 12px; border-radius: 26px; background: #fff; border: 2.5px solid var(--yellow-soft); box-shadow: var(--shadow-soft); cursor: zoom-in; transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .3s; }
+.doc-card:hover { transform: translateY(-8px) rotate(-1deg); box-shadow: var(--shadow); }
+.doc-card:nth-child(2):hover { transform: translateY(-8px) rotate(1deg); }
+.doc-img { aspect-ratio: 3 / 4; border-radius: 18px; overflow: hidden; display: grid; place-items: center; background: linear-gradient(160deg, #fff, var(--yellow-soft)); }
+.doc-img img { width: 100%; height: 100%; object-fit: cover; }
+.doc-ph { padding: 0 14px; text-align: center; font-weight: 700; font-size: 13px; color: var(--text-soft); }
+.doc-label { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px; border-radius: 14px; background: var(--yellow-soft); font-weight: 800; font-size: 15px; white-space: nowrap; }
+.doc-ico { font-size: 18px; }
+.lightbox { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 24px; background: rgba(30,45,58,.82); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.lightbox[hidden] { display: none; }
+.lb-body { max-width: min(92vw, 640px); max-height: 86vh; border-radius: 20px; overflow: hidden; background: #fff; display: grid; place-items: center; min-width: 260px; min-height: 340px; }
+.lb-body img { max-height: 86vh; width: auto; }
+.lb-close { position: absolute; top: 16px; right: 18px; width: 46px; height: 46px; border-radius: 50%; background: #fff; font-size: 28px; line-height: 1; color: var(--text); }
 .pinfo { background: var(--cream); }
-.pinfo-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 50px; align-items: center; max-width: 1040px; margin: 0 auto; }
-.pinfo-visual { position: relative; display: grid; place-items: center; min-height: 380px; }
-.pinfo-visual .hero-blob { width: 340px; height: 340px; }
-.pinfo-bottle { width: 150px; position: relative; z-index: 2; filter: drop-shadow(0 24px 24px rgba(42,159,179,.3)); }
-.vol-tag { position: absolute; z-index: 3; top: 14%; right: 12%; width: 96px; height: 96px; border-radius: 50%; background: var(--yellow); display: grid; place-items: center; align-content: center; text-align: center; font-family: var(--font-head); font-weight: 800; font-size: 30px; line-height: 1; color: #8a6300; box-shadow: var(--shadow-soft); }
-.vol-tag small { display: block; font-size: 14px; font-family: var(--font-body); }
+.pinfo-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 50px; align-items: center; max-width: 1040px; margin: 0 auto; }
 .tabs { display: flex; gap: 8px; padding: 6px; border-radius: 99px; background: var(--white); box-shadow: var(--shadow-soft); margin-bottom: 22px; width: max-content; max-width: 100%; position: relative; }
 .tab { position: relative; z-index: 1; padding: 10px 20px; border-radius: 99px; font-weight: 800; color: var(--text-soft); transition: color .3s; }
 .tab.active { color: var(--white); }
@@ -680,10 +689,9 @@ textarea.input { resize: vertical; min-height: 90px; }
     .ugc-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); height: 480px; gap: 12px; border-radius: 24px; }
     .ugc-col:nth-child(n+3) { display: none; }
     .ugc-track { gap: 12px; }
-    .pinfo-grid { grid-template-columns: 1fr; gap: 20px; }
-    .pinfo-visual { min-height: 300px; }
-    .pinfo-bottle { width: 120px; }
-    .pinfo-visual .hero-blob { width: 260px; height: 260px; }
+    .pinfo-grid { grid-template-columns: 1fr; gap: 28px; }
+    .pinfo-docs { gap: 12px; }
+    .doc-label { font-size: 13px; padding: 8px; }
     .tabs { width: 100%; }
     .tab { flex: 1; padding: 10px 8px; font-size: 14px; }
     .spec li span:not(.e) { min-width: 84px; font-size: 14px; }
@@ -1042,44 +1050,23 @@ textarea.input { resize: vertical; min-height: 90px; }
     </div>
 </section>
 
-<!-- ===== WHEEL ===== -->
-<section class="section wheel-sec" id="vong-quay">
-    <div class="container wheel-grid">
-        <div class="wheel-copy" data-reveal>
-            <span class="eyebrow">🎡 Vòng quay may mắn</span>
-            <h2 class="section-title">Quay là trúng, <span class="hl">100% có quà!</span></h2>
-            <p class="section-sub">Mỗi mẹ có 1 lượt quay. Phần quà sẽ được giữ cho mẹ khi để lại thông tin nhận tư vấn.</p>
-            <ul>
-                <li><span>🎁</span> Quà được giữ trong 24 giờ</li>
-                <li><span>📞</span> Chuyên viên gọi lại xác nhận quà</li>
-                <li><span>🚚</span> Giao hàng toàn quốc</li>
-            </ul>
-            <div class="wheel-result" id="wheelResult">🎉 Chúc mừng mẹ đã trúng: <b id="wheelPrize"></b><br><small>Điền form bên dưới để nhận quà nhé!</small></div>
-            <a href="#dang-ky" class="btn btn-pink js-scroll" id="wheelCta">🎁 Nhận quà của tôi</a>
-        </div>
-        <div data-reveal>
-            <div class="wheel-wrap">
-                <div class="wheel-pointer">🔻</div>
-                <div class="wheel" id="wheel"></div>
-                <button class="wheel-center" id="wheelSpin">QUAY<br>NGAY</button>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ===== REVIEWS ===== -->
-<!-- ===== PRODUCT INFO ===== -->
+<!-- ===== SECTION 11: MINH BẠCH ĐỂ MẸ YÊN TÂM ===== -->
 <section class="section pinfo" id="thong-tin">
     <div class="container">
         <div class="section-head" data-reveal>
-            <span class="eyebrow">📋 Thông tin sản phẩm</span>
             <h2 class="section-title">Minh bạch để <span class="hl">mẹ yên tâm</span></h2>
         </div>
         <div class="pinfo-grid">
-            <div class="pinfo-visual" data-reveal>
-                <div class="hero-blob"></div>
-                <div class="pinfo-bottle"><img src="img/sua-tam-goi-bon-bon-500ml.webp" alt="Sữa tắm gội Bon Bon 500ml" width="827" height="2000" draggable="false" loading="lazy"></div>
-                <div class="vol-tag">500<small>ml</small></div>
+            <!-- Thay ảnh: thay <span class="doc-ph">Ảnh</span> bằng <img src="img/..." alt="..."> -->
+            <div class="pinfo-docs">
+                <button class="doc-card" type="button" data-reveal>
+                    <span class="doc-img"><span class="doc-ph">Ảnh giấy kiểm định / công bố</span></span>
+                    <span class="doc-label"><span class="doc-ico">📄</span>Kiểm định &amp; Công bố</span>
+                </button>
+                <button class="doc-card" type="button" data-reveal>
+                    <span class="doc-img"><span class="doc-ph">Ảnh tem chống hàng giả</span></span>
+                    <span class="doc-label"><span class="doc-ico">🛡️</span>Tem chống hàng giả</span>
+                </button>
             </div>
             <div data-reveal>
                 <div class="tabs" role="tablist">
@@ -1113,6 +1100,35 @@ textarea.input { resize: vertical; min-height: 90px; }
         </div>
     </div>
 </section>
+
+<div class="lightbox" id="lightbox" hidden><button class="lb-close" type="button" aria-label="Đóng">×</button><div class="lb-body" id="lbBody"></div></div>
+
+<!-- ===== WHEEL ===== -->
+<section class="section wheel-sec" id="vong-quay">
+    <div class="container wheel-grid">
+        <div class="wheel-copy" data-reveal>
+            <span class="eyebrow">🎡 Vòng quay may mắn</span>
+            <h2 class="section-title">Quay là trúng, <span class="hl">100% có quà!</span></h2>
+            <p class="section-sub">Mỗi mẹ có 1 lượt quay. Phần quà sẽ được giữ cho mẹ khi để lại thông tin nhận tư vấn.</p>
+            <ul>
+                <li><span>🎁</span> Quà được giữ trong 24 giờ</li>
+                <li><span>📞</span> Chuyên viên gọi lại xác nhận quà</li>
+                <li><span>🚚</span> Giao hàng toàn quốc</li>
+            </ul>
+            <div class="wheel-result" id="wheelResult">🎉 Chúc mừng mẹ đã trúng: <b id="wheelPrize"></b><br><small>Điền form bên dưới để nhận quà nhé!</small></div>
+            <a href="#dang-ky" class="btn btn-pink js-scroll" id="wheelCta">🎁 Nhận quà của tôi</a>
+        </div>
+        <div data-reveal>
+            <div class="wheel-wrap">
+                <div class="wheel-pointer">🔻</div>
+                <div class="wheel" id="wheel"></div>
+                <button class="wheel-center" id="wheelSpin">QUAY<br>NGAY</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
 
 <!-- ===== FAQ ===== -->
 <section class="section faq" id="hoi-dap">
@@ -1795,7 +1811,17 @@ $$('.mom-card').forEach(card => card.addEventListener('click', () => {
     }));
     movePill(tabs[0], true);
     window.addEventListener('resize', () => movePill($('.tab.active'), true));
-    gsap.fromTo('.vol-tag', { scale: 0, rotate: -120 }, { scrollTrigger: { trigger: '#thong-tin', start: 'top 70%' }, scale: 1, rotate: 0, duration: 1, delay: .3, ease: 'elastic.out(1, .5)' });
+    // Lightbox xem ảnh giấy tờ
+    const lb = $('#lightbox'), lbBody = $('#lbBody');
+    const closeLb = () => gsap.to(lb, { opacity: 0, duration: .25, onComplete: () => { lb.hidden = true; lbBody.innerHTML = ''; } });
+    $$('.doc-card').forEach(card => card.addEventListener('click', () => {
+        lbBody.innerHTML = card.querySelector('.doc-img').innerHTML;
+        lb.hidden = false;
+        gsap.fromTo(lb, { opacity: 0 }, { opacity: 1, duration: .25 });
+        gsap.fromTo(lbBody, { scale: .85, y: 30 }, { scale: 1, y: 0, duration: .5, ease: 'back.out(1.8)' });
+    }));
+    lb.addEventListener('click', e => { if (e.target === lb || e.target.closest('.lb-close')) closeLb(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && !lb.hidden) closeLb(); });
 })();
 
 /* ===== FAQ ===== */

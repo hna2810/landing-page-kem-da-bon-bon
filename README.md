@@ -34,7 +34,7 @@ File: `sua-tam-goi-bon-bon/index.html`. Đây là trang **Lead Generation dạng
 5. **5 lợi ích**: cuộn ngang, ghim màn hình trên desktop; vuốt ngang trên mobile.
 7. **Cách tắm bé 3 bước**: đường nối tự vẽ theo scroll.
 8. **Vòng quay may mắn**: mỗi trình duyệt quay 1 lượt, quà được gắn vào form.
-9. **Thông tin sản phẩm**: tab Thông tin / Bảo quản / Lưu ý (500ml, HSD 24 tháng, số công bố 64/26/CBMP-NB).
+9. **Minh bạch để mẹ yên tâm**: 2 ảnh giấy tờ (Kiểm định & Công bố, Tem chống hàng giả, bấm để phóng to) + tab Thông tin / Bảo quản / Lưu ý.
 10. **FAQ** dạng accordion.
 11. **Form đăng ký**: đếm ngược đến cuối ngày, chip chọn nhanh, validate SĐT Việt Nam, confetti khi gửi thành công.
 
