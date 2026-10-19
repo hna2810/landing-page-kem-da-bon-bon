@@ -42,17 +42,17 @@ add_action('admin_bar_menu', 'lx_add_stats_admin_bar', 100);
  * Handle AJAX click tracking from frontend
  */
 function lx_handle_track_click() {
-    $type = isset($_POST['type']) ? sanitize_key($_POST['type']) : '';
+    $type = isset($_REQUEST['type']) ? sanitize_key($_REQUEST['type']) : '';
     if (!in_array($type, array('hotline', 'zalo'), true)) {
         wp_send_json_error(array('message' => 'Invalid type'));
     }
 
     $today        = current_time('Y-m-d');
     $now          = current_time('d/m/Y H:i:s');
-    $page         = isset($_POST['page']) ? esc_url_raw($_POST['page']) : home_url('/');
-    $fbclid       = isset($_POST['fbclid']) ? sanitize_text_field($_POST['fbclid']) : '';
-    $utm_source   = isset($_POST['utm_source']) ? sanitize_text_field($_POST['utm_source']) : '';
-    $utm_campaign = isset($_POST['utm_campaign']) ? sanitize_text_field($_POST['utm_campaign']) : '';
+    $page         = isset($_REQUEST['page']) ? esc_url_raw($_REQUEST['page']) : home_url('/');
+    $fbclid       = isset($_REQUEST['fbclid']) ? sanitize_text_field($_REQUEST['fbclid']) : '';
+    $utm_source   = isset($_REQUEST['utm_source']) ? sanitize_text_field($_REQUEST['utm_source']) : '';
+    $utm_campaign = isset($_REQUEST['utm_campaign']) ? sanitize_text_field($_REQUEST['utm_campaign']) : '';
     $user_agent   = isset($_SERVER['HTTP_USER_AGENT']) ? sanitize_text_field($_SERVER['HTTP_USER_AGENT']) : '';
     $ip           = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field($_SERVER['REMOTE_ADDR']) : '';
 
@@ -106,6 +106,13 @@ function lx_handle_track_click() {
         $logs = array_slice($logs, 0, 300);
     }
     update_option('lx_click_stats_logs', $logs, false);
+
+    if (!empty($_GET['_t'])) {
+        header('Content-Type: image/gif');
+        header('Cache-Control: no-cache, no-store, must-revalidate');
+        echo base64_decode('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+        exit;
+    }
 
     wp_send_json_success(array('recorded' => true, 'type' => $type));
 }

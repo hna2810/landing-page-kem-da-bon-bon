@@ -73,32 +73,79 @@ document.documentElement.classList.add('js');
     if (CFG.price) document.querySelectorAll('.js-price').forEach(el => el.textContent = fmt(CFG.price));
     if (CFG.listPrice) document.querySelectorAll('.js-list-price').forEach(el => el.textContent = fmt(CFG.listPrice));
     document.getElementById('year').textContent = new Date().getFullYear();
-    document.querySelectorAll('a[href^="tel:"], a[href*="zalo.me/"]').forEach(a => a.addEventListener('click', () => {
-        const isHotline = a.href.startsWith('tel:');
-        const method = isHotline ? 'phone' : 'zalo';
-        window.bonbonTrack && bonbonTrack('Contact', { method: method });
+    // ===== Bắt sự kiện click Hotline & Zalo (Toàn diện Mobile & Desktop) =====
+    let lastContactClickTime = 0;
+    function trackContactClick(targetLink) {
+        if (!targetLink) return;
+        const now = Date.now();
+        if (now - lastContactClickTime < 1000) return;
+        lastContactClickTime = now;
 
-        // Ghi nhận lượt click vào WordPress Admin Database
+        const href = (targetLink.getAttribute('href') || '').trim();
+        const isHotline = href.startsWith('tel:') || targetLink.classList.contains('sticky-call') || targetLink.classList.contains('sa-phone') || targetLink.classList.contains('topbar-call') || targetLink.classList.contains('lx_thankyou_btn_call');
+        const type = isHotline ? 'hotline' : 'zalo';
+        const method = isHotline ? 'phone' : 'zalo';
+
+        // 1. Pixel Tracking (Facebook, GA, TikTok)
+        try {
+            window.bonbonTrack && bonbonTrack('Contact', { method: method });
+        } catch (e) {}
+
+        // 2. Ghi nhận lượt click vào WordPress Database
         try {
             const trackUrl = (CFG && CFG.ajaxUrl) || '/wp-admin/admin-ajax.php';
-            const payload = new FormData();
-            payload.append('action', 'lx_track_click');
-            payload.append('type', isHotline ? 'hotline' : 'zalo');
-            payload.append('page', location.href.split('?')[0]);
-
             let attr = {};
             try { attr = JSON.parse(sessionStorage.getItem('bonbon_attr') || '{}'); } catch (e) {}
-            if (attr.fbclid) payload.append('fbclid', attr.fbclid);
-            if (attr.utm_source) payload.append('utm_source', attr.utm_source);
-            if (attr.utm_campaign) payload.append('utm_campaign', attr.utm_campaign);
 
-            if (navigator.sendBeacon) {
-                navigator.sendBeacon(trackUrl, payload);
-            } else {
-                fetch(trackUrl, { method: 'POST', body: payload, keepalive: true }).catch(() => {});
-            }
+            const params = new URLSearchParams({
+                action: 'lx_track_click',
+                type: type,
+                page: location.href.split('?')[0],
+                fbclid: attr.fbclid || '',
+                utm_source: attr.utm_source || '',
+                utm_campaign: attr.utm_campaign || '',
+                _t: now.toString()
+            }).toString();
+
+            const fullUrl = trackUrl + (trackUrl.indexOf('?') === -1 ? '?' : '&') + params;
+
+            // Kỹ thuật 1: Image Ping (Chạy tức thì trên mạng trình duyệt, không bị hủy khi mở app/quay số)
+            try {
+                const img = new Image();
+                img.src = fullUrl;
+            } catch (err) {}
+
+            // Kỹ thuật 2: Fetch GET với keepalive
+            try {
+                if (window.fetch) {
+                    fetch(fullUrl, { method: 'GET', keepalive: true, cache: 'no-store', mode: 'no-cors' }).catch(function(){});
+                }
+            } catch (err) {}
+
+            // Kỹ thuật 3: sendBeacon với Blob URL-encoded
+            try {
+                if (navigator.sendBeacon) {
+                    const blob = new Blob([params], { type: 'application/x-www-form-urlencoded' });
+                    navigator.sendBeacon(trackUrl, blob);
+                }
+            } catch (err) {}
         } catch (e) {}
-    }));
+    }
+
+    const contactSelector = 'a[href^="tel:"], a[href*="zalo"], .sticky-call, .sticky-zalo, .sa-zalo, .sa-phone, .topbar-call, .lx_thankyou_btn_zalo, .lx_thankyou_btn_call';
+    document.addEventListener('click', function(e) {
+        const link = e.target && e.target.closest ? e.target.closest(contactSelector) : null;
+        if (link) {
+            trackContactClick(link);
+        }
+    }, true);
+
+    document.addEventListener('pointerdown', function(e) {
+        const link = e.target && e.target.closest ? e.target.closest(contactSelector) : null;
+        if (link) {
+            trackContactClick(link);
+        }
+    }, { capture: true, passive: true });
 
     // ===== Ảnh / video từ cấu hình (trống thì hiện khung chờ) =====
     function placeholder(label, icon) {

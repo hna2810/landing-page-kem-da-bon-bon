@@ -14,7 +14,7 @@ $price_val         = intval(lx_get_field('lx_price', 'option', 49000));
 $list_price_val    = intval(lx_get_field('lx_list_price', 'option', 80000));
 $price             = lx_format_price($price_val);
 $list_price        = lx_format_price($list_price_val);
-$zalo              = lx_get_field('lx_zalo', 'option', '0901234567');
+$zalo              = trim((string) lx_get_field('lx_zalo', 'option', '0901234567'));
 $order_product_img = lx_get_image_url('lx_order_product_img', 'https://kemham.bonbonhomecare.vn/wp-content/uploads/2026/10/kem-da-bon-bon-plus.png');
 
 $discount_percent = 0;
