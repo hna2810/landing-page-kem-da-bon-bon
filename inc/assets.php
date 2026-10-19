@@ -217,6 +217,7 @@ function lx_enqueue_scripts() {
         'googleAnalyticsId'  => $ga_id,
         'tiktokPixelId'      => $tiktok_pixel,
         'thankyouUrl'        => $thankyou_url,
+        'ajaxUrl'            => admin_url('admin-ajax.php'),
         'media'              => array(
             'heroImage'         => $hero_img,
             'rashSlides'        => $rash_slides,

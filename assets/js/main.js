@@ -74,7 +74,30 @@ document.documentElement.classList.add('js');
     if (CFG.listPrice) document.querySelectorAll('.js-list-price').forEach(el => el.textContent = fmt(CFG.listPrice));
     document.getElementById('year').textContent = new Date().getFullYear();
     document.querySelectorAll('a[href^="tel:"], a[href*="zalo.me/"]').forEach(a => a.addEventListener('click', () => {
-        window.bonbonTrack && bonbonTrack('Contact', { method: a.href.startsWith('tel:') ? 'phone' : 'zalo' });
+        const isHotline = a.href.startsWith('tel:');
+        const method = isHotline ? 'phone' : 'zalo';
+        window.bonbonTrack && bonbonTrack('Contact', { method: method });
+
+        // Ghi nhận lượt click vào WordPress Admin Database
+        try {
+            const trackUrl = (CFG && CFG.ajaxUrl) || '/wp-admin/admin-ajax.php';
+            const payload = new FormData();
+            payload.append('action', 'lx_track_click');
+            payload.append('type', isHotline ? 'hotline' : 'zalo');
+            payload.append('page', location.href.split('?')[0]);
+
+            let attr = {};
+            try { attr = JSON.parse(sessionStorage.getItem('bonbon_attr') || '{}'); } catch (e) {}
+            if (attr.fbclid) payload.append('fbclid', attr.fbclid);
+            if (attr.utm_source) payload.append('utm_source', attr.utm_source);
+            if (attr.utm_campaign) payload.append('utm_campaign', attr.utm_campaign);
+
+            if (navigator.sendBeacon) {
+                navigator.sendBeacon(trackUrl, payload);
+            } else {
+                fetch(trackUrl, { method: 'POST', body: payload, keepalive: true }).catch(() => {});
+            }
+        } catch (e) {}
     }));
 
     // ===== Ảnh / video từ cấu hình (trống thì hiện khung chờ) =====

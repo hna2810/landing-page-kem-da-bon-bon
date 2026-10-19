@@ -16,6 +16,7 @@ $lx_modules = array(
     'acf.php',
     'cf7.php',
     'thankyou.php',
+    'click-tracker.php',
 );
 
 foreach ($lx_modules as $file) {
