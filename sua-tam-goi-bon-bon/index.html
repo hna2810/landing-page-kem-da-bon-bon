@@ -279,10 +279,18 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 .wish-card:hover { transform: translateY(-8px) rotate(-1deg); box-shadow: var(--shadow); }
 .wish-card:nth-child(2):hover { transform: translateY(-8px) rotate(1deg); }
 .wish-card:focus-visible { outline: 3px solid var(--primary); outline-offset: 4px; }
-.wish-img { position: relative; display: grid; place-items: center; aspect-ratio: 4 / 4.2; background: radial-gradient(circle at 30% 25%, var(--c1), var(--c2)); overflow: hidden; }
-.wish-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
-.wish-card:hover .wish-img img { transform: scale(1.06); }
-.wish-ph { font-size: 96px; filter: drop-shadow(0 10px 14px rgba(52,73,94,.15)); }
+.wish-flip { display: block; perspective: 1200px; aspect-ratio: 4 / 4.2; }
+.wish-inner { position: relative; display: block; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .8s cubic-bezier(.34,1.4,.64,1); }
+.wish-card.flipped .wish-inner { transform: rotateY(180deg); }
+.wish-face { position: absolute; inset: 0; display: grid; place-items: center; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: radial-gradient(circle at 30% 25%, var(--c1), var(--c2)); }
+.wish-front img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+.wish-card:hover .wish-front img { transform: scale(1.06); }
+.wish-ph { font-weight: 800; font-size: 18px; color: var(--text-soft); opacity: .7; }
+.wish-tap { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); padding: 6px 14px; border-radius: 99px; background: rgba(255,255,255,.88); font-size: 13px; font-weight: 800; color: #ff6b8a; white-space: nowrap; box-shadow: var(--shadow-soft); }
+.wish-back { transform: rotateY(180deg); align-content: center; gap: 10px; padding: 26px; text-align: center; color: var(--text); }
+.wish-back b { font-family: var(--font-head); font-size: 26px; color: var(--primary-deep); }
+.wish-back span:last-child { font-size: 17px; font-weight: 600; line-height: 1.55; }
+.wish-emo { font-size: 54px; line-height: 1; }
 .wish-label { display: block; padding: 18px 16px 20px; font-family: var(--font-head); font-weight: 800; font-size: 24px; color: var(--primary-dark); }
 .wish-foot { text-align: center; margin-top: 44px; font-size: 19px; font-weight: 800; }
 .wish-heart { position: absolute; pointer-events: none; font-size: 22px; z-index: 5; }
@@ -619,8 +627,9 @@ textarea.input { resize: vertical; min-height: 90px; }
     .use-num { font-size: 34px; }
     .use-body b { font-size: 18px; }
     .wish-grid { grid-template-columns: 1fr; gap: 20px; max-width: 360px; margin: 0 auto; }
-    .wish-img { aspect-ratio: 4 / 3; }
-    .wish-ph { font-size: 76px; }
+    .wish-flip { aspect-ratio: 4 / 3; }
+    .wish-back b { font-size: 22px; }
+    .wish-back span:last-child { font-size: 15.5px; }
     .wish-label { font-size: 21px; padding: 14px; }
     .wish-foot { font-size: 17px; margin-top: 32px; }
     .flip-card { height: 250px; }
@@ -731,23 +740,38 @@ textarea.input { resize: vertical; min-height: 90px; }
 </div>
 
 <!-- ===== WISH (section 2) ===== -->
-<!-- Thay ảnh: đặt file vào img/ rồi thêm <img src="img/ten-anh.webp" alt="..."> vào trong .wish-img (thay cho .wish-ph) -->
+<!-- Thay ảnh: đặt file vào img/ rồi thay <span class="wish-ph">Ảnh</span> bằng <img src="img/ten-anh.webp" alt="..."> trong .wish-front -->
 <section class="section wish" id="van-de">
     <div class="container">
         <div class="section-head" data-reveal>
             <h2 class="section-title">Mẹ muốn da con yêu <span class="hl">thế nào?</span></h2>
         </div>
         <div class="wish-grid">
-            <button class="wish-card" data-reveal type="button">
-                <span class="wish-img" style="--c1:#e3f7fa;--c2:#b8ecf3"><span class="wish-ph">🛁</span></span>
+            <button class="wish-card" data-reveal type="button" aria-label="Sạch da: chạm để lật">
+                <span class="wish-flip">
+                    <span class="wish-inner">
+                        <span class="wish-face wish-front" style="--c1:#e3f7fa;--c2:#b8ecf3"><span class="wish-ph">Ảnh</span><span class="wish-tap">👆 Chạm để lật</span></span>
+                        <span class="wish-face wish-back" style="--c1:#e3f7fa;--c2:#b8ecf3"><span class="wish-emo">🛁</span><b>Sạch da</b><span>Làm sạch dịu nhẹ bụi bẩn, mồ hôi trên da bé mà không gây kích ứng.</span></span>
+                    </span>
+                </span>
                 <span class="wish-label">Sạch da</span>
             </button>
-            <button class="wish-card" data-reveal type="button">
-                <span class="wish-img" style="--c1:#ffe4ec;--c2:#ffc9d8"><span class="wish-ph">☁️</span></span>
+            <button class="wish-card" data-reveal type="button" aria-label="Mềm da: chạm để lật">
+                <span class="wish-flip">
+                    <span class="wish-inner">
+                        <span class="wish-face wish-front" style="--c1:#ffe4ec;--c2:#ffc9d8"><span class="wish-ph">Ảnh</span><span class="wish-tap">👆 Chạm để lật</span></span>
+                        <span class="wish-face wish-back" style="--c1:#ffe4ec;--c2:#ffc9d8"><span class="wish-emo">☁️</span><b>Mềm da</b><span>Dưỡng ẩm, cho da bé mềm mại, mịn màng, không khô ráp sau khi tắm.</span></span>
+                    </span>
+                </span>
                 <span class="wish-label">Mềm da</span>
             </button>
-            <button class="wish-card" data-reveal type="button">
-                <span class="wish-img" style="--c1:#fff6d6;--c2:#ffe7a3"><span class="wish-ph">🌸</span></span>
+            <button class="wish-card" data-reveal type="button" aria-label="Thơm ngọt ngào: chạm để lật">
+                <span class="wish-flip">
+                    <span class="wish-inner">
+                        <span class="wish-face wish-front" style="--c1:#fff6d6;--c2:#ffe7a3"><span class="wish-ph">Ảnh</span><span class="wish-tap">👆 Chạm để lật</span></span>
+                        <span class="wish-face wish-back" style="--c1:#fff6d6;--c2:#ffe7a3"><span class="wish-emo">🌸</span><b>Thơm ngọt ngào</b><span>Hương thơm dịu nhẹ, bé thơm tho, sạch thoáng sau mỗi lần tắm, gội.</span></span>
+                    </span>
+                </span>
                 <span class="wish-label">Thơm ngọt ngào</span>
             </button>
         </div>
@@ -1419,6 +1443,7 @@ $$('.section-title').forEach(t => {
 /* ===== WISH CARDS ===== */
 $$('.wish-card').forEach(card => {
     card.addEventListener('click', e => {
+        card.classList.toggle('flipped');
         gsap.fromTo(card, { scale: .94 }, { scale: 1, duration: .7, ease: 'elastic.out(1.2, .4)' });
         const r = card.getBoundingClientRect();
         const x = (e.clientX || r.left + r.width / 2) - r.left, y = (e.clientY || r.top + r.height / 2) - r.top;
@@ -1431,8 +1456,8 @@ $$('.wish-card').forEach(card => {
             gsap.to(el, { x: Math.cos(a) * 90, y: Math.sin(a) * 90, scale: 1.4, opacity: 0, duration: .9, ease: 'power2.out', onComplete: () => el.remove() });
         });
     });
-    const ph = card.querySelector('.wish-ph');
-    if (ph && !reduceMotion) gsap.to(ph, { y: -10, rotate: 6, duration: 1.6, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: Math.random() });
+    const tap = card.querySelector('.wish-tap');
+    if (tap && !reduceMotion) gsap.to(tap, { y: -6, duration: .9, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: Math.random() });
 });
 
 /* ===== COMPARE SLIDER ===== */
