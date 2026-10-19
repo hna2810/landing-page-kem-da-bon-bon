@@ -791,7 +791,6 @@ textarea.input { resize: vertical; min-height: 90px; }
 .compare-sec { --next: var(--bg-cream); --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 30 C300 76 560 70 820 38 C1080 6 1260 14 1440 44 L1440 80 L0 80 Z'/%3E%3C/svg%3E"); }
 .ingre { --next: var(--bg-pink); --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 60 C360 60 520 10 760 10 C1000 10 1120 52 1440 52 L1440 80 L0 80 Z' fill-opacity='.45'/%3E%3Cpath d='M0 50 C280 76 600 22 860 30 C1120 38 1280 66 1440 58 L1440 80 L0 80 Z'/%3E%3C/svg%3E"); }
 .uses { --next: var(--bg-cream); --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 46 C240 6 480 6 720 40 C960 74 1200 74 1440 34 L1440 80 L0 80 Z'/%3E%3C/svg%3E"); }
-.benefits { --next: var(--bg-aqua); --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 30 C300 76 560 70 820 38 C1080 6 1260 14 1440 44 L1440 80 L0 80 Z'/%3E%3C/svg%3E"); }
 .howto { --next: var(--bg-cream); --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 60 C360 60 520 10 760 10 C1000 10 1120 52 1440 52 L1440 80 L0 80 Z' fill-opacity='.45'/%3E%3Cpath d='M0 50 C280 76 600 22 860 30 C1120 38 1280 66 1440 58 L1440 80 L0 80 Z'/%3E%3C/svg%3E"); }
 .ugc { --next: var(--bg-pink); --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 46 C240 6 480 6 720 40 C960 74 1200 74 1440 34 L1440 80 L0 80 Z'/%3E%3C/svg%3E"); }
 .moms { --next: var(--bg-cream); --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 30 C300 76 560 70 820 38 C1080 6 1260 14 1440 44 L1440 80 L0 80 Z'/%3E%3C/svg%3E"); }
@@ -801,20 +800,40 @@ textarea.input { resize: vertical; min-height: 90px; }
 .form-sec { --next: var(--bg-cream); --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 60 C360 60 520 10 760 10 C1000 10 1120 52 1440 52 L1440 80 L0 80 Z' fill-opacity='.45'/%3E%3Cpath d='M0 50 C280 76 600 22 860 30 C1120 38 1280 66 1440 58 L1440 80 L0 80 Z'/%3E%3C/svg%3E"); }
 .rv { --next: var(--bg-aqua); --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 46 C240 6 480 6 720 40 C960 74 1200 74 1440 34 L1440 80 L0 80 Z'/%3E%3C/svg%3E"); }
 .faq { --next: #2b3e4f; --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 30 C300 76 560 70 820 38 C1080 6 1260 14 1440 44 L1440 80 L0 80 Z'/%3E%3C/svg%3E"); }
-.wish, .compare-sec, .ingre, .uses, .benefits, .howto, .ugc, .moms, .stores, .pinfo, .wheel-sec, .form-sec, .rv, .faq { position: relative; }
-.wish::after, .compare-sec::after, .ingre::after, .uses::after, .benefits::after, .howto::after, .ugc::after, .moms::after, .stores::after, .pinfo::after, .form-sec::after, .rv::after, .faq::after {
+.wish, .compare-sec, .ingre, .uses, .howto, .ugc, .moms, .stores, .pinfo, .wheel-sec, .form-sec, .rv, .faq { position: relative; }
+.wish::after, .compare-sec::after, .ingre::after, .uses::after, .howto::after, .ugc::after, .moms::after, .stores::after, .pinfo::after, .form-sec::after, .rv::after, .faq::after {
     content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 80px; z-index: 0; pointer-events: none;
     background: var(--next); -webkit-mask: var(--wave) center bottom / 100% 100% no-repeat; mask: var(--wave) center bottom / 100% 100% no-repeat; }
-.benefits { padding-bottom: 130px; }
 .footer { margin-top: -1px; }
 @media (max-width: 768px) {
-    .wish::after, .compare-sec::after, .ingre::after, .uses::after, .benefits::after, .howto::after, .ugc::after, .moms::after, .stores::after, .pinfo::after, .form-sec::after, .rv::after, .faq::after { height: 44px; }
-    .benefits { padding-bottom: 90px; }
+    .wish::after, .compare-sec::after, .ingre::after, .uses::after, .howto::after, .ugc::after, .moms::after, .stores::after, .pinfo::after, .form-sec::after, .rv::after, .faq::after { height: 44px; }
 }
 /* Vòng quay -> đặt hàng: sóng màu đáy vòng quay phủ lên đỉnh form (khớp màu tốt hơn trên nền chuyển sắc) */
 .form-sec::before { content: ''; position: absolute; left: 0; right: 0; top: -1px; height: 80px; z-index: 0; pointer-events: none;
     background: #2a9fb3; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 30 C300 76 560 70 820 38 C1080 6 1260 14 1440 44 L1440 80 L0 80 Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 30 C300 76 560 70 820 38 C1080 6 1260 14 1440 44 L1440 80 L0 80 Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat; transform: scaleY(-1); }
 @media (max-width: 768px) { .form-sec::before { height: 44px; } }
+/* Lợi ích (section ghim cuộn ngang) -> cách dùng: sóng nằm ở đỉnh section cách dùng để không trôi giữa màn hình khi đang ghim */
+.howto::before { content: ''; position: absolute; left: 0; right: 0; top: -1px; height: 80px; z-index: 0; pointer-events: none;
+    background: var(--bg-cream); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 30 C300 76 560 70 820 38 C1080 6 1260 14 1440 44 L1440 80 L0 80 Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 30 C300 76 560 70 820 38 C1080 6 1260 14 1440 44 L1440 80 L0 80 Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat; transform: scaleY(-1); }
+@media (max-width: 768px) { .howto::before { height: 44px; } }
+
+/* ===== FAQ 2 cột ===== */
+.faq-wrap { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); gap: 32px; align-items: start; max-width: 1080px; margin: 0 auto; }
+.faq-wrap .faq-list { max-width: none; margin: 0; }
+.faq-help { position: sticky; top: 100px; text-align: center; padding: 30px 26px 28px; border-radius: 30px; background: #fff; box-shadow: var(--shadow); border: 2px solid #dcf0f4; }
+.faq-help img { width: 150px; height: auto; margin: -70px auto 6px; filter: drop-shadow(0 12px 14px rgba(255,140,40,.3)); }
+.faq-help h3 { font-size: 24px; margin-bottom: 6px; }
+.faq-help p { color: var(--text-soft); margin-bottom: 18px; }
+.faq-help .btn { width: 100%; font-size: 17px; padding: 14px 20px; }
+.faq-help .btn + .btn { margin-top: 12px; }
+.btn-zalo { color: #fff; background: #0068ff; box-shadow: 0 8px 0 -2px #0049b3, 0 16px 30px -16px rgba(0,104,255,.6); }
+.btn-zalo:hover { transform: translateY(-3px) scale(1.02); }
+.faq-help .hotline { display: block; margin-top: 14px; font-size: 14px; color: var(--text-soft); }
+.faq-help .hotline b { color: var(--text); user-select: all; }
+@media (max-width: 900px) {
+    .faq-wrap { grid-template-columns: 1fr; gap: 70px; }
+    .faq-help { position: static; max-width: 420px; width: 100%; margin: 0 auto; }
+}
 </style>
 </head>
 <body>
@@ -1326,13 +1345,23 @@ textarea.input { resize: vertical; min-height: 90px; }
             <span class="eyebrow">❓ Hỏi đáp</span>
             <h2 class="section-title">Mẹ thường <span class="hl">hỏi</span></h2>
         </div>
-        <div class="faq-list">
-            <div class="faq-item" data-reveal><button class="faq-q">Sữa tắm Bon Bon có dùng được cho trẻ sơ sinh không?<span class="pm">+</span></button><div class="faq-a"><p>Có. Bon Bon có công thức dịu nhẹ, cân bằng độ pH, không chứa Paraben, phù hợp cho cả làn da nhạy cảm của trẻ sơ sinh và trẻ nhỏ.</p></div></div>
-            <div class="faq-item" data-reveal><button class="faq-q">Sữa tắm gội này có làm cay mắt bé không?<span class="pm">+</span></button><div class="faq-a"><p>Không. Bon Bon dùng công thức ít bọt, dịu nhẹ, không gây cay mắt, giúp bé luôn thoải mái, thư giãn khi tắm.</p></div></div>
-            <div class="faq-item" data-reveal><button class="faq-q">Có hỗ trợ làm sạch cứt trâu không?<span class="pm">+</span></button><div class="faq-a"><p>Có. Nhờ dầu hạnh nhân và các dưỡng chất, sản phẩm giúp làm mềm và làm sạch nhẹ nhàng các mảng viêm da tiết bã (cứt trâu) và màng ối trên da bé hằng ngày.</p></div></div>
-            <div class="faq-item" data-reveal><button class="faq-q">Dùng hằng ngày có bị khô da không?<span class="pm">+</span></button><div class="faq-a"><p>Không. Độ pH cân bằng cùng dầu hạnh nhân và Vitamin E giúp nuôi dưỡng màng ẩm tự nhiên, da bé mềm mại, không khô ráp sau khi tắm.</p></div></div>
-            <div class="faq-item" data-reveal><button class="faq-q">Đặt hàng xong thì sao?<span class="pm">+</span></button><div class="faq-a"><p>Home Care sẽ gọi lại số điện thoại mẹ để lại để xác nhận đơn, địa chỉ nhận hàng và quà tặng trước khi giao.</p></div></div>
-            <div class="faq-item" data-reveal><button class="faq-q">Bao lâu thì được gọi lại?<span class="pm">+</span></button><div class="faq-a"><p>Trong giờ hành chính, chuyên viên Home Care sẽ liên hệ lại sớm nhất có thể. Cần gấp, mẹ gọi hotline hoặc nhắn Zalo ở góc màn hình nhé.</p></div></div>
+        <div class="faq-wrap">
+            <div class="faq-list">
+                <div class="faq-item" data-reveal><button class="faq-q">Sữa tắm Bon Bon có dùng được cho trẻ sơ sinh không?<span class="pm">+</span></button><div class="faq-a"><p>Có. Bon Bon có công thức dịu nhẹ, cân bằng độ pH, không chứa Paraben, phù hợp cho cả làn da nhạy cảm của trẻ sơ sinh và trẻ nhỏ.</p></div></div>
+                <div class="faq-item" data-reveal><button class="faq-q">Sữa tắm gội này có làm cay mắt bé không?<span class="pm">+</span></button><div class="faq-a"><p>Không. Bon Bon dùng công thức ít bọt, dịu nhẹ, không gây cay mắt, giúp bé luôn thoải mái, thư giãn khi tắm.</p></div></div>
+                <div class="faq-item" data-reveal><button class="faq-q">Có hỗ trợ làm sạch cứt trâu không?<span class="pm">+</span></button><div class="faq-a"><p>Có. Nhờ dầu hạnh nhân và các dưỡng chất, sản phẩm giúp làm mềm và làm sạch nhẹ nhàng các mảng viêm da tiết bã (cứt trâu) và màng ối trên da bé hằng ngày.</p></div></div>
+                <div class="faq-item" data-reveal><button class="faq-q">Dùng hằng ngày có bị khô da không?<span class="pm">+</span></button><div class="faq-a"><p>Không. Độ pH cân bằng cùng dầu hạnh nhân và Vitamin E giúp nuôi dưỡng màng ẩm tự nhiên, da bé mềm mại, không khô ráp sau khi tắm.</p></div></div>
+                <div class="faq-item" data-reveal><button class="faq-q">Đặt hàng xong thì sao?<span class="pm">+</span></button><div class="faq-a"><p>Home Care sẽ gọi lại số điện thoại mẹ để lại để xác nhận đơn, địa chỉ nhận hàng và quà tặng trước khi giao.</p></div></div>
+                <div class="faq-item" data-reveal><button class="faq-q">Bao lâu thì được gọi lại?<span class="pm">+</span></button><div class="faq-a"><p>Trong giờ hành chính, chuyên viên Home Care sẽ liên hệ lại sớm nhất có thể. Cần gấp, mẹ gọi hotline hoặc nhắn Zalo ở góc màn hình nhé.</p></div></div>
+            </div>
+            <aside class="faq-help" data-reveal>
+                <img src="img/su-tu-bon-bon.webp" alt="Sư tử Bon Bon" width="400" height="400" loading="lazy">
+                <h3>Mẹ vẫn còn băn khoăn?</h3>
+                <p>Chuyên viên Home Care luôn sẵn sàng tư vấn miễn phí cách chăm da cho bé.</p>
+                <a href="#" class="btn btn-zalo" data-zalo target="_blank" rel="noopener">💬 Chat Zalo ngay</a>
+                <a href="#" class="btn btn-primary" data-tel>📞 Gọi <span data-tel-text>0901.234.567</span></a>
+                <span class="hotline">Hotline: <b data-tel-text>0901.234.567</b></span>
+            </aside>
         </div>
     </div>
 </section>
