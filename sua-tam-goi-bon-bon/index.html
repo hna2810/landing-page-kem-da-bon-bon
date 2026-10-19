@@ -416,19 +416,40 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 .q-loading.active { display: block; }
 .q-loading .spin { font-size: 60px; display: inline-block; }
 
-/* ===== HOW TO ===== */
-.howto { background: var(--cream); }
-.steps { position: relative; max-width: 980px; margin: 0 auto; }
-.steps-path { position: absolute; top: 60px; left: 8%; right: 8%; height: 80px; z-index: 0; }
-.steps-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-.step { text-align: center; }
-.step .circle {
-    width: 120px; height: 120px; margin: 0 auto 18px; border-radius: 50%; background: var(--white); box-shadow: var(--shadow-soft);
-    display: grid; place-items: center; font-size: 50px; position: relative; border: 4px solid var(--primary-light);
-}
-.step .circle b { position: absolute; top: -4px; right: -4px; width: 36px; height: 36px; border-radius: 50%; background: var(--primary); color: #fff; font-family: var(--font-head); display: grid; place-items: center; font-size: 18px; }
-.step h4 { font-size: 21px; margin-bottom: 6px; }
-.step p { color: var(--text-soft); font-size: 16px; }
+/* ===== HOW TO (section 7) ===== */
+.howto { background: linear-gradient(180deg, var(--cream), var(--primary-light)); }
+.howto-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 60px; align-items: center; max-width: 1040px; margin: 0 auto; }
+.howto-steps { display: grid; gap: 18px; min-width: 0; }
+.hstep { display: flex; gap: 18px; align-items: flex-start; text-align: left; padding: 22px 24px; border-radius: 24px; background: var(--white); box-shadow: var(--shadow-soft); border: 2.5px solid transparent; font-size: 16.5px; line-height: 1.55; color: var(--text-soft); transition: transform .35s cubic-bezier(.34,1.56,.64,1), border-color .3s, box-shadow .3s; }
+.hstep:hover { transform: translateY(-3px); }
+.hstep.active { border-color: var(--primary); box-shadow: var(--shadow); transform: translateX(8px); }
+.hstep-num { flex: none; width: 52px; height: 52px; border-radius: 18px; display: grid; place-items: center; background: var(--primary-light); color: var(--primary-dark); font-family: var(--font-head); font-weight: 800; font-size: 26px; transition: background .3s, color .3s, transform .4s; }
+.hstep.active .hstep-num { background: var(--primary); color: #fff; transform: rotate(-8deg); }
+.hstep-body b { display: block; font-family: var(--font-head); font-size: 20px; color: var(--text); margin-bottom: 2px; }
+.howto-phone { position: relative; width: min(300px, 100%); margin: 0 auto; padding: 12px; border-radius: 42px; background: linear-gradient(160deg, #fff, #e8f6f8); box-shadow: 0 40px 70px -30px rgba(42,159,179,.6), 0 0 0 2px rgba(76,192,211,.25); }
+.howto-phone::before { content: ''; position: absolute; top: 22px; left: 50%; transform: translateX(-50%); width: 70px; height: 7px; border-radius: 7px; background: rgba(52,73,94,.15); z-index: 2; }
+.howto-screen { aspect-ratio: 9 / 16; border-radius: 32px; overflow: hidden; background: radial-gradient(circle at 30% 20%, #e3f7fa, #b8ecf3 60%, #ffd9e4); }
+.howto-screen video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.howto-ph { height: 100%; display: grid; place-items: center; align-content: center; gap: 14px; font-weight: 800; color: var(--text-soft); }
+.howto-play { width: 76px; height: 76px; border-radius: 50%; display: grid; place-items: center; background: #fff; color: var(--primary); font-size: 28px; padding-left: 6px; box-shadow: 0 0 0 0 rgba(255,255,255,.7); animation: playPulse 2s infinite; }
+@keyframes playPulse { 70% { box-shadow: 0 0 0 22px rgba(255,255,255,0); } 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); } }
+
+/* ===== UGC WALL (section 8) ===== */
+.ugc { background: var(--primary-light); }
+.ugc-wall { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; height: 560px; overflow: hidden; border-radius: 32px;
+    -webkit-mask-image: linear-gradient(transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(transparent, #000 12%, #000 88%, transparent); }
+.ugc-col { overflow: hidden; }
+.ugc-track { display: grid; gap: 18px; animation: ugcUp 38s linear infinite; }
+.ugc-col.rev .ugc-track { animation-name: ugcDown; animation-duration: 44s; }
+.ugc-col:nth-child(3) .ugc-track { animation-duration: 34s; }
+.ugc-wall:hover .ugc-track { animation-play-state: paused; }
+@keyframes ugcUp { from { transform: translateY(0); } to { transform: translateY(calc(-50% - 9px)); } }
+@keyframes ugcDown { from { transform: translateY(calc(-50% - 9px)); } to { transform: translateY(0); } }
+.ugc-tile { aspect-ratio: 1 / var(--h); border-radius: 22px; overflow: hidden; display: grid; place-items: center; background: linear-gradient(160deg, #fff, var(--pink-soft)); box-shadow: var(--shadow-soft); color: var(--text-soft); font-weight: 800; font-size: 14px; transition: transform .35s cubic-bezier(.34,1.56,.64,1); }
+.ugc-col:nth-child(2n) .ugc-tile:nth-child(odd) { background: linear-gradient(160deg, #fff, var(--mint-soft)); }
+.ugc-col:nth-child(odd) .ugc-tile:nth-child(3n) { background: linear-gradient(160deg, #fff, var(--yellow-soft)); }
+.ugc-tile:hover { transform: scale(1.04) rotate(-1deg); }
+.ugc-tile img { width: 100%; height: 100%; object-fit: cover; }
 
 /* ===== WHEEL ===== */
 .wheel-sec { background: linear-gradient(160deg, var(--primary) 0%, var(--primary-dark) 100%); color: var(--white); overflow: hidden; }
@@ -653,8 +674,14 @@ textarea.input { resize: vertical; min-height: 90px; }
     .quiz { padding: 28px 18px; border-radius: 28px; }
     .q-opts { grid-template-columns: 1fr; }
     .q-opt { padding: 14px 16px; font-size: 16px; }
-    .steps-path { display: none; }
-    .steps-grid { grid-template-columns: 1fr; gap: 30px; }
+    .howto-grid { grid-template-columns: 1fr; gap: 36px; }
+    .hstep { padding: 16px; gap: 14px; font-size: 15.5px; }
+    .hstep.active { transform: none; }
+    .hstep-num { width: 44px; height: 44px; font-size: 22px; }
+    .howto-phone { width: min(250px, 80%); }
+    .ugc-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); height: 480px; gap: 12px; border-radius: 24px; }
+    .ugc-col:nth-child(n+3) { display: none; }
+    .ugc-track { gap: 12px; }
     .pinfo-grid { grid-template-columns: 1fr; gap: 20px; }
     .pinfo-visual { min-height: 300px; }
     .pinfo-bottle { width: 120px; }
@@ -663,7 +690,6 @@ textarea.input { resize: vertical; min-height: 90px; }
     .tab { flex: 1; padding: 10px 8px; font-size: 14px; }
     .spec li span:not(.e) { min-width: 84px; font-size: 14px; }
     .fact { flex-direction: column; text-align: center; gap: 8px; padding: 20px 18px; }
-    .step .circle { width: 96px; height: 96px; font-size: 40px; }
     .form-card { padding: 34px 18px 26px; border-radius: 28px; }
     .footer-grid { grid-template-columns: 1fr; }
     .float-btns { display: none; }
@@ -920,6 +946,55 @@ textarea.input { resize: vertical; min-height: 90px; }
     </div>
 </section>
 
+<!-- ===== SECTION 7: TẮM BÉ ĐÚNG CÁCH ===== -->
+<section class="section howto" id="cach-dung">
+    <div class="container">
+        <div class="section-head" data-reveal>
+            <h2 class="section-title">Tắm bé đúng cách chỉ <span class="hl">3 bước</span></h2>
+            <p class="section-sub">Để con yêu tận hưởng trọn vẹn sự dịu êm từ Sữa Tắm Bon Bon.</p>
+        </div>
+        <div class="howto-grid">
+            <div class="howto-steps">
+                <button class="hstep active" type="button" data-reveal>
+                    <span class="hstep-num">1</span>
+                    <span class="hstep-body"><b>Bước 1</b>Tráng người bé bằng nước ấm sạch để cơ thể con làm quen với nhiệt độ.</span>
+                </button>
+                <button class="hstep" type="button" data-reveal>
+                    <span class="hstep-num">2</span>
+                    <span class="hstep-body"><b>Bước 2</b>Lấy một lượng vừa đủ sữa tắm Bon Bon, nhẹ nhàng gội đầu cho con và xả sạch lại với nước.</span>
+                </button>
+                <button class="hstep" type="button" data-reveal>
+                    <span class="hstep-num">3</span>
+                    <span class="hstep-body"><b>Bước 3</b>Lấy thêm một lượng sữa tắm vừa phải, thoa đều và massage nhẹ nhàng toàn thân bé, sau đó tắm lại bằng nước sạch.</span>
+                </button>
+            </div>
+            <!-- Thêm video: thay .howto-ph bằng <video src="img/huong-dan-tam.mp4" playsinline muted loop autoplay controls></video> (khung 9:16) -->
+            <div class="howto-phone" data-reveal>
+                <div class="howto-screen">
+                    <div class="howto-ph"><span class="howto-play">▶</span><span>Video khung hình 9:16</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SECTION 8: ĐÁNH GIÁ / ẢNH KHÁCH HÀNG ===== -->
+<!-- Thay ảnh: thay mỗi <span>Ảnh</span> trong .ugc-tile bằng <img src="img/khach-1.webp" alt="..."> (mỗi cột lặp 2 lần để cuộn liền mạch) -->
+<section class="section ugc" id="danh-gia">
+    <div class="container">
+        <div class="section-head" data-reveal>
+            <h2 class="section-title">Hàng ngàn mẹ bỉm đã tin dùng <span class="hl">Bon Bon</span></h2>
+            <p class="section-sub">Các mẹ gửi hình ảnh khoe bé cùng Bon Bon trên khắp 3 miền</p>
+        </div>
+        <div class="ugc-wall" data-reveal>
+            <div class="ugc-col"><div class="ugc-track"><div class="ugc-tile" style="--h:1.25"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.4"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.3"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.25"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.4"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.3"><span>Ảnh</span></div></div></div>
+            <div class="ugc-col rev"><div class="ugc-track"><div class="ugc-tile" style="--h:1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.4"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.3"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.25"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.4"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.3"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.25"><span>Ảnh</span></div></div></div>
+            <div class="ugc-col"><div class="ugc-track"><div class="ugc-tile" style="--h:1.4"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.3"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.25"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.4"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.3"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.25"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1"><span>Ảnh</span></div></div></div>
+            <div class="ugc-col rev"><div class="ugc-track"><div class="ugc-tile" style="--h:1.1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.3"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.25"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.4"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.3"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.25"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1"><span>Ảnh</span></div><div class="ugc-tile" style="--h:1.4"><span>Ảnh</span></div></div></div>
+        </div>
+    </div>
+</section>
+
 <!-- ===== QUIZ ===== -->
 <section class="section quiz-sec" id="quiz">
     <div class="container">
@@ -979,26 +1054,6 @@ textarea.input { resize: vertical; min-height: 90px; }
                 <button class="q-back" id="qRestart" style="display:block;margin:16px auto 0">↺ Làm lại quiz</button>
             </div>
             <button class="q-back" id="qBack" style="display:none">← Quay lại</button>
-        </div>
-    </div>
-</section>
-
-<!-- ===== HOW TO ===== -->
-<section class="section howto" id="cach-dung">
-    <div class="container">
-        <div class="section-head" data-reveal>
-            <span class="eyebrow">🛁 Cách dùng</span>
-            <h2 class="section-title">Tắm bé đúng cách chỉ <span class="hl">3 bước</span></h2>
-        </div>
-        <div class="steps">
-            <svg class="steps-path" viewBox="0 0 800 80" preserveAspectRatio="none" aria-hidden="true">
-                <path id="stepsPath" d="M0,40 C130,0 270,80 400,40 C530,0 670,80 800,40" fill="none" stroke="#4cc0d3" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 12"/>
-            </svg>
-            <div class="steps-grid">
-                <div class="step"><div class="circle">🚿<b>1</b></div><h4>Tráng nước ấm</h4><p>Tráng người bé bằng nước ấm sạch để cơ thể con làm quen với nhiệt độ.</p></div>
-                <div class="step"><div class="circle">🧴<b>2</b></div><h4>Gội đầu</h4><p>Lấy một lượng vừa đủ Bon Bon, nhẹ nhàng gội đầu cho con rồi xả sạch với nước.</p></div>
-                <div class="step"><div class="circle">👐<b>3</b></div><h4>Tắm toàn thân</h4><p>Thoa thêm một lượng vừa phải, massage nhẹ khắp người bé rồi tắm lại bằng nước sạch.</p></div>
-            </div>
         </div>
     </div>
 </section>
@@ -1434,6 +1489,12 @@ ScrollTrigger.batch('[data-reveal]', {
     onEnter: batch => gsap.fromTo(batch, { opacity: 0, y: 50, scale: .96 }, { opacity: 1, y: 0, scale: 1, duration: .9, stagger: .12, ease: 'power3.out', overwrite: true }),
     once: true
 });
+// Dự phòng: phần tử nào đã lọt vào màn hình mà vẫn ẩn (cuộn quá nhanh, nhảy anchor) thì hiện luôn
+const revealStragglers = () => $$('[data-reveal]').forEach(el => {
+    if (+getComputedStyle(el).opacity < .05 && el.getBoundingClientRect().top < innerHeight && !gsap.isTweening(el))
+        gsap.to(el, { opacity: 1, y: 0, scale: 1, duration: .6, ease: 'power3.out' });
+});
+ScrollTrigger.addEventListener('scrollEnd', revealStragglers);
 $$('.section-title').forEach(t => {
     const hl = t.querySelector('.hl');
     if (!hl) return;
@@ -1695,16 +1756,21 @@ mm.add('(max-width: 768px)', () => {
     update();
 })();
 
-/* ===== HOW TO (path draw + steps) ===== */
+/* ===== HOW TO STEPS (section 7) ===== */
 (function () {
-    const path = $('#stepsPath');
-    const len = path.getTotalLength();
-    path.style.strokeDasharray = `${len}`;
-    path.style.strokeDashoffset = len;
-    gsap.to(path, { strokeDashoffset: 0, ease: 'none', scrollTrigger: { trigger: '.steps', start: 'top 75%', end: 'bottom 60%', scrub: 1 } });
-    gsap.from('.step', { scrollTrigger: { trigger: '.steps', start: 'top 78%' }, y: 60, opacity: 0, stagger: .18, duration: .8, ease: 'back.out(1.8)' });
-    gsap.from('.step .circle b', { scrollTrigger: { trigger: '.steps', start: 'top 70%' }, scale: 0, stagger: .18, duration: .6, delay: .5, ease: 'back.out(3)' });
-    $$('.step .circle').forEach(c => c.addEventListener('mouseenter', () => gsap.fromTo(c, { rotate: -10 }, { rotate: 0, duration: .8, ease: 'elastic.out(1.2, .3)' })));
+    const steps = $$('.hstep');
+    let auto = null, idx = 0;
+    const activate = i => {
+        idx = i;
+        steps.forEach((st, k) => st.classList.toggle('active', k === i));
+        gsap.fromTo(steps[i].querySelector('.hstep-num'), { scale: .6 }, { scale: 1, duration: .7, ease: 'elastic.out(1.2, .4)' });
+    };
+    steps.forEach((st, i) => st.addEventListener('click', () => { clearInterval(auto); activate(i); }));
+    ScrollTrigger.create({
+        trigger: '.howto-grid', start: 'top 70%', end: 'bottom 20%',
+        onToggle: self => { clearInterval(auto); if (self.isActive && !reduceMotion) auto = setInterval(() => activate((idx + 1) % steps.length), 2600); }
+    });
+    gsap.fromTo('.howto-phone', { rotate: 8, y: 60 }, { rotate: -3, y: 0, ease: 'none', scrollTrigger: { trigger: '.howto-grid', start: 'top bottom', end: 'bottom 40%', scrub: true } });
 })();
 
 /* ===== LUCKY WHEEL ===== */
