@@ -56,6 +56,19 @@ function lx_handle_track_click() {
     $user_agent   = isset($_SERVER['HTTP_USER_AGENT']) ? sanitize_text_field($_SERVER['HTTP_USER_AGENT']) : '';
     $ip           = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field($_SERVER['REMOTE_ADDR']) : '';
 
+    // Khóa chống lặp (Deduplication): Trong vòng 3 giây, cùng 1 IP bấm cùng loại nút thì không đếm lặp
+    $dedup_key = 'lx_clk_' . md5($ip . '_' . $type);
+    if (get_transient($dedup_key)) {
+        if (!empty($_GET['_t'])) {
+            header('Content-Type: image/gif');
+            header('Cache-Control: no-cache, no-store, must-revalidate');
+            echo base64_decode('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+            exit;
+        }
+        wp_send_json_success(array('recorded' => false, 'note' => 'deduplicated'));
+    }
+    set_transient($dedup_key, 1, 3);
+
     // 1. Cập nhật tổng đếm (Summary Counts)
     $stats = get_option('lx_click_stats_summary', array(
         'total_hotline' => 0,

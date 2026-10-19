@@ -73,12 +73,13 @@ document.documentElement.classList.add('js');
     if (CFG.price) document.querySelectorAll('.js-price').forEach(el => el.textContent = fmt(CFG.price));
     if (CFG.listPrice) document.querySelectorAll('.js-list-price').forEach(el => el.textContent = fmt(CFG.listPrice));
     document.getElementById('year').textContent = new Date().getFullYear();
-    // ===== Bắt sự kiện click Hotline & Zalo (Toàn diện Mobile & Desktop) =====
+    // ===== Bắt sự kiện click Hotline & Zalo (Chính xác 1 click = 1 đếm) =====
     let lastContactClickTime = 0;
     function trackContactClick(targetLink) {
         if (!targetLink) return;
         const now = Date.now();
-        if (now - lastContactClickTime < 1000) return;
+        // Chống lặp trong vòng 2.5 giây
+        if (now - lastContactClickTime < 2500) return;
         lastContactClickTime = now;
 
         const href = (targetLink.getAttribute('href') || '').trim();
@@ -91,7 +92,7 @@ document.documentElement.classList.add('js');
             window.bonbonTrack && bonbonTrack('Contact', { method: method });
         } catch (e) {}
 
-        // 2. Ghi nhận lượt click vào WordPress Database
+        // 2. Ghi nhận lượt click vào WordPress Database (Chỉ gửi ĐÚNG 1 request)
         try {
             const trackUrl = (CFG && CFG.ajaxUrl) || '/wp-admin/admin-ajax.php';
             let attr = {};
@@ -109,26 +110,9 @@ document.documentElement.classList.add('js');
 
             const fullUrl = trackUrl + (trackUrl.indexOf('?') === -1 ? '?' : '&') + params;
 
-            // Kỹ thuật 1: Image Ping (Chạy tức thì trên mạng trình duyệt, không bị hủy khi mở app/quay số)
-            try {
-                const img = new Image();
-                img.src = fullUrl;
-            } catch (err) {}
-
-            // Kỹ thuật 2: Fetch GET với keepalive
-            try {
-                if (window.fetch) {
-                    fetch(fullUrl, { method: 'GET', keepalive: true, cache: 'no-store', mode: 'no-cors' }).catch(function(){});
-                }
-            } catch (err) {}
-
-            // Kỹ thuật 3: sendBeacon với Blob URL-encoded
-            try {
-                if (navigator.sendBeacon) {
-                    const blob = new Blob([params], { type: 'application/x-www-form-urlencoded' });
-                    navigator.sendBeacon(trackUrl, blob);
-                }
-            } catch (err) {}
+            // Image Ping chuẩn xác nhất trên cả iOS và Android (chạy tức thì, không bị hủy)
+            const img = new Image();
+            img.src = fullUrl;
         } catch (e) {}
     }
 
@@ -139,13 +123,6 @@ document.documentElement.classList.add('js');
             trackContactClick(link);
         }
     }, true);
-
-    document.addEventListener('pointerdown', function(e) {
-        const link = e.target && e.target.closest ? e.target.closest(contactSelector) : null;
-        if (link) {
-            trackContactClick(link);
-        }
-    }, { capture: true, passive: true });
 
     // ===== Ảnh / video từ cấu hình (trống thì hiện khung chờ) =====
     function placeholder(label, icon) {
