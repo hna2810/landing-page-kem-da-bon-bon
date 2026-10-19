@@ -521,37 +521,48 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 .faq-a p { padding: 0 26px 22px; color: var(--text-soft); }
 
 /* ===== FORM ĐẶT HÀNG ===== */
-.form-sec { background: linear-gradient(180deg, #fff, var(--pink-soft)); padding-bottom: 140px; }
-.order-wrap { display: grid; grid-template-columns: .85fr 1.15fr; gap: 56px; align-items: start; max-width: 1100px; }
-.order-title { font-family: var(--font-head); font-size: clamp(30px, 4vw, 42px); font-weight: 800; color: #e0608a; letter-spacing: .5px; }
-.order-price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px 12px; margin: 4px 0 22px; }
-.order-price b { font-family: var(--font-head); font-size: clamp(38px, 5vw, 54px); font-weight: 800; color: var(--primary-deep); line-height: 1; }
-.order-price s { color: var(--text-soft); font-weight: 700; font-size: 18px; }
-.order-off { padding: 3px 10px; border-radius: 8px; background: #ef4444; color: #fff; font-weight: 800; font-size: 14px; }
-.order-cd { display: inline-block; padding: 16px 18px; border-radius: 22px; background: #fff; border: 1.5px solid #e6edf2; box-shadow: var(--shadow-soft); margin-bottom: 26px; }
-.order-cd .lbl { display: block; font-weight: 800; font-size: 14px; margin-bottom: 8px; }
+.form-sec { position: relative; overflow: hidden; padding-bottom: 140px; color: #fff;
+    background: radial-gradient(circle at 15% 20%, rgba(255,255,255,.25) 0, transparent 35%), linear-gradient(135deg, #3bb4c9 0%, #4cc0d3 35%, #8fd9e4 60%, #ff9fbb 100%); }
+.fs-bub { position: absolute; border-radius: 50%; pointer-events: none; border: 2px solid rgba(255,255,255,.55);
+    background: radial-gradient(circle at 30% 28%, rgba(255,255,255,.9) 0 8%, rgba(255,255,255,.15) 12% 60%, rgba(255,255,255,.05)); animation: fsFloat 9s ease-in-out infinite; }
+.fs-bub.b1 { width: 120px; height: 120px; left: 3%; top: 12%; }
+.fs-bub.b2 { width: 60px; height: 60px; left: 42%; top: 6%; animation-delay: -2s; }
+.fs-bub.b3 { width: 180px; height: 180px; right: -40px; top: 40%; animation-delay: -4s; }
+.fs-bub.b4 { width: 80px; height: 80px; left: 8%; bottom: 10%; animation-delay: -6s; }
+.fs-bub.b5 { width: 40px; height: 40px; right: 30%; bottom: 6%; animation-delay: -3s; }
+@keyframes fsFloat { 50% { transform: translateY(-24px) scale(1.05); } }
+.order-wrap { position: relative; z-index: 1; display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: center; max-width: 1100px; }
+.order-side { position: relative; }
+.order-title { font-family: var(--font-head); font-size: clamp(34px, 4.6vw, 52px); font-weight: 800; color: #fff6c2; letter-spacing: .5px; line-height: 1.05; text-shadow: 0 4px 0 #e0608a, 0 10px 24px rgba(160,40,80,.35); }
+.order-price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 14px; margin: 14px 0 22px; }
+.order-price b { font-family: var(--font-head); font-size: clamp(46px, 5.4vw, 64px); font-weight: 800; color: #fff; line-height: 1; text-shadow: 0 6px 20px rgba(29,127,144,.45); }
+.order-price s { order: 3; flex-basis: 100%; color: rgba(255,255,255,.9); font-weight: 800; font-size: 20px; }
+.order-off { align-self: center; width: 76px; height: 76px; flex: none; border-radius: 50%; display: grid; place-items: center; background: #ef4444; color: #fff; font-family: var(--font-head); font-weight: 800; font-size: 24px; box-shadow: 0 0 0 6px rgba(255,255,255,.35), 0 12px 24px -8px rgba(160,20,20,.6); animation: offWobble 2.4s ease-in-out infinite; }
+@keyframes offWobble { 0%, 100% { transform: rotate(-10deg) scale(1); } 50% { transform: rotate(8deg) scale(1.08); } }
+.order-cd { display: inline-block; padding: 14px 18px; border-radius: 22px; background: rgba(255,255,255,.22); border: 1.5px solid rgba(255,255,255,.55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); margin-bottom: 24px; }
+.order-cd .lbl { display: block; font-weight: 800; font-size: 15px; margin-bottom: 8px; }
 .cd-row { display: flex; align-items: center; gap: 8px; }
-.cd-row i { font-style: normal; font-weight: 800; color: var(--text-soft); }
-.cd-box { min-width: 72px; text-align: center; padding: 10px 8px; border-radius: 14px; background: linear-gradient(160deg, #2b3e4f, #16222e); box-shadow: 0 8px 16px -8px rgba(22,34,46,.6); }
-.cd-box b { display: block; font-family: var(--font-head); font-size: 32px; color: #fff; line-height: 1; }
-.cd-box small { font-size: 11px; font-weight: 800; color: rgba(255,255,255,.75); letter-spacing: .5px; }
-.order-img { position: relative; width: min(300px, 100%); aspect-ratio: 1; border-radius: 24px; background: radial-gradient(circle at 50% 40%, #fff, var(--primary-light)); box-shadow: var(--shadow); }
-.order-img img { position: absolute; inset: 18px; width: calc(100% - 36px); height: calc(100% - 36px); object-fit: contain; filter: drop-shadow(0 16px 18px rgba(42,159,179,.3)); }
-.order-card { position: relative; background: #fff; border-radius: 32px; padding: 34px; box-shadow: var(--shadow); }
+.cd-row i { font-style: normal; font-weight: 800; font-size: 22px; }
+.cd-box { min-width: 76px; text-align: center; padding: 10px 8px; border-radius: 16px; background: #fff; box-shadow: 0 10px 20px -10px rgba(22,34,46,.5); }
+.cd-box b { display: block; font-family: var(--font-head); font-size: 34px; color: #e0608a; line-height: 1; }
+.cd-box small { font-size: 11px; font-weight: 800; color: var(--text-soft); letter-spacing: .5px; }
+.order-img { position: relative; width: min(320px, 100%); aspect-ratio: 1; margin-bottom: 18px; }
+.order-glow { position: absolute; inset: 6%; border-radius: 50%; background: radial-gradient(circle, #fff 0 45%, rgba(255,255,255,.4) 60%, transparent 72%); animation: glowPulse 3s ease-in-out infinite; }
+@keyframes glowPulse { 50% { transform: scale(1.08); opacity: .85; } }
+.oi-bottle { position: absolute; left: 50%; top: 4%; height: 92%; width: auto; transform: translateX(-50%) rotate(-6deg); filter: drop-shadow(0 18px 20px rgba(29,127,144,.45)); }
+.oi-lion { position: absolute; right: -4%; bottom: -2%; width: 42%; height: auto; filter: drop-shadow(0 10px 14px rgba(255,120,40,.35)); }
+.order-trust { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.order-trust li { padding: 8px 14px; border-radius: 99px; background: rgba(255,255,255,.95); color: var(--text); font-weight: 800; font-size: 14px; box-shadow: var(--shadow-soft); }
+.order-card { position: relative; color: var(--text); border-radius: 32px; padding: 52px 36px 32px; border: 6px solid transparent;
+    background: linear-gradient(#fff, #fff) padding-box, conic-gradient(from var(--ang, 0deg), #fff6c2, #ff8fab, #4cc0d3, #b8f0d8, #fff6c2) border-box;
+    box-shadow: 0 40px 80px -30px rgba(120,30,70,.55); animation: spinBorder 6s linear infinite; }
+@property --ang { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+@keyframes spinBorder { to { --ang: 360deg; } }
+.order-ribbon { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); white-space: nowrap; padding: 10px 26px; border-radius: 99px; background: linear-gradient(135deg, #ff8fab, #e0608a); color: #fff; font-family: var(--font-head); font-weight: 800; font-size: 18px; box-shadow: 0 12px 24px -10px rgba(224,96,138,.8); }
 .order-card .input { border-radius: 99px; background: #fff; border-color: #dfeef2; }
 .order-card .input:focus { border-color: var(--primary); }
-.pkg-list { display: grid; gap: 10px; }
-.pkg { position: relative; display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; padding: 14px 18px 14px 50px; border-radius: 16px; border: 1.5px solid #e6edf2; background: #fff; cursor: pointer; transition: border-color .2s, background .2s, transform .25s cubic-bezier(.34,1.56,.64,1); }
-.pkg:hover { transform: translateX(4px); }
-.pkg input { position: absolute; opacity: 0; }
-.pkg::before { content: ''; position: absolute; left: 18px; top: 50%; width: 20px; height: 20px; margin-top: -10px; border-radius: 50%; border: 2px solid #9aa8b4; background: #fff; transition: all .2s; }
-.pkg:has(input:checked) { border-color: #ff8fab; background: #fff1f5; }
-.pkg:has(input:checked)::before { border-color: #34495e; background: radial-gradient(circle, #ff6b8a 0 45%, #fff 50%); }
-.pkg:has(input:focus-visible) { box-shadow: 0 0 0 4px rgba(255,143,171,.3); }
-.pkg b { font-weight: 800; }
-.pkg s { color: var(--text-soft); font-size: 13px; font-style: italic; }
-.pkg .ship { padding: 2px 9px; border-radius: 99px; background: #e9fbf1; border: 1px solid #a7e8c3; color: #159a55; font-size: 12px; font-weight: 800; }
-.order-btn { margin-top: 6px; font-size: 20px; padding: 18px; }
+.order-btn { margin-top: 6px; font-size: 22px; padding: 20px; animation: ctaGlow 1.8s ease-in-out infinite; }
+@keyframes ctaGlow { 0%, 100% { box-shadow: 0 10px 0 -2px #e56b8b, 0 0 0 0 rgba(255,143,171,.6); } 50% { box-shadow: 0 10px 0 -2px #e56b8b, 0 0 0 14px rgba(255,143,171,0); } }
 .won-banner { display: none; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 16px; background: var(--yellow-soft); border: 2px dashed #f2c24b; font-weight: 700; margin-bottom: 20px; }
 .won-banner.show { display: flex; }
 .field { margin-bottom: 18px; }
@@ -643,14 +654,16 @@ textarea.input { resize: vertical; min-height: 90px; }
     .marquee-track { font-size: 18px; }
     .flip-grid { grid-template-columns: 1fr; }
     .uses-grid { grid-template-columns: 1fr; gap: 40px; }
-    .order-wrap { gap: 28px; }
+    .order-wrap { gap: 44px; }
     .order-side { text-align: center; }
     .order-price { justify-content: center; }
-    .order-img { margin: 0 auto; width: 220px; }
-    .order-card { padding: 24px 16px; border-radius: 26px; }
+    .order-off { width: 60px; height: 60px; font-size: 17px; }
+    .order-img { margin: 0 auto 16px; width: 240px; }
+    .order-trust { justify-content: center; }
+    .order-trust li { font-size: 12.5px; padding: 7px 11px; }
+    .order-card { padding: 44px 16px 24px; border-radius: 26px; }
+    .order-ribbon { font-size: 15px; padding: 8px 18px; }
     .cd-box { min-width: 62px; }
-    .pkg { padding: 12px 14px 12px 44px; font-size: 14.5px; }
-    .pkg::before { left: 14px; }
     .uses-visual { width: min(300px, 78%); }
     .uses-chip { font-size: 14px; padding: 6px 12px 6px 6px; }
     .uses-chip b { width: 24px; height: 24px; font-size: 12px; }
@@ -1142,6 +1155,7 @@ textarea.input { resize: vertical; min-height: 90px; }
 
 <!-- ===== FORM ĐẶT HÀNG ===== -->
 <section class="section form-sec" id="dang-ky">
+    <span class="fs-bub b1"></span><span class="fs-bub b2"></span><span class="fs-bub b3"></span><span class="fs-bub b4"></span><span class="fs-bub b5"></span>
     <div class="container order-wrap">
         <div class="order-side" data-reveal>
             <h2 class="order-title">ƯU ĐÃI TẶNG MẸ</h2>
@@ -1154,10 +1168,20 @@ textarea.input { resize: vertical; min-height: 90px; }
                     <div class="cd-box"><b id="cdS">00</b><small>GIÂY</small></div>
                 </div>
             </div>
-            <div class="order-img"><img src="img/sua-tam-goi-bon-bon-500ml.webp" alt="Sữa tắm gội Bon Bon 500ml" width="827" height="2000" loading="lazy"></div>
+            <div class="order-img">
+                <span class="order-glow"></span>
+                <img class="oi-bottle" src="img/sua-tam-goi-bon-bon-500ml.webp" alt="Sữa tắm gội Bon Bon 500ml" width="827" height="2000" loading="lazy">
+                <img class="oi-lion" src="img/su-tu-bon-bon.webp" alt="" width="400" height="400" loading="lazy">
+            </div>
+            <ul class="order-trust">
+                <li>🚚 Giao hàng toàn quốc</li>
+                <li>💬 Tư vấn miễn phí</li>
+                <li>✅ Chính hãng Home Care</li>
+            </ul>
         </div>
 
         <div class="order-card" data-reveal>
+            <span class="order-ribbon">🎁 Đăng ký nhận ưu đãi</span>
             <div id="formContent">
                 <div class="won-banner" id="wonBanner">🎉 <span>Quà của mẹ từ vòng quay: <b id="wonText"></b></span></div>
                 <form id="leadForm" novalidate>
@@ -1174,10 +1198,6 @@ textarea.input { resize: vertical; min-height: 90px; }
                     <div class="field">
                         <label for="fAddr">Địa chỉ nhận hàng</label>
                         <input class="input" id="fAddr" name="address" type="text" autocomplete="street-address" placeholder="VD: Số 123, đường ABC, Hà Nội">
-                    </div>
-                    <div class="field">
-                        <span class="lbl">Chọn mua <em>*</em></span>
-                        <div class="pkg-list" id="pkgList"></div>
                     </div>
                     <input type="hidden" name="gift" id="hGift">
                     <input type="hidden" name="source" id="hSource">
@@ -1260,13 +1280,9 @@ const CONFIG = {
     // URL nhận lead: Google Apps Script Web App (ghi vào Google Sheet), webhook Pancake/CRM...
     // Để trống thì form vẫn chạy nhưng chỉ log ra console.
     webhookUrl: '',
-    // Gói bán trong form đặt hàng (giá tính bằng đồng; old = giá gốc, 0 = không hiện)
-    // TODO: điền giá thật cho sữa tắm gội Bon Bon
-    packages: [
-        { label: '1 chai Sữa tắm gội Bon Bon 500ml', price: 0, old: 0, freeship: true },
-        { label: 'Combo 2 chai Sữa tắm gội Bon Bon 500ml', price: 0, old: 0, freeship: true },
-        { label: 'Combo 299K BIGSIZE tắm gội + Kem bôi', price: 299000, old: 455000, freeship: false }
-    ],
+    // Ưu đãi hiển thị ở form đặt hàng (giá tính bằng đồng; old = giá gốc)
+    // TODO: xác nhận giá ưu đãi thật của Sữa tắm gội Bon Bon
+    offer: { label: 'Combo 299K BIGSIZE tắm gội + Kem bôi', price: 299000, old: 455000 },
     // Phần quà vòng quay (weight = tỉ lệ trúng tương đối)
     gifts: [
         { label: 'Giảm 20%',        color: '#ffb5c8', weight: 2 },
@@ -1846,25 +1862,13 @@ $$('.faq-item').forEach(item => {
 /* ===== LEAD FORM ===== */
 (function () {
     const money = v => v.toLocaleString('vi-VN') + 'đ';
-    const pkgList = $('#pkgList');
-    const firstPriced = Math.max(0, CONFIG.packages.findIndex(p => p.price > 0));
-    pkgList.innerHTML = CONFIG.packages.map((p, i) => `
-        <label class="pkg"><input type="radio" name="package" value="${i}" ${i === firstPriced ? 'checked' : ''}>
-            <b>${p.label}${p.price ? ' ' + money(p.price) : ''}</b>
-            ${p.old ? `<s>(giá gốc ${money(p.old)})</s>` : ''}
-            ${p.freeship ? '<span class="ship">+ FREESHIP</span>' : ''}
-        </label>`).join('');
-    const showPrice = () => {
-        const p = CONFIG.packages[+($('input[name="package"]:checked') || {}).value || 0];
-        $('#opPrice').textContent = p.price ? money(p.price) : 'Giá ưu đãi';
-        $('#opOld').textContent = p.old ? money(p.old) : '';
-        const off = $('#opOff');
-        off.hidden = !(p.price && p.old);
-        if (p.price && p.old) off.textContent = '-' + Math.round((1 - p.price / p.old) * 100) + '%';
-        gsap.fromTo('#opPrice', { scale: .85 }, { scale: 1, duration: .5, ease: 'back.out(3)' });
-    };
-    pkgList.addEventListener('change', showPrice);
-    showPrice();
+    const offer = CONFIG.offer;
+    $('#opPrice').textContent = offer.price ? money(offer.price) : 'Giá ưu đãi';
+    $('#opOld').textContent = offer.old ? money(offer.old) : '';
+    if (offer.price && offer.old) { $('#opOff').hidden = false; $('#opOff').textContent = '-' + Math.round((1 - offer.price / offer.old) * 100) + '%'; }
+    gsap.fromTo('#opPrice', { scale: .6, opacity: 0 }, { scale: 1, opacity: 1, duration: 1, ease: 'elastic.out(1, .5)', scrollTrigger: { trigger: '#dang-ky', start: 'top 70%' } });
+    gsap.fromTo('.oi-lion', { x: 60, rotate: 30, opacity: 0 }, { x: 0, rotate: 0, opacity: 1, duration: 1, ease: 'back.out(2)', scrollTrigger: { trigger: '.order-img', start: 'top 80%' } });
+    if (!reduceMotion) gsap.to('.oi-bottle', { y: -12, rotate: -2, duration: 2.2, yoyo: true, repeat: -1, ease: 'sine.inOut' });
 
     const params = new URLSearchParams(location.search);
     const source = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'ttclid', 'gclid']
@@ -1890,8 +1894,8 @@ $$('.faq-item').forEach(item => {
         const data = {
             name: name.value.trim(), phone: ph,
             address: fd.get('address') || '',
-            package: (CONFIG.packages[+fd.get('package')] || {}).label || '',
-            price: (CONFIG.packages[+fd.get('package')] || {}).price || '',
+            package: CONFIG.offer.label,
+            price: CONFIG.offer.price || '',
             gift: fd.get('gift') || '',
             source: fd.get('source') || '',
             page: location.href.split('?')[0],
