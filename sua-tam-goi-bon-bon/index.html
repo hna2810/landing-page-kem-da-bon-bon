@@ -520,25 +520,38 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 .faq-a { height: 0; overflow: hidden; }
 .faq-a p { padding: 0 26px 22px; color: var(--text-soft); }
 
-/* ===== FORM ===== */
-.form-sec { background: var(--primary-light); padding-bottom: 140px; }
-.form-wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 44px; align-items: start; }
-.form-side h2 { font-size: clamp(32px, 4.4vw, 48px); margin: 6px 0 14px; }
-.form-side h2 .hl { color: var(--primary); }
-.gift-list { list-style: none; display: grid; gap: 14px; margin: 24px 0; }
-.gift-list li { display: flex; gap: 14px; align-items: center; background: var(--white); padding: 14px 18px; border-radius: 20px; box-shadow: var(--shadow-soft); font-weight: 700; }
-.gift-list li .e { font-size: 30px; flex: none; }
-.gift-list li small { display: block; color: var(--text-soft); font-weight: 600; }
-.countdown { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
-.countdown .lbl { font-weight: 800; width: 100%; margin-bottom: 4px; }
-.cd-box { min-width: 70px; text-align: center; padding: 10px 8px; border-radius: 16px; background: var(--white); box-shadow: var(--shadow-soft); }
-.cd-box b { display: block; font-family: var(--font-head); font-size: 30px; color: #ff6b8a; line-height: 1; }
-.cd-box small { font-size: 12px; font-weight: 700; color: var(--text-soft); }
-
-.form-card { position: relative; background: var(--white); border-radius: 36px; padding: 40px; box-shadow: var(--shadow); }
-.form-card::before { content: '🎀'; position: absolute; top: -28px; left: 50%; transform: translateX(-50%); font-size: 50px; }
-.form-card h3 { text-align: center; font-size: 28px; margin-bottom: 4px; }
-.form-card .sub { text-align: center; color: var(--text-soft); margin-bottom: 26px; }
+/* ===== FORM ĐẶT HÀNG ===== */
+.form-sec { background: linear-gradient(180deg, #fff, var(--pink-soft)); padding-bottom: 140px; }
+.order-wrap { display: grid; grid-template-columns: .85fr 1.15fr; gap: 56px; align-items: start; max-width: 1100px; }
+.order-title { font-family: var(--font-head); font-size: clamp(30px, 4vw, 42px); font-weight: 800; color: #e0608a; letter-spacing: .5px; }
+.order-price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px 12px; margin: 4px 0 22px; }
+.order-price b { font-family: var(--font-head); font-size: clamp(38px, 5vw, 54px); font-weight: 800; color: var(--primary-deep); line-height: 1; }
+.order-price s { color: var(--text-soft); font-weight: 700; font-size: 18px; }
+.order-off { padding: 3px 10px; border-radius: 8px; background: #ef4444; color: #fff; font-weight: 800; font-size: 14px; }
+.order-cd { display: inline-block; padding: 16px 18px; border-radius: 22px; background: #fff; border: 1.5px solid #e6edf2; box-shadow: var(--shadow-soft); margin-bottom: 26px; }
+.order-cd .lbl { display: block; font-weight: 800; font-size: 14px; margin-bottom: 8px; }
+.cd-row { display: flex; align-items: center; gap: 8px; }
+.cd-row i { font-style: normal; font-weight: 800; color: var(--text-soft); }
+.cd-box { min-width: 72px; text-align: center; padding: 10px 8px; border-radius: 14px; background: linear-gradient(160deg, #2b3e4f, #16222e); box-shadow: 0 8px 16px -8px rgba(22,34,46,.6); }
+.cd-box b { display: block; font-family: var(--font-head); font-size: 32px; color: #fff; line-height: 1; }
+.cd-box small { font-size: 11px; font-weight: 800; color: rgba(255,255,255,.75); letter-spacing: .5px; }
+.order-img { position: relative; width: min(300px, 100%); aspect-ratio: 1; border-radius: 24px; background: radial-gradient(circle at 50% 40%, #fff, var(--primary-light)); box-shadow: var(--shadow); }
+.order-img img { position: absolute; inset: 18px; width: calc(100% - 36px); height: calc(100% - 36px); object-fit: contain; filter: drop-shadow(0 16px 18px rgba(42,159,179,.3)); }
+.order-card { position: relative; background: #fff; border-radius: 32px; padding: 34px; box-shadow: var(--shadow); }
+.order-card .input { border-radius: 99px; background: #fff; border-color: #dfeef2; }
+.order-card .input:focus { border-color: var(--primary); }
+.pkg-list { display: grid; gap: 10px; }
+.pkg { position: relative; display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; padding: 14px 18px 14px 50px; border-radius: 16px; border: 1.5px solid #e6edf2; background: #fff; cursor: pointer; transition: border-color .2s, background .2s, transform .25s cubic-bezier(.34,1.56,.64,1); }
+.pkg:hover { transform: translateX(4px); }
+.pkg input { position: absolute; opacity: 0; }
+.pkg::before { content: ''; position: absolute; left: 18px; top: 50%; width: 20px; height: 20px; margin-top: -10px; border-radius: 50%; border: 2px solid #9aa8b4; background: #fff; transition: all .2s; }
+.pkg:has(input:checked) { border-color: #ff8fab; background: #fff1f5; }
+.pkg:has(input:checked)::before { border-color: #34495e; background: radial-gradient(circle, #ff6b8a 0 45%, #fff 50%); }
+.pkg:has(input:focus-visible) { box-shadow: 0 0 0 4px rgba(255,143,171,.3); }
+.pkg b { font-weight: 800; }
+.pkg s { color: var(--text-soft); font-size: 13px; font-style: italic; }
+.pkg .ship { padding: 2px 9px; border-radius: 99px; background: #e9fbf1; border: 1px solid #a7e8c3; color: #159a55; font-size: 12px; font-weight: 800; }
+.order-btn { margin-top: 6px; font-size: 20px; padding: 18px; }
 .won-banner { display: none; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 16px; background: var(--yellow-soft); border: 2px dashed #f2c24b; font-weight: 700; margin-bottom: 20px; }
 .won-banner.show { display: flex; }
 .field { margin-bottom: 18px; }
@@ -554,15 +567,6 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; color: var(--
 textarea.input { resize: vertical; min-height: 90px; }
 .err { display: none; color: var(--danger); font-size: 14px; font-weight: 700; margin-top: 6px; }
 .err.show { display: block; }
-.chip-row { display: flex; flex-wrap: wrap; gap: 10px; }
-.chip-opt { position: relative; }
-.chip-opt input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
-.chip-opt span {
-    display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; border-radius: 99px; background: var(--cream);
-    border: 2.5px solid #eee6da; font-weight: 700; font-size: 15px; transition: all .2s;
-}
-.chip-opt input:checked + span { background: var(--primary); border-color: var(--primary); color: var(--white); transform: scale(1.04); }
-.chip-opt input:focus-visible + span { box-shadow: 0 0 0 4px rgba(76,192,211,.3); }
 .consent { font-size: 13px; color: var(--text-soft); text-align: center; margin-top: 14px; }
 .form-success { display: none; text-align: center; padding: 20px 0; }
 .form-success.show { display: block; }
@@ -613,7 +617,7 @@ textarea.input { resize: vertical; min-height: 90px; }
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
     .nav { display: none; }
-    .hero-grid, .wheel-grid, .form-wrap { grid-template-columns: 1fr; }
+    .hero-grid, .wheel-grid, .order-wrap { grid-template-columns: 1fr; }
     .hero { padding-top: 120px; }
     .hero-copy { text-align: center; }
     .hero-desc { margin-left: auto; margin-right: auto; }
@@ -639,6 +643,14 @@ textarea.input { resize: vertical; min-height: 90px; }
     .marquee-track { font-size: 18px; }
     .flip-grid { grid-template-columns: 1fr; }
     .uses-grid { grid-template-columns: 1fr; gap: 40px; }
+    .order-wrap { gap: 28px; }
+    .order-side { text-align: center; }
+    .order-price { justify-content: center; }
+    .order-img { margin: 0 auto; width: 220px; }
+    .order-card { padding: 24px 16px; border-radius: 26px; }
+    .cd-box { min-width: 62px; }
+    .pkg { padding: 12px 14px 12px 44px; font-size: 14.5px; }
+    .pkg::before { left: 14px; }
     .uses-visual { width: min(300px, 78%); }
     .uses-chip { font-size: 14px; padding: 6px 12px 6px 6px; }
     .uses-chip b { width: 24px; height: 24px; font-size: 12px; }
@@ -696,11 +708,9 @@ textarea.input { resize: vertical; min-height: 90px; }
     .tab { flex: 1; padding: 10px 8px; font-size: 14px; }
     .spec li span:not(.e) { min-width: 84px; font-size: 14px; }
     .fact { flex-direction: column; text-align: center; gap: 8px; padding: 20px 18px; }
-    .form-card { padding: 34px 18px 26px; border-radius: 28px; }
     .footer-grid { grid-template-columns: 1fr; }
     .float-btns { display: none; }
     .sticky-bar { display: flex; }
-    .cd-box { min-width: 62px; }
 }
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
@@ -1130,6 +1140,61 @@ textarea.input { resize: vertical; min-height: 90px; }
 
 <!-- ===== REVIEWS ===== -->
 
+<!-- ===== FORM ĐẶT HÀNG ===== -->
+<section class="section form-sec" id="dang-ky">
+    <div class="container order-wrap">
+        <div class="order-side" data-reveal>
+            <h2 class="order-title">ƯU ĐÃI TẶNG MẸ</h2>
+            <div class="order-price"><b id="opPrice">—</b><s id="opOld"></s><span class="order-off" id="opOff" hidden></span></div>
+            <div class="order-cd">
+                <span class="lbl">⏰ Ưu đãi kết thúc sau:</span>
+                <div class="cd-row">
+                    <div class="cd-box"><b id="cdH">00</b><small>GIỜ</small></div><i>:</i>
+                    <div class="cd-box"><b id="cdM">00</b><small>PHÚT</small></div><i>:</i>
+                    <div class="cd-box"><b id="cdS">00</b><small>GIÂY</small></div>
+                </div>
+            </div>
+            <div class="order-img"><img src="img/sua-tam-goi-bon-bon-500ml.webp" alt="Sữa tắm gội Bon Bon 500ml" width="827" height="2000" loading="lazy"></div>
+        </div>
+
+        <div class="order-card" data-reveal>
+            <div id="formContent">
+                <div class="won-banner" id="wonBanner">🎉 <span>Quà của mẹ từ vòng quay: <b id="wonText"></b></span></div>
+                <form id="leadForm" novalidate>
+                    <div class="field">
+                        <label for="fName">Họ tên <em>*</em></label>
+                        <input class="input" id="fName" name="name" type="text" autocomplete="name" placeholder="VD: Nguyễn Thị Lan">
+                        <div class="err" id="eName">Mẹ ơi, cho Bon Bon xin tên nhé!</div>
+                    </div>
+                    <div class="field">
+                        <label for="fPhone">Số điện thoại <em>*</em></label>
+                        <input class="input" id="fPhone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="VD: 0901 234 567">
+                        <div class="err" id="ePhone">Số điện thoại chưa đúng (10 số, bắt đầu bằng 0).</div>
+                    </div>
+                    <div class="field">
+                        <label for="fAddr">Địa chỉ nhận hàng</label>
+                        <input class="input" id="fAddr" name="address" type="text" autocomplete="street-address" placeholder="VD: Số 123, đường ABC, Hà Nội">
+                    </div>
+                    <div class="field">
+                        <span class="lbl">Chọn mua <em>*</em></span>
+                        <div class="pkg-list" id="pkgList"></div>
+                    </div>
+                    <input type="hidden" name="gift" id="hGift">
+                    <input type="hidden" name="source" id="hSource">
+                    <button type="submit" class="btn btn-pink btn-block order-btn" id="submitBtn"><span class="wiggle">🎁</span> ĐẶT HÀNG NGAY!</button>
+                    <p class="consent">🔒 Thông tin của mẹ được bảo mật, Home Care gọi xác nhận trước khi giao hàng.</p>
+                </form>
+            </div>
+            <div class="form-success" id="formSuccess">
+                <span class="big">🥳</span>
+                <h3>Đặt hàng thành công!</h3>
+                <p>Cảm ơn mẹ <b id="sName"></b>. Home Care sẽ gọi số <b id="sPhone"></b> để xác nhận đơn <b id="sPkg"></b> sớm nhất nhé!</p>
+                <a href="#" class="btn btn-primary" data-zalo target="_blank" rel="noopener">💬 Chat Zalo với Home Care</a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ===== FAQ ===== -->
 <section class="section faq" id="hoi-dap">
     <div class="container">
@@ -1148,91 +1213,6 @@ textarea.input { resize: vertical; min-height: 90px; }
     </div>
 </section>
 
-<!-- ===== FORM ===== -->
-<section class="section form-sec" id="dang-ky">
-    <div class="container form-wrap">
-        <div class="form-side" data-reveal>
-            <span class="eyebrow">🎀 Ưu đãi dành riêng cho mẹ</span>
-            <h2>Đăng ký nhận <span class="hl">tư vấn &amp; quà</span> miễn phí</h2>
-            <p class="section-sub">Chỉ mất 20 giây. Chuyên viên Home Care sẽ gọi lại tư vấn cách chăm da phù hợp cho bé.</p>
-            <ul class="gift-list">
-                <li><span class="e">👩‍⚕️</span><div>Tư vấn 1-1 miễn phí<small>Chăm sóc da theo độ tuổi của bé</small></div></li>
-                <li><span class="e">🎁</span><div>Quà tặng kèm hấp dẫn<small>Kèm phần quà từ vòng quay may mắn</small></div></li>
-                <li><span class="e">🚚</span><div>Giao hàng toàn quốc<small>Kiểm tra hàng trước khi thanh toán</small></div></li>
-            </ul>
-            <div class="countdown" id="countdown">
-                <span class="lbl">⏰ Ưu đãi hôm nay kết thúc sau:</span>
-                <div class="cd-box"><b id="cdH">00</b><small>Giờ</small></div>
-                <div class="cd-box"><b id="cdM">00</b><small>Phút</small></div>
-                <div class="cd-box"><b id="cdS">00</b><small>Giây</small></div>
-            </div>
-        </div>
-
-        <div class="form-card" data-reveal>
-            <div id="formContent">
-                <h3>Nhận quà cho bé 🎁</h3>
-                <p class="sub">Điền thông tin, Home Care gọi lại ngay!</p>
-                <div class="won-banner" id="wonBanner">🎉 <span>Quà của mẹ: <b id="wonText"></b></span></div>
-                <form id="leadForm" novalidate>
-                    <div class="field">
-                        <label for="fName">Họ tên mẹ <em>*</em></label>
-                        <input class="input" id="fName" name="name" type="text" autocomplete="name" placeholder="VD: Nguyễn Thu Hà">
-                        <div class="err" id="eName">Mẹ ơi, cho Bon Bon xin tên nhé!</div>
-                    </div>
-                    <div class="field">
-                        <label for="fPhone">Số điện thoại <em>*</em></label>
-                        <input class="input" id="fPhone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="VD: 0901 234 567">
-                        <div class="err" id="ePhone">Số điện thoại chưa đúng (10 số, bắt đầu bằng 0).</div>
-                    </div>
-                    <div class="field">
-                        <span class="lbl">Bé nhà mẹ bao nhiêu tuổi?</span>
-                        <div class="chip-row" id="ageRow">
-                            <label class="chip-opt"><input type="radio" name="baby_age" value="0-6 tháng"><span>👶 0-6 tháng</span></label>
-                            <label class="chip-opt"><input type="radio" name="baby_age" value="6-12 tháng"><span>🍼 6-12 tháng</span></label>
-                            <label class="chip-opt"><input type="radio" name="baby_age" value="1-3 tuổi"><span>🧸 1-3 tuổi</span></label>
-                            <label class="chip-opt"><input type="radio" name="baby_age" value="Trên 3 tuổi"><span>🎒 Trên 3 tuổi</span></label>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <span class="lbl">Mẹ đang quan tâm điều gì? <small style="font-weight:600;color:var(--text-soft)">(chọn nhiều)</small></span>
-                        <div class="chip-row" id="concernRow">
-                            <label class="chip-opt"><input type="checkbox" name="concern" value="Cứt trâu"><span>👶 Cứt trâu</span></label>
-                            <label class="chip-opt"><input type="checkbox" name="concern" value="Rôm sảy"><span>🥵 Rôm sảy</span></label>
-                            <label class="chip-opt"><input type="checkbox" name="concern" value="Da khô"><span>🌵 Da khô</span></label>
-                            <label class="chip-opt"><input type="checkbox" name="concern" value="Da nhạy cảm"><span>🥺 Da nhạy cảm</span></label>
-                            <label class="chip-opt"><input type="checkbox" name="concern" value="Cay mắt khi gội"><span>😭 Cay mắt khi gội</span></label>
-                            <label class="chip-opt"><input type="checkbox" name="concern" value="Tìm sữa tắm 2in1"><span><i class="bb"></i> Tìm loại 2in1</span></label>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label for="fTime">Thời gian thuận tiện để gọi</label>
-                        <select class="input" id="fTime" name="call_time">
-                            <option value="Bất kỳ lúc nào">Bất kỳ lúc nào</option>
-                            <option value="Sáng (8h-11h)">Sáng (8h - 11h)</option>
-                            <option value="Trưa (11h-14h)">Trưa (11h - 14h)</option>
-                            <option value="Chiều (14h-18h)">Chiều (14h - 18h)</option>
-                            <option value="Tối (18h-21h)">Tối (18h - 21h)</option>
-                        </select>
-                    </div>
-                    <div class="field">
-                        <label for="fNote">Mẹ muốn hỏi thêm gì không?</label>
-                        <textarea class="input" id="fNote" name="note" placeholder="VD: Bé hay bị rôm sảy ở lưng..."></textarea>
-                    </div>
-                    <input type="hidden" name="gift" id="hGift">
-                    <input type="hidden" name="source" id="hSource">
-                    <button type="submit" class="btn btn-primary btn-block" id="submitBtn"><span class="wiggle">🎁</span> NHẬN TƯ VẤN &amp; QUÀ NGAY</button>
-                    <p class="consent">🔒 Thông tin của mẹ được bảo mật và chỉ dùng để tư vấn sản phẩm.</p>
-                </form>
-            </div>
-            <div class="form-success" id="formSuccess">
-                <span class="big">🥳</span>
-                <h3>Đăng ký thành công!</h3>
-                <p>Cảm ơn mẹ <b id="sName"></b>. Chuyên viên Home Care sẽ gọi lại số <b id="sPhone"></b> sớm nhất để tư vấn và xác nhận quà cho bé nhé!</p>
-                <a href="#" class="btn btn-primary" data-zalo target="_blank" rel="noopener">💬 Chat Zalo để được tư vấn ngay</a>
-            </div>
-        </div>
-    </div>
-</section>
 </main>
 
 <!-- ===== FOOTER ===== -->
@@ -1265,7 +1245,7 @@ textarea.input { resize: vertical; min-height: 90px; }
 </div>
 <div class="sticky-bar" id="stickyBar">
     <a href="#" class="btn call" data-tel aria-label="Gọi hotline">📞</a>
-    <a href="#dang-ky" class="btn btn-primary go js-scroll"><span class="wiggle">🎁</span> Nhận tư vấn &amp; quà</a>
+    <a href="#dang-ky" class="btn btn-primary go js-scroll"><span class="wiggle">🎁</span> Đặt hàng ngay</a>
 </div>
 <div class="toast" id="toast"></div>
 
@@ -1280,6 +1260,13 @@ const CONFIG = {
     // URL nhận lead: Google Apps Script Web App (ghi vào Google Sheet), webhook Pancake/CRM...
     // Để trống thì form vẫn chạy nhưng chỉ log ra console.
     webhookUrl: '',
+    // Gói bán trong form đặt hàng (giá tính bằng đồng; old = giá gốc, 0 = không hiện)
+    // TODO: điền giá thật cho sữa tắm gội Bon Bon
+    packages: [
+        { label: '1 chai Sữa tắm gội Bon Bon 500ml', price: 0, old: 0, freeship: true },
+        { label: 'Combo 2 chai Sữa tắm gội Bon Bon 500ml', price: 0, old: 0, freeship: true },
+        { label: 'Combo 299K BIGSIZE tắm gội + Kem bôi', price: 299000, old: 455000, freeship: false }
+    ],
     // Phần quà vòng quay (weight = tỉ lệ trúng tương đối)
     gifts: [
         { label: 'Giảm 20%',        color: '#ffb5c8', weight: 2 },
@@ -1485,7 +1472,13 @@ ScrollTrigger.create({
 /* ===== GENERIC REVEAL ===== */
 ScrollTrigger.batch('[data-reveal]', {
     start: 'top 88%',
-    onEnter: batch => gsap.fromTo(batch, { opacity: 0, y: 50, scale: .96 }, { opacity: 1, y: 0, scale: 1, duration: .9, stagger: .12, ease: 'power3.out', overwrite: true }),
+    onEnter: batch => {
+        // Phần tử đã bị cuộn qua (nhảy anchor) thì hiện ngay; phần còn lại xuất hiện so le, tổng thời gian tối đa ~0.6s
+        const passed = batch.filter(el => el.getBoundingClientRect().bottom < 0);
+        const rest = batch.filter(el => !passed.includes(el));
+        if (passed.length) gsap.set(passed, { opacity: 1, y: 0, scale: 1, overwrite: true });
+        if (rest.length) gsap.fromTo(rest, { opacity: 0, y: 50, scale: .96 }, { opacity: 1, y: 0, scale: 1, duration: .9, stagger: Math.min(.12, .6 / rest.length), ease: 'power3.out', overwrite: true });
+    },
     once: true
 });
 // Dự phòng: phần tử nào đã lọt vào màn hình mà vẫn ẩn (cuộn quá nhanh, nhảy anchor) thì hiện luôn
@@ -1852,6 +1845,27 @@ $$('.faq-item').forEach(item => {
 
 /* ===== LEAD FORM ===== */
 (function () {
+    const money = v => v.toLocaleString('vi-VN') + 'đ';
+    const pkgList = $('#pkgList');
+    const firstPriced = Math.max(0, CONFIG.packages.findIndex(p => p.price > 0));
+    pkgList.innerHTML = CONFIG.packages.map((p, i) => `
+        <label class="pkg"><input type="radio" name="package" value="${i}" ${i === firstPriced ? 'checked' : ''}>
+            <b>${p.label}${p.price ? ' ' + money(p.price) : ''}</b>
+            ${p.old ? `<s>(giá gốc ${money(p.old)})</s>` : ''}
+            ${p.freeship ? '<span class="ship">+ FREESHIP</span>' : ''}
+        </label>`).join('');
+    const showPrice = () => {
+        const p = CONFIG.packages[+($('input[name="package"]:checked') || {}).value || 0];
+        $('#opPrice').textContent = p.price ? money(p.price) : 'Giá ưu đãi';
+        $('#opOld').textContent = p.old ? money(p.old) : '';
+        const off = $('#opOff');
+        off.hidden = !(p.price && p.old);
+        if (p.price && p.old) off.textContent = '-' + Math.round((1 - p.price / p.old) * 100) + '%';
+        gsap.fromTo('#opPrice', { scale: .85 }, { scale: 1, duration: .5, ease: 'back.out(3)' });
+    };
+    pkgList.addEventListener('change', showPrice);
+    showPrice();
+
     const params = new URLSearchParams(location.search);
     const source = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'ttclid', 'gclid']
         .filter(k => params.get(k)).map(k => `${k}=${params.get(k)}`).join('&');
@@ -1875,10 +1889,9 @@ $$('.faq-item').forEach(item => {
         const fd = new FormData(form);
         const data = {
             name: name.value.trim(), phone: ph,
-            baby_age: fd.get('baby_age') || '',
-            concern: fd.getAll('concern').join(', '),
-            call_time: fd.get('call_time') || '',
-            note: fd.get('note') || '',
+            address: fd.get('address') || '',
+            package: (CONFIG.packages[+fd.get('package')] || {}).label || '',
+            price: (CONFIG.packages[+fd.get('package')] || {}).price || '',
             gift: fd.get('gift') || '',
             source: fd.get('source') || '',
             page: location.href.split('?')[0],
@@ -1886,7 +1899,7 @@ $$('.faq-item').forEach(item => {
             time: new Date().toLocaleString('vi-VN')
         };
         const btn = $('#submitBtn');
-        btn.disabled = true; btn.innerHTML = '<i class="bb"></i> Đang gửi...';
+        btn.disabled = true; btn.innerHTML = '<i class="bb"></i> Đang gửi đơn...';
         try {
             if (CONFIG.webhookUrl) {
                 await fetch(CONFIG.webhookUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(data) });
@@ -1904,6 +1917,7 @@ $$('.faq-item').forEach(item => {
 
         $('#sName').textContent = data.name;
         $('#sPhone').textContent = data.phone;
+        $('#sPkg').textContent = data.package;
         gsap.to('#formContent', { opacity: 0, y: -20, duration: .3, onComplete: () => {
             $('#formContent').style.display = 'none';
             const s = $('#formSuccess'); s.classList.add('show');

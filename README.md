@@ -45,7 +45,7 @@ File: `sua-tam-goi-bon-bon/index.html`. Đây là trang **Lead Generation dạng
   function doPost(e) {
     const d = JSON.parse(e.postData.contents);
     SpreadsheetApp.getActiveSpreadsheet().getSheets()[0].appendRow([
-      d.time, d.name, d.phone, d.baby_age, d.concern, d.call_time, d.note, d.gift, d.source, d.page
+      d.time, d.name, d.phone, d.address, d.package, d.price, d.gift, d.source, d.page
     ]);
     return ContentService.createTextOutput('ok');
   }
