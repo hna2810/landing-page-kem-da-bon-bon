@@ -8,6 +8,7 @@
     <meta property="og:title" content="Sữa Tắm Gội Bon Bon - Nâng niu làn da bé từ những ngày đầu đời">
     <meta property="og:description" content="Sữa tắm gội 2in1 cho bé: ít bọt dịu êm, mềm mịn da bé. Quay trúng thưởng và nhận tư vấn miễn phí từ Home Care Việt Nam.">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="img/sua-tam-goi-bon-bon-500ml.webp">
     <meta name="theme-color" content="#4cc0d3">
     <link rel="icon" href="https://cdn.hstatic.net/themes/200001066686/1001439050/14/favicon.png" type="image/png">
 
@@ -764,6 +765,25 @@ textarea.input { resize: vertical; min-height: 90px; }
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* ===== NHỊP NỀN CÁC SECTION =====
+   Nền nhạt xen kẽ kem / xanh nhạt / hồng nhạt; 3 dải màu đậm (marquee, vòng quay, đặt hàng) làm điểm nhấn. */
+:root { --bg-cream: #fffaf3; --bg-aqua: #eaf8fb; --bg-pink: #fff0f4; }
+.wish, .ingre, .benefits, .ugc, .stores, .rv { background: var(--bg-cream); }
+.compare-sec, .howto, .pinfo, .faq { background: var(--bg-aqua); }
+.uses, .moms { background: var(--bg-pink); }
+.form-sec { background: radial-gradient(circle at 12% 18%, rgba(255,255,255,.28) 0, transparent 34%), radial-gradient(circle at 90% 85%, rgba(255,214,170,.45) 0, transparent 40%), linear-gradient(135deg, #ff7fa3 0%, #ff9fb8 45%, #ffbfa8 100%); }
+.order-title { color: #fff; text-shadow: 0 4px 0 #d94f7a, 0 10px 24px rgba(160,40,80,.35); }
+.order-price b { text-shadow: 0 6px 20px rgba(185,50,95,.45); }
+.order-off { background: #fff; color: #e0405f; box-shadow: 0 0 0 6px rgba(255,255,255,.35), 0 12px 24px -8px rgba(160,20,60,.5); }
+.cd-box b { color: #e0405f; }
+.order-ribbon { background: linear-gradient(135deg, #4cc0d3, #2a9fb3); box-shadow: 0 12px 24px -10px rgba(42,159,179,.8); }
+.order-btn.btn-pink { background: linear-gradient(135deg, #6fd3e2, #4cc0d3 45%, #2a9fb3); box-shadow: 0 10px 0 -2px var(--primary-deep), 0 18px 40px -18px rgba(42,159,179,.6); animation-name: ctaGlowBlue; }
+@keyframes ctaGlowBlue { 0%, 100% { box-shadow: 0 10px 0 -2px #1d7f90, 0 0 0 0 rgba(76,192,211,.6); } 50% { box-shadow: 0 10px 0 -2px #1d7f90, 0 0 0 14px rgba(76,192,211,0); } }
+@media (max-width: 768px) {
+    .pinfo-docs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .doc-label { white-space: normal; text-align: center; font-size: 12.5px; }
+}
 </style>
 </head>
 <body>
@@ -1007,7 +1027,7 @@ textarea.input { resize: vertical; min-height: 90px; }
         <article class="b-card"><span class="num">03</span><span class="big">⚖️</span><h3>Độ pH cân bằng</h3><p>Nuôi dưỡng màng ẩm tự nhiên, da con mềm mại, không khô ráp sau khi tắm.</p></article>
         <article class="b-card"><span class="num">04</span><span class="big">🌿</span><h3>Làm sạch từ gốc</h3><p>Nhẹ nhàng hỗ trợ làm sạch vết viêm da tiết bã (cứt trâu) và màng ối bám trên da bé.</p></article>
         <article class="b-card"><span class="num">05</span><span class="big">🌰</span><h3>Dầu hạnh nhân &amp; Vitamin E</h3><p>Giàu axit béo tự nhiên, giúp giảm khô rát, bong tróc và củng cố hàng rào bảo vệ da bé.</p></article>
-        <article class="b-card cta-card"><span class="big" style="position:static;font-size:80px">🎁</span><h3>Mẹ muốn thử cho bé?</h3><p>Để lại thông tin, chuyên viên Home Care sẽ tư vấn miễn phí và gửi quà tặng cho mẹ.</p><a href="#dang-ky" class="btn btn-pink js-scroll">Nhận quà ngay</a></article>
+        <article class="b-card cta-card"><span class="big" style="position:static;font-size:80px">🎁</span><h3>Mẹ muốn thử cho bé?</h3><p>Đặt hàng hôm nay để nhận ưu đãi và quà tặng từ vòng quay may mắn.</p><a href="#dang-ky" class="btn btn-pink js-scroll">Đặt hàng ngay</a></article>
     </div>
 </section>
 
@@ -1168,7 +1188,7 @@ textarea.input { resize: vertical; min-height: 90px; }
         <div class="wheel-copy" data-reveal>
             <span class="eyebrow">🎡 Vòng quay may mắn</span>
             <h2 class="section-title">Quay là trúng, <span class="hl">100% có quà!</span></h2>
-            <p class="section-sub">Mỗi mẹ có 1 lượt quay. Phần quà sẽ được giữ cho mẹ khi để lại thông tin nhận tư vấn.</p>
+            <p class="section-sub">Mỗi mẹ có 1 lượt quay. Phần quà được gửi kèm đơn hàng khi mẹ đặt mua bên dưới.</p>
             <ul>
                 <li><span>🎁</span> Quà được giữ trong 24 giờ</li>
                 <li><span>📞</span> Chuyên viên gọi lại xác nhận quà</li>
@@ -1280,8 +1300,8 @@ textarea.input { resize: vertical; min-height: 90px; }
             <div class="faq-item" data-reveal><button class="faq-q">Sữa tắm gội này có làm cay mắt bé không?<span class="pm">+</span></button><div class="faq-a"><p>Không. Bon Bon dùng công thức ít bọt, dịu nhẹ, không gây cay mắt, giúp bé luôn thoải mái, thư giãn khi tắm.</p></div></div>
             <div class="faq-item" data-reveal><button class="faq-q">Có hỗ trợ làm sạch cứt trâu không?<span class="pm">+</span></button><div class="faq-a"><p>Có. Nhờ dầu hạnh nhân và các dưỡng chất, sản phẩm giúp làm mềm và làm sạch nhẹ nhàng các mảng viêm da tiết bã (cứt trâu) và màng ối trên da bé hằng ngày.</p></div></div>
             <div class="faq-item" data-reveal><button class="faq-q">Dùng hằng ngày có bị khô da không?<span class="pm">+</span></button><div class="faq-a"><p>Không. Độ pH cân bằng cùng dầu hạnh nhân và Vitamin E giúp nuôi dưỡng màng ẩm tự nhiên, da bé mềm mại, không khô ráp sau khi tắm.</p></div></div>
-            <div class="faq-item" data-reveal><button class="faq-q">Để lại thông tin có mất phí gì không?<span class="pm">+</span></button><div class="faq-a"><p>Hoàn toàn miễn phí. Chuyên viên Home Care sẽ gọi điện tư vấn và xác nhận quà tặng, mẹ chỉ quyết định mua khi thấy phù hợp.</p></div></div>
-            <div class="faq-item" data-reveal><button class="faq-q">Bao lâu thì được gọi lại?<span class="pm">+</span></button><div class="faq-a"><p>Thông thường trong giờ hành chính, chuyên viên sẽ liên hệ lại sớm nhất có thể. Mẹ có thể chọn khung giờ thuận tiện trong form.</p></div></div>
+            <div class="faq-item" data-reveal><button class="faq-q">Đặt hàng xong thì sao?<span class="pm">+</span></button><div class="faq-a"><p>Home Care sẽ gọi lại số điện thoại mẹ để lại để xác nhận đơn, địa chỉ nhận hàng và quà tặng trước khi giao.</p></div></div>
+            <div class="faq-item" data-reveal><button class="faq-q">Bao lâu thì được gọi lại?<span class="pm">+</span></button><div class="faq-a"><p>Trong giờ hành chính, chuyên viên Home Care sẽ liên hệ lại sớm nhất có thể. Cần gấp, mẹ gọi hotline hoặc nhắn Zalo ở góc màn hình nhé.</p></div></div>
         </div>
     </div>
 </section>
@@ -1305,7 +1325,7 @@ textarea.input { resize: vertical; min-height: 90px; }
             <h4>Khám phá</h4>
             <p><a href="#cong-dung" class="js-scroll">Công dụng 3 trong 1</a></p>
             <p><a href="#vong-quay" class="js-scroll">Vòng quay quà tặng</a></p>
-            <p><a href="#dang-ky" class="js-scroll">Đăng ký tư vấn</a></p>
+            <p><a href="#dang-ky" class="js-scroll">Đặt hàng</a></p>
         </div>
     </div>
     <div class="container footer-bottom">© <span id="year"></span> Home Care Việt Nam. Sản phẩm này không phải là thuốc và không có tác dụng thay thế thuốc chữa bệnh.</div>
