@@ -26,7 +26,7 @@ Landing page tối ưu chuyển đổi cao (High Conversion Rate) dành cho chi�
 
 File: `o-cu-tay-ho/index.html` — trang độc lập (HTML/CSS/JS thuần), dựng từ bài viết "Trung Tâm Ở Cữ Tây Hồ Hạng A: 990K/Ngày".
 
-- **Phong cách**: sang trọng, nghỉ dưỡng — xanh rêu ven hồ, vàng champagne, kem; font Playfair Display + Be Vietnam Pro.
-- **Các phần**: Hero 990K/ngày → số liệu nổi bật → giới thiệu → hành trình 5 sao → không gian (gallery) → liệu trình Mẹ/Bé (tab) → dinh dưỡng 5 bữa → câu chuyện mẹ bỉm → đặc quyền voucher & xe đưa đón → form đăng ký → footer. Có thanh CTA cố định trên mobile.
-- **Thay ảnh thật**: điền URL ảnh vào thuộc tính `data-src` của các khối `.media` (ví dụ `<div class="media" data-src="https://.../phong-suite.jpg">`).
+- **Phong cách**: luxury editorial — xanh rêu ven hồ, vàng champagne, kem; font Cormorant Garamond + Be Vietnam Pro; bộ icon SVG nét mảnh đồng bộ, hình minh họa vẽ riêng cho từng khung ảnh.
+- **Các phần**: topbar ưu đãi → hero 990K/ngày → số liệu → giới thiệu → dải marquee → hành trình 4 bước → không gian (gallery) → liệu trình Mẹ/Bé (tab) → dinh dưỡng → câu chuyện mẹ bỉm → voucher & xe đưa đón → hỏi đáp (FAQ) → form (chọn gói 7/15/20/30 ngày) → footer. Nút gọi nổi (desktop) + thanh CTA cố định (mobile).
+- **Thay ảnh thật**: điền URL ảnh vào `data-src` của các khối `.media` (ví dụ `<div class="media" data-scene="room" data-src="https://.../phong-suite.jpg">`) — ảnh thật sẽ tự thay hình minh họa.
 - **Form**: kiểm tra họ tên, số điện thoại, nhu cầu; gắn API gửi dữ liệu tại dòng `TODO` trong script.
