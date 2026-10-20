@@ -27,6 +27,6 @@ Landing page tối ưu chuyển đổi cao (High Conversion Rate) dành cho chi�
 File: `o-cu-tay-ho/index.html` — trang độc lập (HTML/CSS/JS thuần). Toàn bộ nội dung lấy nguyên văn từ bài viết "Trung Tâm Ở Cữ Tây Hồ Hạng A: 990K/ Ngày Trải Nghiệm Tĩnh Dưỡng Thượng Lưu Cho Mẹ & Bé".
 
 - **Mục tiêu**: khách điền form (mẹ bầu, mẹ sau sinh, người thân). Form đặt ngay đầu trang và lặp lại ở cuối trang; các nút CTA và thanh CTA cố định trên mobile đều dẫn tới form.
-- **Font**: một font duy nhất Be Vietnam Pro, cỡ chữ lớn, tương phản cao.
+- **Font & giao diện**: một font duy nhất Be Vietnam Pro, cỡ chữ lớn, tương phản cao; tông xanh rêu + vàng ánh kim (gradient), viền vàng mảnh, họa tiết phân cách, khung ảnh vòm, form có ruy băng ưu đãi.
 - **Form**: Họ tên, Số điện thoại, 6 lựa chọn đúng như bài viết (dạng nút bấm). Gắn API gửi dữ liệu tại dòng `TODO` trong script.
 - **Thay ảnh thật**: điền URL ảnh vào `data-src` của các khối `.media` (ví dụ `<div class="media" data-scene="room" data-src="https://.../phong-suite.jpg">`) — ảnh thật sẽ tự thay hình minh họa. Chú thích ảnh đã dùng đúng chú thích trong bài.
