@@ -539,7 +539,7 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
 .slider.s-video { --per: 4; --gap: 18px; }
 .slider-track {
     display: flex; gap: var(--gap); overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
-    scrollbar-width: none; padding: 6px 2px 16px; margin: -6px -2px 0;
+    scrollbar-width: none; padding: 10px 14px 40px; margin: -10px -14px -24px; scroll-padding-inline: 14px;
 }
 .slider-track::-webkit-scrollbar { display: none; }
 .slider-track > * { flex: 0 0 calc((100% - var(--gap) * (var(--per) - 1)) / var(--per)); scroll-snap-align: start; min-width: 0; }
@@ -569,6 +569,76 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
     .s-gallery .media { min-height: 240px; }
     .sl-btn { display: none; }
 }
+
+/* ===== HÌNH ẢNH REVIEW ===== */
+.slider.s-photo { --per: 4; --gap: 18px; }
+.pcard {
+    position: relative; display: block; width: 100%; padding: 0; border: 1px solid var(--line); cursor: zoom-in;
+    aspect-ratio: 3 / 4; border-radius: var(--radius); overflow: hidden; background: var(--white);
+    box-shadow: var(--shadow); transition: var(--transition);
+}
+.pcard:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.pcard .media { position: absolute; inset: 0; min-height: 0; border-radius: 0; background-size: cover; background-position: top center; }
+.pcard .media::after { display: none; }
+.pzoom {
+    position: absolute; right: 12px; bottom: 12px; z-index: 2; width: 42px; height: 42px; border-radius: 50%;
+    display: grid; place-items: center; background: var(--gold-grad); color: var(--white); box-shadow: 0 8px 20px rgba(8,55,64,.25);
+}
+.pzoom .icon { width: 20px; height: 20px; stroke-width: 2.2; }
+.vbox.img { width: min(560px, 100%); }
+.vbox.img .vframe { aspect-ratio: auto; max-height: calc(100vh - 100px); background: transparent; }
+.vframe img { display: block; width: 100%; height: auto; max-height: calc(100vh - 100px); object-fit: contain; border-radius: 16px; }
+.vframe .vscene { aspect-ratio: 3 / 4; border-radius: 16px; overflow: hidden; }
+.vframe .vscene svg { width: 100%; height: 100%; }
+
+/* ===== TEXT REVIEW ===== */
+.slider.s-text { --per: 3; --gap: 22px; }
+.tcard {
+    position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 28px;
+    padding: 38px 30px 28px; background: var(--white); border-radius: var(--radius);
+    border: 1px solid var(--line); box-shadow: var(--shadow);
+}
+.tcard::before {
+    content: '“'; position: absolute; top: 6px; right: 24px; font-size: 96px; line-height: 1; font-weight: 900;
+    background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent; opacity: .35;
+}
+.tcard p { font-size: 19px; font-weight: 700; color: var(--forest); line-height: 1.55; padding-right: 44px; }
+.tcard-who { display: flex; align-items: center; gap: 12px; padding-top: 18px; border-top: 1px dashed var(--line); }
+.tcard-who .av { width: 46px; height: 46px; border-radius: 50%; background: var(--gold-grad); color: var(--white); display: grid; place-items: center; flex-shrink: 0; }
+.tcard-who .av .icon { width: 20px; height: 20px; }
+.tcard-who b { display: block; color: var(--forest); font-size: 16px; }
+.tcard-who > span:last-child > span { font-size: 14px; color: var(--text); }
+
+/* ===== FAQ ===== */
+.faq-list { max-width: 860px; margin: 40px auto 0; display: grid; gap: 12px; }
+.faq-item { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-sm); box-shadow: var(--shadow); overflow: hidden; transition: var(--transition); }
+.faq-item.open { border-color: var(--line-gold); }
+.faq-q {
+    width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    padding: 20px 22px; background: none; border: none; cursor: pointer; text-align: left;
+    font-family: inherit; font-size: 18px; font-weight: 800; color: var(--forest); line-height: 1.4;
+}
+.faq-q .pm { position: relative; width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0; background: var(--sage-light); transition: var(--transition); }
+.faq-q .pm::before, .faq-q .pm::after { content: ''; position: absolute; left: 50%; top: 50%; width: 12px; height: 2px; border-radius: 2px; background: var(--forest); transform: translate(-50%, -50%); transition: var(--transition); }
+.faq-q .pm::after { transform: translate(-50%, -50%) rotate(90deg); }
+.faq-item.open .pm { background: var(--gold-grad); }
+.faq-item.open .pm::before, .faq-item.open .pm::after { background: var(--white); }
+.faq-item.open .pm::after { transform: translate(-50%, -50%) rotate(0); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+.faq-a p { padding: 0 22px 20px; font-size: 16.5px; }
+
+@media (max-width: 980px) {
+    .slider.s-photo { --per: 2.5; }
+    .slider.s-text { --per: 1.6; }
+}
+@media (max-width: 640px) {
+    .slider.s-photo { --per: 1.7; --gap: 12px; }
+    .slider.s-text { --per: 1.12; --gap: 14px; }
+    .tcard { padding: 32px 22px 24px; }
+    .tcard p { font-size: 17.5px; }
+    .faq-q { font-size: 16.5px; padding: 16px 16px; }
+    .faq-a p { padding: 0 16px 16px; font-size: 16px; }
+}
 </style>
 </head>
 <body>
@@ -583,6 +653,8 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
     <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"/></symbol>
     <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+    <symbol id="i-zoom" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5M11 8v6M8 11h6"/></symbol>
+    <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11Z"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5Z"/></symbol>
     <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14A8 8 0 1 1 10 4a6.5 6.5 0 0 0 10 10Z"/></symbol>
 </svg>
@@ -719,7 +791,7 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
 <section class="section" id="video">
     <div class="container">
         <div class="center reveal">
-            <h2 class="section-title">Mẹ bỉm nói gì <span>sau khi trải nghiệm?</span></h2>
+            <h2 class="section-title">Video review <span>từ các gia đình</span></h2>
         </div>
 
 
@@ -769,6 +841,101 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
         <div class="vframe"></div>
     </div>
 </div>
+
+<!-- ===== HÌNH ẢNH REVIEW =====
+     Dán link ảnh feedback (ảnh chụp tin nhắn, bình luận, ảnh khách gửi) vào data-src của từng .media.
+     Bấm vào ảnh sẽ phóng to. Thêm ảnh: nhân bản một <button class="pcard">. -->
+<section class="section alt" id="hinh-anh-review">
+    <div class="container">
+        <div class="center reveal">
+            <h2 class="section-title">Hình ảnh review <span>từ mẹ bỉm</span></h2>
+        </div>
+        <div class="slider s-photo">
+            <div class="slider-track">
+                <button type="button" class="pcard"><div class="media" data-scene="chat" data-src=""></div><span class="pzoom"><svg class="icon"><use href="#i-zoom"/></svg></span></button>
+                <button type="button" class="pcard"><div class="media" data-scene="chat" data-src=""></div><span class="pzoom"><svg class="icon"><use href="#i-zoom"/></svg></span></button>
+                <button type="button" class="pcard"><div class="media" data-scene="chat" data-src=""></div><span class="pzoom"><svg class="icon"><use href="#i-zoom"/></svg></span></button>
+                <button type="button" class="pcard"><div class="media" data-scene="chat" data-src=""></div><span class="pzoom"><svg class="icon"><use href="#i-zoom"/></svg></span></button>
+                <button type="button" class="pcard"><div class="media" data-scene="chat" data-src=""></div><span class="pzoom"><svg class="icon"><use href="#i-zoom"/></svg></span></button>
+                <button type="button" class="pcard"><div class="media" data-scene="chat" data-src=""></div><span class="pzoom"><svg class="icon"><use href="#i-zoom"/></svg></span></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== TEXT REVIEW =====
+     Bài viết chưa có lời review riêng của khách, nên các thẻ dùng đúng những cảm nhận bài viết nêu.
+     Khi có review thật: thay nội dung <p> và dòng <b>/<span> trong .tcard-who bằng tên, thông tin khách. -->
+<section class="section" id="text-review">
+    <div class="container">
+        <div class="center reveal">
+            <h2 class="section-title">Mẹ bỉm nói gì <span>sau khi trải nghiệm?</span></h2>
+        </div>
+        <div class="slider s-text">
+            <div class="slider-track">
+                <article class="tcard">
+                    <p>Lần đầu tiên được ngủ một giấc thật sâu sau nhiều đêm trăn trở.</p>
+                    <div class="tcard-who"><span class="av"><svg class="icon"><use href="#i-moon"/></svg></span><span><b>Giấc ngủ của mẹ</b><span>Chia sẻ từ các gia đình đã trải nghiệm</span></span></div>
+                </article>
+                <article class="tcard">
+                    <p>Sự nhẹ nhõm khi cơ thể được nâng niu.</p>
+                    <div class="tcard-who"><span class="av"><svg class="icon"><use href="#i-heart"/></svg></span><span><b>Cơ thể của mẹ</b><span>Chia sẻ từ các gia đình đã trải nghiệm</span></span></div>
+                </article>
+                <article class="tcard">
+                    <p>Nụ cười của mẹ khi sữa về dạt dào.</p>
+                    <div class="tcard-who"><span class="av"><svg class="icon"><use href="#i-drop"/></svg></span><span><b>Nguồn sữa</b><span>Chia sẻ từ các gia đình đã trải nghiệm</span></span></div>
+                </article>
+                <article class="tcard">
+                    <p>Sự an tâm khi em bé được chăm sóc chu đáo từng cữ ăn, giấc ngủ sâu.</p>
+                    <div class="tcard-who"><span class="av"><svg class="icon"><use href="#i-home"/></svg></span><span><b>Em bé</b><span>Chia sẻ từ các gia đình đã trải nghiệm</span></span></div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section alt" id="faq">
+    <div class="container faq-wrap">
+        <div class="center reveal">
+            <h2 class="section-title">Câu hỏi <span>thường gặp</span></h2>
+        </div>
+        <div class="faq-list reveal">
+            <div class="faq-item">
+                <button type="button" class="faq-q">Chi phí ở cữ tại Home Care Luxury là bao nhiêu?<span class="pm"></span></button>
+                <div class="faq-a"><p>990K/ngày ở cữ chuẩn Hoàng gia tại Home Care Luxury, mẹ &amp; bé được chăm sóc toàn diện. Mẹ có thể nhận báo giá gói ở cữ 7, 15, 20 hoặc 30 ngày tại form bên dưới.</p></div>
+            </div>
+            <div class="faq-item">
+                <button type="button" class="faq-q">Đăng ký ở cữ được tặng gì?<span class="pm"></span></button>
+                <div class="faq-a"><p>Tặng ngay voucher 15 buổi chăm sóc bầu + sau sinh tại nhà – trị giá 15.970.000Đ.</p></div>
+            </div>
+            <div class="faq-item">
+                <button type="button" class="faq-q">Trung tâm có xe đưa đón không?<span class="pm"></span></button>
+                <div class="faq-a"><p>Có. Miễn phí đưa đón 2 chiều bằng xe hạng A từ tất cả các khu vực: Yên Phụ, Quảng An, Tứ Liên, Nhật Tân, Xuân La…</p></div>
+            </div>
+            <div class="faq-item">
+                <button type="button" class="faq-q">Phòng ở như thế nào?<span class="pm"></span></button>
+                <div class="faq-a"><p>Không gian 7 tầng phong cách Châu Âu, các căn Suite rộng tới 60m² với tầm nhìn thoáng đãng, đầy đủ tiện nghi và trang thiết bị hiện đại. Tầng thượng là khoảng xanh để mẹ tập Yoga, thưởng trà và cùng bé đón nắng sớm.</p></div>
+            </div>
+            <div class="faq-item">
+                <button type="button" class="faq-q">Mẹ được chăm sóc những gì?<span class="pm"></span></button>
+                <div class="faq-a"><p>Thông tắc tia sữa, chăm sóc vết khâu/vết mổ, massage thư giãn, chăm sóc da mặt, gội đầu dưỡng sinh, xông hơi thảo dược và detox ủ muối hồng Himalaya. Mẹ còn được hướng dẫn tắm, massage bé, vỗ ợ và cho bé bú đúng khớp.</p></div>
+            </div>
+            <div class="faq-item">
+                <button type="button" class="faq-q">Bé được chăm sóc những gì?<span class="pm"></span></button>
+                <div class="faq-a"><p>Bé được thăm khám, massage thư giãn, tắm bằng thảo mộc thuần chay, vệ sinh toàn thân, chăm sóc da ngừa hăm – viêm – chàm, vệ sinh cuống rốn và rèn nếp sinh hoạt EASY để ngủ ngon xuyên đêm.</p></div>
+            </div>
+            <div class="faq-item">
+                <button type="button" class="faq-q">Chế độ ăn của mẹ ra sao?<span class="pm"></span></button>
+                <div class="faq-a"><p>5 bữa mỗi ngày từ nguồn nguyên liệu tự nhiên tươi ngon, thực đơn 30 ngày đa dạng được thiết kế khoa học – gọi nguồn sữa dồi dào mà vẫn giữ vóc dáng thon gọn.</p></div>
+            </div>
+            <div class="faq-item">
+                <button type="button" class="faq-q">Có được tham quan trung tâm trước không?<span class="pm"></span></button>
+                <div class="faq-a"><p>Có, mẹ đăng ký tham quan miễn phí bằng form bên dưới hoặc gọi Hotline 0973 871 376 – 0962 131 515.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- ===== OFFER + FORM ===== -->
 <section class="section offer">
@@ -960,7 +1127,20 @@ const SCENES = {
         <path d="M200 130v-24" stroke="${C.f}" stroke-width="4"/><path d="M200 104c-6-10 0-18 0-18s6 8 0 18Z" fill="${C.g}"/>
         <ellipse cx="200" cy="254" rx="110" ry="10" fill="${C.gl}"/>
         <circle cx="70" cy="170" r="30" fill="${C.gl}"/><path d="M70 200v60" stroke="${C.g}" stroke-width="1.5"/>
-        <circle cx="330" cy="150" r="26" fill="${C.sl}"/><path d="M330 176v84" stroke="${C.g}" stroke-width="1.5"/>`
+        <circle cx="330" cy="150" r="26" fill="${C.sl}"/><path d="M330 176v84" stroke="${C.g}" stroke-width="1.5"/>`,
+    chat: `
+        <rect width="400" height="300" fill="${C.sl}"/>
+        <rect x="120" y="-10" width="160" height="330" rx="22" fill="${C.w}" stroke="${C.gl}" stroke-width="4"/>
+        <rect x="120" y="-10" width="160" height="46" fill="${C.f}"/>
+        <circle cx="146" cy="16" r="10" fill="${C.gl}"/><rect x="164" y="10" width="60" height="8" rx="4" fill="${C.gl}"/>
+        <rect x="134" y="52" width="100" height="26" rx="13" fill="${C.ch}"/>
+        <rect x="134" y="86" width="80" height="26" rx="13" fill="${C.ch}"/>
+        <rect x="170" y="122" width="96" height="40" rx="14" fill="${C.g}"/>
+        <rect x="134" y="172" width="110" height="26" rx="13" fill="${C.ch}"/>
+        <rect x="182" y="208" width="84" height="26" rx="13" fill="${C.g}"/>
+        <path d="M150 252l6 12 13 2-9 9 2 13-12-6-12 6 2-13-9-9 13-2Z" fill="${C.b}"/>
+        <path d="M200 252l6 12 13 2-9 9 2 13-12-6-12 6 2-13-9-9 13-2Z" fill="${C.b}"/>
+        <path d="M250 252l6 12 13 2-9 9 2 13-12-6-12 6 2-13-9-9 13-2Z" fill="${C.b}"/>`
 };
 const SKY = `<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${C.w}"/><stop offset="1" stop-color="${C.sl}"/></linearGradient></defs>`;
 // Các lựa chọn trong form (giữ đúng như bài viết)
@@ -1007,6 +1187,7 @@ document.addEventListener('DOMContentLoaded', () => {
         vmodal.classList.remove('open');
         vmodal.setAttribute('aria-hidden', 'true');
         vframe.innerHTML = '';
+        vbox.classList.remove('img');
         document.body.style.overflow = '';
     };
     document.querySelectorAll('.vcard').forEach(card => {
@@ -1019,6 +1200,7 @@ document.addEventListener('DOMContentLoaded', () => {
             media.classList.add('loaded');
         }
         card.addEventListener('click', () => {
+            vbox.classList.remove('img');
             vbox.classList.toggle('v', card.classList.contains('v'));
             vframe.innerHTML = url ? embedFor(url) : '<div class="vempty">Chưa có video – dán link vào thuộc tính data-video</div>';
             vmodal.classList.add('open');
@@ -1027,6 +1209,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     vmodal.querySelector('.vclose').addEventListener('click', closeVideo);
+
+    // ===== HÌNH ẢNH REVIEW (phóng to) =====
+    document.querySelectorAll('.pcard').forEach(card => {
+        card.addEventListener('click', () => {
+            const media = card.querySelector('.media');
+            const src = (media.dataset.src || '').trim();
+            vbox.classList.remove('v');
+            vbox.classList.add('img');
+            vframe.innerHTML = src
+                ? `<img src="${src}" alt="Hình ảnh review">`
+                : `<div class="vscene">${media.querySelector('svg.scene')?.outerHTML || ''}</div>`;
+            vmodal.classList.add('open');
+            vmodal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    // ===== FAQ =====
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.querySelector('.faq-q').addEventListener('click', () => {
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => {
+                i.classList.remove('open');
+                i.querySelector('.faq-a').style.maxHeight = null;
+            });
+            if (!isOpen) {
+                item.classList.add('open');
+                const a = item.querySelector('.faq-a');
+                a.style.maxHeight = a.scrollHeight + 'px';
+            }
+        });
+    });
     vmodal.addEventListener('click', e => { if (e.target === vmodal) closeVideo(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && vmodal.classList.contains('open')) closeVideo(); });
 
