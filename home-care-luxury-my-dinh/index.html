@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Home Care Luxury Mỹ Đình - Trung Tâm Ở Cữ 5 Sao | Đặt Lịch Tham Quan Miễn Phí</title>
+    <meta name="description" content="Trung tâm chăm sóc mẹ và bé 5 sao Home Care Luxury Mỹ Đình: phòng đến 60m², điều dưỡng 24/7, thực đơn 1-1, spa phục hồi sau sinh, chăm bé theo EASY. Gói ở cữ hạng A chỉ từ 699K.">
+    <meta property="og:title" content="Home Care Luxury Mỹ Đình - Ở Cữ 5 Sao Cho Mẹ Và Bé">
+    <meta property="og:description" content="Mẹ nghỉ dưỡng trọn vẹn, bé được chăm khoa học. Đặt lịch tham quan phòng miễn phí, xe đón trong bán kính 30km.">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Tracking: bỏ comment và điền ID khi chạy quảng cáo -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script> -->
+    <!-- Facebook Pixel: dán mã pixel tại đây -->
+
+<style>
+/* =========================================================
+   DESIGN TOKENS
+   ========================================================= */
+:root {
+    --ivory: #FBF7F1;
+    --cream: #F4ECE1;
+    --sand: #E8DCCB;
+    --forest: #1E3A36;
+    --forest-2: #2B5049;
+    --gold: #B88A4A;
+    --gold-light: #D9B97F;
+    --blush: #EBCFC6;
+    --blush-soft: #F7E8E3;
+    --ink: #2A2623;
+    --muted: #6E655D;
+    --white: #FFFFFF;
+    --danger: #C0483B;
+
+    --radius-sm: 10px;
+    --radius: 18px;
+    --radius-lg: 28px;
+    --shadow-sm: 0 2px 10px rgba(30, 58, 54, .06);
+    --shadow: 0 14px 40px rgba(30, 58, 54, .10);
+    --shadow-lg: 0 30px 70px rgba(30, 58, 54, .18);
+
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+    --container: 1180px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+    font-family: var(--font-sans);
+    color: var(--ink);
+    background: var(--ivory);
+    line-height: 1.65;
+    font-size: 16px;
+    overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: 0; background: none; }
+
+.container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 20px; }
+section { position: relative; }
+.section { padding: 96px 0; }
+
+.eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12.5px; letter-spacing: .22em; text-transform: uppercase;
+    font-weight: 600; color: var(--gold);
+}
+.eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; }
+.title {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: clamp(30px, 4.2vw, 48px);
+    line-height: 1.18;
+    color: var(--forest);
+    margin: 14px 0 18px;
+}
+.title em { font-style: italic; color: var(--gold); }
+.lead { color: var(--muted); font-size: 17px; max-width: 640px; }
+.center { text-align: center; }
+.center .lead { margin: 0 auto; }
+
+/* Buttons */
+.btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 16px 30px; border-radius: 999px;
+    font-weight: 600; font-size: 15.5px; letter-spacing: .01em;
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+    white-space: nowrap;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-gold {
+    background: linear-gradient(135deg, #C99B57 0%, #B0803F 100%);
+    color: var(--white);
+    box-shadow: 0 12px 28px rgba(184, 138, 74, .38);
+}
+.btn-gold:hover { box-shadow: 0 16px 36px rgba(184, 138, 74, .5); }
+.btn-outline { border: 1.5px solid var(--forest); color: var(--forest); }
+.btn-outline:hover { background: var(--forest); color: var(--white); }
+.btn-light { background: var(--white); color: var(--forest); }
+.btn-block { width: 100%; }
+.btn .pulse-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #fff;
+    box-shadow: 0 0 0 0 rgba(255,255,255,.7); animation: pulse 1.8s infinite;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255,255,255,.7); }
+    70% { box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+}
+
+/* Photo slot: thay ảnh thật bằng cách đặt style="--img:url('...')" */
+.photo {
+    position: relative; overflow: hidden; border-radius: var(--radius);
+    background:
+        var(--img, none) center/cover no-repeat,
+        linear-gradient(135deg, var(--sand) 0%, var(--blush) 55%, var(--cream) 100%);
+}
+.photo .photo-label {
+    position: absolute; left: 14px; bottom: 14px;
+    background: rgba(255,255,255,.88); backdrop-filter: blur(6px);
+    color: var(--forest); font-size: 12.5px; font-weight: 600;
+    padding: 6px 12px; border-radius: 999px;
+}
+.photo .photo-icon {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    font-size: 54px; opacity: .55;
+}
+.photo[style*="--img"] .photo-icon { display: none; }
+
+/* =========================================================
+   TOP BAR + HEADER
+   ========================================================= */
+.topbar {
+    background: var(--forest); color: #E9E1D4; font-size: 13.5px;
+    text-align: center; padding: 9px 16px;
+}
+.topbar strong { color: var(--gold-light); }
+
+.header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(251, 247, 241, .92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(184, 138, 74, .15);
+    transition: box-shadow .3s ease;
+}
+.header.scrolled { box-shadow: var(--shadow-sm); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 74px; gap: 20px; }
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo-mark {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--forest); color: var(--gold-light);
+    display: grid; place-items: center;
+    font-family: var(--font-serif); font-size: 20px; font-weight: 700;
+    border: 1.5px solid var(--gold-light);
+}
+.logo-text { line-height: 1.15; }
+.logo-text b { display: block; font-family: var(--font-serif); color: var(--forest); font-size: 19px; }
+.logo-text span { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+.nav { display: flex; gap: 28px; font-size: 14.5px; font-weight: 500; color: var(--forest); }
+.nav a { position: relative; }
+.nav a::after {
+    content: ""; position: absolute; left: 0; bottom: -4px; height: 1.5px; width: 0;
+    background: var(--gold); transition: width .3s ease;
+}
+.nav a:hover::after { width: 100%; }
+.header-cta { display: flex; align-items: center; gap: 14px; }
+.header-phone { display: flex; flex-direction: column; line-height: 1.2; text-align: right; }
+.header-phone small { font-size: 11.5px; color: var(--muted); }
+.header-phone b { color: var(--forest); font-size: 17px; }
+.header .btn { padding: 12px 22px; font-size: 14.5px; }
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero { padding: 56px 0 90px; overflow: hidden; }
+.hero::before {
+    content: ""; position: absolute; right: -180px; top: -120px;
+    width: 620px; height: 620px; border-radius: 50%;
+    background: radial-gradient(circle, var(--blush-soft) 0%, rgba(247,232,227,0) 70%);
+    z-index: -1;
+}
+.hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 56px; align-items: center; }
+.hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--white); border: 1px solid var(--sand);
+    padding: 7px 16px 7px 8px; border-radius: 999px;
+    font-size: 13.5px; font-weight: 500; color: var(--forest);
+    box-shadow: var(--shadow-sm);
+}
+.hero-badge .stars {
+    background: var(--forest); color: var(--gold-light);
+    padding: 3px 10px; border-radius: 999px; font-size: 12px; letter-spacing: 1px;
+}
+.hero h1 {
+    font-family: var(--font-serif); font-weight: 600;
+    font-size: clamp(36px, 5.4vw, 62px); line-height: 1.1;
+    color: var(--forest); margin: 22px 0 20px;
+}
+.hero h1 em { color: var(--gold); font-style: italic; }
+.hero-sub { font-size: 18px; color: var(--muted); max-width: 560px; margin-bottom: 28px; }
+.hero-points { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; margin-bottom: 34px; }
+.hero-points li { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; font-weight: 500; }
+.hero-points li::before {
+    content: "✓"; flex: 0 0 22px; height: 22px; border-radius: 50%;
+    background: var(--forest); color: var(--gold-light);
+    font-size: 12px; display: grid; place-items: center; margin-top: 1px;
+}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero-price {
+    margin-top: 30px; display: flex; align-items: center; gap: 16px;
+    padding-top: 26px; border-top: 1px dashed var(--sand);
+}
+.hero-price .price-tag { font-family: var(--font-serif); font-size: 40px; font-weight: 700; color: var(--forest); line-height: 1; }
+.hero-price .price-tag small { font-size: 16px; font-family: var(--font-sans); color: var(--muted); font-weight: 500; }
+.hero-price p { font-size: 14px; color: var(--muted); line-height: 1.45; }
+.hero-price p b { color: var(--gold); }
+
+.hero-visual { position: relative; }
+.hero-visual .photo.main { aspect-ratio: 4/5; border-radius: 220px 220px var(--radius-lg) var(--radius-lg); box-shadow: var(--shadow-lg); }
+.hero-float {
+    position: absolute; background: var(--white); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 16px 18px; display: flex; gap: 12px; align-items: center;
+}
+.hero-float .ic {
+    width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+    background: var(--blush-soft); font-size: 22px;
+}
+.hero-float b { display: block; color: var(--forest); font-size: 15px; line-height: 1.2; }
+.hero-float span { font-size: 12.5px; color: var(--muted); }
+.hero-float.f1 { left: -34px; top: 18%; }
+.hero-float.f2 { right: -20px; bottom: 14%; }
+
+/* =========================================================
+   MARQUEE
+   ========================================================= */
+.marquee { background: var(--forest); color: var(--ivory); padding: 18px 0; overflow: hidden; }
+.marquee-track { display: flex; gap: 56px; width: max-content; animation: marquee 38s linear infinite; }
+.marquee-track span { display: flex; align-items: center; gap: 14px; font-size: 15px; font-weight: 500; white-space: nowrap; }
+.marquee-track span::after { content: "✦"; color: var(--gold-light); margin-left: 42px; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* =========================================================
+   STATS
+   ========================================================= */
+.stats { margin-top: -1px; padding: 70px 0 0; }
+.stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow);
+    overflow: hidden;
+}
+.stat { padding: 34px 26px; text-align: center; border-right: 1px solid var(--cream); }
+.stat:last-child { border-right: 0; }
+.stat b { display: block; font-family: var(--font-serif); font-size: 44px; color: var(--forest); line-height: 1.1; }
+.stat b sup { font-size: 22px; color: var(--gold); }
+.stat span { font-size: 14.5px; color: var(--muted); }
+
+/* =========================================================
+   PAIN POINTS
+   ========================================================= */
+.pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 10px; }
+.pain-list { display: grid; gap: 14px; }
+.pain-item {
+    display: flex; gap: 16px; align-items: flex-start;
+    background: var(--white); border-radius: var(--radius); padding: 18px 20px;
+    border: 1px solid var(--cream); box-shadow: var(--shadow-sm);
+}
+.pain-item .ic { font-size: 26px; flex: 0 0 auto; }
+.pain-item b { color: var(--forest); display: block; margin-bottom: 2px; }
+.pain-item p { font-size: 14.5px; color: var(--muted); }
+.solution-card {
+    background: var(--forest); color: var(--ivory); border-radius: var(--radius-lg);
+    padding: 44px 40px; position: relative; overflow: hidden;
+}
+.solution-card::after {
+    content: ""; position: absolute; right: -80px; bottom: -80px; width: 240px; height: 240px;
+    border-radius: 50%; border: 1px solid rgba(217, 185, 127, .3);
+}
+.solution-card .eyebrow { color: var(--gold-light); }
+.solution-card h3 { font-family: var(--font-serif); font-size: 32px; line-height: 1.25; margin: 14px 0 16px; font-weight: 600; }
+.solution-card h3 em { color: var(--gold-light); }
+.solution-card p { color: #D7D0C4; margin-bottom: 26px; }
+
+/* =========================================================
+   ROOMS
+   ========================================================= */
+.rooms { background: var(--cream); }
+.rooms-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; margin-bottom: 44px; flex-wrap: wrap; }
+.gallery {
+    display: grid; gap: 16px;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    grid-template-rows: 250px 250px;
+}
+.gallery .photo:first-child { grid-row: span 2; }
+.gallery .photo { cursor: zoom-in; transition: transform .5s ease; }
+.gallery .photo:hover { transform: scale(.985); }
+.room-features { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 36px; }
+.room-feature { background: var(--white); border-radius: var(--radius); padding: 24px 22px; }
+.room-feature .ic { font-size: 28px; margin-bottom: 10px; }
+.room-feature b { display: block; color: var(--forest); font-size: 16px; margin-bottom: 4px; }
+.room-feature p { font-size: 14px; color: var(--muted); }
+
+/* =========================================================
+   CARE (TABS)
+   ========================================================= */
+.tabs { display: inline-flex; background: var(--white); border-radius: 999px; padding: 6px; box-shadow: var(--shadow-sm); margin: 26px 0 44px; }
+.tab-btn {
+    padding: 12px 28px; border-radius: 999px; font-weight: 600; font-size: 15px; color: var(--forest);
+    transition: background .3s ease, color .3s ease;
+}
+.tab-btn.active { background: var(--forest); color: var(--ivory); }
+.tab-panel { display: none; }
+.tab-panel.active { display: grid; grid-template-columns: .9fr 1.1fr; gap: 50px; align-items: center; }
+.tab-panel .photo { aspect-ratio: 5/6; border-radius: var(--radius-lg); }
+.care-list { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.care-item { padding: 22px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--cream); transition: transform .3s ease, box-shadow .3s ease; }
+.care-item:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.care-item .num { font-family: var(--font-serif); font-style: italic; color: var(--gold); font-size: 22px; }
+.care-item b { display: block; color: var(--forest); margin: 4px 0 6px; font-size: 16.5px; }
+.care-item p { font-size: 14.5px; color: var(--muted); }
+
+/* =========================================================
+   DAY TIMELINE
+   ========================================================= */
+.day { background: var(--forest); color: var(--ivory); overflow: hidden; }
+.day .title { color: var(--ivory); }
+.day .lead { color: #CFC7BA; }
+.timeline { position: relative; margin-top: 56px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; }
+.timeline::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 23px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+}
+.tl-item { position: relative; text-align: center; padding-top: 62px; }
+.tl-item::before {
+    content: ""; position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+    width: 18px; height: 18px; border-radius: 50%; background: var(--forest);
+    border: 2px solid var(--gold-light);
+}
+.tl-item time { font-family: var(--font-serif); color: var(--gold-light); font-size: 22px; display: block; }
+.tl-item b { display: block; margin: 6px 0; font-size: 15.5px; }
+.tl-item p { font-size: 13.5px; color: #BFB7AA; }
+
+/* =========================================================
+   SERVICES / PRICING
+   ========================================================= */
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 50px; align-items: stretch; }
+.plan {
+    background: var(--white); border-radius: var(--radius-lg); padding: 36px 30px;
+    border: 1px solid var(--cream); display: flex; flex-direction: column; position: relative;
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+.plan:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+.plan.featured { background: var(--forest); color: var(--ivory); border-color: var(--forest); box-shadow: var(--shadow-lg); }
+.plan .ribbon {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: #fff; font-size: 12px; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase; padding: 6px 16px; border-radius: 999px; white-space: nowrap;
+}
+.plan h3 { font-family: var(--font-serif); font-size: 25px; color: var(--forest); font-weight: 600; }
+.plan.featured h3 { color: var(--gold-light); }
+.plan .plan-desc { font-size: 14.5px; color: var(--muted); margin: 6px 0 20px; min-height: 46px; }
+.plan.featured .plan-desc { color: #CFC7BA; }
+.plan .price { font-family: var(--font-serif); font-size: 42px; color: var(--forest); font-weight: 700; line-height: 1; }
+.plan.featured .price { color: var(--ivory); }
+.plan .price small { font-family: var(--font-sans); font-size: 15px; font-weight: 500; color: var(--muted); }
+.plan.featured .price small { color: #CFC7BA; }
+.plan .price-note { font-size: 13px; color: var(--muted); margin: 6px 0 22px; }
+.plan.featured .price-note { color: #BFB7AA; }
+.plan ul { list-style: none; display: grid; gap: 11px; margin-bottom: 30px; flex: 1; align-content: start; }
+.plan li { display: flex; gap: 10px; font-size: 14.5px; }
+.plan li::before { content: "✦"; color: var(--gold); flex: 0 0 auto; }
+.plan .btn { width: 100%; }
+
+.extra-services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 30px; }
+.extra { background: var(--blush-soft); border-radius: var(--radius); padding: 20px; display: flex; gap: 14px; align-items: center; }
+.extra .ic { font-size: 26px; }
+.extra b { display: block; color: var(--forest); font-size: 15px; line-height: 1.3; }
+.extra span { font-size: 13px; color: var(--muted); }
+
+/* =========================================================
+   OFFER
+   ========================================================= */
+.offer-box {
+    background: linear-gradient(135deg, var(--blush-soft) 0%, var(--cream) 100%);
+    border-radius: var(--radius-lg); padding: 54px; display: grid;
+    grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center;
+    border: 1px solid var(--sand); position: relative; overflow: hidden;
+}
+.offer-list { list-style: none; display: grid; gap: 14px; margin: 22px 0 0; }
+.offer-list li { display: flex; gap: 14px; align-items: center; background: var(--white); padding: 14px 18px; border-radius: var(--radius-sm); font-weight: 500; }
+.offer-list li .gift { font-size: 22px; }
+.offer-list li b { color: var(--gold); }
+.offer-timer { background: var(--forest); color: var(--ivory); border-radius: var(--radius); padding: 32px; text-align: center; }
+.offer-timer p { color: #CFC7BA; font-size: 14.5px; }
+.countdown { display: flex; justify-content: center; gap: 10px; margin: 18px 0 24px; }
+.countdown div { background: rgba(255,255,255,.08); border: 1px solid rgba(217,185,127,.3); border-radius: 12px; width: 70px; padding: 10px 0; }
+.countdown b { display: block; font-family: var(--font-serif); font-size: 30px; color: var(--gold-light); line-height: 1.1; }
+.countdown span { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: #BFB7AA; }
+
+/* =========================================================
+   PROCESS
+   ========================================================= */
+.process { background: var(--cream); }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 50px; counter-reset: step; }
+.step { background: var(--white); border-radius: var(--radius-lg); padding: 32px 26px; position: relative; }
+.step::before {
+    counter-increment: step; content: "0" counter(step);
+    font-family: var(--font-serif); font-size: 46px; font-style: italic; color: var(--blush); line-height: 1;
+}
+.step b { display: block; color: var(--forest); font-size: 17.5px; margin: 14px 0 8px; }
+.step p { font-size: 14.5px; color: var(--muted); }
+
+/* =========================================================
+   TESTIMONIALS
+   ========================================================= */
+.reviews-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 22px; margin-top: 50px; }
+.review { background: var(--white); border-radius: var(--radius-lg); padding: 32px; border: 1px solid var(--cream); display: flex; flex-direction: column; }
+.review.big { background: var(--forest); color: var(--ivory); border-color: var(--forest); }
+.review .quote-mark { font-family: var(--font-serif); font-size: 60px; color: var(--gold); line-height: .6; }
+.review blockquote { font-size: 16px; margin: 14px 0 24px; flex: 1; }
+.review.big blockquote { font-family: var(--font-serif); font-size: 21px; font-style: italic; line-height: 1.5; }
+.review .who { display: flex; gap: 12px; align-items: center; }
+.review .avatar { width: 46px; height: 46px; border-radius: 50%; background: var(--blush); display: grid; place-items: center; font-weight: 700; color: var(--forest); }
+.review .who b { display: block; font-size: 15px; }
+.review .who span { font-size: 13px; color: var(--muted); }
+.review.big .who span { color: #BFB7AA; }
+.review .stars { color: var(--gold); letter-spacing: 2px; font-size: 14px; margin-bottom: 4px; }
+.review.placeholder { border-style: dashed; border-color: var(--sand); }
+
+/* =========================================================
+   FAQ
+   ========================================================= */
+.faq-wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; align-items: start; }
+.faq-item { border-bottom: 1px solid var(--sand); }
+.faq-q {
+    width: 100%; text-align: left; padding: 22px 40px 22px 0; position: relative;
+    font-size: 17px; font-weight: 600; color: var(--forest);
+}
+.faq-q::after {
+    content: "+"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+    font-size: 26px; font-weight: 300; color: var(--gold); transition: transform .3s ease;
+}
+.faq-item.open .faq-q::after { transform: translateY(-50%) rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+.faq-a p { padding: 0 0 22px; color: var(--muted); font-size: 15.5px; }
+
+/* =========================================================
+   FINAL CTA / FORM
+   ========================================================= */
+.cta-final { background: var(--forest); color: var(--ivory); overflow: hidden; }
+.cta-final::before {
+    content: ""; position: absolute; left: -200px; top: -200px; width: 560px; height: 560px; border-radius: 50%;
+    border: 1px solid rgba(217,185,127,.18);
+}
+.cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; }
+.cta-final .title { color: var(--ivory); }
+.cta-final .lead { color: #CFC7BA; }
+.contact-list { list-style: none; display: grid; gap: 16px; margin-top: 30px; }
+.contact-list li { display: flex; gap: 14px; align-items: flex-start; }
+.contact-list .ic { width: 42px; height: 42px; border-radius: 12px; background: rgba(255,255,255,.08); display: grid; place-items: center; flex: 0 0 auto; font-size: 18px; }
+.contact-list b { display: block; color: var(--gold-light); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+.contact-list a:hover { color: var(--gold-light); }
+
+.form-card { background: var(--white); color: var(--ink); border-radius: var(--radius-lg); padding: 38px 34px; box-shadow: var(--shadow-lg); }
+.form-card h3 { font-family: var(--font-serif); font-size: 27px; color: var(--forest); line-height: 1.25; }
+.form-card .form-sub { font-size: 14.5px; color: var(--muted); margin: 6px 0 22px; }
+.field { margin-bottom: 14px; }
+.field label { display: block; font-size: 13.5px; font-weight: 600; color: var(--forest); margin-bottom: 6px; }
+.field input, .field select, .field textarea {
+    width: 100%; padding: 14px 16px; border-radius: 12px; border: 1.5px solid var(--sand);
+    font-family: inherit; font-size: 15.5px; background: var(--ivory); color: var(--ink);
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 4px rgba(184,138,74,.14); }
+.field.error input, .field.error select { border-color: var(--danger); }
+.field .err { display: none; color: var(--danger); font-size: 12.5px; margin-top: 4px; }
+.field.error .err { display: block; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-note { font-size: 12.5px; color: var(--muted); text-align: center; margin-top: 12px; }
+.form-success { display: none; text-align: center; padding: 20px 0; }
+.form-success .ic { font-size: 54px; }
+.form-success h3 { margin: 10px 0 8px; }
+.form-success p { color: var(--muted); }
+form.done { display: none; }
+form.done + .form-success { display: block; }
+
+.map { margin-top: 0; height: 340px; border: 0; width: 100%; display: block; filter: grayscale(.3) sepia(.15); }
+
+/* =========================================================
+   FOOTER + FLOATING
+   ========================================================= */
+.footer { background: #172D2A; color: #A9A196; padding: 40px 0 110px; font-size: 14px; text-align: center; }
+.footer b { color: var(--gold-light); }
+
+.float-actions { position: fixed; right: 18px; bottom: 24px; display: flex; flex-direction: column; gap: 12px; z-index: 60; }
+.float-btn {
+    width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center;
+    font-size: 22px; box-shadow: var(--shadow); color: #fff; transition: transform .25s ease;
+}
+.float-btn:hover { transform: scale(1.08); }
+.float-btn.phone { background: var(--gold); animation: ring 2.4s infinite; }
+.float-btn.zalo { background: #0068FF; font-size: 14px; font-weight: 700; }
+@keyframes ring {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(184,138,74,.55); }
+    50% { box-shadow: 0 0 0 14px rgba(184,138,74,0); }
+}
+
+.sticky-bar {
+    display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 70;
+    background: var(--white); box-shadow: 0 -8px 26px rgba(0,0,0,.08);
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+    gap: 10px;
+}
+.sticky-bar a { flex: 1; padding: 14px 10px; font-size: 14.5px; }
+
+/* Lightbox */
+.lightbox { position: fixed; inset: 0; background: rgba(20, 30, 28, .92); display: none; place-items: center; z-index: 100; padding: 20px; }
+.lightbox.open { display: grid; }
+.lightbox .photo { width: min(960px, 100%); aspect-ratio: 16/10; }
+.lightbox-close { position: absolute; top: 18px; right: 22px; color: #fff; font-size: 34px; }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 1024px) {
+    .nav { display: none; }
+    .hero-grid, .pain-grid, .tab-panel.active, .offer-box, .cta-grid, .faq-wrap { grid-template-columns: 1fr; }
+    .hero-visual { max-width: 520px; margin: 0 auto; width: 100%; }
+    .room-features, .extra-services, .steps { grid-template-columns: 1fr 1fr; }
+    .pricing-grid, .reviews-grid { grid-template-columns: 1fr; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .timeline { grid-template-columns: repeat(3, 1fr); row-gap: 30px; }
+    .timeline::before { display: none; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .stat:nth-child(2) { border-right: 0; }
+    .stat:nth-child(-n+2) { border-bottom: 1px solid var(--cream); }
+}
+@media (max-width: 640px) {
+    .section { padding: 68px 0; }
+    .container { padding: 0 16px; }
+    .header-inner { height: 64px; }
+    .header-phone, .header .btn { display: none; }
+    .logo-mark { width: 38px; height: 38px; font-size: 17px; }
+    .logo-text b { font-size: 17px; }
+    .hero { padding: 34px 0 60px; }
+    .hero-points { grid-template-columns: 1fr; }
+    .hero-actions .btn { flex: 1 1 100%; }
+    .hero-float.f1 { left: -6px; }
+    .hero-float.f2 { right: -6px; }
+    .hero-float { padding: 12px 14px; }
+    .gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 150px 150px; }
+    .gallery .photo:first-child { grid-column: span 2; grid-row: auto; }
+    .room-features, .extra-services, .steps, .care-list { grid-template-columns: 1fr; }
+    .timeline { grid-template-columns: 1fr 1fr; }
+    .stat { padding: 24px 12px; }
+    .stat b { font-size: 34px; }
+    .offer-box { padding: 30px 20px; }
+    .countdown div { width: 62px; }
+    .solution-card { padding: 32px 24px; }
+    .form-card { padding: 28px 20px; }
+    .field-row { grid-template-columns: 1fr; gap: 0; }
+    .tabs { display: flex; width: 100%; }
+    .tab-btn { flex: 1; padding: 12px 10px; }
+    .sticky-bar { display: flex; }
+    .float-actions { bottom: 92px; right: 12px; }
+    .float-btn { width: 48px; height: 48px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== TOP BAR ===================== -->
+<div class="topbar">
+    🎁 Ưu đãi tháng này: <strong>Miễn phí xe đón mẹ & bé</strong> trong bán kính 30km khi đặt phòng trước — <span id="topbarMonth"></span>
+</div>
+
+<!-- ===================== HEADER ===================== -->
+<header class="header" id="header">
+    <div class="container header-inner">
+        <a href="#" class="logo" aria-label="Home Care Luxury">
+            <span class="logo-mark">H</span>
+            <span class="logo-text"><b>Home Care Luxury</b><span>Mom &amp; Baby · Mỹ Đình</span></span>
+        </a>
+        <nav class="nav">
+            <a href="#khong-gian">Không gian</a>
+            <a href="#cham-soc">Chăm sóc</a>
+            <a href="#goi-dich-vu">Gói dịch vụ</a>
+            <a href="#danh-gia">Đánh giá</a>
+            <a href="#faq">Hỏi đáp</a>
+        </nav>
+        <div class="header-cta">
+            <a href="tel:19000387" class="header-phone"><small>Hotline 24/7</small><b>1900 0387</b></a>
+            <a href="#dang-ky" class="btn btn-gold">Đặt lịch tham quan</a>
+        </div>
+    </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <span class="hero-badge"><span class="stars">★★★★★</span> Trung tâm ở cữ cao cấp tại Mỹ Đình, Hà Nội</span>
+            <h1>Ở cữ <em>5 sao</em> — mẹ nghỉ dưỡng trọn vẹn, bé được chăm khoa học</h1>
+            <p class="hero-sub">Tháng đầu sau sinh quyết định sức khỏe lâu dài của cả mẹ và bé. Tại Home Care Luxury Mỹ Đình, điều dưỡng túc trực 24/7 lo trọn từng bữa ăn, giấc ngủ và hướng dẫn mẹ chăm con — để mẹ chỉ việc hồi phục.</p>
+            <ul class="hero-points">
+                <li>Phòng riêng đến 60m², ban công riêng</li>
+                <li>Điều dưỡng túc trực 24/7</li>
+                <li>Thực đơn dinh dưỡng 1 – 1 cho từng mẹ</li>
+                <li>Spa sau sinh &amp; phục hồi vóc dáng</li>
+                <li>Bé tắm thảo dược, massage, vệ sinh rốn</li>
+                <li>Luyện nếp sinh hoạt EASY cho bé</li>
+            </ul>
+            <div class="hero-actions">
+                <a href="#dang-ky" class="btn btn-gold"><span class="pulse-dot"></span> Đặt lịch tham quan miễn phí</a>
+                <a href="tel:0973871376" class="btn btn-outline">📞 Gọi tư vấn ngay</a>
+            </div>
+            <div class="hero-price">
+                <div class="price-tag">699K<small>/ngày</small></div>
+                <p>Gói ở cữ hạng A <b>chỉ từ 699.000đ</b><br>Tặng xe đưa đón trong bán kính 30km</p>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <!-- Thay ảnh: thêm style="--img:url('duong-dan-anh.jpg')" -->
+            <div class="photo main">
+                <span class="photo-icon">🤱</span>
+                <span class="photo-label">Ảnh mẹ &amp; bé tại phòng nghỉ dưỡng</span>
+            </div>
+            <div class="hero-float f1">
+                <span class="ic">👩‍⚕️</span>
+                <div><b>Điều dưỡng 24/7</b><span>Túc trực cả ngày lẫn đêm</span></div>
+            </div>
+            <div class="hero-float f2">
+                <span class="ic">🌿</span>
+                <div><b>Mỗi tầng chỉ 2 phòng</b><span>Yên tĩnh, riêng tư tuyệt đối</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== MARQUEE ===================== -->
+<div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+        <span>Ở cữ trọn gói</span><span>Massage mẹ bầu</span><span>Chăm sóc mẹ sau sinh</span><span>Chăm sóc bé sơ sinh</span><span>Bảo mẫu chăm bé tại gia</span><span>Spa phục hồi sau sinh</span><span>Thực đơn dinh dưỡng 1 – 1</span><span>Luyện nếp EASY</span>
+        <span>Ở cữ trọn gói</span><span>Massage mẹ bầu</span><span>Chăm sóc mẹ sau sinh</span><span>Chăm sóc bé sơ sinh</span><span>Bảo mẫu chăm bé tại gia</span><span>Spa phục hồi sau sinh</span><span>Thực đơn dinh dưỡng 1 – 1</span><span>Luyện nếp EASY</span>
+    </div>
+</div>
+
+<!-- ===================== STATS ===================== -->
+<section class="stats">
+    <div class="container">
+        <div class="stats-grid reveal">
+            <div class="stat"><b>60<sup>m²</sup></b><span>Diện tích phòng lên đến</span></div>
+            <div class="stat"><b>24<sup>/7</sup></b><span>Điều dưỡng túc trực</span></div>
+            <div class="stat"><b>2</b><span>Phòng mỗi tầng — tách biệt tiếng ồn</span></div>
+            <div class="stat"><b>30<sup>km</sup></b><span>Xe đưa đón miễn phí</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== PAIN POINTS ===================== -->
+<section class="section">
+    <div class="container pain-grid">
+        <div>
+            <span class="eyebrow">Mẹ có đang lo lắng?</span>
+            <h2 class="title">Ở cữ tại nhà — <em>không dễ</em> như mẹ nghĩ</h2>
+            <div class="pain-list">
+                <div class="pain-item reveal"><span class="ic">😴</span><div><b>Mất ngủ triền miên</b><p>Bé thức đêm, mẹ vừa đau vết mổ vừa phải tự bế, ru, cho bú suốt đêm.</p></div></div>
+                <div class="pain-item reveal"><span class="ic">🍲</span><div><b>Ăn kiêng sai cách</b><p>Kiêng khem theo kinh nghiệm truyền miệng, thiếu chất khiến mẹ mệt mỏi, ít sữa.</p></div></div>
+                <div class="pain-item reveal"><span class="ic">👶</span><div><b>Lúng túng chăm con</b><p>Tắm bé, vệ sinh rốn, xử lý bé quấy khóc — lần đầu làm mẹ ai cũng bỡ ngỡ.</p></div></div>
+                <div class="pain-item reveal"><span class="ic">💭</span><div><b>Áp lực tâm lý</b><p>Nhà đông người, nhiều ý kiến trái chiều — mẹ dễ căng thẳng, trầm cảm sau sinh.</p></div></div>
+            </div>
+        </div>
+        <div class="solution-card reveal">
+            <span class="eyebrow">Giải pháp Home Care Luxury</span>
+            <h3>Một tháng nghỉ dưỡng <em>đúng nghĩa</em> cho mẹ, một khởi đầu khoa học cho bé</h3>
+            <p>Đội ngũ điều dưỡng chăm sóc mẹ trong từng bữa ăn, giấc ngủ và hướng dẫn mẹ cách chăm bé. Mẹ có thực đơn dinh dưỡng riêng, liệu trình spa phục hồi; bé được chăm từ massage, tắm thảo dược, vệ sinh da &amp; rốn đến luyện nếp sinh hoạt EASY.</p>
+            <a href="#dang-ky" class="btn btn-gold">Nhận tư vấn gói phù hợp →</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== ROOMS ===================== -->
+<section class="section rooms" id="khong-gian">
+    <div class="container">
+        <div class="rooms-head">
+            <div>
+                <span class="eyebrow">Không gian nghỉ dưỡng</span>
+                <h2 class="title">Riêng tư như ở nhà,<br><em>tiện nghi</em> như khách sạn 5 sao</h2>
+            </div>
+            <p class="lead">Tọa lạc tại Ngõ 39 Đình Thôn, Mỹ Đình — mỗi tầng chỉ gồm 2 phòng, có cửa sổ và ban công riêng, tách biệt hoàn toàn với tiếng ồn bên ngoài.</p>
+        </div>
+        <!-- Thay ảnh phòng thực tế: thêm style="--img:url('...')" cho từng .photo -->
+        <div class="gallery">
+            <div class="photo" data-label="Phòng ngủ mẹ &amp; bé"><span class="photo-icon">🛏️</span><span class="photo-label">Phòng ngủ mẹ &amp; bé</span></div>
+            <div class="photo" data-label="Ban công riêng"><span class="photo-icon">🪴</span><span class="photo-label">Ban công riêng</span></div>
+            <div class="photo" data-label="Góc chăm bé"><span class="photo-icon">🍼</span><span class="photo-label">Góc chăm bé</span></div>
+            <div class="photo" data-label="Phòng spa sau sinh"><span class="photo-icon">💆‍♀️</span><span class="photo-label">Phòng spa sau sinh</span></div>
+            <div class="photo" data-label="Bữa ăn dinh dưỡng"><span class="photo-icon">🥗</span><span class="photo-label">Bữa ăn dinh dưỡng</span></div>
+        </div>
+        <div class="room-features">
+            <div class="room-feature reveal"><div class="ic">📐</div><b>Đến 60m²</b><p>Rộng rãi cho mẹ, bé và người thân ở cùng.</p></div>
+            <div class="room-feature reveal"><div class="ic">🔇</div><b>2 phòng / tầng</b><p>Yên tĩnh tuyệt đối, mẹ và bé ngủ ngon.</p></div>
+            <div class="room-feature reveal"><div class="ic">☀️</div><b>Ban công riêng</b><p>Đón nắng sớm, không khí trong lành mỗi ngày.</p></div>
+            <div class="room-feature reveal"><div class="ic">🚗</div><b>Xe đón tận nơi</b><p>Miễn phí đưa đón từ viện về trong bán kính 30km.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== CARE ===================== -->
+<section class="section center" id="cham-soc">
+    <div class="container">
+        <span class="eyebrow">Chăm sóc toàn diện</span>
+        <h2 class="title">Chuẩn y khoa cho bé — <em>trọn vẹn</em> cho mẹ</h2>
+        <p class="lead">Mỗi gia đình được xây dựng lộ trình chăm sóc riêng theo thể trạng của mẹ và bé.</p>
+
+        <div class="tabs" role="tablist">
+            <button class="tab-btn active" data-tab="me" role="tab">🤍 Dành cho mẹ</button>
+            <button class="tab-btn" data-tab="be" role="tab">👶 Dành cho bé</button>
+        </div>
+
+        <div class="tab-panel active" id="tab-me" style="text-align:left">
+            <div class="photo"><span class="photo-icon">💆‍♀️</span><span class="photo-label">Liệu trình phục hồi cho mẹ</span></div>
+            <div class="care-list">
+                <div class="care-item"><span class="num">01</span><b>Điều dưỡng 24/7</b><p>Chăm sóc mẹ trong từng bữa ăn, giấc ngủ; theo dõi vết mổ, sản dịch mỗi ngày.</p></div>
+                <div class="care-item"><span class="num">02</span><b>Thực đơn 1 – 1</b><p>Thiết kế riêng theo thể trạng, hỗ trợ lợi sữa và phục hồi sau sinh.</p></div>
+                <div class="care-item"><span class="num">03</span><b>Spa sau sinh</b><p>Massage, gội đầu dưỡng sinh, xông thảo dược, phục hồi cơ thể và vóc dáng.</p></div>
+                <div class="care-item"><span class="num">04</span><b>Hướng dẫn chăm con</b><p>Mẹ được cầm tay chỉ việc: cho bú đúng khớp ngậm, tắm bé, đọc tín hiệu của con.</p></div>
+            </div>
+        </div>
+
+        <div class="tab-panel" id="tab-be" style="text-align:left">
+            <div class="photo"><span class="photo-icon">🛁</span><span class="photo-label">Chăm sóc bé sơ sinh</span></div>
+            <div class="care-list">
+                <div class="care-item"><span class="num">01</span><b>Massage cho bé</b><p>Giúp bé thư giãn, tiêu hóa tốt, ngủ sâu giấc hơn.</p></div>
+                <div class="care-item"><span class="num">02</span><b>Tắm thảo dược</b><p>Làm sạch dịu nhẹ, phù hợp làn da non nớt của trẻ sơ sinh.</p></div>
+                <div class="care-item"><span class="num">03</span><b>Vệ sinh da &amp; rốn</b><p>Thực hiện đúng quy trình, giúp rốn bé khô nhanh, hạn chế viêm nhiễm.</p></div>
+                <div class="care-item"><span class="num">04</span><b>Luyện nếp EASY</b><p>Thiết lập nếp ăn – chơi – ngủ khoa học, bé tự ngủ, mẹ nhàn hơn khi về nhà.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== A DAY ===================== -->
+<section class="section day center">
+    <div class="container">
+        <span class="eyebrow">Một ngày tại Home Care</span>
+        <h2 class="title">Mẹ chỉ cần <em>nghỉ ngơi</em> — mọi thứ đã có người lo</h2>
+        <p class="lead">Lịch sinh hoạt tham khảo, được điều chỉnh linh hoạt theo nhu cầu của mẹ và bé.</p>
+        <div class="timeline">
+            <div class="tl-item"><time>07:00</time><b>Bữa sáng</b><p>Thực đơn riêng, nóng hổi tận phòng</p></div>
+            <div class="tl-item"><time>09:00</time><b>Tắm bé</b><p>Tắm thảo dược, vệ sinh rốn, massage</p></div>
+            <div class="tl-item"><time>10:30</time><b>Spa cho mẹ</b><p>Gội đầu dưỡng sinh, massage phục hồi</p></div>
+            <div class="tl-item"><time>14:00</time><b>Lớp chăm con</b><p>Hướng dẫn cho bú, đọc tín hiệu bé</p></div>
+            <div class="tl-item"><time>18:00</time><b>Bữa tối</b><p>Bổ dưỡng, lợi sữa, dễ tiêu</p></div>
+            <div class="tl-item"><time>22:00</time><b>Trực đêm</b><p>Điều dưỡng hỗ trợ để mẹ ngủ ngon</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== PRICING ===================== -->
+<section class="section center" id="goi-dich-vu">
+    <div class="container">
+        <span class="eyebrow">Gói dịch vụ</span>
+        <h2 class="title">Chọn hành trình <em>phù hợp</em> với gia đình bạn</h2>
+        <p class="lead">Giá chi tiết thay đổi theo hạng phòng và số ngày lưu trú. Để lại thông tin để nhận báo giá chính xác trong 15 phút.</p>
+
+        <div class="pricing-grid" style="text-align:left">
+            <div class="plan reveal">
+                <h3>Chăm sóc mẹ sau sinh</h3>
+                <p class="plan-desc">Dành cho mẹ muốn phục hồi nhanh, linh hoạt theo buổi hoặc liệu trình.</p>
+                <div class="price">Liên hệ</div>
+                <p class="price-note">Theo liệu trình / số buổi</p>
+                <ul>
+                    <li>Massage, xông thảo dược phục hồi</li>
+                    <li>Gội đầu dưỡng sinh từ 39K</li>
+                    <li>Hỗ trợ thông tắc, kích sữa</li>
+                    <li>Tư vấn dinh dưỡng sau sinh</li>
+                </ul>
+                <a href="#dang-ky" class="btn btn-outline" data-plan="Chăm sóc mẹ sau sinh">Nhận báo giá</a>
+            </div>
+            <div class="plan featured reveal">
+                <span class="ribbon">Được chọn nhiều nhất</span>
+                <h3>Ở cữ trọn gói hạng A</h3>
+                <p class="plan-desc">Mẹ &amp; bé lưu trú tại trung tâm, được chăm sóc trọn vẹn 24/7.</p>
+                <div class="price">699K<small> /ngày</small></div>
+                <p class="price-note">Chỉ từ 699.000đ — tùy hạng phòng</p>
+                <ul>
+                    <li>Phòng riêng đến 60m², ban công riêng</li>
+                    <li>Điều dưỡng túc trực 24/7</li>
+                    <li>Thực đơn dinh dưỡng 1 – 1</li>
+                    <li>Spa phục hồi sau sinh cho mẹ</li>
+                    <li>Chăm bé: massage, tắm thảo dược, rốn, EASY</li>
+                    <li>Miễn phí xe đón trong bán kính 30km</li>
+                </ul>
+                <a href="#dang-ky" class="btn btn-gold" data-plan="Ở cữ trọn gói hạng A">Giữ phòng ngay</a>
+            </div>
+            <div class="plan reveal">
+                <h3>Chăm sóc bé sơ sinh</h3>
+                <p class="plan-desc">Điều dưỡng đến tận nhà chăm bé theo buổi, theo tuần.</p>
+                <div class="price">Liên hệ</div>
+                <p class="price-note">Theo buổi / theo tuần</p>
+                <ul>
+                    <li>Tắm bé, massage, vệ sinh rốn</li>
+                    <li>Hướng dẫn mẹ cho bú đúng cách</li>
+                    <li>Luyện nếp sinh hoạt EASY</li>
+                    <li>Bảo mẫu chăm bé tại gia</li>
+                </ul>
+                <a href="#dang-ky" class="btn btn-outline" data-plan="Chăm sóc bé sơ sinh">Nhận báo giá</a>
+            </div>
+        </div>
+
+        <div class="extra-services" style="text-align:left">
+            <div class="extra"><span class="ic">🤰</span><div><b>Massage mẹ bầu</b><span>Giảm đau lưng, phù nề thai kỳ</span></div></div>
+            <div class="extra"><span class="ic">🧖‍♀️</span><div><b>Gội đầu dưỡng sinh</b><span>Chỉ từ 39K</span></div></div>
+            <div class="extra"><span class="ic">🏡</span><div><b>Bảo mẫu tại gia</b><span>Chăm bé khi mẹ về nhà</span></div></div>
+            <div class="extra"><span class="ic">🚐</span><div><b>Xe đưa đón</b><span>Miễn phí trong bán kính 30km</span></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== OFFER ===================== -->
+<section class="section" style="padding-top:0">
+    <div class="container">
+        <div class="offer-box reveal">
+            <div>
+                <span class="eyebrow">Ưu đãi đặt phòng sớm</span>
+                <h2 class="title">Đặt lịch tham quan hôm nay — <em>nhận ngay</em></h2>
+                <ul class="offer-list">
+                    <li><span class="gift">🎁</span><span>Tham quan phòng thực tế &amp; tư vấn <b>miễn phí</b></span></li>
+                    <li><span class="gift">🚗</span><span><b>Miễn phí</b> xe đón mẹ &amp; bé từ viện về trung tâm (bán kính 30km)</span></li>
+                    <li><span class="gift">📋</span><span>Lộ trình chăm sóc &amp; thực đơn <b>thiết kế riêng</b> cho mẹ</span></li>
+                </ul>
+            </div>
+            <div class="offer-timer">
+                <p>Ưu đãi áp dụng đến hết <b id="offerMonthEnd" style="color:var(--gold-light)"></b></p>
+                <div class="countdown" id="countdown">
+                    <div><b id="cd-d">00</b><span>Ngày</span></div>
+                    <div><b id="cd-h">00</b><span>Giờ</span></div>
+                    <div><b id="cd-m">00</b><span>Phút</span></div>
+                    <div><b id="cd-s">00</b><span>Giây</span></div>
+                </div>
+                <a href="#dang-ky" class="btn btn-gold btn-block">Đăng ký nhận ưu đãi</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== PROCESS ===================== -->
+<section class="section process center">
+    <div class="container">
+        <span class="eyebrow">Quy trình đơn giản</span>
+        <h2 class="title">Chỉ <em>4 bước</em> để mẹ an tâm vượt cạn</h2>
+        <div class="steps" style="text-align:left">
+            <div class="step reveal"><b>Để lại thông tin</b><p>Điền form hoặc gọi hotline. Chuyên viên liên hệ lại trong 15 phút.</p></div>
+            <div class="step reveal"><b>Tham quan &amp; tư vấn</b><p>Mẹ và gia đình đến xem phòng thực tế, được tư vấn gói phù hợp.</p></div>
+            <div class="step reveal"><b>Giữ phòng theo ngày dự sinh</b><p>Chốt hạng phòng, số ngày lưu trú và lộ trình chăm sóc riêng.</p></div>
+            <div class="step reveal"><b>Đón mẹ &amp; bé về nghỉ dưỡng</b><p>Xe đón tận viện, điều dưỡng tiếp nhận và chăm sóc ngay.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== REVIEWS ===================== -->
+<!-- LƯU Ý: Thay các ô review mẫu bằng đánh giá THẬT của khách (có sự đồng ý của khách). -->
+<section class="section center" id="danh-gia">
+    <div class="container">
+        <span class="eyebrow">Mẹ nói gì về Home Care</span>
+        <h2 class="title">Những gia đình đã <em>tin chọn</em></h2>
+        <div class="reviews-grid" style="text-align:left">
+            <div class="review big reveal">
+                <span class="quote-mark">“</span>
+                <blockquote>Mình thích nhất là không gian ở đây, khá yên tĩnh. Các bạn nhân viên còn hướng dẫn mình cách rèn nếp sinh hoạt cho bé.</blockquote>
+                <div class="who"><span class="avatar">M</span><div><div class="stars">★★★★★</div><b>Một mẹ đã ở cữ tại Home Care</b><span>Chia sẻ từ khách hàng</span></div></div>
+            </div>
+            <div class="review placeholder reveal">
+                <span class="quote-mark">“</span>
+                <blockquote>[Dán review thật của khách hàng tại đây — kèm ảnh chụp màn hình tin nhắn/Google review nếu có.]</blockquote>
+                <div class="who"><span class="avatar">?</span><div><div class="stars">★★★★★</div><b>Tên khách hàng</b><span>Thời gian lưu trú</span></div></div>
+            </div>
+            <div class="review placeholder reveal">
+                <span class="quote-mark">“</span>
+                <blockquote>[Dán review thật của khách hàng tại đây — kèm ảnh chụp màn hình tin nhắn/Google review nếu có.]</blockquote>
+                <div class="who"><span class="avatar">?</span><div><div class="stars">★★★★★</div><b>Tên khách hàng</b><span>Thời gian lưu trú</span></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="section" id="faq" style="background:var(--cream)">
+    <div class="container faq-wrap">
+        <div>
+            <span class="eyebrow">Hỏi đáp</span>
+            <h2 class="title">Mẹ còn <em>băn khoăn?</em></h2>
+            <p class="lead">Không tìm thấy câu trả lời? Gọi ngay hotline <a href="tel:19000387" style="color:var(--gold);font-weight:600">1900 0387</a> để được giải đáp.</p>
+            <a href="#dang-ky" class="btn btn-gold" style="margin-top:26px">Đặt lịch tham quan</a>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-q">Gói ở cữ hạng A có giá bao nhiêu?</button>
+                <div class="faq-a"><p>Gói ở cữ hạng A chỉ từ 699.000đ/ngày. Giá cụ thể phụ thuộc hạng phòng và số ngày lưu trú — mẹ để lại thông tin để được báo giá chính xác.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">Nên đặt phòng trước bao lâu?</button>
+                <div class="faq-a"><p>Mẹ nên đặt lịch tham quan và giữ phòng từ tháng thứ 6–7 của thai kỳ, dựa trên ngày dự sinh, để chủ động chọn hạng phòng mong muốn.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">Người thân có được ở cùng mẹ không?</button>
+                <div class="faq-a"><p>Phòng rộng đến 60m², đủ không gian để bố hoặc người thân ở cùng. Mẹ vui lòng trao đổi với chuyên viên để được sắp xếp phù hợp.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">Trung tâm có đón mẹ từ bệnh viện không?</button>
+                <div class="faq-a"><p>Có. Home Care miễn phí xe đưa đón mẹ và bé trong bán kính 30km.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">Mẹ sinh mổ có ở cữ tại trung tâm được không?</button>
+                <div class="faq-a"><p>Được. Điều dưỡng túc trực 24/7 theo dõi vết mổ, hỗ trợ vận động và xây dựng thực đơn riêng giúp mẹ sinh mổ hồi phục an toàn.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">Trung tâm nằm ở đâu?</button>
+                <div class="faq-a"><p>Home Care Luxury Mỹ Đình tại Ngõ 39 Đình Thôn, Mỹ Đình, Nam Từ Liêm, Hà Nội.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="section cta-final" id="dang-ky">
+    <div class="container cta-grid">
+        <div>
+            <span class="eyebrow" style="color:var(--gold-light)">Đặt lịch tham quan</span>
+            <h2 class="title">Dành cho mẹ <em>tháng ở cữ</em> đáng nhớ nhất</h2>
+            <p class="lead">Để lại thông tin, chuyên viên Home Care sẽ gọi lại trong 15 phút để tư vấn và sắp xếp lịch tham quan phòng thực tế.</p>
+            <ul class="contact-list">
+                <li><span class="ic">📍</span><div><b>Địa chỉ</b>Ngõ 39 Đình Thôn, Mỹ Đình, Nam Từ Liêm, Hà Nội</div></li>
+                <li><span class="ic">📞</span><div><b>Hotline</b><a href="tel:19000387">1900 0387</a> · <a href="tel:0973871376">0973.871.376</a> · <a href="tel:0962131515">0962.131.515</a></div></li>
+                <li><span class="ic">🌐</span><div><b>Website</b><a href="https://homecareocu.vn" target="_blank" rel="noopener">homecareocu.vn</a></div></li>
+            </ul>
+        </div>
+        <div class="form-card">
+            <form id="leadForm" novalidate>
+                <h3>Nhận tư vấn &amp; báo giá miễn phí</h3>
+                <p class="form-sub">Thông tin của mẹ được bảo mật tuyệt đối.</p>
+                <div class="field">
+                    <label for="f-name">Họ và tên mẹ *</label>
+                    <input id="f-name" name="name" type="text" placeholder="VD: Nguyễn Thu Hà" autocomplete="name">
+                    <span class="err">Vui lòng nhập họ tên</span>
+                </div>
+                <div class="field">
+                    <label for="f-phone">Số điện thoại / Zalo *</label>
+                    <input id="f-phone" name="phone" type="tel" placeholder="VD: 0912 345 678" autocomplete="tel" inputmode="tel">
+                    <span class="err">Số điện thoại chưa đúng</span>
+                </div>
+                <div class="field-row">
+                    <div class="field">
+                        <label for="f-due">Ngày dự sinh</label>
+                        <input id="f-due" name="due_date" type="date">
+                    </div>
+                    <div class="field">
+                        <label for="f-plan">Gói quan tâm</label>
+                        <select id="f-plan" name="plan">
+                            <option>Ở cữ trọn gói hạng A</option>
+                            <option>Chăm sóc mẹ sau sinh</option>
+                            <option>Chăm sóc bé sơ sinh</option>
+                            <option>Massage mẹ bầu</option>
+                            <option>Bảo mẫu chăm bé tại gia</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="f-note">Ghi chú (không bắt buộc)</label>
+                    <textarea id="f-note" name="note" rows="2" placeholder="VD: Mẹ sinh mổ, muốn ở 30 ngày..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-gold btn-block" id="submitBtn"><span class="pulse-dot"></span> Đặt lịch tham quan miễn phí</button>
+                <p class="form-note">🔒 Chuyên viên gọi lại trong 15 phút (8:00 – 21:00)</p>
+            </form>
+            <div class="form-success">
+                <div class="ic">🌸</div>
+                <h3>Cảm ơn mẹ đã tin tưởng!</h3>
+                <p>Chuyên viên Home Care sẽ liên hệ với mẹ trong ít phút tới. Cần gấp, mẹ gọi <a href="tel:19000387" style="color:var(--gold);font-weight:600">1900 0387</a>.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<iframe class="map" loading="lazy" title="Bản đồ Home Care Luxury Mỹ Đình"
+    src="https://www.google.com/maps?q=Ng%C3%B5%2039%20%C4%90%C3%ACnh%20Th%C3%B4n%2C%20M%E1%BB%B9%20%C4%90%C3%ACnh%2C%20Nam%20T%E1%BB%AB%20Li%C3%AAm%2C%20H%C3%A0%20N%E1%BB%99i&output=embed"></iframe>
+
+<footer class="footer">
+    <div class="container">
+        <p><b>Home Care Luxury Mom &amp; Baby</b> — Trung tâm chăm sóc mẹ và bé sau sinh</p>
+        <p>Ngõ 39 Đình Thôn, Mỹ Đình, Nam Từ Liêm, Hà Nội · Hotline 1900 0387</p>
+        <p style="margin-top:10px;font-size:12.5px">Giá và ưu đãi có thể thay đổi theo thời điểm, vui lòng liên hệ để được báo giá chính xác.</p>
+    </div>
+</footer>
+
+<!-- Floating buttons -->
+<div class="float-actions">
+    <a href="https://zalo.me/0973871376" target="_blank" rel="noopener" class="float-btn zalo" title="Chat Zalo">Zalo</a>
+    <a href="tel:0973871376" class="float-btn phone" title="Gọi ngay">📞</a>
+</div>
+
+<!-- Mobile sticky bar -->
+<div class="sticky-bar">
+    <a href="tel:0973871376" class="btn btn-outline">📞 Gọi ngay</a>
+    <a href="#dang-ky" class="btn btn-gold">Đặt lịch tham quan</a>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="Đóng">×</button>
+    <div class="photo" id="lightboxPhoto"><span class="photo-icon">🖼️</span><span class="photo-label"></span></div>
+</div>
+
+<script>
+/* =========================================================
+   CẤU HÌNH: dán URL Google Apps Script / webhook nhận lead.
+   Để trống thì form chỉ hiển thị thông báo thành công.
+   ========================================================= */
+const FORM_ENDPOINT = '';
+
+/* Header shadow on scroll */
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 10), { passive: true });
+
+/* Tabs */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        const panel = document.getElementById('tab-' + btn.dataset.tab);
+        panel.classList.add('active');
+        if (window.gsap) gsap.from(panel.querySelectorAll('.care-item, .photo'), { y: 24, opacity: 0, duration: .5, stagger: .07, ease: 'power2.out' });
+    });
+});
+
+/* FAQ accordion */
+document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+        const open = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-a').style.maxHeight = null; });
+        if (!open) {
+            item.classList.add('open');
+            const a = item.querySelector('.faq-a');
+            a.style.maxHeight = a.scrollHeight + 'px';
+        }
+    });
+});
+document.querySelector('.faq-item .faq-q').click();
+
+/* Countdown to end of current month (ưu đãi theo tháng) */
+const now = new Date();
+const monthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
+const monthLabel = `ngày ${monthEnd.getDate()}/${monthEnd.getMonth() + 1}/${monthEnd.getFullYear()}`;
+document.getElementById('offerMonthEnd').textContent = monthLabel;
+document.getElementById('topbarMonth').textContent = 'đến hết ' + monthLabel;
+const pad = n => String(n).padStart(2, '0');
+function tick() {
+    const diff = Math.max(0, monthEnd - new Date());
+    document.getElementById('cd-d').textContent = pad(Math.floor(diff / 864e5));
+    document.getElementById('cd-h').textContent = pad(Math.floor(diff / 36e5) % 24);
+    document.getElementById('cd-m').textContent = pad(Math.floor(diff / 6e4) % 60);
+    document.getElementById('cd-s').textContent = pad(Math.floor(diff / 1e3) % 60);
+}
+tick(); setInterval(tick, 1000);
+
+/* Plan buttons preselect the form's package */
+const planSelect = document.getElementById('f-plan');
+document.querySelectorAll('[data-plan]').forEach(btn => {
+    btn.addEventListener('click', () => { planSelect.value = btn.dataset.plan; });
+});
+
+/* Lightbox for gallery */
+const lightbox = document.getElementById('lightbox');
+const lbPhoto = document.getElementById('lightboxPhoto');
+document.querySelectorAll('.gallery .photo').forEach(ph => {
+    ph.addEventListener('click', () => {
+        const img = ph.style.getPropertyValue('--img');
+        lbPhoto.style.cssText = img ? `--img:${img}` : '';
+        lbPhoto.querySelector('.photo-label').textContent = ph.dataset.label;
+        lightbox.classList.add('open');
+    });
+});
+lightbox.addEventListener('click', e => { if (e.target !== lbPhoto) lightbox.classList.remove('open'); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') lightbox.classList.remove('open'); });
+
+/* Lead form */
+const form = document.getElementById('leadForm');
+const phoneRe = /^(0|\+84)(3|5|7|8|9)\d{8}$/;
+form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const name = form.elements['name'].value.trim();
+    const phone = form.elements['phone'].value.replace(/[\s.\-]/g, '');
+    const nameField = form.elements['name'].closest('.field');
+    const phoneField = form.elements['phone'].closest('.field');
+    nameField.classList.toggle('error', name.length < 2);
+    phoneField.classList.toggle('error', !phoneRe.test(phone));
+    if (name.length < 2 || !phoneRe.test(phone)) return;
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true; btn.textContent = 'Đang gửi...';
+    const data = Object.fromEntries(new FormData(form));
+    data.phone = phone;
+    data.source = location.href;
+    data.submitted_at = new Date().toISOString();
+
+    if (FORM_ENDPOINT) {
+        try {
+            await fetch(FORM_ENDPOINT, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
+        } catch (err) { console.warn('Gửi lead thất bại', err); }
+    }
+    // fbq('track', 'Lead');
+    // gtag('event', 'generate_lead');
+    form.classList.add('done');
+});
+['name', 'phone'].forEach(n => form.elements[n].addEventListener('input', () => form.elements[n].closest('.field').classList.remove('error')));
+
+/* GSAP animations (nội dung vẫn hiển thị nếu GSAP không tải được) */
+if (window.gsap && window.ScrollTrigger && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from('.hero-copy > *', { y: 30, opacity: 0, duration: .9, stagger: .1, ease: 'power3.out' });
+    gsap.from('.hero-visual .photo.main', { scale: .92, opacity: 0, duration: 1.2, ease: 'power3.out' });
+    gsap.from('.hero-float', { y: 30, opacity: 0, duration: .8, delay: .6, stagger: .2, ease: 'back.out(1.6)' });
+    gsap.to('.hero-float.f1', { y: -10, duration: 2.4, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.4 });
+    gsap.to('.hero-float.f2', { y: 10, duration: 2.8, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.4 });
+
+    gsap.utils.toArray('.reveal').forEach(el => {
+        gsap.from(el, { y: 40, opacity: 0, duration: .8, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
+    });
+    gsap.from('.gallery .photo', { y: 40, opacity: 0, duration: .8, stagger: .1, ease: 'power2.out', scrollTrigger: { trigger: '.gallery', start: 'top 80%' } });
+    gsap.from('.tl-item', { y: 30, opacity: 0, duration: .6, stagger: .12, ease: 'power2.out', scrollTrigger: { trigger: '.timeline', start: 'top 82%' } });
+    gsap.utils.toArray('.title').forEach(t => {
+        gsap.from(t, { y: 26, opacity: 0, duration: .8, ease: 'power2.out', scrollTrigger: { trigger: t, start: 'top 90%' } });
+    });
+}
+</script>
+</body>
+</html>

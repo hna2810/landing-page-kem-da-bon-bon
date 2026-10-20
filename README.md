@@ -19,3 +19,15 @@ Landing page tối ưu chuyển đổi cao (High Conversion Rate) dành cho chi�
 - HTML5 / CSS3 / Vanilla JavaScript
 - GSAP 3 & ScrollTrigger (CDN)
 - Google Fonts (Quicksand & Nunito)
+
+---
+
+# Landing Page — Home Care Luxury Mỹ Đình (Trung tâm ở cữ 5 sao)
+
+File: `home-care-luxury-my-dinh/index.html` — landing page chuyển đổi cho dịch vụ ở cữ / chăm sóc mẹ và bé sau sinh, chuyển thể từ nội dung trang homecareocu.vn.
+
+- **Phong cách**: luxury — xanh rừng `#1E3A36`, vàng champagne `#B88A4A`, nền ngà, hồng phấn; font Playfair Display + Be Vietnam Pro.
+- **Phễu chuyển đổi**: Hero (USP + giá từ 699K + 2 CTA) → số liệu → nỗi đau ở cữ tại nhà → giải pháp → không gian phòng → chăm sóc Mẹ/Bé (tab) → một ngày tại Home Care → gói dịch vụ → ưu đãi (đếm ngược đến cuối tháng) → quy trình 4 bước → đánh giá → FAQ → form đặt lịch + bản đồ.
+- **Form**: kiểm tra họ tên & SĐT Việt Nam, chọn gói (nút ở thẻ giá tự chọn sẵn gói). Điền `FORM_ENDPOINT` (Google Apps Script/webhook) trong `<script>` để nhận lead; bỏ comment `fbq`/`gtag` để tracking.
+- **Ảnh**: các khung `.photo` đang là placeholder — thêm `style="--img:url('anh.jpg')"` để thay ảnh thật.
+- **Đánh giá**: 2 ô review mẫu cần thay bằng review thật của khách.
