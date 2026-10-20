@@ -533,6 +533,42 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
     .hero-float { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .hero-float { animation: none; } }
+
+/* ===== SLIDER ===== */
+.slider { position: relative; margin-top: 40px; --gap: 22px; --per: 2; }
+.slider.s-video { --per: 4; --gap: 18px; }
+.slider-track {
+    display: flex; gap: var(--gap); overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    scrollbar-width: none; padding: 6px 2px 16px; margin: -6px -2px 0;
+}
+.slider-track::-webkit-scrollbar { display: none; }
+.slider-track > * { flex: 0 0 calc((100% - var(--gap) * (var(--per) - 1)) / var(--per)); scroll-snap-align: start; min-width: 0; }
+.s-gallery .media { min-height: 380px; }
+.sl-btn {
+    position: absolute; top: 50%; z-index: 3; width: 52px; height: 52px; border-radius: 50%; border: none; cursor: pointer;
+    transform: translateY(-60%); display: grid; place-items: center;
+    background: var(--white); color: var(--forest); box-shadow: 0 10px 30px rgba(8,55,64,.18); transition: var(--transition);
+}
+.sl-btn:hover { background: var(--gold-btn); color: var(--white); }
+.sl-btn:disabled { opacity: 0; pointer-events: none; }
+.sl-btn .icon { width: 22px; height: 22px; stroke-width: 2.4; }
+.sl-btn.prev { left: -26px; } .sl-btn.next { right: -26px; }
+.sl-btn.prev .icon { transform: rotate(180deg); }
+.sl-dots { display: flex; justify-content: center; gap: 8px; margin-top: 10px; }
+.sl-dots button { width: 10px; height: 10px; padding: 0; border-radius: 999px; border: none; cursor: pointer; background: #bfe0e6; transition: var(--transition); }
+.sl-dots button.active { width: 28px; background: var(--gold-btn); }
+@media (max-width: 1240px) { .sl-btn.prev { left: 8px; } .sl-btn.next { right: 8px; } }
+@media (max-width: 980px) {
+    .slider.s-gallery { --per: 1.6; }
+    .slider.s-video { --per: 2.5; }
+}
+@media (max-width: 640px) {
+    .slider { --gap: 14px; margin-top: 28px; }
+    .slider.s-gallery { --per: 1.15; }
+    .slider.s-video { --per: 1.6; --gap: 12px; }
+    .s-gallery .media { min-height: 240px; }
+    .sl-btn { display: none; }
+}
 </style>
 </head>
 <body>
