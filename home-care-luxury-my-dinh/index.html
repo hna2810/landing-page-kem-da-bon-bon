@@ -30,8 +30,8 @@
     --ivory: #FBF7F1;
     --cream: #F4ECE1;
     --sand: #E8DCCB;
-    --forest: #1E3A36;
-    --forest-2: #2B5049;
+    --forest: #0D3B24;
+    --forest-2: #1F5C35;
     --gold: #B88A4A;
     --gold-light: #D9B97F;
     --blush: #EBCFC6;
@@ -44,9 +44,9 @@
     --radius-sm: 10px;
     --radius: 18px;
     --radius-lg: 28px;
-    --shadow-sm: 0 2px 10px rgba(30, 58, 54, .06);
-    --shadow: 0 14px 40px rgba(30, 58, 54, .10);
-    --shadow-lg: 0 30px 70px rgba(30, 58, 54, .18);
+    --shadow-sm: 0 2px 10px rgba(13, 59, 36, .06);
+    --shadow: 0 14px 40px rgba(13, 59, 36, .10);
+    --shadow-lg: 0 30px 70px rgba(13, 59, 36, .18);
 
     --font-serif: 'Playfair Display', Georgia, serif;
     --font-sans: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
@@ -437,6 +437,36 @@ section { position: relative; }
 .review.placeholder { border-style: dashed; border-color: var(--sand); }
 
 /* =========================================================
+   VIDEO REVIEWS
+   ========================================================= */
+.videos { background: var(--forest); }
+.videos .title { color: var(--ivory); }
+.videos .lead { color: #CFD8CF; }
+.video-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 46px; }
+.video {
+    position: relative; aspect-ratio: 4/5; border-radius: var(--radius); overflow: hidden;
+    border: 1px solid rgba(217,185,127,.35); cursor: pointer; text-align: left;
+}
+.video .photo { position: absolute; inset: 0; border-radius: 0; }
+.video .photo-icon { display: none; }
+.video::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(2,40,24,0) 45%, rgba(2,40,24,.9) 100%);
+}
+.video .play {
+    position: absolute; left: 50%; top: 42%; transform: translate(-50%, -50%); z-index: 2;
+    width: 64px; height: 64px; border-radius: 50%; background: var(--gold); color: #fff;
+    display: grid; place-items: center; font-size: 22px; padding-left: 4px;
+    box-shadow: 0 0 0 10px rgba(184,138,74,.25); transition: transform .3s ease;
+}
+.video:hover .play { transform: translate(-50%, -50%) scale(1.1); }
+.video .cap { position: absolute; left: 16px; right: 16px; bottom: 16px; z-index: 2; color: #fff; }
+.video .cap b { display: block; font-family: var(--font-serif); font-size: 19px; color: var(--gold-light); line-height: 1.25; }
+.video .cap span { font-size: 13px; color: #DCE3DC; }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; z-index: 3; }
+@media (max-width: 1024px) { .video-grid { grid-template-columns: 1fr 1fr; } }
+
+/* =========================================================
    FAQ
    ========================================================= */
 .faq-wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; align-items: start; }
@@ -498,7 +528,7 @@ form.done + .form-success { display: block; }
 /* =========================================================
    FOOTER + FLOATING
    ========================================================= */
-.footer { background: #172D2A; color: #A9A196; padding: 40px 0 110px; font-size: 14px; text-align: center; }
+.footer { background: #022818; color: #A9A196; padding: 40px 0 110px; font-size: 14px; text-align: center; }
 .footer b { color: var(--gold-light); }
 
 .float-actions { position: fixed; right: 18px; bottom: 24px; display: flex; flex-direction: column; gap: 12px; z-index: 60; }
@@ -523,7 +553,7 @@ form.done + .form-success { display: block; }
 .sticky-bar a { flex: 1; padding: 14px 10px; font-size: 14.5px; }
 
 /* Lightbox */
-.lightbox { position: fixed; inset: 0; background: rgba(20, 30, 28, .92); display: none; place-items: center; z-index: 100; padding: 20px; }
+.lightbox { position: fixed; inset: 0; background: rgba(2, 30, 18, .92); display: none; place-items: center; z-index: 100; padding: 20px; }
 .lightbox.open { display: grid; }
 .lightbox .photo { width: min(960px, 100%); aspect-ratio: 16/10; }
 .lightbox-close { position: absolute; top: 18px; right: 22px; color: #fff; font-size: 34px; }
@@ -597,6 +627,7 @@ form.done + .form-success { display: block; }
             <a href="#khong-gian">Không gian</a>
             <a href="#cham-soc">Chăm sóc</a>
             <a href="#goi-dich-vu">Gói dịch vụ</a>
+            <a href="#video">Video</a>
             <a href="#danh-gia">Đánh giá</a>
             <a href="#faq">Hỏi đáp</a>
         </nav>
@@ -871,6 +902,23 @@ form.done + .form-success { display: block; }
     </div>
 </section>
 
+<!-- ===================== VIDEO REVIEWS ===================== -->
+<!-- Gắn video: điền ID YouTube vào data-yt (VD: data-yt="dQw4w9WgXcQ"), thêm ảnh bìa bằng style="--img:url('...')" cho .photo -->
+<section class="section videos center" id="video">
+    <div class="container">
+        <span class="eyebrow" style="color:var(--gold-light)">Câu chuyện thật</span>
+        <h2 class="title">Lắng nghe cảm nhận của <em>các gia đình</em> đã ở cữ tại Home Care</h2>
+        <p class="lead">Những hành trình ở cữ được ghi lại bởi chính các gia đình tại Home Care Luxury.</p>
+        <div class="video-grid">
+            <button class="video" data-yt=""><span class="photo"><span class="photo-icon">👶</span></span><span class="play">▶</span><span class="cap"><b>Bé Mochi ngủ ngoan</b><span>Nhờ luyện nếp EASY tại Home Care</span></span></button>
+            <button class="video" data-yt=""><span class="photo"><span class="photo-icon">🤱</span></span><span class="play">▶</span><span class="cap"><b>1 tháng ở cữ</b><span>Hành trình trọn vẹn của mẹ &amp; bé</span></span></button>
+            <button class="video" data-yt=""><span class="photo"><span class="photo-icon">🌿</span></span><span class="play">▶</span><span class="cap"><b>20 ngày ở cữ</b><span>Chia sẻ từ gia đình khách hàng</span></span></button>
+            <button class="video" data-yt=""><span class="photo"><span class="photo-icon">⭐</span></span><span class="play">▶</span><span class="cap"><b>Review 20 ngày ở cữ</b><span>Cảm nhận của cả gia đình</span></span></button>
+        </div>
+        <a href="#dang-ky" class="btn btn-gold" style="margin-top:40px">Đặt lịch tham quan như các gia đình này</a>
+    </div>
+</section>
+
 <!-- ===================== REVIEWS ===================== -->
 <!-- LƯU Ý: Thay các ô review mẫu bằng đánh giá THẬT của khách (có sự đồng ý của khách). -->
 <section class="section center" id="danh-gia">
@@ -1096,6 +1144,16 @@ document.querySelectorAll('.gallery .photo').forEach(ph => {
 lightbox.addEventListener('click', e => { if (e.target !== lbPhoto) lightbox.classList.remove('open'); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') lightbox.classList.remove('open'); });
 
+/* Video reviews: click để tải YouTube (chỉ khi đã điền data-yt) */
+document.querySelectorAll('.video').forEach(v => {
+    v.addEventListener('click', () => {
+        const id = v.dataset.yt;
+        if (!id) { location.hash = '#dang-ky'; return; }
+        if (v.querySelector('iframe')) return;
+        v.insertAdjacentHTML('beforeend', `<iframe src="https://www.youtube.com/embed/${encodeURIComponent(id)}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen title="Video review"></iframe>`);
+    });
+});
+
 /* Lead form */
 const form = document.getElementById('leadForm');
 const phoneRe = /^(0|\+84)(3|5|7|8|9)\d{8}$/;
@@ -1140,6 +1198,7 @@ if (window.gsap && window.ScrollTrigger && !matchMedia('(prefers-reduced-motion:
         gsap.from(el, { y: 40, opacity: 0, duration: .8, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
     });
     gsap.from('.gallery .photo', { y: 40, opacity: 0, duration: .8, stagger: .1, ease: 'power2.out', scrollTrigger: { trigger: '.gallery', start: 'top 80%' } });
+    gsap.from('.video', { y: 40, opacity: 0, duration: .7, stagger: .12, ease: 'power2.out', scrollTrigger: { trigger: '.video-grid', start: 'top 82%' } });
     gsap.from('.tl-item', { y: 30, opacity: 0, duration: .6, stagger: .12, ease: 'power2.out', scrollTrigger: { trigger: '.timeline', start: 'top 82%' } });
     gsap.utils.toArray('.title').forEach(t => {
         gsap.from(t, { y: 26, opacity: 0, duration: .8, ease: 'power2.out', scrollTrigger: { trigger: t, start: 'top 90%' } });
