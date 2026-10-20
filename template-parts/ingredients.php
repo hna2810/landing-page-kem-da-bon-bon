@@ -49,7 +49,7 @@ $default_ingrs = array(
                         <span class="ingr-icon">🎁</span>
                         <div class="ingr-cta-text">
                             <b>FREESHIP TOÀN QUỐC</b>
-                            <p>Ưu đãi chỉ từ <strong class="js-price"><?php echo $price; ?></strong> — Mua ngay ➔</p>
+                            <p>Ưu đãi <strong class="js-price"><?php echo $price; ?></strong> — Mua ngay ➔</p>
                         </div>
                     </a>
                 </div>
