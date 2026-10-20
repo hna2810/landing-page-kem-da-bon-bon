@@ -207,7 +207,7 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
     background: var(--gold-grad); color: var(--white); font-weight: 700; font-size: 14px;
     padding: 9px 22px; border-radius: 999px; box-shadow: 0 10px 24px rgba(164,122,54,.4);
 }
-.form-card h2 { font-size: 22px; line-height: 1.35; font-weight: 800; color: var(--forest); text-align: center; }
+.form-card h2 { font-size: 22px; line-height: 1.35; font-weight: 800; color: var(--forest); text-align: center; margin-bottom: 22px; }
 .form-card .sub { text-align: center; font-size: 15px; margin: 8px 0 22px; }
 .form-card form, .form-card .form-success { position: relative; }
 .form-group { margin-bottom: 16px; }
@@ -383,6 +383,54 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
     .offer { padding-bottom: 150px; }
     .sticky-bar { display: flex; }
 }
+
+/* ===== SHORT-CONTENT COMPONENTS ===== */
+.chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.chips span {
+    padding: 8px 16px; border-radius: 999px; font-size: 15px; font-weight: 700;
+    background: rgba(255,255,255,.08); border: 1px solid rgba(236,217,180,.3); color: var(--white);
+}
+.points { display: grid; gap: 14px; margin-top: 8px; }
+.point {
+    display: flex; align-items: center; gap: 16px; padding: 16px 20px;
+    background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-sm);
+    font-size: 18px; font-weight: 700; color: var(--forest); box-shadow: var(--shadow);
+}
+.point .ic {
+    width: 50px; height: 50px; border-radius: 50%; background: var(--gold-grad); color: var(--white);
+    display: grid; place-items: center; flex-shrink: 0;
+}
+.point .ic b { font-size: 20px; font-weight: 900; }
+.gallery3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 44px; }
+.gallery3 .media { min-height: 300px; }
+.gallery3 figcaption { font-style: normal; font-weight: 700; color: var(--forest); font-size: 16px; }
+.care-card > .media { min-height: 220px; margin: -38px -32px 26px; border-radius: 0; }
+.care-card > .media::after { display: none; }
+.care-card .checks { margin-bottom: 0; }
+.story .media { min-height: 220px; }
+.story-tag {
+    position: absolute; top: 14px; left: 14px; z-index: 1; padding: 6px 14px; border-radius: 999px;
+    background: var(--gold-grad); color: var(--white); font-size: 14px; font-weight: 800;
+}
+.story p { text-align: center; font-size: 18px; }
+.story p::before { margin: 0 auto 12px; }
+.stories-grid .story { width: calc((100% - 96px) / 5); }
+@media (max-width: 980px) {
+    .gallery3 { grid-template-columns: 1fr 1fr; }
+    .gallery3 figure:last-child { grid-column: 1 / -1; }
+    .stories-grid .story { width: calc((100% - 48px) / 3); }
+}
+@media (max-width: 640px) {
+    .gallery3 { grid-template-columns: 1fr; gap: 18px; }
+    .gallery3 .media { min-height: 220px; }
+    .care-card > .media { margin: -30px -18px 22px; }
+    .stories-grid { gap: 12px; }
+    .stories-grid .story { width: calc((100% - 12px) / 2); }
+    .story .media { min-height: 150px; }
+    .story p { font-size: 16px; padding: 14px 10px 18px; }
+    .point { font-size: 16.5px; padding: 14px 16px; }
+    .point .ic { width: 44px; height: 44px; }
+}
 </style>
 </head>
 <body>
@@ -395,6 +443,7 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
     <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v8h14v-8M12 8v12M12 8c-2-4-6-3-5-1s5 1 5 1Zm0 0c2-4 6-3 5-1s-5 1-5 1Z"/></symbol>
     <symbol id="i-crown" viewBox="0 0 24 24"><path d="M4 18 3 7l5 4 4-6 4 6 5-4-1 11Z"/><path d="M4 21h16"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></symbol>
     <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14A8 8 0 1 1 10 4a6.5 6.5 0 0 0 10 10Z"/></symbol>
 </svg>
 
@@ -405,18 +454,19 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
         <div>
             <span class="hero-badge">Trung tâm ở cữ Tây Hồ Hạng A</span>
             <h1>Trung Tâm Ở Cữ Tây Hồ Hạng A: <span class="price">990K/ Ngày</span>Trải Nghiệm Tĩnh Dưỡng Thượng Lưu Cho Mẹ &amp; Bé</h1>
-            <p class="hero-lead">Trung tâm ở cữ cao cấp Home Care Luxury mang đến trải nghiệm ở cữ thảnh thơi trong không gian hạng A, hệ sinh thái đa tầng, điều dưỡng chăm sóc 24/7 để mẹ sớm hồi phục; bé ti khỏe, ngủ ngoan và vào nếp EASY khoa học.</p>
+            <div class="chips">
+                <span>Không gian hạng A</span><span>Điều dưỡng 24/7</span><span>Nếp EASY khoa học</span>
+            </div>
             <ul class="hero-offers">
-                <li><span class="ic"><svg class="icon"><use href="#i-crown"/></svg></span><span><b>990K/NGÀY</b> ở cữ chuẩn Hoàng gia tại Home Care Luxury, mẹ &amp; bé được chăm sóc toàn diện</span></li>
-                <li><span class="ic"><svg class="icon"><use href="#i-gift"/></svg></span><span><b>TẶNG NGAY VOUCHER</b> 15 buổi chăm sóc bầu + sau sinh tại nhà – trị giá <b>15.970.000Đ</b></span></li>
-                <li><span class="ic"><svg class="icon"><use href="#i-car"/></svg></span><span><b>Miễn phí đưa đón 2 chiều</b> bằng xe hạng A từ tất cả các khu vực: Yên Phụ, Quảng An, Tứ Liên, Nhật Tân, Xuân La…</span></li>
+                <li><span class="ic"><svg class="icon"><use href="#i-crown"/></svg></span><span><b>990K/NGÀY</b> ở cữ chuẩn Hoàng gia</span></li>
+                <li><span class="ic"><svg class="icon"><use href="#i-gift"/></svg></span><span><b>Tặng voucher 15.970.000Đ</b> – 15 buổi chăm sóc bầu + sau sinh tại nhà</span></li>
+                <li><span class="ic"><svg class="icon"><use href="#i-car"/></svg></span><span><b>Miễn phí xe hạng A</b> đưa đón 2 chiều</span></li>
             </ul>
         </div>
         <div class="form-card" id="dang-ky">
             <div class="form-ribbon">Tặng ngay voucher trị giá 15.970.000Đ</div>
             <form class="lead-form" novalidate>
                 <h2>NHẬN BÁO GIÁ &amp; ĐẶT LỊCH THAM QUAN MIỄN PHÍ</h2>
-                <p class="sub">Để lại thông tin để được Home Care tư vấn liệu trình phù hợp và đặt lịch tham quan trung tâm miễn phí.</p>
                 <div class="form-group">
                     <label for="name1">Họ và tên <em>*</em></label>
                     <input type="text" id="name1" name="name" class="form-input" placeholder="Nhập họ và tên" autocomplete="name">
@@ -438,7 +488,7 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
             <div class="form-success">
                 <div class="ic"><svg class="icon"><use href="#i-check"/></svg></div>
                 <h3>Đăng ký thành công!</h3>
-                <p>Home Care sẽ liên hệ để tư vấn liệu trình phù hợp và đặt lịch tham quan trung tâm. Hotline: <a href="tel:0973871376"><b>0973 871 376</b></a> – <a href="tel:0962131515"><b>0962 131 515</b></a></p>
+                <p>Home Care sẽ liên hệ tư vấn và đặt lịch tham quan cho mẹ.</p>
             </div>
         </div>
     </div>
@@ -448,9 +498,9 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
 <div class="stats">
     <div class="container stats-grid">
         <div class="stat"><b>7 tầng</b><span>Phong cách Châu Âu</span></div>
-        <div class="stat"><b>60m²</b><span>Căn Suite rộng tới 60m²</span></div>
+        <div class="stat"><b>60m²</b><span>Căn Suite</span></div>
         <div class="stat"><b>24/7</b><span>Điều dưỡng chăm sóc</span></div>
-        <div class="stat"><b>5 bữa</b><span>Mỗi ngày · Thực đơn 30 ngày</span></div>
+        <div class="stat"><b>5 bữa</b><span>Mỗi ngày</span></div>
     </div>
 </div>
 
@@ -459,9 +509,12 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
     <div class="container split">
         <div class="reveal">
             <h2 class="section-title">Home Care Luxury – <span>Định nghĩa lại trải nghiệm ở cữ hiện đại</span></h2>
-            <p class="lead">Tại Home Care Luxury, ở cữ không đơn thuần là khoảng thời gian để mẹ nghỉ ngơi sau sinh, mà còn là dịp để mẹ được chăm sóc, phục hồi và tận hưởng những ngày đầu bên con một cách trọn vẹn hơn. Từ không gian tĩnh dưỡng đến các dịch vụ chăm sóc chuyên sâu, mọi trải nghiệm đều được thiết kế để mẹ có thêm thời gian thảnh thơi, lấy lại năng lượng và an tâm tận hưởng hành trình làm mẹ.</p>
-            <p class="lead">Giữa nhịp sống hiện đại, khi các gia đình ngày càng quan tâm đến sức khỏe và chất lượng cuộc sống, mô hình ở cữ tại trung tâm Home Care Luxury mang đến một lựa chọn mới: mẹ được chăm sóc chu đáo, bé được đồng hành sát sao, còn gia đình có thêm sự an tâm trong những ngày đầu đầy bỡ ngỡ.</p>
-            <p class="highlight">Bởi sau tất cả, những ngày đầu làm mẹ cũng là những ngày mẹ cần được yêu thương, được thấu hiểu, sẻ chia – để khi trở về nhà, mẹ có thể mang theo không chỉ một cơ thể khỏe khoắn hơn, mà còn thật nhiều năng lượng và những kỷ niệm dịu dàng bên con.</p>
+            <div class="points">
+                <div class="point"><span class="ic"><svg class="icon"><use href="#i-heart"/></svg></span>Mẹ được chăm sóc chu đáo</div>
+                <div class="point"><span class="ic"><svg class="icon"><use href="#i-moon"/></svg></span>Bé được đồng hành sát sao</div>
+                <div class="point"><span class="ic"><svg class="icon"><use href="#i-home"/></svg></span>Gia đình có thêm sự an tâm</div>
+            </div>
+            <p class="highlight">Những ngày đầu làm mẹ cũng là những ngày mẹ cần được yêu thương, được thấu hiểu, sẻ chia.</p>
         </div>
         <div class="frame reveal"><div class="media tall arch" data-scene="mother" data-src=""></div></div>
     </div>
@@ -471,27 +524,15 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
 <section class="section alt">
     <div class="container">
         <div class="center reveal">
-            <h2 class="section-title">Trung tâm ở cữ Tây Hồ: <span>Điểm đến tĩnh dưỡng hạng A tiêu chuẩn Hoàng gia dành cho mẹ và bé</span></h2>
-            <p class="lead">Hành trình tĩnh dưỡng 5 sao bắt đầu ngay từ khoảnh khắc mẹ bước lên xe hạng sang đưa đón 2 chiều. Home Care Luxury trân trọng nâng niu từng phút giây phục hồi của mẹ với những đặc quyền thượng lưu.</p>
+            <h2 class="section-title">Không gian tĩnh dưỡng <span>5 sao giữa lòng thủ đô</span></h2>
+            <p class="lead">Hành trình tĩnh dưỡng 5 sao bắt đầu ngay từ khoảnh khắc mẹ bước lên xe hạng sang đưa đón 2 chiều.</p>
         </div>
-        <div class="split" style="margin-top:56px">
-            <div class="reveal">
-                <h3 class="section-title sub-title">Không gian tĩnh dưỡng 5 sao giữa lòng thủ đô</h3>
-                <p class="lead">Home Care Luxury sở hữu không gian 7 tầng mang phong cách Châu Âu sang trọng, được thiết kế riêng biệt để mẹ và bé tận hưởng sự yên tĩnh, riêng tư trong suốt hành trình ở cữ. Các căn Suite rộng tới 60m², sở hữu tầm nhìn thoáng đãng cùng đầy đủ tiện nghi và trang thiết bị hiện đại dành cho mẹ và bé. Đặc biệt, tầng thượng mở ra khoảng xanh thư thái để mẹ tập Yoga, thưởng trà và cùng bé đón nắng sớm giữa lòng thủ đô.</p>
-                <p class="highlight">Giữa lòng thủ đô nhộn nhịp, một “thiên đường tĩnh dưỡng 5 sao” mang phong cách Châu Âu sang trọng đang chờ mẹ khám phá!</p>
-                <div class="cta-row"><a href="#dang-ky" class="btn btn-gold">Nhận hình ảnh phòng ở cữ thực tế</a></div>
-            </div>
-            <div class="reveal">
-                <figure>
-                    <div class="media" data-scene="room" data-src="" style="min-height:300px"></div>
-                    <figcaption>Phòng tĩnh dưỡng sau sinh Hạng A tại Trung tâm chăm sóc mẹ và bé sau sinh Home Care Luxury – Địa chỉ: 199 Hồ Tùng Mậu, Từ Liêm, Hà Nội.</figcaption>
-                </figure>
-                <figure style="margin-top:20px">
-                    <div class="media" data-scene="lounge" data-src="" style="min-height:220px"></div>
-                    <figcaption>Phòng ở cữ cao cấp tại Trung tâm ở cữ Home Care – KĐT Mỹ Đình, Hà Nội.</figcaption>
-                </figure>
-            </div>
+        <div class="gallery3">
+            <figure class="reveal"><div class="media" data-scene="room" data-src=""></div><figcaption>Suite rộng tới 60m², tầm nhìn thoáng đãng</figcaption></figure>
+            <figure class="reveal"><div class="media" data-scene="lounge" data-src=""></div><figcaption>7 tầng phong cách Châu Âu sang trọng</figcaption></figure>
+            <figure class="reveal"><div class="media" data-scene="rooftop" data-src=""></div><figcaption>Tầng thượng: tập Yoga, thưởng trà, đón nắng sớm</figcaption></figure>
         </div>
+        <div class="center cta-row"><a href="#dang-ky" class="btn btn-gold">Nhận hình ảnh phòng ở cữ thực tế</a></div>
     </div>
 </section>
 
@@ -499,51 +540,31 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
 <section class="section">
     <div class="container">
         <div class="center reveal">
-            <h2 class="section-title">Liệu trình chăm sóc <span>cá nhân hóa toàn diện cho mẹ và bé</span></h2>
-            <p class="lead">Mỗi mẹ và bé có một hành trình hồi phục riêng, vì vậy Home Care Luxury xây dựng liệu trình chăm sóc 1:1 dựa trên thể trạng và nhu cầu thực tế, để từng khoảnh khắc ở cữ đều được nâng niu theo cách phù hợp nhất.</p>
+            <h2 class="section-title">Liệu trình chăm sóc <span>1:1 cho mẹ và bé</span></h2>
+            <p class="lead">Dựa trên thể trạng và nhu cầu thực tế của từng mẹ và bé.</p>
         </div>
         <div class="care-grid">
             <div class="care-card reveal">
-                <h3><span class="ic"><svg class="icon"><use href="#i-heart"/></svg></span>Chăm sóc chuyên sâu cho mẹ</h3>
-                <p>Mẹ được thả lỏng tâm trí và cơ thể với liệu trình spa chuyên sâu:</p>
+                <div class="media" data-scene="spa" data-src=""></div>
+                <h3><span class="ic"><svg class="icon"><use href="#i-heart"/></svg></span>Cho mẹ</h3>
                 <ul class="checks">
                     <li><svg class="icon"><use href="#i-check"/></svg>Thông tắc tia sữa</li>
                     <li><svg class="icon"><use href="#i-check"/></svg>Chăm sóc vết khâu/vết mổ</li>
-                    <li><svg class="icon"><use href="#i-check"/></svg>Massage thư giãn, chăm sóc da mặt, gội đầu dưỡng sinh</li>
-                    <li><svg class="icon"><use href="#i-check"/></svg>Xông hơi thảo dược và detox ủ muối hồng Himalaya giúp thư giãn sâu, hỗ trợ lấy lại vóc dáng thanh gọn</li>
+                    <li><svg class="icon"><use href="#i-check"/></svg>Massage, chăm sóc da mặt, gội đầu dưỡng sinh</li>
+                    <li><svg class="icon"><use href="#i-check"/></svg>Xông hơi thảo dược, detox ủ muối hồng Himalaya</li>
+                    <li><svg class="icon"><use href="#i-check"/></svg>Hướng dẫn tắm, massage, vỗ ợ, cho bé bú đúng khớp</li>
                 </ul>
-                <p class="highlight">Điểm đặc biệt là mẹ không chỉ được chăm, mà còn được hướng dẫn tắm, massage bé, vỗ ợ hay cho bé bú đúng khớp để tự tin chăm con sau khi rời trung tâm.</p>
-                <div class="care-figs">
-                    <figure>
-                        <div class="media" data-scene="bath" data-src="" style="min-height:220px"></div>
-                        <figcaption>Các cô tại trung tâm Home Care Luxury hướng dẫn mẹ tắm, massage cho bé</figcaption>
-                    </figure>
-                </div>
             </div>
             <div class="care-card reveal">
-                <h3><span class="ic"><svg class="icon"><use href="#i-moon"/></svg></span>Chăm sóc toàn diện cho bé</h3>
-                <p>Bé được các cô thăm khám, massage thư giãn &amp; tắm bằng thảo mộc thuần chay:</p>
+                <div class="media" data-scene="baby" data-src=""></div>
+                <h3><span class="ic"><svg class="icon"><use href="#i-moon"/></svg></span>Cho bé</h3>
                 <ul class="checks">
-                    <li><svg class="icon"><use href="#i-check"/></svg>Vệ sinh toàn thân</li>
-                    <li><svg class="icon"><use href="#i-check"/></svg>Chăm sóc da hàng ngày ngừa hăm – viêm – chàm</li>
-                    <li><svg class="icon"><use href="#i-check"/></svg>Vệ sinh cuống rốn cho rốn mau khô, sớm rụng</li>
-                    <li><svg class="icon"><use href="#i-check"/></svg>Rèn nếp sinh hoạt EASY cho bé yêu ngủ ngon xuyên đêm</li>
+                    <li><svg class="icon"><use href="#i-check"/></svg>Thăm khám, massage thư giãn</li>
+                    <li><svg class="icon"><use href="#i-check"/></svg>Tắm bằng thảo mộc thuần chay</li>
+                    <li><svg class="icon"><use href="#i-check"/></svg>Chăm sóc da ngừa hăm – viêm – chàm</li>
+                    <li><svg class="icon"><use href="#i-check"/></svg>Vệ sinh cuống rốn mau khô, sớm rụng</li>
+                    <li><svg class="icon"><use href="#i-check"/></svg>Rèn nếp EASY – bé ngủ ngon xuyên đêm</li>
                 </ul>
-                <p class="highlight">Đội ngũ chuyên viên luôn đồng hành rèn nếp sinh hoạt EASY cho bé yêu ngủ ngon xuyên đêm, trao trọn cho mẹ giấc ngủ sâu để sớm hồi phục.</p>
-                <div class="care-figs two">
-                    <figure>
-                        <div class="media" data-scene="baby" data-src=""></div>
-                        <figcaption>Bé sơ sinh được massage, chăm sóc rốn bằng máy công nghệ cao và chăm sóc da ngừa rôm sảy.</figcaption>
-                    </figure>
-                    <figure>
-                        <div class="media" data-scene="towel" data-src=""></div>
-                        <figcaption>Bé sơ sinh được vệ sinh cơ thể, cô điều dưỡng cho bé bú bình và luyện vận động cho bé tại trung tâm.</figcaption>
-                    </figure>
-                    <figure class="full">
-                        <div class="media" data-scene="sunbath" data-src=""></div>
-                        <figcaption>Một buổi tắm nắng cho bé tại Trung tâm Home Care Luxury</figcaption>
-                    </figure>
-                </div>
             </div>
         </div>
         <div class="center cta-row"><a href="#dang-ky" class="btn btn-gold">Đăng ký tư vấn liệu trình phù hợp</a></div>
@@ -555,9 +576,12 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
     <div class="container split">
         <div class="frame reveal"><div class="media tall arch" data-scene="food" data-src=""></div></div>
         <div class="reveal">
-            <h2 class="section-title">Dinh dưỡng trọn vẹn tình thương <span>như bữa cơm nhà</span></h2>
-            <p class="lead">Mỗi ngày trôi qua là một trải nghiệm ẩm thực tinh tế với 5 bữa ăn được chế biến từ nguồn nguyên liệu tự nhiên tươi ngon. Thực đơn 30 ngày đa dạng được thiết kế khoa học, giúp gọi nguồn sữa dồi dào, thơm dòng sữa cho con ti mà vẫn giữ cho mẹ vóc dáng thon gọn.</p>
-            <p class="highlight">Cơm cữ đủ đầy dinh dưỡng, gửi trọn yêu thương đến mẹ trong từng bữa ăn!</p>
+            <h2 class="section-title">Dinh dưỡng <span>như bữa cơm nhà</span></h2>
+            <div class="points">
+                <div class="point"><span class="ic"><b>5</b></span>Bữa ăn mỗi ngày từ nguyên liệu tự nhiên</div>
+                <div class="point"><span class="ic"><b>30</b></span>Ngày thực đơn đa dạng, khoa học</div>
+                <div class="point"><span class="ic"><svg class="icon"><use href="#i-heart"/></svg></span>Gọi sữa dồi dào, giữ vóc dáng thon gọn</div>
+            </div>
         </div>
     </div>
 </section>
@@ -566,15 +590,14 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
 <section class="section">
     <div class="container">
         <div class="center reveal">
-            <h2 class="section-title">Mẹ bỉm nói gì sau khi trải nghiệm <span>dịch vụ ở cữ sau sinh tại trung tâm Home Care Luxury?</span></h2>
-            <p class="lead">Cùng lắng nghe những chia sẻ chân thành từ các gia đình đã trải nghiệm dịch vụ ở cữ tại Trung tâm Home Care Luxury. Từ cảm giác lần đầu tiên được ngủ một giấc thật sâu sau nhiều đêm trăn trở, đến sự nhẹ nhõm khi cơ thể được nâng niu; từ nụ cười của mẹ khi sữa về dạt dào đến sự an tâm khi em bé được chăm sóc chu đáo từng cữ ăn, giấc ngủ sâu.</p>
+            <h2 class="section-title">Mẹ bỉm nói gì <span>sau khi trải nghiệm?</span></h2>
         </div>
         <div class="stories-grid">
-            <article class="story reveal"><div class="media" data-scene="baby" data-src=""></div><p>Gia đình bé Finn ở cữ 28 ngày tại trung tâm Home Care</p></article>
-            <article class="story reveal"><div class="media" data-scene="mother" data-src=""></div><p>Tròn trĩnh 30 ngày ở cữ như mơ – Hành trình mẹ tròn con vuông trọn vẹn của gia đình bé Hari</p></article>
-            <article class="story reveal"><div class="media" data-scene="bath" data-src=""></div><p>Nhân đôi hạnh phúc, xóa tan áp lực – 17 Ngày ở cữ “nhàn tênh” của mẹ sinh đôi Bắp &amp; Bơ</p></article>
-            <article class="story reveal"><div class="media" data-scene="spa" data-src=""></div><p>Gạt bỏ cơn ác mộng mang tên “đuối sức hậu sản” – Chặng đường hồi sinh tinh thần và thể lực cùng mẹ bé Bánh Bao</p></article>
-            <article class="story reveal"><div class="media" data-scene="celebration" data-src=""></div><p>Cùng ngắm nhìn tiệc mừng đầy tháng ngọt ngào của bé yêu được các cô Home Care chuẩn bị đầy tình yêu thương!</p></article>
+            <article class="story reveal"><div class="media" data-scene="baby" data-src=""><span class="story-tag">28 ngày</span></div><p>Gia đình bé Finn</p></article>
+            <article class="story reveal"><div class="media" data-scene="mother" data-src=""><span class="story-tag">30 ngày</span></div><p>Gia đình bé Hari</p></article>
+            <article class="story reveal"><div class="media" data-scene="bath" data-src=""><span class="story-tag">17 ngày</span></div><p>Mẹ sinh đôi Bắp &amp; Bơ</p></article>
+            <article class="story reveal"><div class="media" data-scene="spa" data-src=""><span class="story-tag">Hồi phục</span></div><p>Mẹ bé Bánh Bao</p></article>
+            <article class="story reveal"><div class="media" data-scene="celebration" data-src=""><span class="story-tag">Đầy tháng</span></div><p>Tiệc mừng đầy tháng</p></article>
         </div>
     </div>
 </section>
@@ -583,15 +606,13 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
 <section class="section offer">
     <div class="container offer-grid">
         <div>
-            <h2 class="section-title">Đặc quyền voucher &amp; xe đưa đón miễn phí <span>dành cho mẹ bỉm Tây Hồ</span></h2>
-            <div class="offer-head">ĐĂNG KÝ DỊCH VỤ Ở CỮ TẠI TRUNG TÂM HOME CARE LUXURY</div>
+            <h2 class="section-title">Đặc quyền <span>dành cho mẹ bỉm Tây Hồ</span></h2>
             <ul class="offer-list">
-                <li><span class="ic"><svg class="icon"><use href="#i-crown"/></svg></span><span><b>990K/NGÀY</b> Ở CỮ CHUẨN HOÀNG GIA TẠI HOME CARE LUXURY, MẸ &amp; BÉ ĐƯỢC CHĂM SÓC TOÀN DIỆN</span></li>
-                <li><span class="ic"><svg class="icon"><use href="#i-gift"/></svg></span><span><b>TẶNG NGAY VOUCHER</b> 15 BUỔI CHĂM SÓC BẦU + SAU SINH TẠI NHÀ – TRỊ GIÁ <b>15.970.000Đ</b></span></li>
-                <li><span class="ic"><svg class="icon"><use href="#i-car"/></svg></span><span>Miễn phí đưa đón 2 chiều bằng xe hạng A từ tất cả các khu vực: <b>Yên Phụ, Quảng An, Tứ Liên, Nhật Tân, Xuân La…</b></span></li>
+                <li><span class="ic"><svg class="icon"><use href="#i-crown"/></svg></span><span><b>990K/NGÀY</b> ở cữ chuẩn Hoàng gia</span></li>
+                <li><span class="ic"><svg class="icon"><use href="#i-gift"/></svg></span><span><b>Tặng voucher 15.970.000Đ</b> – 15 buổi chăm sóc bầu + sau sinh tại nhà</span></li>
+                <li><span class="ic"><svg class="icon"><use href="#i-car"/></svg></span><span><b>Miễn phí xe hạng A</b> đưa đón 2 chiều: Yên Phụ, Quảng An, Tứ Liên, Nhật Tân, Xuân La…</span></li>
             </ul>
-            <p class="closing">Tháng đầu đời của con là những ngày thật đặc biệt, và mẹ cũng xứng đáng có một khoảng thời gian được nghỉ ngơi, chăm sóc và yêu thương trọn vẹn. Tại Home Care Luxury, mọi vất vả sau sinh được sẻ chia để mẹ thảnh thơi tận hưởng kỳ ở cữ như một kỳ nghỉ dưỡng, còn bé yêu được chăm chút chu đáo trong từng cữ ăn, giấc ngủ.</p>
-            <p class="urgent">Số lượng phòng tĩnh dưỡng được giới hạn, mẹ hãy đăng ký sớm để lựa chọn không gian yêu thích nhé!</p>
+            <p class="urgent">Số lượng phòng tĩnh dưỡng được giới hạn, mẹ hãy đăng ký sớm nhé!</p>
             <div class="hotlines">
                 <a href="tel:0973871376"><svg class="icon"><use href="#i-phone"/></svg>0973 871 376</a>
                 <a href="tel:0962131515"><svg class="icon"><use href="#i-phone"/></svg>0962 131 515</a>
@@ -600,8 +621,7 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
         <div class="form-card" id="dang-ky-2">
             <div class="form-ribbon">Tặng ngay voucher trị giá 15.970.000Đ</div>
             <form class="lead-form" novalidate>
-                <h2>👉 Đăng ký tham quan trung tâm ở cữ Home Care miễn phí!</h2>
-                <p class="sub">Để lại thông tin để được Home Care tư vấn liệu trình phù hợp và đặt lịch tham quan trung tâm miễn phí.</p>
+                <h2>Đăng ký tham quan trung tâm ở cữ Home Care miễn phí!</h2>
                 <div class="form-group">
                     <label for="name2">Họ và tên <em>*</em></label>
                     <input type="text" id="name2" name="name" class="form-input" placeholder="Nhập họ và tên" autocomplete="name">
@@ -623,12 +643,11 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
             <div class="form-success">
                 <div class="ic"><svg class="icon"><use href="#i-check"/></svg></div>
                 <h3>Đăng ký thành công!</h3>
-                <p>Home Care sẽ liên hệ để tư vấn liệu trình phù hợp và đặt lịch tham quan trung tâm. Hotline: <a href="tel:0973871376"><b>0973 871 376</b></a> – <a href="tel:0962131515"><b>0962 131 515</b></a></p>
+                <p>Home Care sẽ liên hệ tư vấn và đặt lịch tham quan cho mẹ.</p>
             </div>
         </div>
     </div>
 </section>
-
 
 <!-- ===== STICKY MOBILE BAR ===== -->
 <div class="sticky-bar">
