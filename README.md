@@ -27,7 +27,7 @@ Landing page tối ưu chuyển đổi cao (High Conversion Rate) dành cho chi�
 File: `o-cu-tay-ho/index.html` — trang độc lập (HTML/CSS/JS thuần). Toàn bộ nội dung trích (rút gọn) từ bài viết "Trung Tâm Ở Cữ Tây Hồ Hạng A: 990K/ Ngày Trải Nghiệm Tĩnh Dưỡng Thượng Lưu Cho Mẹ & Bé".
 
 - **Mục tiêu**: khách điền form (mẹ bầu, mẹ sau sinh, người thân). Không có header/footer. Form đặt ngay đầu trang và lặp lại ở cuối trang; các nút CTA và thanh CTA cố định trên mobile đều dẫn tới form.
-- **Font & giao diện**: một font duy nhất Nunito, cỡ chữ lớn, tương phản cao; tông xanh rêu + vàng ánh kim (gradient), viền vàng mảnh, họa tiết phân cách, khung ảnh vòm, form có ruy băng ưu đãi.
+- **Font & giao diện**: một font duy nhất Nunito, cỡ chữ lớn, tương phản cao; màu chủ đạo #4cc0d3 (xanh ngọc) + xanh đậm, viền vàng mảnh, họa tiết phân cách, khung ảnh vòm, form có ruy băng ưu đãi.
 - **Form**: Họ tên, Số điện thoại, 6 lựa chọn đúng như bài viết (dạng nút bấm). Gắn API gửi dữ liệu tại dòng `TODO` trong script.
 - **Thay ảnh thật**: điền URL ảnh vào `data-src` của các khối `.media` (ví dụ `<div class="media" data-scene="room" data-src="https://.../phong-suite.jpg">`) — ảnh thật sẽ tự thay hình minh họa. Chú thích ảnh đã dùng đúng chú thích trong bài.
 - **Video review**: khu `#video` có 1 video ngang (16:9) + 5 video dọc (9:16). Dán link vào `data-video` của từng `.vcard` — hỗ trợ YouTube, YouTube Shorts, TikTok, Facebook/Reels, file .mp4. Bấm vào sẽ mở popup phát video; YouTube tự lấy ảnh bìa. Muốn thêm video: nhân bản một `<button class="vcard v">` (dọc) hoặc `class="vcard h"` (ngang).
