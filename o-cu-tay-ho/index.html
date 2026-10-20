@@ -431,6 +431,70 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
     .point { font-size: 16.5px; padding: 14px 16px; }
     .point .ic { width: 44px; height: 44px; }
 }
+
+/* ===== VIDEO REVIEW ===== */
+.vcard {
+    position: relative; display: block; width: 100%; padding: 0; border: none; cursor: pointer;
+    border-radius: var(--radius); overflow: hidden; background: var(--forest); text-align: left;
+    box-shadow: var(--shadow); transition: var(--transition); font-family: inherit;
+}
+.vcard:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.vcard .media { position: absolute; inset: 0; min-height: 0; border-radius: 0; }
+.vcard .media::after { display: none; }
+.vcard::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, transparent 45%, rgba(10,26,23,.82));
+}
+.vcard.h { aspect-ratio: 16 / 9; max-width: 920px; margin: 44px auto 0; }
+.vcard.v { aspect-ratio: 9 / 16; }
+.vplay {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2;
+    width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--gold-grad); color: var(--white);
+    box-shadow: 0 0 0 10px rgba(255,255,255,.22), 0 14px 30px rgba(0,0,0,.3);
+    transition: var(--transition);
+}
+.vplay .icon { width: 28px; height: 28px; fill: currentColor; stroke: none; margin-left: 4px; }
+.vcard:hover .vplay { transform: translate(-50%, -50%) scale(1.08); box-shadow: 0 0 0 16px rgba(255,255,255,.18), 0 14px 30px rgba(0,0,0,.3); }
+.vcard.v .vplay { width: 58px; height: 58px; }
+.vcard.v .vplay .icon { width: 22px; height: 22px; }
+.vinfo { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 18px 20px; }
+.vtitle { display: block; color: var(--white); font-weight: 800; font-size: 17px; line-height: 1.35; }
+.vcard.h .vtitle { font-size: 22px; padding: 6px 8px; }
+.vcard .story-tag { z-index: 2; }
+.vstrip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; margin-top: 24px; }
+
+.vmodal {
+    position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center;
+    padding: 20px; background: rgba(5, 14, 12, .88); backdrop-filter: blur(6px);
+}
+.vmodal.open { display: flex; }
+.vbox { position: relative; width: min(960px, 100%); }
+.vbox.v { width: min(420px, 100%, calc((100vh - 80px) * 9 / 16)); }
+.vframe { position: relative; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; background: #000; }
+.vbox.v .vframe { aspect-ratio: 9 / 16; }
+.vframe iframe, .vframe video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.vframe .vempty { position: absolute; inset: 0; display: grid; place-items: center; padding: 24px; text-align: center; color: var(--gold-light); font-weight: 700; }
+.vclose {
+    position: absolute; top: -52px; right: 0; width: 44px; height: 44px; border-radius: 50%; border: none; cursor: pointer;
+    background: var(--white); color: var(--forest); font-size: 28px; line-height: 1; font-weight: 700;
+}
+@media (max-width: 980px) {
+    .vstrip {
+        display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px;
+        margin: 20px -24px 0; padding: 4px 24px 14px; scrollbar-width: none scroll-padding-inline: 24px;
+    }
+    .vstrip::-webkit-scrollbar { display: none; }
+    .vstrip .vcard { flex: 0 0 34%; scroll-snap-align: start; }
+}
+@media (max-width: 640px) {
+    .vcard.h { margin-top: 32px; }
+    .vcard.h .vtitle { font-size: 17px; padding: 0; }
+    .vplay { width: 60px; height: 60px; }
+    .vstrip { margin: 16px -16px 0; padding: 4px 16px 14px; scroll-padding-inline: 16px; }
+    .vstrip .vcard { flex-basis: 58%; }
+    .vclose { top: -50px; }
+}
 </style>
 </head>
 <body>
@@ -444,6 +508,7 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
     <symbol id="i-crown" viewBox="0 0 24 24"><path d="M4 18 3 7l5 4 4-6 4 6 5-4-1 11Z"/><path d="M4 21h16"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"/></symbol>
     <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5Z"/></symbol>
     <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14A8 8 0 1 1 10 4a6.5 6.5 0 0 0 10 10Z"/></symbol>
 </svg>
 
@@ -586,21 +651,65 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
     </div>
 </section>
 
-<!-- ===== STORIES ===== -->
-<section class="section">
+<!-- ===== VIDEO REVIEW =====
+     Dán link video vào data-video (YouTube / YouTube Shorts / TikTok / Facebook / Reels / file .mp4).
+     Ảnh bìa (tùy chọn): điền vào data-src của .media — YouTube tự lấy ảnh bìa nếu để trống. -->
+<section class="section" id="video">
     <div class="container">
         <div class="center reveal">
             <h2 class="section-title">Mẹ bỉm nói gì <span>sau khi trải nghiệm?</span></h2>
         </div>
-        <div class="stories-grid">
-            <article class="story reveal"><div class="media" data-scene="baby" data-src=""><span class="story-tag">28 ngày</span></div><p>Gia đình bé Finn</p></article>
-            <article class="story reveal"><div class="media" data-scene="mother" data-src=""><span class="story-tag">30 ngày</span></div><p>Gia đình bé Hari</p></article>
-            <article class="story reveal"><div class="media" data-scene="bath" data-src=""><span class="story-tag">17 ngày</span></div><p>Mẹ sinh đôi Bắp &amp; Bơ</p></article>
-            <article class="story reveal"><div class="media" data-scene="spa" data-src=""><span class="story-tag">Hồi phục</span></div><p>Mẹ bé Bánh Bao</p></article>
-            <article class="story reveal"><div class="media" data-scene="celebration" data-src=""><span class="story-tag">Đầy tháng</span></div><p>Tiệc mừng đầy tháng</p></article>
+
+        <button type="button" class="vcard h reveal" data-video="">
+            <div class="media" data-scene="room" data-src=""></div>
+            <span class="vplay"><svg class="icon"><use href="#i-play"/></svg></span>
+            <span class="vinfo"><span class="vtitle">Không gian tĩnh dưỡng 5 sao giữa lòng thủ đô</span></span>
+        </button>
+
+        <div class="vstrip">
+            <button type="button" class="vcard v reveal" data-video="">
+                <div class="media" data-scene="baby" data-src=""></div>
+                <span class="story-tag">28 ngày</span>
+                <span class="vplay"><svg class="icon"><use href="#i-play"/></svg></span>
+                <span class="vinfo"><span class="vtitle">Gia đình bé Finn</span></span>
+            </button>
+            <button type="button" class="vcard v reveal" data-video="">
+                <div class="media" data-scene="mother" data-src=""></div>
+                <span class="story-tag">30 ngày</span>
+                <span class="vplay"><svg class="icon"><use href="#i-play"/></svg></span>
+                <span class="vinfo"><span class="vtitle">Gia đình bé Hari</span></span>
+            </button>
+            <button type="button" class="vcard v reveal" data-video="">
+                <div class="media" data-scene="bath" data-src=""></div>
+                <span class="story-tag">17 ngày</span>
+                <span class="vplay"><svg class="icon"><use href="#i-play"/></svg></span>
+                <span class="vinfo"><span class="vtitle">Mẹ sinh đôi Bắp &amp; Bơ</span></span>
+            </button>
+            <button type="button" class="vcard v reveal" data-video="">
+                <div class="media" data-scene="spa" data-src=""></div>
+                <span class="story-tag">Hồi phục</span>
+                <span class="vplay"><svg class="icon"><use href="#i-play"/></svg></span>
+                <span class="vinfo"><span class="vtitle">Mẹ bé Bánh Bao</span></span>
+            </button>
+            <button type="button" class="vcard v reveal" data-video="">
+                <div class="media" data-scene="celebration" data-src=""></div>
+                <span class="story-tag">Đầy tháng</span>
+                <span class="vplay"><svg class="icon"><use href="#i-play"/></svg></span>
+                <span class="vinfo"><span class="vtitle">Tiệc mừng đầy tháng</span></span>
+            </button>
         </div>
+
+        <div class="center cta-row"><a href="#dang-ky" class="btn btn-gold">Đăng ký tham quan miễn phí</a></div>
     </div>
 </section>
+
+<!-- ===== VIDEO MODAL ===== -->
+<div class="vmodal" id="vmodal" aria-hidden="true">
+    <div class="vbox" role="dialog" aria-modal="true" aria-label="Video">
+        <button type="button" class="vclose" aria-label="Đóng">×</button>
+        <div class="vframe"></div>
+    </div>
+</div>
 
 <!-- ===== OFFER + FORM ===== -->
 <section class="section offer">
@@ -817,6 +926,50 @@ document.addEventListener('DOMContentLoaded', () => {
                 `<svg class="scene" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${SKY}${SCENES[el.dataset.scene]}</svg>`);
         }
     });
+
+    // ===== VIDEO REVIEW =====
+    const ytId = url => {
+        const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/|live\/))([\w-]{11})/);
+        return m ? m[1] : null;
+    };
+    const embedFor = url => {
+        const yt = ytId(url);
+        if (yt) return `<iframe src="https://www.youtube.com/embed/${yt}?autoplay=1&rel=0&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+        const tt = url.match(/tiktok\.com\/.*\/video\/(\d+)/);
+        if (tt) return `<iframe src="https://www.tiktok.com/embed/v2/${tt[1]}" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
+        if (/facebook\.com|fb\.watch/.test(url)) return `<iframe src="https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}&show_text=false&autoplay=true" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+        if (/\.(mp4|webm|mov|m4v)(\?|$)/i.test(url)) return `<video src="${url}" controls autoplay playsinline></video>`;
+        return `<iframe src="${url}" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
+    };
+    const vmodal = document.getElementById('vmodal');
+    const vbox = vmodal.querySelector('.vbox');
+    const vframe = vmodal.querySelector('.vframe');
+    const closeVideo = () => {
+        vmodal.classList.remove('open');
+        vmodal.setAttribute('aria-hidden', 'true');
+        vframe.innerHTML = '';
+        document.body.style.overflow = '';
+    };
+    document.querySelectorAll('.vcard').forEach(card => {
+        const url = (card.dataset.video || '').trim();
+        const media = card.querySelector('.media');
+        const yt = url && ytId(url);
+        if (yt && !media.classList.contains('loaded')) {
+            media.querySelector('svg.scene')?.remove();
+            media.style.backgroundImage = `url("https://i.ytimg.com/vi/${yt}/hqdefault.jpg")`;
+            media.classList.add('loaded');
+        }
+        card.addEventListener('click', () => {
+            vbox.classList.toggle('v', card.classList.contains('v'));
+            vframe.innerHTML = url ? embedFor(url) : '<div class="vempty">Chưa có video – dán link vào thuộc tính data-video</div>';
+            vmodal.classList.add('open');
+            vmodal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+    vmodal.querySelector('.vclose').addEventListener('click', closeVideo);
+    vmodal.addEventListener('click', e => { if (e.target === vmodal) closeVideo(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && vmodal.classList.contains('open')) closeVideo(); });
 
     // ===== REVEAL ON SCROLL =====
     const io = new IntersectionObserver(entries => {
