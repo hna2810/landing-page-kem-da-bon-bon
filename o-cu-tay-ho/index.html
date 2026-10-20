@@ -120,6 +120,8 @@ button, input { font-family: inherit; }
 @keyframes shine { 0%, 60% { left: -130%; } 100% { left: 140%; } }
 .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 18px 40px rgba(42, 159, 180, 0.48), inset 0 1px 0 rgba(255,255,255,.35); }
 .btn-dark { background: var(--forest); color: var(--white); }
+.btn-ghost { background: rgba(255,255,255,.08); color: var(--white); border: 1.5px solid rgba(196,238,245,.5); }
+.btn-ghost:hover { background: rgba(255,255,255,.16); }
 .btn-dark:hover { background: var(--forest-dark); }
 .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 34px; }
 .center.cta-row, .center .cta-row { justify-content: center; }
@@ -164,7 +166,7 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
 }
 .hero::before { width: 760px; height: 760px; left: -280px; top: -320px; box-shadow: 0 0 0 70px rgba(196,238,245,.02), 0 0 0 140px rgba(196,238,245,.015); }
 .hero::after { width: 520px; height: 520px; right: -200px; bottom: -300px; }
-.hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.08fr .92fr; gap: 56px; align-items: start; }
+.hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
 .hero-badge {
     display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700;
     background: rgba(255,255,255,.06); border: 1px solid rgba(196,238,245,.45); color: var(--gold-light);
@@ -495,6 +497,34 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
     .vstrip .vcard { flex-basis: 58%; }
     .vclose { top: -50px; }
 }
+
+/* ===== HERO VIDEO ===== */
+.hero-video { position: relative; padding: 12px; border-radius: 30px; border: 1px solid rgba(196,238,245,.35); background: rgba(255,255,255,.04); }
+.hero-video .vcard.h { margin: 0; max-width: none; border-radius: 22px; box-shadow: 0 40px 100px rgba(0,0,0,.35); }
+.hero-video .vplay { width: 86px; height: 86px; animation: vpulse 2.2s infinite; }
+.hero-video .vplay .icon { width: 32px; height: 32px; }
+@keyframes vpulse { 0% { box-shadow: 0 0 0 0 rgba(255,255,255,.45), 0 14px 30px rgba(0,0,0,.3); } 100% { box-shadow: 0 0 0 22px rgba(255,255,255,0), 0 14px 30px rgba(0,0,0,.3); } }
+.hero-cta { margin-top: 28px; }
+@media (max-width: 640px) {
+    .hero-video { padding: 8px; border-radius: 22px; }
+    .hero-video .vcard.h { border-radius: 16px; }
+    .hero-video .vplay { width: 68px; height: 68px; }
+}
+@media (prefers-reduced-motion: reduce) { .hero-video .vplay { animation: none; } }
+
+/* ===== HERO: căn giữa, video lớn ===== */
+.hero-grid { grid-template-columns: 1fr; text-align: center; }
+.hero-main { max-width: 980px; margin: 0 auto; }
+.hero .chips { justify-content: center; }
+.hero-main > .hero-video { max-width: 920px; margin: 32px auto 0; text-align: left; }
+.hero-offers { grid-template-columns: repeat(3, 1fr); text-align: left; margin-top: 28px; }
+.hero-cta { justify-content: center; }
+@media (max-width: 980px) { .hero-offers { grid-template-columns: 1fr; } }
+@media (max-width: 640px) {
+    .hero-grid { text-align: left; }
+    .hero .chips, .hero-cta { justify-content: flex-start; }
+    .hero-main > .hero-video { margin-top: 24px; }
+}
 </style>
 </head>
 <body>
@@ -513,47 +543,30 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
 </svg>
 
 
-<!-- ===== HERO + FORM ===== -->
+<!-- ===== HERO + VIDEO ===== -->
 <section class="hero" id="top">
     <div class="container hero-grid">
-        <div>
+        <div class="hero-main">
             <span class="hero-badge">Trung tâm ở cữ Tây Hồ Hạng A</span>
             <h1>Trung Tâm Ở Cữ Tây Hồ Hạng A: <span class="price">990K/ Ngày</span>Trải Nghiệm Tĩnh Dưỡng Thượng Lưu Cho Mẹ &amp; Bé</h1>
             <div class="chips">
                 <span>Không gian hạng A</span><span>Điều dưỡng 24/7</span><span>Nếp EASY khoa học</span>
+            </div>
+            <div class="hero-video">
+                <button type="button" class="vcard h" data-video="">
+                    <div class="media" data-scene="room" data-src=""></div>
+                    <span class="vplay"><svg class="icon"><use href="#i-play"/></svg></span>
+                    <span class="vinfo"><span class="vtitle">Trung tâm ở cữ cao cấp Home Care Luxury</span></span>
+                </button>
             </div>
             <ul class="hero-offers">
                 <li><span class="ic"><svg class="icon"><use href="#i-crown"/></svg></span><span><b>990K/NGÀY</b> ở cữ chuẩn Hoàng gia</span></li>
                 <li><span class="ic"><svg class="icon"><use href="#i-gift"/></svg></span><span><b>Tặng voucher 15.970.000Đ</b> – 15 buổi chăm sóc bầu + sau sinh tại nhà</span></li>
                 <li><span class="ic"><svg class="icon"><use href="#i-car"/></svg></span><span><b>Miễn phí xe hạng A</b> đưa đón 2 chiều</span></li>
             </ul>
-        </div>
-        <div class="form-card" id="dang-ky">
-            <div class="form-ribbon">Tặng ngay voucher trị giá 15.970.000Đ</div>
-            <form class="lead-form" novalidate>
-                <h2>NHẬN BÁO GIÁ &amp; ĐẶT LỊCH THAM QUAN MIỄN PHÍ</h2>
-                <div class="form-group">
-                    <label for="name1">Họ và tên <em>*</em></label>
-                    <input type="text" id="name1" name="name" class="form-input" placeholder="Nhập họ và tên" autocomplete="name">
-                    <div class="error-msg" data-for="name">Vui lòng nhập họ và tên</div>
-                </div>
-                <div class="form-group">
-                    <label for="phone1">Số điện thoại <em>*</em></label>
-                    <input type="tel" id="phone1" name="phone" class="form-input" placeholder="Nhập số điện thoại" autocomplete="tel" inputmode="tel">
-                    <div class="error-msg" data-for="phone">Vui lòng nhập đúng số điện thoại</div>
-                </div>
-                <div class="form-group">
-                    <span class="label">Vui lòng chọn thông tin <em>*</em></span>
-                    <div class="options"></div>
-                    <div class="error-msg" data-for="need">Vui lòng chọn thông tin</div>
-                </div>
-                <button type="submit" class="btn btn-gold btn-submit">ĐĂNG KÝ NGAY</button>
-                <p class="form-hotline">Hoặc gọi Hotline <a href="tel:0973871376">0973 871 376</a> – <a href="tel:0962131515">0962 131 515</a></p>
-            </form>
-            <div class="form-success">
-                <div class="ic"><svg class="icon"><use href="#i-check"/></svg></div>
-                <h3>Đăng ký thành công!</h3>
-                <p>Home Care sẽ liên hệ tư vấn và đặt lịch tham quan cho mẹ.</p>
+            <div class="cta-row hero-cta">
+                <a href="#dang-ky" class="btn btn-gold">Đăng ký tham quan miễn phí</a>
+                <a href="tel:0973871376" class="btn btn-ghost"><svg class="icon"><use href="#i-phone"/></svg>0973 871 376</a>
             </div>
         </div>
     </div>
@@ -660,11 +673,6 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
             <h2 class="section-title">Mẹ bỉm nói gì <span>sau khi trải nghiệm?</span></h2>
         </div>
 
-        <button type="button" class="vcard h reveal" data-video="">
-            <div class="media" data-scene="room" data-src=""></div>
-            <span class="vplay"><svg class="icon"><use href="#i-play"/></svg></span>
-            <span class="vinfo"><span class="vtitle">Không gian tĩnh dưỡng 5 sao giữa lòng thủ đô</span></span>
-        </button>
 
         <div class="vstrip">
             <button type="button" class="vcard v reveal" data-video="">
@@ -727,7 +735,7 @@ figcaption::before { content: ''; flex-shrink: 0; width: 18px; height: 1px; back
                 <a href="tel:0962131515"><svg class="icon"><use href="#i-phone"/></svg>0962 131 515</a>
             </div>
         </div>
-        <div class="form-card" id="dang-ky-2">
+        <div class="form-card" id="dang-ky">
             <div class="form-ribbon">Tặng ngay voucher trị giá 15.970.000Đ</div>
             <form class="lead-form" novalidate>
                 <h2>Đăng ký tham quan trung tâm ở cữ Home Care miễn phí!</h2>
