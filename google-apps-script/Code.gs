@@ -19,7 +19,7 @@
  */
 
 // 1. Cấu hình email nhận thông báo
-var NOTIFY_EMAIL = 'lyhrhomecare@gmail.com';
+var NOTIFY_EMAIL = 'tuyenhomecare@gmail.com';
 
 // 2. Tên tab Google Sheet chứa đơn hàng
 var SHEET_NAME = 'Đơn hàng';
@@ -81,7 +81,7 @@ function doPost(e) {
     var sheet = getSheet();
     var lastRow = insertLeadByHeaders(sheet, p);
 
-    // Gửi email thông báo về lyhrhomecare@gmail.com
+    // Gửi email thông báo về tuyenhomecare@gmail.com
     if (NOTIFY_EMAIL) {
       sendOrderNotification(p);
     }
@@ -244,7 +244,7 @@ function insertLeadByHeaders(sheet, p) {
 }
 
 /**
- * Gửi email thông báo đơn mới về lyhrhomecare@gmail.com
+ * Gửi email thông báo đơn mới về tuyenhomecare@gmail.com
  */
 function sendOrderNotification(p) {
   try {

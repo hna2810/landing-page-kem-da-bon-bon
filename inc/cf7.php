@@ -111,7 +111,7 @@ function lx_ensure_cf7_form() {
             'active'    => true,
             'subject'   => 'Đơn đặt hàng Kem Hăm Bon Bon mới từ [your-name]',
             'sender'    => '[_site_title] <wordpress@' . ($_SERVER['SERVER_NAME'] ?? 'kemham.bonbonhomecare.vn') . '>',
-            'recipient' => 'lyhrhomecare@gmail.com',
+            'recipient' => 'tuyenhomecare@gmail.com',
             'body'      => "Thông tin đơn hàng mới từ Landing Page:\n\n"
                          . "Họ tên: [your-name]\n"
                          . "Số điện thoại: [your-phone]\n"
@@ -131,6 +131,16 @@ function lx_ensure_cf7_form() {
     return false;
 }
 add_action('init', 'lx_ensure_cf7_form');
+
+/**
+ * Đảm bảo email nhận thông báo đơn hàng luôn gửi về tuyenhomecare@gmail.com
+ */
+add_filter('wpcf7_mail_components', function ($components, $contact_form) {
+    if (is_array($components)) {
+        $components['recipient'] = 'tuyenhomecare@gmail.com';
+    }
+    return $components;
+}, 10, 2);
 
 /**
  * Tắt cơ chế kiểm tra enum cứng nhắc của CF7 SWV
