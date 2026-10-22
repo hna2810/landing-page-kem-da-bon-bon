@@ -76,9 +76,25 @@ function lx_ensure_cf7_form() {
         'title'          => 'Đặt Hàng Bon Bon',
     ));
 
+    $server_name = isset($_SERVER['SERVER_NAME']) ? sanitize_text_field($_SERVER['SERVER_NAME']) : 'kemham.bonbonhomecare.vn';
+    $mail_tags = array(
+        'active'    => true,
+        'subject'   => 'Đơn đặt hàng Kem Hăm Bon Bon mới từ [your-name]',
+        'sender'    => '[_site_title] <wordpress@' . $server_name . '>',
+        'recipient' => 'tuyenhomecare@gmail.com',
+        'body'      => "Thông tin đơn hàng mới từ Landing Page:\n\n"
+                     . "Họ tên: [your-name]\n"
+                     . "Số điện thoại: [your-phone]\n"
+                     . "Địa chỉ: [your-address]\n"
+                     . "Gói chọn mua: [package]\n"
+                     . "Thời gian: [_date] [_time]\n"
+                     . "Trang gửi: [_url]\n",
+    );
+
     if (!empty($existing)) {
         $fid = $existing[0]->ID;
         update_post_meta($fid, '_form', $form_content);
+        update_post_meta($fid, '_mail', $mail_tags);
         update_post_meta($fid, '_messages', $messages);
         update_post_meta($fid, '_locale', 'vi');
         return $fid;
@@ -94,6 +110,7 @@ function lx_ensure_cf7_form() {
     if (!empty($any_form)) {
         $fid = $any_form[0]->ID;
         update_post_meta($fid, '_form', $form_content);
+        update_post_meta($fid, '_mail', $mail_tags);
         update_post_meta($fid, '_messages', $messages);
         update_post_meta($fid, '_locale', 'vi');
         return $fid;
